@@ -1,0 +1,79 @@
+PostData - EspHeartbeat
+{  
+   "esp":{  
+      "id":1,
+      "name":"blaEsp",
+      "location":1,
+      "ip":"192.168.178.101",
+      "components":[
+		{  
+		   "componentId":1,
+		   "name":"Yolo DHT",
+		   "temperature":22,
+		   "humidity":35.2,
+		   "componentType":1
+		},
+		{  
+		   "componentId":2,
+		   "name":"Big King XXL",
+		   "state":1,
+		   "componentType":2
+		},
+		{  
+		   "componentId":3,
+		   "name":"Bitte keine Anzeige",
+		   "state":0,
+		   "componentType":2
+		},
+		{
+		   "componentId":7,
+		   "name":"LED Powa",
+		   "red":4000,
+		   "green":2050,
+		   "blue":1000,
+		   "warmWhite":1999,
+		   "componentType":3
+		}
+      ]
+   }
+}
+
+PostData - EspHeartbeat Configure
+{  
+   "esp":{  
+      "id":-1,
+      "name":"",
+      "location":-1,
+      "ip":"192.168.178.101",
+      "components":[
+		{  
+		   "componentId":-1,
+		   "name":"",
+		   "temperature":-1,
+		   "humidity":-1,
+		   "componentType":1
+		},
+		{  
+		   "componentId":-1,
+		   "name":"",
+		   "state":1,
+		   "componentType":2
+		},
+		{  
+		   "componentId":-1,
+		   "name":"",
+		   "state":0,
+		   "componentType":2
+		},
+		{
+		   "componentId":-1,
+		   "name":"",
+		   "red":-1,
+		   "green":-1,
+		   "blue":-1,
+		   "warmWhite":-1,
+		   "componentType":3
+		}
+      ]
+   }
+}

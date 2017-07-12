@@ -1,0 +1,40 @@
+USE espwebapp;
+
+INSERT INTO room VALUES (1, "Living Room");
+INSERT INTO room VALUES (2, "Kitchen");
+
+INSERT INTO door VALUES (1, "", 1, 2);
+
+INSERT INTO window VALUES (1, "TV Left", 1);
+INSERT INTO window VALUES (2, "TV Right", 1);
+
+INSERT INTO location VALUES (1, "", 1, 1, NULL);
+INSERT INTO location VALUES (2, "Behind TV", 1, NULL, NULL);
+INSERT INTO location VALUES (3, "Garden", NULL, NULL, NULL);
+
+INSERT INTO esp VALUES (1, "DoorEsp", 1, "192.168.178.154");
+INSERT INTO esp VALUES (2, "TVEsp", 2, "192.168.178.122");
+INSERT INTO esp VALUES (3, "GardenWateringEsp", 3, "192.168.178.179");
+
+INSERT INTO component_type VALUES (1, "DHT");
+INSERT INTO component_type VALUES (2, "Relay");
+INSERT INTO component_type VALUES (3, "LED-Strip");
+
+INSERT INTO component VALUES (1, "", 1, 1);
+INSERT INTO component VALUES (2, "Television", 1, 2);
+INSERT INTO component VALUES (3, "Heater", 1, 2);
+INSERT INTO component VALUES (4, "Dehumidifier", 2, 2);
+INSERT INTO component VALUES (5, "", 2, 1);
+INSERT INTO component VALUES (6, "Television", 2, 3);
+INSERT INTO component VALUES (7, "Bed", 1, 3);
+
+INSERT INTO component_data_dht VALUES (1, 23.4, 57.3, NOW(), 1);
+INSERT INTO component_data_dht VALUES (2, 19.4, 46.3, DATE_ADD(NOW(), INTERVAL 2 HOUR), 1);
+INSERT INTO component_data_dht VALUES (3, 19.4, 46.3, NOW(), 5);
+
+INSERT INTO component_data_relay VALUES (1, false, NOW(), 2);
+INSERT INTO component_data_relay VALUES (2, true, NOW(), 3);
+INSERT INTO component_data_relay VALUES (3, true, NOW(), 4);
+
+INSERT INTO component_data_led_strip VALUES (1, 4000, 1200, 700, 68, NOW(), 6);
+INSERT INTO component_data_led_strip VALUES (2, 400, 4080, 2345, 96, NOW(), 7);

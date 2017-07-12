@@ -1,0 +1,36 @@
+ESP pushes info to WebApp:
+{
+	"esp": {
+		"id": {},
+		"name": {},
+		"location": {},
+		"ip": {},
+		"components": [
+			{
+				"componentId": {},
+				"temperature": {},
+				"humidity": {},
+				"componentType": {}
+			},
+			{
+				"componentId": {},
+				"state": {},
+				"componentType": {}
+			}
+		]
+	}
+}
+
+WebApp pushes info to ESP:
+GetData:
+{
+	"componentId": {},
+	"action": "get"
+}
+
+Relay:
+{
+	"componentId": {},
+	"action": "toggle"
+}
+
