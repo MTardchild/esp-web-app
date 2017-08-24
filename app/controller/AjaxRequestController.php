@@ -6,13 +6,14 @@ class AjaxRequestController {
     private $connectionTcpService;
     private $dhtDataService;
     private $ledStripDataService;
-
     private $relayDataService;
     private $ajaxRequest;
+    private $espService;
 
     public function __construct(ConnectionPostService $connectionPostService,
                                 ConnectionUdpService $connectionUdpService,
                                 ConnectionTcpService $connectionTcpService,
+                                EspService $espService,
                                 DhtDataService $dhtDataService,
                                 RelayDataService $relayDataService,
                                 LedStripDataService $ledStripDataService,
@@ -22,9 +23,9 @@ class AjaxRequestController {
         $this->connectionTcpService = $connectionTcpService;
         $this->dhtDataService = $dhtDataService;
         $this->relayDataService = $relayDataService;
-
         $this->ajaxRequest = $ajaxRequest;
         $this->ledStripDataService = $ledStripDataService;
+        $this->espService = $espService;
     }
 
     public function toggleRelay($action) {
@@ -105,6 +106,33 @@ class AjaxRequestController {
         $isSuccessful = $this->connectionUdpService->pushData($action['id'], $rgbBytes);
         $this->ajaxRequest->setStatus($isSuccessful);
         $this->ajaxRequest->setMessage("Color successfully sent to LED-Strip.");
+    }
+
+
+    public function getDashboardView($action) {
+        $file = __DIR__ . "/../view/template/TileTemplate.php";
+        $template = $this->getTemplate($file);
+        $this->ajaxRequest->setMessage($template);
+    }
+
+    public function getConfigView($action) {
+        $file = __DIR__ . "/../view/template/ConfigTemplate.php";
+        $template = $this->getTemplate($file);
+        $this->ajaxRequest->setMessage($template);
+    }
+
+    private function getTemplate($file) {
+        $buffer = "Could not find template";
+        $exists = file_exists($file);
+
+        if ($exists) {
+            ob_start();
+            include $file;
+            $buffer = ob_get_contents();
+            ob_end_clean();
+        }
+
+        return $buffer;
     }
 
     // todo configure ESP ajax calls

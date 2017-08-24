@@ -2,22 +2,18 @@
 //namespace App\View;
 
 class MainOverviewView {
-	private $_espService;
+	private $espService;
 	private $_connectionService;
 
-	private $_espCollection = array();
-
 	public function __construct(EspService $espService) {
-		$this->_espService = $espService;
-		array_push($this->_espCollection, $espService->getEsp(1));
-		array_push($this->_espCollection, $espService->getEsp(2));
+		$this->espService = $espService;
 	}
 
 	public function output() {
-		return $this->loadTemplate();
+		return $this->loadRootTemplate();
 	}
 
-	private function loadTemplate() {
+	private function loadRootTemplate() {
 		$file = __DIR__ . "/../template/RootTemplate.php";
 		$template = $this->getTemplate($file);
 

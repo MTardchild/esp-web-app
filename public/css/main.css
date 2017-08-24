@@ -47,19 +47,9 @@ body {
     margin: 5px 15px;
 }
 
-.espTile {
-    color: #FFFFFF;
-    display: inline-block;
-    border: 1px solid rgba(0, 0, 0, 1);
-    background-color: #1693a5;
-    padding: 5px 15px 15px 15px;
-    margin: 5px 15px;
-    vertical-align: top;
-}
-
 .componentTile {
     color: #000000;
-    width: 225px;
+    width: 80%;
     border: 1px solid rgba(0, 0, 0, 1);
     background-color: #f2f2f2;
     padding: 0px 5px;
@@ -110,36 +100,12 @@ body {
     box-shadow: 0px 0px 24px -1px rgba(56, 56, 56, 1);
 }
 
-.gridster {
-    width: auto;
-    margin-left:auto;
-    margin-right:auto;
-    opacity: .8;
-    -webkit-transition: opacity .6s;
-    -moz-transition: opacity .6s;
-    -o-transition: opacity .6s;
-    -ms-transition: opacity .6s;
-    transition: opacity .6s;
-}
-
-.gridster > * {
-    margin: 0 auto;
-    -webkit-transition: height .4s;
-    -moz-transition: height .4s;
-    -o-transition: height .4s;
-    -ms-transition: height .4s;
-    transition: height .4s;
-}
-
-.gridster ul .gs-w {
-    list-style: none;
-    text-align: left;
-    background: #1693a5;
-    cursor: pointer;
-    -webkit-box-shadow: 0 0 5px rgba(0,0,0,0.3);
-    box-shadow: 0 0 5px rgba(0,0,0,0.3);
-}
-
-.gridster ul .gs-w .espInfo {
-    padding: 5px 20px;
+.grid-stack-item-content {
+    color: #FFFFFF;
+    display: inline-block;
+    border: 1px solid rgba(0, 0, 0, 1);
+    background-color: #1693a5;
+    padding: 5px 15px 15px 15px;
+    margin: 5px 15px;
+    vertical-align: top;
 }

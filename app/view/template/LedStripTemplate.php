@@ -5,8 +5,8 @@
             <span style="display: block; float: right;">
                 LED-Strip
             </span>
-            <p>
-                <input name="color" type="hidden" id="colorLedStrip<?php echo $ledStrip->getId(); ?>"
+            <p id="ledParagraph<?php echo $ledStrip->getId(); ?>">
+                <input name="color" type="hidden" class="colorInput" id="colorLedStrip<?php echo $ledStrip->getId(); ?>"
                        value="<?php echo sprintf("%02x%02x%02x", $ledStrip->getRed()/16, $ledStrip->getGreen()/16, $ledStrip->getBlue()/16 ); ?>">
                 <button class="jscolor {
                     valueElement:'colorLedStrip<?php echo $ledStrip->getId(); ?>',

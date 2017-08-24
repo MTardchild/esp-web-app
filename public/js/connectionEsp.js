@@ -116,3 +116,47 @@ function hsvToRgb(h, s, v) {
         b: b * 4095
     };
 }
+
+function navigateToDashboardView() {
+    $('#configView').invisible();
+    $('#dashboardView').visible();
+
+    populateDashboardGrid();
+}
+
+function populateDashboardGrid() {
+    $.get("?route=ajax&action=getDashboardView",
+        function (data, status) {
+            var grid = $('.grid-stack').data('gridstack');
+            // grid.removeAll();
+            var parsedContent = $('<div></div>');
+            parsedContent.html(data);
+            var espTiles = $('.grid-stack-item-content', parsedContent);
+
+            for (var i = 0; i < espTiles.length; ++i) {
+                var espTile = $('<div></div>');
+                espTile.html(espTiles[i]);
+                var id = espTile[0].firstChild.id;
+                var oldTile = $('#' + id);
+
+                if (oldTile.exists()) {
+                    oldTile = oldTile[0].parentElement;
+                    var attributes = oldTile.attributes;
+                    grid.removeWidget(oldTile);
+                    grid.addWidget(espTile, attributes[0].nodeValue,
+                        attributes[1].nodeValue, attributes[2].nodeValue,
+                        attributes[3].nodeValue);
+                } else {
+                    grid.addWidget(espTile, 0, 0, 2, 8, true);
+                }
+            }
+
+            jscolor.installByClassName("jscolor");
+        }
+    );
+}
+
+function navigateToConfigView() {
+    $('#dashboardView').invisible();
+    $('#configView').visible()
+}
