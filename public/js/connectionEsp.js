@@ -20,11 +20,10 @@ function setWarmWhite(componentId, warmWhite) {
 }
 
 function setColor(componentId, color) {
-    var cleanRgb = hsvToRgb(color.hsv[0], color.hsv[1], 100);
-    var rgb12Bit = rgbTo12Bit(cleanRgb, color.hsv[2]/100.0);
+    var cleanRgb = hsvToRgb(color.hsv[0], color.hsv[1], color.hsv[2]);
 
     $.get("?route=ajax&action=setColor&id=" + componentId + "&r="
-        + rgb12Bit.r + "&g=" + rgb12Bit.g + "&b=" + rgb12Bit.b,
+        + cleanRgb.r + "&g=" + cleanRgb.g + "&b=" + cleanRgb.b,
         onAjaxResponse);
 
     $('.toastMessage').text("Sent color value to led strip with ID " + componentId + ".");
@@ -32,21 +31,12 @@ function setColor(componentId, color) {
 }
 
 function setColorUdp(componentId, color) {
-    var cleanRgb = hsvToRgb(color.hsv[0], color.hsv[1], 100);
-    var rgb12Bit = rgbTo12Bit(cleanRgb, color.hsv[2]/100.0);
+    var cleanRgb = hsvToRgb(color.hsv[0], color.hsv[1], color.hsv[2]);
     var ww = $('#warmWhiteLedStrip' + componentId)[0].value;
 
     $.get("?route=ajax&action=setColorUdp&id=" + componentId + "&r="
-        + rgb12Bit.r + "&g=" + rgb12Bit.g + "&b=" + rgb12Bit.b, "&ww=" + ww,
+        + cleanRgb.r + "&g=" + cleanRgb.g + "&b=" + cleanRgb.b + "&ww=" + ww,
         onAjaxResponse);
-}
-
-function rgbTo12Bit(color, brightness) {
-    return {
-        r: Math.round(color.r * 16 * brightness),
-        g: Math.round(color.g * 16 * brightness),
-        b: Math.round(color.b * 16 * brightness)
-    };
 }
 
 function hsvToRgb(h, s, v) {
@@ -70,9 +60,9 @@ function hsvToRgb(h, s, v) {
         // Achromatic (grey)
         r = g = b = v;
         return {
-            r: r * 255,
-            g: g * 255,
-            b: b * 255
+            r: r * 4095,
+            g: g * 4095,
+            b: b * 4095
         };
     }
 
@@ -121,8 +111,8 @@ function hsvToRgb(h, s, v) {
     }
 
     return {
-        r: r * 255,
-        g: g * 255,
-        b: b * 255
+        r: r * 4095,
+        g: g * 4095,
+        b: b * 4095
     };
 }
