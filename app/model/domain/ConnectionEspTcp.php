@@ -10,16 +10,30 @@ class ConnectionEspTcp extends ConnectionBase {
         $port = getservbyname('www', 'tcp');
 
         if (($socket = socket_create(AF_INET, SOCK_STREAM, SOL_TCP)) === false) {
-            $result = "socket_create() failed: reason: " . socket_strerror(socket_last_error($socket));
+            $result = "Socket could not be created. Error " . socket_last_error($socket);
+            return $result;
         }
 
         if ($error = socket_connect($socket, $this->_url, 4210) === false) {
-            $result = "socket_connect() failed.\nReason: ($error) " . socket_strerror(socket_last_error($socket));
+            $result = $this->getErrorMessageConnect(socket_last_error($socket));
+            return $result;
         }
 
         socket_write($socket, $data, strlen($data));
         socket_close($socket);
 
         return $result;
+    }
+
+    private function getErrorMessageConnect($errorNumber) {
+        $errorMessage = "";
+
+        switch($errorNumber) {
+            case 10060:
+                $errorMessage = "Unable to connect. Host is down.";
+                break;
+        }
+
+        return $errorMessage;
     }
 }

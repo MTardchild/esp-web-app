@@ -108,7 +108,6 @@ class AjaxRequestController {
         $this->ajaxRequest->setMessage("Color successfully sent to LED-Strip.");
     }
 
-
     public function getDashboardView($action) {
         $file = __DIR__ . "/../view/template/TileTemplate.php";
         $template = $this->getTemplate($file);

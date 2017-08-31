@@ -1,4 +1,8 @@
 <?php
+ini_set('display_errors', 'On');
+error_reporting(E_ALL | E_STRICT);
+//error_reporting(E_ERROR | E_PARSE);
+
 // Composer Libs (Auryn)
 require_once("../app/vendor/autoload.php");
 
