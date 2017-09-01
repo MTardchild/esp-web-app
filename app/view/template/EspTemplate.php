@@ -1,9 +1,5 @@
 <?php
 $i = 1;
-//$espCollection = array();
-//array_push($espCollection, $this->_espService->getEsp(1));
-//array_push($espCollection, $this->_espService->getEsp(2));
-//array_push($espCollection, $this->_espService->getEsp(3));
 $espCollection = $this->_espService->getAllEsp();
 ?>
 <?php foreach ($espCollection as $esp): ?>
