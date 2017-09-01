@@ -109,3 +109,13 @@ body {
     margin: 5px 15px;
     vertical-align: top;
 }
+
+#configView {
+    position: absolute;
+    width: 100%;
+}
+
+#dashboardView {
+    position: absolute;
+    width: 100%;
+}

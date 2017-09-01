@@ -1,14 +1,14 @@
 <?php
 
 class AjaxRequestController {
-    private $connectionPostService;
-    private $connectionUdpService;
-    private $connectionTcpService;
-    private $dhtDataService;
-    private $ledStripDataService;
-    private $relayDataService;
-    private $ajaxRequest;
-    private $espService;
+    private $_connectionPostService;
+    private $_connectionUdpService;
+    private $_connectionTcpService;
+    private $_dhtDataService;
+    private $_ledStripDataService;
+    private $_relayDataService;
+    private $_ajaxRequest;
+    private $_espService;
 
     public function __construct(ConnectionPostService $connectionPostService,
                                 ConnectionUdpService $connectionUdpService,
@@ -18,29 +18,29 @@ class AjaxRequestController {
                                 RelayDataService $relayDataService,
                                 LedStripDataService $ledStripDataService,
                                 AjaxRequest $ajaxRequest) {
-        $this->connectionPostService = $connectionPostService;
-        $this->connectionUdpService = $connectionUdpService;
-        $this->connectionTcpService = $connectionTcpService;
-        $this->dhtDataService = $dhtDataService;
-        $this->relayDataService = $relayDataService;
-        $this->ajaxRequest = $ajaxRequest;
-        $this->ledStripDataService = $ledStripDataService;
-        $this->espService = $espService;
+        $this->_connectionPostService = $connectionPostService;
+        $this->_connectionUdpService = $connectionUdpService;
+        $this->_connectionTcpService = $connectionTcpService;
+        $this->_dhtDataService = $dhtDataService;
+        $this->_relayDataService = $relayDataService;
+        $this->_ajaxRequest = $ajaxRequest;
+        $this->_ledStripDataService = $ledStripDataService;
+        $this->_espService = $espService;
     }
 
     public function toggleRelay($action) {
         $data = array("componentId" => $action['id'], "action" => "toggle");
         $dataJson = json_encode($data);
-        $statusMessage = $this->connectionTcpService->pushDataComponent($action['id'], $dataJson);
+        $statusMessage = $this->_connectionTcpService->pushDataComponent($action['id'], $dataJson);
 
         if ($statusMessage === true) {
-            $relay = $this->relayDataService->getLatestDataSet($action['id']);
+            $relay = $this->_relayDataService->getLatestDataSet($action['id']);
             $relay->setState(!$relay->getState());
-            $this->relayDataService->insert($relay);
-            $this->ajaxRequest->setStatus($statusMessage);
-            $this->ajaxRequest->setMessage("Relay successfully toggled.");
+            $this->_relayDataService->insert($relay);
+            $this->_ajaxRequest->setStatus($statusMessage);
+            $this->_ajaxRequest->setMessage("Relay successfully toggled.");
         } else {
-            $this->ajaxRequest->setMessage($statusMessage);
+            $this->_ajaxRequest->setMessage($statusMessage);
         }
     }
 
@@ -55,17 +55,17 @@ class AjaxRequestController {
             ));
 
         $dataJson = json_encode($data);
-        $status = $this->connectionTcpService->pushDataComponent($action['id'], $dataJson);
+        $status = $this->_connectionTcpService->pushDataComponent($action['id'], $dataJson);
 
         if ($status === true) {
-            $ledStrip = $this->ledStripDataService->findLatestDataSet($action['id']);
+            $ledStrip = $this->_ledStripDataService->findLatestDataSet($action['id']);
             $ledStrip->setRed($action['r']);
             $ledStrip->setGreen($action['g']);
             $ledStrip->setBlue($action['b']);
-            $this->ledStripDataService->update($ledStrip);
-            $this->ajaxRequest->setMessage("Color successfully sent to LED-Strip.");
+            $this->_ledStripDataService->update($ledStrip);
+            $this->_ajaxRequest->setMessage("Color successfully sent to LED-Strip.");
         } else {
-            $this->ajaxRequest->setMessage($status);
+            $this->_ajaxRequest->setMessage($status);
         }
     }
 
@@ -78,15 +78,15 @@ class AjaxRequestController {
             ));
 
         $dataJson = json_encode($data);
-        $status = $this->connectionTcpService->pushDataComponent($action['id'], $dataJson);
+        $status = $this->_connectionTcpService->pushDataComponent($action['id'], $dataJson);
 
         if ($status === true) {
-            $ledStrip = $this->ledStripDataService->findLatestDataSet($action['id']);
+            $ledStrip = $this->_ledStripDataService->findLatestDataSet($action['id']);
             $ledStrip->setWarmWhite($action['ww']);
-            $this->ledStripDataService->update($ledStrip);
-            $this->ajaxRequest->setMessage("Warm White successfully sent to LED-Strip.");
+            $this->_ledStripDataService->update($ledStrip);
+            $this->_ajaxRequest->setMessage("Warm White successfully sent to LED-Strip.");
         } else {
-            $this->ajaxRequest->setMessage($status);
+            $this->_ajaxRequest->setMessage($status);
         }
     }
 
@@ -103,21 +103,21 @@ class AjaxRequestController {
         $third = substr($blueStr, 8) . $warmWhiteStr;
 
         $rgbBytes = pack('n*', bindec($first), bindec($second), bindec($third));
-        $isSuccessful = $this->connectionUdpService->pushData($action['id'], $rgbBytes);
-        $this->ajaxRequest->setStatus($isSuccessful);
-        $this->ajaxRequest->setMessage("Color successfully sent to LED-Strip.");
+        $isSuccessful = $this->_connectionUdpService->pushData($action['id'], $rgbBytes);
+        $this->_ajaxRequest->setStatus($isSuccessful);
+        $this->_ajaxRequest->setMessage("Color successfully sent to LED-Strip.");
     }
 
     public function getDashboardView($action) {
         $file = __DIR__ . "/../view/template/TileTemplate.php";
         $template = $this->getTemplate($file);
-        $this->ajaxRequest->setMessage($template);
+        $this->_ajaxRequest->setMessage($template);
     }
 
     public function getConfigView($action) {
         $file = __DIR__ . "/../view/template/ConfigTemplate.php";
         $template = $this->getTemplate($file);
-        $this->ajaxRequest->setMessage($template);
+        $this->_ajaxRequest->setMessage($template);
     }
 
     private function getTemplate($file) {
@@ -133,6 +133,4 @@ class AjaxRequestController {
 
         return $buffer;
     }
-
-    // todo configure ESP ajax calls
 }

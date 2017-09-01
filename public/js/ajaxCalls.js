@@ -39,7 +39,7 @@ function setColorUdp(componentId, color) {
         onAjaxResponse);
 }
 
-function populateDashboardGrid() {
+function requestDashboardGrid() {
     $.get("?route=ajax&action=getDashboardView",
         function (data, status) {
             var grid = $('.grid-stack').data('gridstack');
@@ -66,6 +66,17 @@ function populateDashboardGrid() {
             }
 
             jscolor.installByClassName("jscolor");
+        }
+    );
+}
+
+function requestConfigView() {
+    $.get("?route=ajax&action=getConfigView",
+        function (data, status) {
+            var configView = $('#configView');
+            var parsedContent = $('<div></div>');
+            parsedContent.html(data);
+            configView.html(parsedContent);
         }
     );
 }

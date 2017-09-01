@@ -24,15 +24,18 @@
             include 'Navigation.php';
         ?>
 
-        <div id="dashboardView">
-            <div class="grid-stack">
+        <div style="position: relative;">
+            <div id="dashboardView">
+                <div class="grid-stack">
+
+                </div>
+            </div>
+
+            <div id="configView">
 
             </div>
         </div>
 
-        <div id="configView">
-
-        </div>
 
         <div class='toastMessage' style='display:none'></div>
     </body>

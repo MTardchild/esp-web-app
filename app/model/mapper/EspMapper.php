@@ -48,14 +48,28 @@ class EspMapper implements IDatabaseMapper, IDatabaseObjectMapper {
         $query = $this->database->prepare("SELECT * FROM esp INNER JOIN location ON esp.esp_location = location.loc_id WHERE esp.esp_id = :espId");
         $query->execute(array("espId" => $espId));
         $espDb = $query->fetch();
+        $esp = null;
 
-        if ($espDb === false) {
-            $esp = null;
-        } else {
+        if ($espDb !== false) {
             $esp = Esp::createEsp($espId, $espDb['esp_name'], $espDb['esp_location'], $espDb['esp_ip']);
         }
 
         return $esp;
+    }
+
+    public function findAll() {
+        $query = $this->database->prepare("SELECT * FROM esp INNER JOIN location ON esp.esp_location = location.loc_id");
+        $query->execute();
+        $espCollectionDb = $query->fetchAll();
+        $espCollection = array();
+
+        if ($espCollectionDb !== false) {
+            foreach ($espCollectionDb as $espDb) {
+                array_push($espCollection, Esp::createEsp($espDb['esp_id'], $espDb['esp_name'], $espDb['esp_location'], $espDb['esp_ip']));
+            }
+        }
+
+        return $espCollection;
     }
 
     public function findFreeId() {

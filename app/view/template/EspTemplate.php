@@ -1,9 +1,10 @@
 <?php
 $i = 1;
-$espCollection = array();
-array_push($espCollection, $this->espService->getEsp(1));
-array_push($espCollection, $this->espService->getEsp(2));
-array_push($espCollection, $this->espService->getEsp(3));
+//$espCollection = array();
+//array_push($espCollection, $this->_espService->getEsp(1));
+//array_push($espCollection, $this->_espService->getEsp(2));
+//array_push($espCollection, $this->_espService->getEsp(3));
+$espCollection = $this->_espService->getAllEsp();
 ?>
 <?php foreach ($espCollection as $esp): ?>
     <div class="grid-stack-item-content" id="esp<?php echo $esp->getId() ?>">

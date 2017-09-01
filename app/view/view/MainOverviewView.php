@@ -2,11 +2,10 @@
 //namespace App\View;
 
 class MainOverviewView {
-	private $espService;
-	private $_connectionService;
+	private $_espService;
 
 	public function __construct(EspService $espService) {
-		$this->espService = $espService;
+		$this->_espService = $espService;
 	}
 
 	public function output() {

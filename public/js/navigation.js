@@ -1,11 +1,11 @@
 function navigateToConfigView() {
     $('#dashboardView').invisible();
-    $('#configView').visible()
+    $('#configView').visible();
+    requestConfigView();
 }
 
 function navigateToDashboardView() {
     $('#configView').invisible();
     $('#dashboardView').visible();
-
-    populateDashboardGrid();
+    requestDashboardGrid();
 }

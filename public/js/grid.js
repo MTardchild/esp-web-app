@@ -17,7 +17,7 @@ jQuery.fn.exists = function () {
 }
 
 $(document).ready(function() {
-    populateDashboardGrid();
+    requestDashboardGrid();
     var options = {
         cellHeight: 80,
         verticalMargin: 10

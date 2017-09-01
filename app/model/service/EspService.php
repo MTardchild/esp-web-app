@@ -2,47 +2,47 @@
 //namespace App\Model\Service;
 
 class EspService implements IDatabaseService {
-    private $espMapper;
-    private $componentService;
-    private $locationService;
+    private $_espMapper;
+    private $_componentService;
+    private $_locationService;
 
     public function __construct(EspMapper $espMapper,
                                 ComponentService $componentService,
                                 LocationService $locationService) {
-        $this->espMapper = $espMapper;
-        $this->componentService = $componentService;
-        $this->locationService = $locationService;
+        $this->_espMapper = $espMapper;
+        $this->_componentService = $componentService;
+        $this->_locationService = $locationService;
     }
 
     public function insert($esp) {
-        if (!$this->locationService->getLocation($esp->getLocation()->getId()) instanceof Location) {
-            $this->locationService->insert($esp->getLocation());
+        if (!$this->_locationService->getLocation($esp->getLocation()->getId()) instanceof Location) {
+            $this->_locationService->insert($esp->getLocation());
         }
 
-        $isSuccessful = $this->espMapper->insert($esp);
+        $isSuccessful = $this->_espMapper->insert($esp);
 
         foreach ($esp->getComponents() as $component) {
             var_dump($component);
-            $this->componentService->insert($component);
+            $this->_componentService->insert($component);
         }
 
         return $isSuccessful;
     }
 
     public function update($esp) {
-        return $this->espMapper->update($esp);
+        return $this->_espMapper->update($esp);
     }
 
     public function delete($espId) {
-        return $this->espMapper->delete($espId);
+        return $this->_espMapper->delete($espId);
     }
 
     public function getEsp($espId) {
-        $esp = $this->espMapper->find($espId);
+        $esp = $this->_espMapper->find($espId);
         if ($esp === null) return null;
 
-        $location = $this->locationService->getLocation($esp->getLocation());
-        $components = $this->componentService->getComponents($espId);
+        $location = $this->_locationService->getLocation($esp->getLocation());
+        $components = $this->_componentService->getComponents($espId);
         $esp->setLocation($location);
         $esp->setComponents($components);
         $esp->populateComponentCollections();
@@ -50,11 +50,21 @@ class EspService implements IDatabaseService {
         return $esp;
     }
 
-    public function findFreeId() {
-        return $this->espMapper->findFreeId();
+    public function getAllEsp() {
+        $espCollection = $this->_espMapper->findAll();
+
+        foreach ($espCollection as $esp) {
+            $location = $this->_locationService->getLocation($esp->getLocation());
+            $components = $this->_componentService->getComponents($esp->getId());
+            $esp->setLocation($location);
+            $esp->setComponents($components);
+            $esp->populateComponentCollections();
+        }
+
+        return $espCollection;
     }
 
-    public function PushData($esp, $data) {
-
+    public function findFreeId() {
+        return $this->_espMapper->findFreeId();
     }
 }
