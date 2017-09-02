@@ -9,6 +9,7 @@ class AjaxRequestController {
     private $_relayDataService;
     private $_ajaxRequest;
     private $_espService;
+    private $_componentTypeService;
 
     public function __construct(ConnectionPostService $connectionPostService,
                                 ConnectionUdpService $connectionUdpService,
@@ -17,7 +18,8 @@ class AjaxRequestController {
                                 DhtDataService $dhtDataService,
                                 RelayDataService $relayDataService,
                                 LedStripDataService $ledStripDataService,
-                                AjaxRequest $ajaxRequest) {
+                                AjaxRequest $ajaxRequest,
+                                ComponentTypeService $componentTypeService) {
         $this->_connectionPostService = $connectionPostService;
         $this->_connectionUdpService = $connectionUdpService;
         $this->_connectionTcpService = $connectionTcpService;
@@ -26,6 +28,7 @@ class AjaxRequestController {
         $this->_ajaxRequest = $ajaxRequest;
         $this->_ledStripDataService = $ledStripDataService;
         $this->_espService = $espService;
+        $this->_componentTypeService = $componentTypeService;
     }
 
     public function toggleRelay($action) {
@@ -46,13 +49,15 @@ class AjaxRequestController {
 
     public function setColor($action) {
         $data = array(
+            "esp" => array(
+                "id" => "1",
             "componentId" => $action['id'],
             "action" => "changeColor",
             "values" => array(
                 "red" => $action['r'],
                 "green" => $action['g'],
                 "blue" => $action['b']
-            ));
+            )));
 
         $dataJson = json_encode($data);
         $status = $this->_connectionTcpService->pushDataComponent($action['id'], $dataJson);

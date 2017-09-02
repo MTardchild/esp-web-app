@@ -119,3 +119,64 @@ body {
     position: absolute;
     width: 100%;
 }
+
+table {
+    color: #333;
+    font-family: Helvetica, Arial, sans-serif;
+    width: 100%;
+    border-collapse: collapse;
+    border-spacing: 0;
+    text-align: left;
+}
+
+td, th {
+    border: 1px solid transparent; /* No more visible border */
+    height: 30px;
+    transition: all 0.3s;  /* Simple transition for hover effect */
+}
+
+th {
+    background: #DFDFDF;  /* Darken header a bit */
+    font-weight: bold;
+}
+
+td {
+    background: #FAFAFA;
+}
+
+/* Cells in even rows (2,4,6...) are one color */
+tr:nth-child(even) td { background: #F1F1F1; }
+
+/* Cells in odd rows (1,3,5...) are another (excludes header cells)  */
+tr:nth-child(odd) td { background: #FEFEFE; }
+
+.espRow:hover td { background: #666; color: #FFF; }
+
+.configDetail table tr:hover td { background: #666; color: #FFF; }
+
+.configViewLeft {
+    float:left;
+    width:80%
+}
+
+.configViewRight {
+    border: 1px;
+    float: right;
+    width: 20%;
+}
+
+.droppable {
+    background: #666 !important;
+    color: #FFF !important;
+}
+
+.draggableComponent {
+    width: 50px;
+    height: 50px;
+    background: #c9c6cd;
+    margin: 0px 5px 5px 5px;
+    text-align: center;
+    vertical-align: middle;
+    line-height: 50px;
+    text-overflow: clip;
+}

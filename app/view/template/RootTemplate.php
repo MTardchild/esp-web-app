@@ -18,6 +18,8 @@
         <script type="text/javascript" src="js/colorConversion.js"></script>
         <script type="text/javascript" src="js/navigation.js"></script>
         <script type="text/javascript" src="js/grid.js"></script>
+        <script type="text/javascript" src="js/configUi.js"></script>
+        <script type="text/javascript" src="js/configDragDrop.js"></script>
     </head>
     <body>
         <?php

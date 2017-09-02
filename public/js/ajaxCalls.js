@@ -1,3 +1,5 @@
+var lastUdpSend = Date.now();
+
 function toggleRelay(componentId) {
     $.get("?route=ajax&action=toggleRelay&id=" + componentId,
         onAjaxResponse);
@@ -31,12 +33,18 @@ function setColor(componentId, color) {
 }
 
 function setColorUdp(componentId, color) {
-    var cleanRgb = hsvToRgb(color.hsv[0], color.hsv[1], color.hsv[2]);
-    var ww = $('#warmWhiteLedStrip' + componentId)[0].value;
+    if (lastUdpSend + 200 < Date.now()) {
+        lastUdpSend = Date.now();
 
-    $.get("?route=ajax&action=setColorUdp&id=" + componentId + "&r="
-        + cleanRgb.r + "&g=" + cleanRgb.g + "&b=" + cleanRgb.b + "&ww=" + ww,
-        onAjaxResponse);
+        var cleanRgb = hsvToRgb(color.hsv[0], color.hsv[1], color.hsv[2]);
+        var ww = $('#warmWhiteLedStrip' + componentId)[0].value;
+
+        console.log(cleanRgb);
+
+        $.get("?route=ajax&action=setColorUdp&id=" + componentId + "&r="
+            + cleanRgb.r + "&g=" + cleanRgb.g + "&b=" + cleanRgb.b + "&ww=" + ww,
+            onAjaxResponse);
+    }
 }
 
 function requestDashboardGrid() {
@@ -77,6 +85,8 @@ function requestConfigView() {
             var parsedContent = $('<div></div>');
             parsedContent.html(data);
             configView.html(parsedContent);
+            addRowHandlers();
+            $('.configDetail').hide();
         }
     );
 }

@@ -10,7 +10,7 @@
                        value="<?php echo sprintf("%02x%02x%02x", $ledStrip->getRed()/16, $ledStrip->getGreen()/16, $ledStrip->getBlue()/16 ); ?>">
                 <button class="jscolor {
                     valueElement:'colorLedStrip<?php echo $ledStrip->getId(); ?>',
-                    onFineChange:'setColor(<?php echo $ledStrip->getId(); ?>, this)',
+                    onFineChange:'setColorUdp(<?php echo $ledStrip->getId(); ?>, this)',
                     closable:true,closeText:'Close'
                 }">
                     Change Color
