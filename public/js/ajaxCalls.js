@@ -90,3 +90,7 @@ function requestConfigView() {
         }
     );
 }
+
+function addComponent($espId, $componentTypeId) {
+    
+}

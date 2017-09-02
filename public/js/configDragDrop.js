@@ -1,8 +1,11 @@
 function drop(event) {
     event.preventDefault();
+    var regex = new RegExp('[0-9]');
+    var espId = event.target.parentElement.id;
+    espId = regex.exec(espId)[0];
     var typeId = event.dataTransfer.getData("text");
     $(event.target).removeClass("droppable");
-    addDroppedComponent(typeId);
+    addDroppedComponent(espId, typeId);
 }
 
 function enterDropArea(event) {
@@ -23,13 +26,6 @@ function onDragOver(event) {
     event.preventDefault();
 }
 
-function addDroppedComponent(typeId) {
-    switch (typeId) {
-        case 1:
-            break;
-        case 2:
-            break;
-        case 3:
-            break;
-    }
+function addDroppedComponent(espId, componentTypeId) {
+    addComponent(espId, componentTypeId);
 }

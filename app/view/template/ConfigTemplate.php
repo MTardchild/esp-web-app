@@ -12,7 +12,7 @@
         $espCollection = $this->_espService->getAllEsp();
         foreach ($espCollection as $esp):
             ?>
-            <tr class="espRow">
+            <tr class="espRow" id="espRow<?php echo $esp->getId(); ?>">
                 <td><?php echo $esp->getName(); ?></td>
                 <td><?php echo $esp->getLocation()->getName(); ?></td>
                 <td ondrop="drop(event)"
