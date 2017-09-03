@@ -9,7 +9,7 @@
         </tr>
         </thead>
         <?php
-        $espCollection = $this->_espService->getAllEsp();
+        $espCollection = $this->espService->getAllEsp();
         foreach ($espCollection as $esp):
             ?>
             <tr class="espRow" id="espRow<?php echo $esp->getId(); ?>">
@@ -44,7 +44,7 @@
 </div>
 <div class="configViewRight">
     <?php
-    $componentCollection = $this->_componentTypeService->findAll();
+    $componentCollection = $this->componentTypeService->findAll();
     foreach ($componentCollection as $component):
     ?>
     <div ondragstart="drag(event)"

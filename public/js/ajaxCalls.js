@@ -53,27 +53,40 @@ function requestDashboardGrid() {
             var grid = $('.grid-stack').data('gridstack');
             var parsedContent = $('<div></div>');
             parsedContent.html(data);
+
             var espTiles = $('.grid-stack-item-content', parsedContent);
+            $.get("?route=ajax&action=getGridLayout",
+                function (data, status) {
+                    var gridLayout = JSON.parse(data);
 
-            for (var i = 0; i < espTiles.length; ++i) {
-                var espTile = $('<div></div>');
-                espTile.html(espTiles[i]);
-                var id = espTile[0].firstChild.id;
-                var oldTile = $('#' + id);
+                    for (var i = 0; i < espTiles.length; ++i) {
+                        var espTile = $('<div></div>');
+                        espTile.html(espTiles[i]);
+                        var id = espTile[0].firstChild.id;
+                        var oldTile = $('#' + id);
 
-                if (oldTile.exists()) {
-                    oldTile = oldTile[0].parentElement;
-                    var attributes = oldTile.attributes;
-                    grid.removeWidget(oldTile);
-                    grid.addWidget(espTile, attributes[0].nodeValue,
-                        attributes[1].nodeValue, attributes[2].nodeValue,
-                        attributes[3].nodeValue);
-                } else {
-                    grid.addWidget(espTile, 0, 0, 2, 8, true);
+                        if (oldTile.exists()) {
+                            oldTile = oldTile[0].parentElement;
+                            var attributes = oldTile.attributes;
+                            grid.removeWidget(oldTile);
+                            grid.addWidget(espTile, gridLayout[i].x,
+                                gridLayout[i].y, gridLayout[i].width,
+                                gridLayout[i].height);
+                        } else {
+                            grid.addWidget(espTile,
+                                gridLayout[i].x, gridLayout[i].y,
+                                gridLayout[i].width, gridLayout[i].height,
+                                true);
+                        }
+                    }
+
+                    jscolor.installByClassName("jscolor");
+                    $('.grid-stack').off('change');
+                    $('.grid-stack').on('change', function(event, items) {
+                        saveGrid();
+                    });
                 }
-            }
-
-            jscolor.installByClassName("jscolor");
+            );
         }
     );
 }
@@ -91,6 +104,15 @@ function requestConfigView() {
     );
 }
 
-function addComponent($espId, $componentTypeId) {
-    
+function addComponent(espId, componentTypeId) {
+    $.get("?route=ajax&action=addDevice",
+        function (data, status) {
+
+        }
+    );
+}
+
+function saveGridLayout(gridLayout) {
+    $.post("", {GridLayout: JSON.stringify(gridLayout)}).done(function(data) {
+    });
 }

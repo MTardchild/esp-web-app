@@ -8,7 +8,7 @@ function addRowHandlers() {
                 return function() {
                     var cell = row.getElementsByTagName("td")[0];
                     var id = cell.innerHTML;
-                    $("#configDetail" + id).toggle(1000);
+                    $("#configDetail" + id).toggle(400);
                 };
             };
 

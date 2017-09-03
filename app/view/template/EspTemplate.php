@@ -1,6 +1,6 @@
 <?php
 $i = 1;
-$espCollection = $this->_espService->getAllEsp();
+$espCollection = $this->espService->getAllEsp();
 ?>
 <?php foreach ($espCollection as $esp): ?>
     <div class="grid-stack-item-content" id="esp<?php echo $esp->getId() ?>">

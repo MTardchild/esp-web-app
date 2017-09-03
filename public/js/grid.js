@@ -14,7 +14,7 @@ jQuery.fn.visibilityToggle = function() {
 
 jQuery.fn.exists = function () {
     return this.length !== 0;
-}
+};
 
 $(document).ready(function() {
     requestDashboardGrid();
@@ -25,3 +25,29 @@ $(document).ready(function() {
 
     $('.grid-stack').gridstack(options);
 });
+
+saveGrid = function () {
+    this.serializedData = _.map($('.grid-stack > .grid-stack-item:visible'), function (el) {
+        el = $(el);
+        var node = el.data('_gridstack_node');
+        return {
+            x: node.x,
+            y: node.y,
+            width: node.width,
+            height: node.height
+        };
+    }, this);
+    // console.log(JSON.stringify(this.serializedData, null, '    '));
+    saveGridLayout(this.serializedData);
+};
+
+loadGrid = function (gridLayout) {
+    var grid = $('.grid-stack').data('gridstack');
+    grid.removeAll();
+    var items = GridStackUI.Utils.sort(JSON.parse(gridLayout));
+    _.each(items, function (node) {
+        grid.addWidget($('<div><div class="grid-stack-item-content" /><div/>'),
+            node.x, node.y, node.width, node.height);
+    }, this);
+    return false;
+};

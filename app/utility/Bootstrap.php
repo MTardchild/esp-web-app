@@ -25,16 +25,24 @@ $injector->share('PDO');
 
 $action = isset($_GET['action']) ? $_GET['action'] : NULL;
 $routeName = isset($_GET['route']) ? $_GET['route'] : "";
-$heartbeat = null;
 
+$heartbeat = null;
 if (isset($_POST["EspHeartbeat"])) {
     if (trim($_POST["EspHeartbeat"]) != "") {
         $heartbeat = $_POST['EspHeartbeat'];
     }
 }
 
+$gridLayout = null;
+if (isset($_POST["GridLayout"])) {
+    if (trim($_POST["GridLayout"]) != "") {
+        $gridLayout = $_POST['GridLayout'];
+    }
+}
+
 $injector->define('FrontController', [
-    ':heartbeat' => $heartbeat]);
+    ':heartbeat' => $heartbeat,
+    ':gridLayout' => $gridLayout]);
 $injector->share('FrontController');
 $injector->share('AjaxRequest');
 
