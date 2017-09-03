@@ -57,7 +57,7 @@ function requestDashboardGrid() {
             var espTiles = $('.grid-stack-item-content', parsedContent);
             $.get("?route=ajax&action=getGridLayout",
                 function (data, status) {
-                    var gridLayout = JSON.parse(data);
+                    var gridLayout = GridStackUI.Utils.sort(JSON.parse(data));
 
                     for (var i = 0; i < espTiles.length; ++i) {
                         var espTile = $('<div></div>');
@@ -76,7 +76,7 @@ function requestDashboardGrid() {
                             grid.addWidget(espTile,
                                 gridLayout[i].x, gridLayout[i].y,
                                 gridLayout[i].width, gridLayout[i].height,
-                                true);
+                                false);
                         }
                     }
 

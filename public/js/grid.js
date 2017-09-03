@@ -37,17 +37,6 @@ saveGrid = function () {
             height: node.height
         };
     }, this);
-    // console.log(JSON.stringify(this.serializedData, null, '    '));
-    saveGridLayout(this.serializedData);
-};
 
-loadGrid = function (gridLayout) {
-    var grid = $('.grid-stack').data('gridstack');
-    grid.removeAll();
-    var items = GridStackUI.Utils.sort(JSON.parse(gridLayout));
-    _.each(items, function (node) {
-        grid.addWidget($('<div><div class="grid-stack-item-content" /><div/>'),
-            node.x, node.y, node.width, node.height);
-    }, this);
-    return false;
+    saveGridLayout(this.serializedData);
 };
