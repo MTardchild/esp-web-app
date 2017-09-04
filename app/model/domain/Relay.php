@@ -51,7 +51,9 @@ class Relay extends ComponentBase implements JsonSerializable {
     {
         return [
             'id' => $this->getId(),
-            'name' => $this->getName()
+            'name' => $this->getName(),
+            'typeId' => $this->getTypeId(),
+            'state' => $this->getState()
         ];
     }
 }

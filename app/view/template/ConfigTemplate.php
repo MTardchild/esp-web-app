@@ -35,8 +35,29 @@
             <tr class="configDetail" id="configDetail<?php echo $esp->getName(); ?>">
                 <td colspan="4">
                     <table>
+                        <thead>
+                        <tr>
+                            <th>Type</th>
+                            <th>Name</th>
+                        </tr>
+                        </thead>
                         <?php foreach ($esp->getComponents() as $component): ?>
                             <tr>
+                                <td>
+                                    <?php
+                                    switch ($component->getTypeId()) {
+                                        case 1:
+                                            echo "<img height='30' src='img/temperature.png'>";
+                                            break;
+                                        case 2:
+                                            echo "<img height='30' src='img/switch.png'>";
+                                            break;
+                                        case 3:
+                                            echo "<img height='30' src='img/ledStrip.png'>";
+                                            break;
+                                    }
+                                    ?>
+                                </td>
                                 <td>
                                     <?php echo $component->getName(); ?>
                                 </td>
