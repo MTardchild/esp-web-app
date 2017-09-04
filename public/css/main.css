@@ -146,7 +146,6 @@ td {
 }
 
 .espRow td {
-    background-color: rgba(20, 89, 96, 0.11) !important;
     border-bottom: 1px solid #1693a5;
 }
 /* Cells in even rows (2,4,6...) are one color */
@@ -206,4 +205,10 @@ tr:nth-child(odd) td { background: #FEFEFE; }
     background: #c9c6cd url(../img/ledStrip.png);
     background-size: 50px 50px;
     background-repeat: no-repeat;
+}
+
+[contenteditable="true"]:active,
+[contenteditable="true"]:focus{
+    border:none;
+    outline:none;
 }

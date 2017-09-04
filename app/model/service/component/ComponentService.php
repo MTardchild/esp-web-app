@@ -36,6 +36,13 @@ class ComponentService implements IDatabaseService {
         return $component;
     }
 
+    public function removeComponentFromEsp($componentId) {
+        $component = $this->findComponent($componentId);
+        $component->setEspId(null);
+
+        return $this->componentMapper->update($component);
+    }
+
     public function getComponents($espId) {
         $componentsDb = $this->componentMapper->findComponents($espId);
         $components = $this->createComponentObjects($componentsDb);

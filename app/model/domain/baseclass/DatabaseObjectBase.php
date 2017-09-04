@@ -9,10 +9,8 @@ class DatabaseObjectBase {
     }
 
     public function setId($id) {
-        if (!is_null($this->id)) {
-            throw new Exception("ID is immutable");
+        if (is_null($this->id)) {
+            $this->id = $id;
         }
-
-        return $this->id = $id;
     }
 }

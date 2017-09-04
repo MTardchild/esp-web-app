@@ -141,12 +141,18 @@ class AjaxRequestController {
 
     public function addComponent($action) {
         $component = $this->componentTypeService->getComponentOfType(intval($action["type"]));
-        $esp = $this->espService->getEsp($action["esp"]);
         $component->setId($this->componentService->findFreeId());
         $component->setEspId($action["esp"]);
         $this->componentService->insert($component);
 
-        $this->ajaxRequest->setMessage($component->getTypeId());
+        $this->ajaxRequest->setMessage(json_encode($component));
+    }
+
+    public function removeComponent($action) {
+        $this->componentService->removeComponentFromEsp($action["id"]);
+        $component = $this->componentService->findComponent($action["id"]);
+
+        $this->ajaxRequest->setMessage(json_encode($component));
     }
 
     private function getTemplate($file) {

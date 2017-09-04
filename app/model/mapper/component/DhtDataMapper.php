@@ -40,7 +40,7 @@ class DhtDataMapper implements IDatabaseMapper {
             $query = $this->database->prepare("SELECT cddQ1.cdd_id, cddQ1.cdd_temperature, cddQ1.cdd_humidity, component.cmp_name, component.cmp_type, component.cmp_esp FROM component_data_dht cddQ1 INNER JOIN component ON cddQ1.cdd_component = component.cmp_id WHERE cddQ1.cdd_component = :dhtId AND cddQ1.cdd_timestamp = (SELECT MAX(cddQ2.cdd_timestamp) FROM component_data_dht cddQ2 WHERE cddQ2.cdd_component = cddQ1.cdd_component)");
         $query->execute(array("dhtId" => $dhtId));
         $dhtDb = $query->fetch();
-        $dhtDomain = Dht::createDht($dhtDb["cdd_id"],
+        $dhtDomain = Dht::createDht($dhtId,
                                     $dhtDb["cdd_temperature"],
                                     $dhtDb["cdd_humidity"],
                                     $dhtDb["cmp_name"],

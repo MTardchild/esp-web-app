@@ -121,6 +121,17 @@ function requestConfigView() {
             });
 
             $('#configDraggableContainer').children().draggable({revert: true});
+
+            $('.nameColumn').prop('contentEditable', true);
+            $('.nameColumn').keypress(function(event){
+                if (event.originalEvent.keyCode === 13) {
+                    event.stopPropagation();
+                }
+            });
+            $('.nameColumn').click(function (event) {
+                event.stopPropagation();
+                console.log(event);
+            });
         }
     );
 }
@@ -128,9 +139,54 @@ function requestConfigView() {
 function addComponent(espId, componentTypeId) {
     $.get("?route=ajax&action=addComponent&esp=" + espId + "&type=" + componentTypeId,
         function (data, status) {
-            requestConfigView();
+            var component = JSON.parse(data);
+            component.name = component.name == null ? "" : component.name;
+
+            switch (component.typeId) {
+                case 1:
+                    $('#espRow' + component.espId + ' .devices').append('<img height="30" class="component' + component.id + '" src="img/temperature.png" />');
+                    $('#espRow' + component.espId).next().find('tbody').append(
+                        '<tr class="component' + component.id + '">' +
+                        '<td><img height="30" src="img/temperature.png"></td>' +
+                        '<td>' + component.name + '</td>' +
+                        '<td class="deleteIcon" align="right"><img height="20" class="component' + component.id + '" src="img/delete.png" onclick="removeComponent(' + component.id + ')"/></td>' +
+                        '</tr>'
+                    );
+                    break;
+                case 2:
+                    $('#espRow' + component.espId + ' .devices').append('<img height="30" class="component' + component.id + '" src="img/switch.png" />');
+                    $('#espRow' + component.espId).next().find('tbody').append(
+                        '<tr class="component' + component.id + '">' +
+                        '<td><img height="30" src="img/switch.png"></td>' +
+                        '<td>' + component.name + '</td>' +
+                        '<td class="deleteIcon" align="right"><img height="20" src="img/delete.png" onclick="removeComponent(' + component.id + ')"/></td>' +
+                        '</tr>'
+                    );
+                    break;
+                case 3:
+                    $('#espRow' + component.espId + ' .devices').append('<img height="30" class="component' + component.id + '" src="img/ledStrip.png" />');
+                    $('#espRow' + component.espId).next().find('tbody').append(
+                        '<tr class="component' + component.id + '">' +
+                        '<td><img height="30" src="img/ledStrip.png"></td>' +
+                        '<td>' + component.name + '</td>' +
+                        '<td class="deleteIcon" align="right"><img height="20" src="img/delete.png" onclick="removeComponent(' + component.id + ')"/></td>' +
+                        '</tr>'
+                    );
+                    break;
+            }
         }
     );
+}
+
+
+function removeComponent(componentId) {
+    $.get("?route=ajax&action=removeComponent&id=" + componentId,
+        function (data, status) {
+            var component = JSON.parse(data);
+            component.name = component.name == null ? "" : component.name;
+
+            $('.component' + componentId).remove();
+        });
 }
 
 function saveGridLayout(gridLayout) {

@@ -96,9 +96,7 @@ class Esp extends DatabaseObjectBase implements JsonSerializable {
                 'name' => $this->getName(),
                 'location' => $this->getLocation(),
                 'ip' => $this->getIp(),
-                'components' => [
-                    $this->getComponents()
-                ]
+                'components' => $this->getComponents()
             ]
         ];
     }

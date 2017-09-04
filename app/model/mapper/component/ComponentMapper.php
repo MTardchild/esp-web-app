@@ -32,7 +32,7 @@ class ComponentMapper implements IDatabaseMapper, IDatabaseObjectMapper {
             $isSuccessful = $query->execute(array(
                 'id' => $component->getId(),
                 'name' => $component->getName(),
-                'espId' => $component->getEspId(),
+                'espId' => $component->getEspId() == 0 ? null : $component->getEspId(),
                 'typeId' => $component->getTypeId()
             ));
         }
@@ -49,7 +49,7 @@ class ComponentMapper implements IDatabaseMapper, IDatabaseObjectMapper {
 
     public function findComponent($componentId) {
         $componentId = intval($componentId);
-        $query = $this->database->prepare("SELECT component.cmp_id, component.cmp_name, component_type.cty_type FROM component INNER JOIN component_type ON component.cmp_type = component_type.cty_id WHERE component.cmp_id = :id");
+        $query = $this->database->prepare("SELECT component.cmp_id, component.cmp_name, component.cmp_esp, component_type.cty_type FROM component INNER JOIN component_type ON component.cmp_type = component_type.cty_id WHERE component.cmp_id = :id");
         $query->execute(array("id" => $componentId));
         $componentDb = $query->fetch();
 
@@ -58,7 +58,7 @@ class ComponentMapper implements IDatabaseMapper, IDatabaseObjectMapper {
 
     public function findComponents($espId) {
         $espId = intval($espId);
-        $query = $this->database->prepare("SELECT component.cmp_id, component.cmp_name, component_type.cty_type FROM component INNER JOIN component_type ON component.cmp_type = component_type.cty_id WHERE component.cmp_esp = :espId");
+        $query = $this->database->prepare("SELECT component.cmp_id, component.cmp_name, component.cmp_esp, component_type.cty_type FROM component INNER JOIN component_type ON component.cmp_type = component_type.cty_id WHERE component.cmp_esp = :espId");
         $query->execute(array("espId" => $espId));
         $componentsDb = $query->fetchAll();
 

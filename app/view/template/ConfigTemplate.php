@@ -2,6 +2,7 @@
     <table id="configTable">
         <thead>
         <tr>
+            <th>Identifier</th>
             <th>ESP</th>
             <th>Location</th>
             <th>Devices</th>
@@ -12,37 +13,40 @@
         foreach ($espCollection as $esp):
             ?>
             <tr class="espRow" id="espRow<?php echo $esp->getId(); ?>">
-                <td class="droppable"><?php echo $esp->getName(); ?></td>
+                <td class="droppable"><?php echo $esp->getId(); ?></td>
+                <td class="droppable nameColumn"><?php echo $esp->getName(); ?></td>
                 <td class="droppable"><?php echo $esp->getLocation()->getName(); ?></td>
-                <td class="droppable">
+                <td class="droppable devices">
                     <?php
                     foreach ($esp->getComponents() as $component) {
                         switch ($component->getTypeId()) {
                             case 1:
-                                echo "<img height='30' src='img/temperature.png'>";
+                                echo "<img height='30' src='img/temperature.png' class='component" . $component->getId() . "' />";
                                 break;
                             case 2:
-                                echo "<img height='30' src='img/switch.png'>";
+                                echo "<img height='30' src='img/switch.png' class='component" . $component->getId() . "' />";
                                 break;
                             case 3:
-                                echo "<img height='30' src='img/ledStrip.png'>";
+                                echo "<img height='30' src='img/ledStrip.png' class='component" . $component->getId() . "' />";
                                 break;
                         }
                     }
                     ?>
                 </td>
             </tr>
-            <tr class="configDetail" id="configDetail<?php echo $esp->getName(); ?>">
+            <tr class="configDetail" id="configDetail<?php echo $esp->getId(); ?>">
                 <td colspan="4">
                     <table>
                         <thead>
                         <tr>
                             <th>Type</th>
                             <th>Name</th>
+                            <th></th>
                         </tr>
                         </thead>
+                        <tbody>
                         <?php foreach ($esp->getComponents() as $component): ?>
-                            <tr>
+                            <tr class="component<?php echo $component->getId(); ?>">
                                 <td>
                                     <?php
                                     switch ($component->getTypeId()) {
@@ -61,8 +65,13 @@
                                 <td>
                                     <?php echo $component->getName(); ?>
                                 </td>
+                                <td class="deleteIcon" align="right">
+                                    <img height="20" src="img/delete.png"
+                                         onclick="removeComponent(<?php echo $component->getId(); ?>)"/>
+                                </td>
                             </tr>
                         <?php endforeach ?>
+                        </tbody>
                     </table>
                 </td>
             </tr>

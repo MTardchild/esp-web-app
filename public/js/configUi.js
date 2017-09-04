@@ -1,5 +1,5 @@
 function addRowHandlers() {
-    var rows = $('#configTable .espRow');
+    var rows = $('#configTable').find('.espRow');
     for (i = 0; i < rows.length; i++) {
         var currentRow = rows[i];
         var createClickHandler =

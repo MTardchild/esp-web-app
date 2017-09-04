@@ -68,7 +68,7 @@ CREATE TABLE component
 (
     cmp_id INT NOT NULL,
     cmp_name VARCHAR(255),
-    cmp_esp INT NOT NULL,
+    cmp_esp INT,
     cmp_type INT NOT NULL,
     PRIMARY KEY (cmp_id),
     FOREIGN KEY (cmp_esp) REFERENCES esp(esp_id),
