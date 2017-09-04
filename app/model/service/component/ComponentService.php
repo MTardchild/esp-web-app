@@ -53,13 +53,15 @@ class ComponentService implements IDatabaseService {
 
     private function createComponentObject($componentDb) {
         switch($componentDb["cty_type"]) {
-            case "DHT":
+            case "dht":
                 return $this->dhtDataService->getLatestDataSet($componentDb["cmp_id"]);
-            case "Relay":
+            case "relay":
                 return $this->relayDataService->getLatestDataSet($componentDb["cmp_id"]);
-            case "LED-Strip":
+            case "ledStrip":
                 return $this->ledStripDataService->findLatestDataSet($componentDb['cmp_id']);
         }
+
+        return null;
     }
 
     private function createComponentObjects($componentsDb) {

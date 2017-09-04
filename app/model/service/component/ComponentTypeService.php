@@ -25,4 +25,22 @@ class ComponentTypeService implements IDatabaseService {
     public function findAll() {
         return $this->_componentTypeMapper->findAll();
     }
+
+    public function getComponentOfType($componentType) {
+        $component = null;
+
+        switch($componentType) {
+            case 1:
+                $component = Dht::createDhtEmpty();
+                break;
+            case 2:
+                $component = Relay::createRelayEmpty();
+                break;
+            case 3:
+                $component = LedStrip::createLedStripEmpty();
+                break;
+        }
+
+        return $component;
+    }
 }

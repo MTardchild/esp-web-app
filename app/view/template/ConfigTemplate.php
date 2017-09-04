@@ -1,5 +1,4 @@
-<div class="configViewLeft
-">
+<div class="configViewLeft">
     <table id="configTable">
         <thead>
         <tr>
@@ -13,15 +12,22 @@
         foreach ($espCollection as $esp):
             ?>
             <tr class="espRow" id="espRow<?php echo $esp->getId(); ?>">
-                <td><?php echo $esp->getName(); ?></td>
-                <td><?php echo $esp->getLocation()->getName(); ?></td>
-                <td ondrop="drop(event)"
-                    ondragover="onDragOver(event)"
-                    ondragenter="enterDropArea(event)"
-                    ondragleave="leaveDropArea(event)">
+                <td class="droppable"><?php echo $esp->getName(); ?></td>
+                <td class="droppable"><?php echo $esp->getLocation()->getName(); ?></td>
+                <td class="droppable">
                     <?php
                     foreach ($esp->getComponents() as $component) {
-                        echo $component->getTypeId();
+                        switch ($component->getTypeId()) {
+                            case 1:
+                                echo "<img height='30' src='img/temperature.png'>";
+                                break;
+                            case 2:
+                                echo "<img height='30' src='img/switch.png'>";
+                                break;
+                            case 3:
+                                echo "<img height='30' src='img/ledStrip.png'>";
+                                break;
+                        }
                     }
                     ?>
                 </td>
@@ -42,14 +48,12 @@
         <?php endforeach ?>
     </table>
 </div>
-<div class="configViewRight">
+<div id="configDraggableContainer" class="configViewRight">
     <?php
     $componentCollection = $this->componentTypeService->findAll();
     foreach ($componentCollection as $component):
     ?>
-    <div ondragstart="drag(event)"
-         draggable="true"
-         id="<?php echo $component->getId(); ?>"
-         class="draggableComponent"><?php echo $component->getName(); ?></div>
+    <div id="<?php echo $component->getId(); ?>"
+         class="draggableComponent <?php echo $component->getName(); ?>"></div>
     <?php endforeach ?>
 </div>

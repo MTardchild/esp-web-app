@@ -13,6 +13,7 @@
         <script type="text/javascript" src="../lib/jscolor.min.js"></script>
         <script type="text/javascript" src="../lib/gridstack.js"></script>
         <script type="text/javascript" src="../lib/gridstack.jQueryUI.js"></script>
+        <script type="text/javascript" src="../lib/jquery.ui.touch-punch.min.js"></script>
 
         <script type="text/javascript" src="js/ajaxCalls.js"></script>
         <script type="text/javascript" src="js/colorConversion.js"></script>

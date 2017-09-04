@@ -25,7 +25,3 @@ function drag(event) {
 function onDragOver(event) {
     event.preventDefault();
 }
-
-function addDroppedComponent(espId, componentTypeId) {
-    addComponent(espId, componentTypeId);
-}

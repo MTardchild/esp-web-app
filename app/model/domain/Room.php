@@ -1,7 +1,7 @@
 <?php
 //namespace App\Model\Domain;
 
-class Room extends DomainObjectBase implements JsonSerializable {
+class Room extends DatabaseObjectBase implements JsonSerializable {
 	private $name;
 
 	private function __construct() {

@@ -16,9 +16,9 @@ INSERT INTO esp VALUES (1, "DoorEsp", 1, "192.168.178.154");
 INSERT INTO esp VALUES (2, "TVEsp", 2, "192.168.178.122");
 INSERT INTO esp VALUES (3, "GardenWateringEsp", 3, "192.168.178.179");
 
-INSERT INTO component_type VALUES (1, "DHT");
-INSERT INTO component_type VALUES (2, "Relay");
-INSERT INTO component_type VALUES (3, "LED-Strip");
+INSERT INTO component_type VALUES (1, "dht");
+INSERT INTO component_type VALUES (2, "relay");
+INSERT INTO component_type VALUES (3, "ledStrip");
 
 INSERT INTO component VALUES (1, "", 1, 1);
 INSERT INTO component VALUES (2, "Television", 1, 2);

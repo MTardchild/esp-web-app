@@ -100,14 +100,35 @@ function requestConfigView() {
             configView.html(parsedContent);
             addRowHandlers();
             $('.configDetail').hide();
+            $('.droppable').droppable({
+                over: function () {
+                    $(this).parent('tr').children().addClass("droppableHover");
+                    $(this).parent('tr').next().find('tr').children().addClass("droppableHover");
+                },
+                out: function() {
+                    $(this).parent('tr').children().removeClass("droppableHover");
+                    $(this).parent('tr').next().find('tr').children().removeClass("droppableHover");
+                },
+                drop: function(event, ui) {
+                    $(this).parent('tr').children().removeClass("droppableHover");
+                    $(this).parent('tr').next().find('tr').children().removeClass("droppableHover");
+                    var regex = new RegExp('[0-9]');
+                    var espId = event.target.parentElement.id;
+                    espId = regex.exec(espId)[0];
+                    var typeId = ui.draggable[0].id;
+                    addComponent(espId, typeId);
+                }
+            });
+
+            $('#configDraggableContainer').children().draggable({revert: true});
         }
     );
 }
 
 function addComponent(espId, componentTypeId) {
-    $.get("?route=ajax&action=addDevice",
+    $.get("?route=ajax&action=addComponent&esp=" + espId + "&type=" + componentTypeId,
         function (data, status) {
-
+            requestConfigView();
         }
     );
 }

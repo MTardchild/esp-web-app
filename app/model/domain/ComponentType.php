@@ -1,7 +1,7 @@
 <?php
 
-class ComponentType extends DomainObjectBase {
-    private $_name;
+class ComponentType extends DatabaseObjectBase {
+    private $name;
 
     private function __construct() {
 
@@ -14,16 +14,16 @@ class ComponentType extends DomainObjectBase {
     public static function createComponentType($id, $name) {
         $componentType = new ComponentType();
         $componentType->id = $id;
-        $componentType->_name = $name;
+        $componentType->name = $name;
 
         return $componentType;
     }
 
     public function getName() {
-        return $this->_name;
+        return $this->name;
     }
 
     public function setName($name) {
-        $this->_name = $name;
+        $this->name = $name;
     }
 }

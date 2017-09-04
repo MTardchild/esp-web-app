@@ -1,7 +1,7 @@
 <?php
 //namespace App\Model\Domain\Abstract;
 
-class DomainObjectBase {
+class DatabaseObjectBase {
     protected $id = null;
 
     public function getId() {

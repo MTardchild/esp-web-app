@@ -11,6 +11,7 @@ class AjaxRequestController {
     private $espService;
     private $componentTypeService;
     private $gridLayoutService;
+    private $componentService;
 
     public function __construct(ConnectionPostService $connectionPostService,
                                 ConnectionUdpService $connectionUdpService,
@@ -21,7 +22,8 @@ class AjaxRequestController {
                                 LedStripDataService $ledStripDataService,
                                 AjaxRequest $ajaxRequest,
                                 ComponentTypeService $componentTypeService,
-                                GridLayoutService $gridLayoutService) {
+                                GridLayoutService $gridLayoutService,
+                                ComponentService $componentService) {
         $this->connectionPostService = $connectionPostService;
         $this->connectionUdpService = $connectionUdpService;
         $this->connectionTcpService = $connectionTcpService;
@@ -32,6 +34,7 @@ class AjaxRequestController {
         $this->espService = $espService;
         $this->componentTypeService = $componentTypeService;
         $this->gridLayoutService = $gridLayoutService;
+        $this->componentService = $componentService;
     }
 
     public function toggleRelay($action) {
@@ -130,6 +133,20 @@ class AjaxRequestController {
 
     public function getGridLayout($action) {
         $this->ajaxRequest->setMessage($this->gridLayoutService->load());
+    }
+
+    public function getAllEsp($action) {
+        $this->ajaxRequest->setMessage(json_encode($this->espService->getAllEsp()));
+    }
+
+    public function addComponent($action) {
+        $component = $this->componentTypeService->getComponentOfType(intval($action["type"]));
+        $esp = $this->espService->getEsp($action["esp"]);
+        $component->setId($this->componentService->findFreeId());
+        $component->setEspId($action["esp"]);
+        $this->componentService->insert($component);
+
+        $this->ajaxRequest->setMessage($component->getTypeId());
     }
 
     private function getTemplate($file) {

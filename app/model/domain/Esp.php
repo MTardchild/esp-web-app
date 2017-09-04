@@ -1,7 +1,7 @@
 <?php
 //namespace App\Model\Domain;
 
-class Esp extends DomainObjectBase implements JsonSerializable {
+class Esp extends DatabaseObjectBase implements JsonSerializable {
 	private $name;
     private $location;
     private $components;

@@ -13,7 +13,10 @@ class Relay extends ComponentBase implements JsonSerializable {
 	}
 
 	public static function createRelayEmpty() {
-		return new Relay();
+        $relay = new Relay();
+        $relay->typeId = COMPONENT_TYPE_RELAY;
+
+        return $relay;
 	}
 
     public static function createRelayNoData($id, $espId) {

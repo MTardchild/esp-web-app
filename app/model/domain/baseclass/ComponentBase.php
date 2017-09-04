@@ -1,7 +1,7 @@
 <?php
 //namespace App\Model\Domain\Abstract;
 
-class ComponentBase extends DomainObjectBase {
+class ComponentBase extends DatabaseObjectBase {
     protected $name;
     protected $espId;
     protected $typeId;
@@ -20,6 +20,10 @@ class ComponentBase extends DomainObjectBase {
 
     public function getEspId() {
         return $this->espId;
+    }
+
+    public function setEspId($espId) {
+        $this->espId = intval($espId);
     }
 
     public function getTypeId() {
