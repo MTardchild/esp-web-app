@@ -3,6 +3,8 @@ ini_set('display_errors', 'On');
 error_reporting(E_ALL | E_STRICT);
 //error_reporting(E_ERROR | E_PARSE);
 
+sleep(1);
+
 // Composer Libs (Auryn)
 require_once("../app/vendor/autoload.php");
 
@@ -40,9 +42,17 @@ if (isset($_POST["GridLayout"])) {
     }
 }
 
+$componentOrder = null;
+if (isset($_POST["ComponentOrder"])) {
+    if (trim($_POST["ComponentOrder"]) != "") {
+        $componentOrder = $_POST['ComponentOrder'];
+    }
+}
+
 $injector->define('FrontController', [
     ':heartbeat' => $heartbeat,
-    ':gridLayout' => $gridLayout]);
+    ':gridLayout' => $gridLayout,
+    ':componentOrder' => $componentOrder]);
 $injector->share('FrontController');
 $injector->share('AjaxRequest');
 

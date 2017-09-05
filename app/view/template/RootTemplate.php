@@ -27,8 +27,8 @@
             include 'Navigation.php';
         ?>
 
-        <div style="position: relative;">
-            <div id="dashboardView">
+        <div class="loading">
+            <div id="dashboardView" class="hidden">
                 <div class="grid-stack">
 
                 </div>

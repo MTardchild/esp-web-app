@@ -135,6 +135,10 @@ class AjaxRequestController {
         $this->ajaxRequest->setMessage($this->gridLayoutService->load());
     }
 
+    public function getComponentOrder($action) {
+        $this->ajaxRequest->setMessage($this->gridLayoutService->loadComponentOrder());
+    }
+
     public function getAllEsp($action) {
         $this->ajaxRequest->setMessage(json_encode($this->espService->getAllEsp()));
     }

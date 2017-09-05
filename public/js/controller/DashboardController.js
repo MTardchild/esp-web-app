@@ -55,8 +55,8 @@ var DashboardController = {
                 + cleanRgb.r + "&g=" + cleanRgb.g + "&b=" + cleanRgb.b + "&ww=" + ww,
                 function (data, status) {
                     DashboardController.onColorSet(data, status);
-                });
-
+                }
+            );
         }
     },
     requestDashboardGrid: function () {
@@ -92,19 +92,29 @@ var DashboardController = {
                             }
                         }
 
-                        jscolor.installByClassName("jscolor");
-                        $('.grid-stack').off('change');
-                        $('.grid-stack').on('change', function (event, items) {
-                            DashboardController.saveGrid();
-                        });
-                        $('.arrowDown').click(function () {
-                            $(this).parents('.componentTile').moveDown();
-                            DashboardController.saveComponentOrder();
-                        });
-                        $('.arrowUp').click(function () {
-                            $(this).parents('.componentTile').moveUp();
-                            DashboardController.saveComponentOrder();
-                        });
+                        $.get("?route=ajax&action=getComponentOrder",
+                            function (data, status) {
+                                var fullComponentOrder = JSON.parse(data);
+                                DashboardController.loadComponentOrder(fullComponentOrder);
+                                var root = $('.loading').removeClass('loading');
+                                root.addClass('.root');
+                                $('#dashboardView').visible();
+
+                                jscolor.installByClassName("jscolor");
+                                $('.grid-stack').off('change');
+                                $('.grid-stack').on('change', function (event, items) {
+                                    DashboardController.saveGrid();
+                                });
+                                $('.arrowDown').click(function () {
+                                    $(this).parents('.componentTile').moveDown();
+                                    DashboardController.saveComponentOrder();
+                                });
+                                $('.arrowUp').click(function () {
+                                    $(this).parents('.componentTile').moveUp();
+                                    DashboardController.saveComponentOrder();
+                                });
+                            }
+                        );
                     }
                 );
             }
@@ -121,6 +131,10 @@ var DashboardController = {
             }
 
             fullComponentOrder.push(componentOrder);
+        });
+
+        $.post("", {ComponentOrder: JSON.stringify(fullComponentOrder)}).done(function (data) {
+
         });
     },
     loadComponentOrder: function(fullComponentOrder) {

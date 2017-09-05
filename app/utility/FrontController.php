@@ -8,21 +8,26 @@ class FrontController {
     private $view;
 
     private $wasHtmlPostSuccessful;
-    private $saveGridLayoutService;
+    private $gridLayoutService;
 
     public function __construct(HeartbeatService $heartbeatService,
-                                GridLayoutService $saveGridLayoutService,
+                                GridLayoutService $gridLayoutService,
                                 $heartbeat,
-                                $gridLayout) {
+                                $gridLayout,
+                                $componentOrder) {
         $this->heartbeatService = $heartbeatService;
-        $this->saveGridLayoutService = $saveGridLayoutService;
+        $this->gridLayoutService = $gridLayoutService;
 
         if (!is_null($heartbeat)) {
             $this->wasHtmlPostSuccessful = $this->heartbeatService->evaluate($heartbeat);
         }
 
         if (!is_null($gridLayout)) {
-            $this->wasHtmlPostSuccessful = $this->saveGridLayoutService->save($gridLayout);
+            $this->wasHtmlPostSuccessful = $this->gridLayoutService->save($gridLayout);
+        }
+
+        if (!is_null($componentOrder)) {
+            $this->wasHtmlPostSuccessful = $this->gridLayoutService->saveComponentOrder($componentOrder);
         }
     }
 
