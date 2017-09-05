@@ -67,7 +67,7 @@
                                 </td>
                                 <td class="deleteIcon" align="right">
                                     <img height="20" src="img/delete.png"
-                                         onclick="removeComponent(<?php echo $component->getId(); ?>)"/>
+                                         onclick="ConfigController.removeComponent(<?php echo $component->getId(); ?>)"/>
                                 </td>
                             </tr>
                         <?php endforeach ?>

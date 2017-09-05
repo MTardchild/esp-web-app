@@ -15,12 +15,12 @@
         <script type="text/javascript" src="../lib/gridstack.jQueryUI.js"></script>
         <script type="text/javascript" src="../lib/jquery.ui.touch-punch.min.js"></script>
 
-        <script type="text/javascript" src="js/ajaxCalls.js"></script>
-        <script type="text/javascript" src="js/colorConversion.js"></script>
-        <script type="text/javascript" src="js/navigation.js"></script>
-        <script type="text/javascript" src="js/grid.js"></script>
-        <script type="text/javascript" src="js/configUi.js"></script>
-        <script type="text/javascript" src="js/configDragDrop.js"></script>
+        <script type="text/javascript" src="js/controller/ConfigController.js"></script>
+        <script type="text/javascript" src="js/controller/DashboardController.js"></script>
+        <script type="text/javascript" src="js/utility/ColorConversion.js"></script>
+        <script type="text/javascript" src="js/utility/Init.js"></script>
+        <script type="text/javascript" src="js/utility/JQueryExtensions.js"></script>
+        <script type="text/javascript" src="js/utility/Navigation.js"></script>
     </head>
     <body>
         <?php

@@ -7,7 +7,7 @@
         </span>
         <p>
             <button class="<?php if ($relay->getState() === true) { echo "relayOn"; } else { echo "relayOff"; } ?>"
-                    onclick="toggleRelay(<?php echo $relay->getId(); ?>)"
+                    onclick="DashboardController.toggleRelay(<?php echo $relay->getId(); ?>)"
                     type="button">
                 Toggle
             </button>
