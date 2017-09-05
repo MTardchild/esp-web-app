@@ -1,5 +1,5 @@
 <?php foreach ($esp->getLedStripCollection() as $ledStrip): ?>
-    <div class="componentTile">
+    <div class="componentTile" id="component<?php echo $ledStrip->getId(); ?>">
         <?php include 'SortIconsTemplate.php'; ?>
         <p>
             <b>Component:</b>

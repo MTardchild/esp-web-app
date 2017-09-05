@@ -1,5 +1,5 @@
 <?php foreach ($esp->getRelayCollection() as $relay): ?>
-<div class="componentTile">
+<div class="componentTile" id="component<?php echo $relay->getId(); ?>">
     <?php include 'SortIconsTemplate.php'; ?>
     <p>
         <b>Device:</b>

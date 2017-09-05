@@ -1,10 +1,10 @@
 <?php foreach ($esp->getDhtCollection() as $dht): ?>
-<div class="componentTile">
+<div class="componentTile" id="component<?php echo $dht->getId(); ?>">
     <?php include 'SortIconsTemplate.php'; ?>
     <p>
         <b>Component:</b>
         <span style="display: block; float: right;">
-            DHT22
+            <img src="img/temperature.png" height="30px"/> <?php $dht->getName(); ?>
         </span>
         <p>
             <b>Temperature:</b>

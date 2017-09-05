@@ -99,14 +99,46 @@ var DashboardController = {
                         });
                         $('.arrowDown').click(function () {
                             $(this).parents('.componentTile').moveDown();
+                            DashboardController.saveComponentOrder();
                         });
                         $('.arrowUp').click(function () {
                             $(this).parents('.componentTile').moveUp();
+                            DashboardController.saveComponentOrder();
                         });
                     }
                 );
             }
         );
+    },
+    saveComponentOrder: function() {
+        var fullComponentOrder = [];
+        $('.grid-stack-item').each(function (index) {
+            var components = $(this).find('.componentTile');
+            var componentOrder = [];
+
+            for (i = 0; i < components.length; ++i) {
+                componentOrder.push(components[i].id);
+            }
+
+            fullComponentOrder.push(componentOrder);
+        });
+    },
+    loadComponentOrder: function(fullComponentOrder) {
+        $('.grid-stack-item').each(function (index) {
+            var components = $(this).find('.componentTile');
+
+            for (i = 0; i < components.length; ++i) {
+                components[i].remove();
+            }
+
+            for (i = 0; i < fullComponentOrder[index].length; ++i) {
+                for (j = 0; j < components.length; ++j) {
+                    if (components[j].id === fullComponentOrder[index][i]) {
+                        $(this).find('.espInfo').append(components[j]);
+                    }
+                }
+            }
+        });
     },
     saveGrid: function () {
         this.serializedData = _.map($('.grid-stack > .grid-stack-item:visible'), function (el) {
@@ -120,10 +152,7 @@ var DashboardController = {
             };
         }, this);
 
-        this.saveGridLayout(this.serializedData);
-    },
-    saveGridLayout: function (gridLayout) {
-        $.post("", {GridLayout: JSON.stringify(gridLayout)}).done(function (data) {
+        $.post("", {GridLayout: JSON.stringify(this.serializedData)}).done(function (data) {
 
         });
     }
