@@ -212,3 +212,22 @@ tr:nth-child(odd) td { background: #FEFEFE; }
     border:none;
     outline:none;
 }
+
+.sortIcons {
+    position: relative;
+    display: none;
+}
+
+.componentTile:hover .sortIcons {
+    display: block !important;
+}
+
+.sortIcons img {
+    position: absolute;
+    top: 5px;
+    right: 0px;
+}
+
+.arrowDown {
+    right: 35px !important;
+}

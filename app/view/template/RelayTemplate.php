@@ -1,5 +1,6 @@
 <?php foreach ($esp->getRelayCollection() as $relay): ?>
 <div class="componentTile">
+    <?php include 'SortIconsTemplate.php'; ?>
     <p>
         <b>Device:</b>
         <span style="display: block; float: right;">

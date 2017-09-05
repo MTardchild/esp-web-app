@@ -1,5 +1,6 @@
 <?php foreach ($esp->getLedStripCollection() as $ledStrip): ?>
     <div class="componentTile">
+        <?php include 'SortIconsTemplate.php'; ?>
         <p>
             <b>Component:</b>
             <span style="display: block; float: right;">

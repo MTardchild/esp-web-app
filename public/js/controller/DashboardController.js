@@ -11,7 +11,6 @@ var DashboardController = {
                 DashboardController.onRelayToggled(data, status);
             });
 
-
         this.showToast("Trying to toggle relay with identifier " + componentId + ".");
     },
     onRelayToggled: function (data, status) {
@@ -97,6 +96,12 @@ var DashboardController = {
                         $('.grid-stack').off('change');
                         $('.grid-stack').on('change', function (event, items) {
                             DashboardController.saveGrid();
+                        });
+                        $('.arrowDown').click(function () {
+                            $(this).parents('.componentTile').moveDown();
+                        });
+                        $('.arrowUp').click(function () {
+                            $(this).parents('.componentTile').moveUp();
                         });
                     }
                 );
