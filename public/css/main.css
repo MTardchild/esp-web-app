@@ -9,7 +9,7 @@ body {
 }
 
 .navigation {
-    margin: 0 0 15px 0;
+    margin: 0;
     padding: 0;
 }
 
@@ -36,6 +36,40 @@ body {
 
 .navigation li a:hover {
     background-color: #111;
+}
+
+.subNavigation {
+    margin: 0 0 15px 0;
+    padding: 0;
+    width: 100%;
+}
+
+.subNavigation ul {
+    text-align: center;
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: #c9c6cd;
+}
+
+.subNavigation li {
+    display: inline-block;
+    margin: 0;
+    width: 50%;
+    box-sizing: border-box;
+}
+
+.subNavigation li a {
+    display: block;
+    color: #000;
+    text-align: center;
+    padding: 6px 2rem;
+    text-decoration: none;
+}
+
+.subNavigation li a:hover {
+    background-color: #1693a5;
 }
 
 .tileWrapper {
@@ -116,6 +150,16 @@ body {
 }
 
 #dashboardView {
+    position: absolute;
+    width: 100%;
+}
+
+#configViewEspTableView {
+    position: absolute;
+    width: 100%;
+}
+
+#configViewWifiTableView {
     position: absolute;
     width: 100%;
 }
@@ -358,4 +402,8 @@ tr:nth-child(odd) td { background: #FEFEFE; }
         -o-transform: rotate(360deg);
         transform: rotate(360deg);
     }
+}
+
+select {
+    width: 100%;
 }

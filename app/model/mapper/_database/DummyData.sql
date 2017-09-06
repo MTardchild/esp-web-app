@@ -12,9 +12,9 @@ INSERT INTO location VALUES (1, "", 1, 1, NULL);
 INSERT INTO location VALUES (2, "Behind TV", 1, NULL, NULL);
 INSERT INTO location VALUES (3, "Garden", NULL, NULL, NULL);
 
-INSERT INTO esp VALUES (1, "DoorEsp", 1, "192.168.178.154");
-INSERT INTO esp VALUES (2, "TVEsp", 2, "192.168.178.122");
-INSERT INTO esp VALUES (3, "GardenWateringEsp", 3, "192.168.178.179");
+INSERT INTO esp VALUES (1, "DoorEsp", 1, "192.168.178.154", "esp_hwidshitz");
+INSERT INTO esp VALUES (2, "TVEsp", 2, "192.168.178.122", "esp_hackathon");
+INSERT INTO esp VALUES (3, "GardenWateringEsp", 3, "192.168.178.179", "esp_xyz12356");
 
 INSERT INTO component_type VALUES (1, "dht");
 INSERT INTO component_type VALUES (2, "relay");

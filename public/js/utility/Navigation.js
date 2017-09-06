@@ -1,12 +1,12 @@
 var Navigation = {
     toConfigView: function () {
-        $('#dashboardView').hide(200);
-        $('#configView').show(200);
         ConfigController.requestConfigView();
+        $('#dashboardView').fadeOut(250);
+        $('#configView').fadeIn(250);
     },
     toDashboardView: function () {
-        $('#configView').hide(200);
-        $('#dashboardView').show(200);
         DashboardController.requestDashboardGrid();
+        $('#configView').fadeOut(250);
+        $('#dashboardView').fadeIn(250);
     }
 };

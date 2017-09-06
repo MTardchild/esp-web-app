@@ -40,6 +40,9 @@ var ConfigController = {
                     event.stopPropagation();
                     console.log(event);
                 });
+
+                ConfigController.getWifiNetworks();
+                ConfigController.navigateToEspTableView();
             }
         );
     },
@@ -108,5 +111,53 @@ var ConfigController = {
 
             currentRow.onclick = createClickHandler(currentRow);
         }
+    },
+    getWifiNetworks: function () {
+        $.get("?route=ajax&action=getWifiNetworks", function (data, status) {
+            var networks = JSON.parse(data);
+            var dummy = JSON.parse('[["", "ssid", "mode", "channel", "rate", "signal", "random", "security"]]');
+            ConfigController.addWifiRows(dummy);
+            ConfigController.addWifiRows(networks);
+
+            $('.buttonFlash').click(function () {
+                console.log($(this)[0].id);
+                $('#flashSelectedEsp').html($(this)[0].id.split('buttonFlash')[1]);
+                $( "#flash-dialog-confirm" ).dialog({
+                    resizable: false,
+                    height: "auto",
+                    width: 600,
+                    modal: true,
+                    buttons: {
+                        "Flash": function() {
+                            $( this ).dialog( "close" );
+                        },
+                        Cancel: function() {
+                            $( this ).dialog( "close" );
+                        }
+                    }
+                });
+            });
+        });
+    },
+    addWifiRows: function(networks) {
+        for (i = 0; i < networks.length; ++i) {
+            var ssidTd = '<td>' + networks[i][1] + '</td>';
+            var modeTd = '<td>' + networks[i][2] + '</td>';
+            var channelTd = '<td>' + networks[i][3] + '</td>';
+            var rateTd = '<td>' + networks[i][4] + '</td>';
+            var signalTd = '<td>' + networks[i][5] + '</td>';
+            var securityTd = '<td>' + networks[i][7] + '</td>';
+            var flashTd = '<td><button class="buttonFlash" id="buttonFlash' + networks[i][1] + '">Flash</button><td>';
+            var row = $('<tr>' + ssidTd + modeTd + channelTd + rateTd + signalTd + securityTd + flashTd + '</tr>');
+            $('#configWifiTableBody').append(row);
+        }
+    },
+    navigateToEspTableView: function () {
+        $('#configViewEspTableView').fadeIn(250);
+        $('#configViewWifiTableView').fadeOut(250);
+    },
+    navigateToWifiTableView: function () {
+        $('#configViewEspTableView').fadeOut(250);
+        $('#configViewWifiTableView').fadeIn(250);
     }
 };

@@ -53,6 +53,7 @@ CREATE TABLE esp
     esp_name VARCHAR(255),
     esp_location INT NOT NULL,
     esp_ip VARCHAR(255),
+    esp_hw_id VARCHAR(255),
     PRIMARY KEY (esp_id),
     FOREIGN KEY (esp_location) REFERENCES location(loc_id)
 );

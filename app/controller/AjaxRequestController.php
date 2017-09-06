@@ -12,6 +12,7 @@ class AjaxRequestController {
     private $componentTypeService;
     private $gridLayoutService;
     private $componentService;
+    private $configurationService;
 
     public function __construct(ConnectionPostService $connectionPostService,
                                 ConnectionUdpService $connectionUdpService,
@@ -23,7 +24,8 @@ class AjaxRequestController {
                                 AjaxRequest $ajaxRequest,
                                 ComponentTypeService $componentTypeService,
                                 GridLayoutService $gridLayoutService,
-                                ComponentService $componentService) {
+                                ComponentService $componentService,
+                                ConfigurationService $configurationService) {
         $this->connectionPostService = $connectionPostService;
         $this->connectionUdpService = $connectionUdpService;
         $this->connectionTcpService = $connectionTcpService;
@@ -35,6 +37,7 @@ class AjaxRequestController {
         $this->componentTypeService = $componentTypeService;
         $this->gridLayoutService = $gridLayoutService;
         $this->componentService = $componentService;
+        $this->configurationService = $configurationService;
     }
 
     public function toggleRelay($action) {
@@ -157,6 +160,20 @@ class AjaxRequestController {
         $component = $this->componentService->findComponent($action["id"]);
 
         $this->ajaxRequest->setMessage(json_encode($component));
+    }
+
+    public function getWifiNetworks($action) {
+        $wifiNetworks = $this->configurationService->getWifiNetworks();
+
+        $this->ajaxRequest->setMessage(json_encode($wifiNetworks));
+    }
+
+    public function flashEsp($action) {
+//        $this->configurationService->flash();
+    }
+
+    public function configureEspWifi($action) {
+//        $this->configurationService->configureWifi();
     }
 
     private function getTemplate($file) {

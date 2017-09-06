@@ -97,7 +97,7 @@ var DashboardController = {
                                 var fullComponentOrder = JSON.parse(data);
                                 DashboardController.loadComponentOrder(fullComponentOrder);
                                 var root = $('.loading').removeClass('loading');
-                                root.addClass('.root');
+                                root.addClass('root');
                                 $('#dashboardView').visible();
 
                                 jscolor.installByClassName("jscolor");

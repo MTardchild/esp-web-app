@@ -12,11 +12,12 @@ class EspMapper implements IDatabaseMapper, IDatabaseObjectMapper {
         $isSuccessful = false;
 
         if ($esp instanceof Esp) {
-            $query = $this->database->prepare("INSERT INTO esp VALUES (:id, :name, :location, :ip);");
+            $query = $this->database->prepare("INSERT INTO esp VALUES (:id, :name, :location, :ip, :hw_id);");
             $isSuccessful = $query->execute(array(  'id' => $esp->getId(),
                                                     'name' => $esp->getName(),
                                                     'location' => $esp->getLocation()->getId(),
-                                                    'ip' => $esp->getIp()));
+                                                    'ip' => $esp->getIp(),
+                                                    'hw_id' => $esp->getHwId()));
         }
 
         return $isSuccessful;
@@ -26,11 +27,16 @@ class EspMapper implements IDatabaseMapper, IDatabaseObjectMapper {
         $isSuccessful = false;
 
         if ($esp instanceof Esp) {
-            $query = $this->database->prepare("UPDATE esp SET esp.esp_name = :name, esp.esp_location = :location, esp.esp_ip = :ip WHERE esp.esp_id = :id;");
+            $query = $this->database->prepare(
+                "UPDATE esp 
+                          SET esp.esp_name = :name, esp.esp_location = :location, 
+                          esp.esp_ip = :ip, esp.esp_hw_id = :hw_id
+                          WHERE esp.esp_id = :id;");
             $isSuccessful = $query->execute(array(  'id' => $esp->getId(),
                                                     'name' => $esp->getName(),
                                                     'location' => $esp->getLocation()->getId(),
-                                                    'ip' => $esp->getIp()));
+                                                    'ip' => $esp->getIp(),
+                                                    'hw_id' => $esp->getHwId()));
         }
 
         return $isSuccessful;
@@ -51,7 +57,7 @@ class EspMapper implements IDatabaseMapper, IDatabaseObjectMapper {
         $esp = null;
 
         if ($espDb !== false) {
-            $esp = Esp::createEsp($espId, $espDb['esp_name'], $espDb['esp_location'], $espDb['esp_ip']);
+            $esp = Esp::createEsp($espId, $espDb['esp_name'], $espDb['esp_location'], $espDb['esp_ip'], $espDb['esp_hw_id']);
         }
 
         return $esp;
@@ -65,7 +71,7 @@ class EspMapper implements IDatabaseMapper, IDatabaseObjectMapper {
 
         if ($espCollectionDb !== false) {
             foreach ($espCollectionDb as $espDb) {
-                array_push($espCollection, Esp::createEsp($espDb['esp_id'], $espDb['esp_name'], $espDb['esp_location'], $espDb['esp_ip']));
+                array_push($espCollection, Esp::createEsp($espDb['esp_id'], $espDb['esp_name'], $espDb['esp_location'], $espDb['esp_ip'], $espDb['esp_hw_id']));
             }
         }
 

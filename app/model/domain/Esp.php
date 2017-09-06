@@ -6,6 +6,7 @@ class Esp extends DatabaseObjectBase implements JsonSerializable {
     private $location;
     private $components;
     private $ip;
+    private $hwId;
 
 	private $dhtCollection = array();
 	private $relayCollection = array();
@@ -19,12 +20,13 @@ class Esp extends DatabaseObjectBase implements JsonSerializable {
 		return new Esp();
 	}
 
-	public static function createEsp($id, $name, $location, $ip) {
+	public static function createEsp($id, $name, $location, $ip, $hwId) {
 		$esp = new Esp();
 		$esp->id = $id;
 		$esp->name = $name;
 		$esp->location = $location;
 		$esp->ip = $ip;
+		$esp->hwId = $hwId;
 
 		return $esp;
 	}
@@ -44,6 +46,16 @@ class Esp extends DatabaseObjectBase implements JsonSerializable {
 	public function setLocation($location) {
 		$this->location = $location;
 	}
+
+    public function getHwId()
+    {
+        return $this->hwId;
+    }
+
+    public function setHwId($hwId)
+    {
+        $this->hwId = $hwId;
+    }
 
 	public function getComponents() {
 		return $this->components;
