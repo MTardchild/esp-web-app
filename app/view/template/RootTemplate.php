@@ -2,7 +2,11 @@
     <head>
         <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Open+Sans" />
         <link rel="stylesheet" type="text/css" href="../lib/gridstack.css" />
-        <link rel="stylesheet" type="text/css" href="css/main.css" />
+        <link rel="stylesheet" type="text/css" href="css/mainStyle.css" />
+        <link rel="stylesheet" type="text/css" href="css/configViewStyle.css" />
+        <link rel="stylesheet" type="text/css" href="css/dashboardViewStyle.css" />
+        <link rel="stylesheet" type="text/css" href="css/loadingScreenStyle.css" />
+        <link rel="stylesheet" type="text/css" href="css/navigationStyle.css" />
         <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 
         <script type="text/javascript"

@@ -1,0 +1,39 @@
+html {
+    font-family: "Open Sans";
+    font-size: 13pt;
+    background-color: #FFFFFF;
+}
+
+body {
+    margin: 0;
+}
+
+.toastMessage {
+    width:250px;
+    height:auto;
+    position:fixed;
+    left:50%;
+    margin-left:-100px;
+    bottom:10px;
+    background-color: #383838;
+    color: #F0F0F0;
+    font-size: 20px;
+    padding:10px;
+    text-align:center;
+    border-radius: 2px;
+    -webkit-box-shadow: 0px 0px 24px -1px rgba(56, 56, 56, 1);
+    -moz-box-shadow: 0px 0px 24px -1px rgba(56, 56, 56, 1);
+    box-shadow: 0px 0px 24px -1px rgba(56, 56, 56, 1);
+}
+
+.hidden {
+    visibility: hidden;
+}
+
+.root {
+    position: relative;
+}
+
+select {
+    width: 100%;
+}

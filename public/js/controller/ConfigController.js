@@ -34,6 +34,7 @@ var ConfigController = {
                 $('.nameColumn').keypress(function (event) {
                     if (event.originalEvent.keyCode === 13) {
                         event.stopPropagation();
+                        $(this).blur();
                     }
                 });
                 $('.nameColumn').click(function (event) {
@@ -160,7 +161,7 @@ var ConfigController = {
             var rateTd = '<td>' + networks[i][4] + '</td>';
             var signalTd = '<td>' + networks[i][5] + '</td>';
             var securityTd = '<td>' + networks[i][7] + '</td>';
-            var flashTd = '<td><button class="buttonFlash" id="buttonFlash' + networks[i][1] + '">Flash</button><td>';
+            var flashTd = '<td align="right"><button class="buttonFlash" id="buttonFlash' + networks[i][1] + '">Flash</button></td>';
             var row = $('<tr>' + ssidTd + modeTd + channelTd + rateTd + signalTd + securityTd + flashTd + '</tr>');
             $('#configWifiTableBody').append(row);
         }
