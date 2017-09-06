@@ -38,3 +38,6 @@ INSERT INTO component_data_relay VALUES (3, true, NOW(), 4);
 
 INSERT INTO component_data_led_strip VALUES (1, 4000, 1200, 700, 68, NOW(), 6);
 INSERT INTO component_data_led_strip VALUES (2, 400, 4080, 2345, 96, NOW(), 7);
+
+INSERT INTO firmware VALUES (1, "Firmware Hello World", "/app/bla.bin/", NOW());
+INSERT INTO firmware VALUES (2, "Firmware Slim", "/app/bin/bla.bin/", NOW());

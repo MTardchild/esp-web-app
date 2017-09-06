@@ -49,7 +49,7 @@ class HeartbeatService
             $espJson['ip']
         );
 
-        if ($this->espService->getEsp($espJson['id']) instanceof Esp) {
+        if ($this->espService->find($espJson['id']) instanceof Esp) {
             $isSuccessful = $this->espService->update($esp)
             && $this->insertComponentData($espJson['id'], $espJson['components']);
         }

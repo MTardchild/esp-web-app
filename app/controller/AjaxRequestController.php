@@ -13,6 +13,7 @@ class AjaxRequestController {
     private $gridLayoutService;
     private $componentService;
     private $configurationService;
+    private $firmwareService;
 
     public function __construct(ConnectionPostService $connectionPostService,
                                 ConnectionUdpService $connectionUdpService,
@@ -25,7 +26,8 @@ class AjaxRequestController {
                                 ComponentTypeService $componentTypeService,
                                 GridLayoutService $gridLayoutService,
                                 ComponentService $componentService,
-                                ConfigurationService $configurationService) {
+                                ConfigurationService $configurationService,
+                                FirmwareService $firmwareService) {
         $this->connectionPostService = $connectionPostService;
         $this->connectionUdpService = $connectionUdpService;
         $this->connectionTcpService = $connectionTcpService;
@@ -38,6 +40,7 @@ class AjaxRequestController {
         $this->gridLayoutService = $gridLayoutService;
         $this->componentService = $componentService;
         $this->configurationService = $configurationService;
+        $this->firmwareService = $firmwareService;
     }
 
     public function toggleRelay($action) {
@@ -143,7 +146,7 @@ class AjaxRequestController {
     }
 
     public function getAllEsp($action) {
-        $this->ajaxRequest->setMessage(json_encode($this->espService->getAllEsp()));
+        $this->ajaxRequest->setMessage(json_encode($this->espService->findAll()));
     }
 
     public function addComponent($action) {
@@ -168,12 +171,18 @@ class AjaxRequestController {
         $this->ajaxRequest->setMessage(json_encode($wifiNetworks));
     }
 
-    public function flashEsp($action) {
-//        $this->configurationService->flash();
+    public function flash($action) {
+        $esp = $this->espService->findByHwId($action['esp']);
+        $firmware = $this->firmwareService->find($action['firmware']);
+        $this->configurationService->flash($esp, $firmware);
     }
 
     public function configureEspWifi($action) {
 //        $this->configurationService->configureWifi();
+    }
+
+    public function getFirmwares($action) {
+        $this->ajaxRequest->setMessage(json_encode($this->firmwareService->findAll()));
     }
 
     private function getTemplate($file) {

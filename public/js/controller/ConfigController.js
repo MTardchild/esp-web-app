@@ -115,13 +115,21 @@ var ConfigController = {
     getWifiNetworks: function () {
         $.get("?route=ajax&action=getWifiNetworks", function (data, status) {
             var networks = JSON.parse(data);
-            var dummy = JSON.parse('[["", "ssid", "mode", "channel", "rate", "signal", "random", "security"]]');
+            var dummy = JSON.parse('[["", "esp_hwidshitz", "mode", "channel", "rate", "signal", "random", "security"]]');
             ConfigController.addWifiRows(dummy);
             ConfigController.addWifiRows(networks);
+            $.get("?route=ajax&action=getFirmwares",
+                function (data, status) {
+                    var firmwares = JSON.parse(data);
+                    for (i = 0; i < firmwares.length; ++i) {
+                        $("#firmwareDropDown").append(
+                            "<option value=\"" + firmwares[i].id + "\">" + firmwares[i].path + "</option>");
+                    }
+                });
 
             $('.buttonFlash').click(function () {
-                console.log($(this)[0].id);
-                $('#flashSelectedEsp').html($(this)[0].id.split('buttonFlash')[1]);
+                var espId = $(this)[0].id.split('buttonFlash')[1];
+                $('#flashSelectedEsp').html(espId);
                 $( "#flash-dialog-confirm" ).dialog({
                     resizable: false,
                     height: "auto",
@@ -129,6 +137,11 @@ var ConfigController = {
                     modal: true,
                     buttons: {
                         "Flash": function() {
+                            var firmwareId = $('#firmwareDropDown :selected')[0].value;
+                            $.get("?route=ajax&action=flash&firmware=" + firmwareId + "&esp=" + espId,
+                                function (data, status) {
+                                    console.log(data);
+                                });
                             $( this ).dialog( "close" );
                         },
                         Cancel: function() {

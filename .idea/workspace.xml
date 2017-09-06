@@ -1,143 +1,30 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="BookmarkManager">
+    <bookmark url="file://$PROJECT_DIR$/app/model/service/FirmwareService.php" line="20" />
+  </component>
   <component name="ChangeListManager">
     <list default="true" id="7edfbef3-50af-4196-a9e9-d2c58655f6b6" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/model/domain/Configurator.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/model/service/ConfigurationService.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/view/template/ConfigSubNavigationTemplate.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/view/template/ConfigWifiTableTemplate.php" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/app/utility/Autoloader.php" afterPath="$PROJECT_DIR$/app/utility/AutoLoader.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/documentation/diagrams/request/Request.dia" afterPath="$PROJECT_DIR$/app/documentation/diagrams/request/Request.dia" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/documentation/diagrams/request/Request.png" afterPath="$PROJECT_DIR$/app/documentation/diagrams/request/Request.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/img/arrowDown.png" afterPath="$PROJECT_DIR$/public/img/arrowDown.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/img/arrowUp.png" afterPath="$PROJECT_DIR$/public/img/arrowUp.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/img/delete.png" afterPath="$PROJECT_DIR$/public/img/delete.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/img/ledStrip.png" afterPath="$PROJECT_DIR$/public/img/ledStrip.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/img/switch.png" afterPath="$PROJECT_DIR$/public/img/switch.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/img/temperature.png" afterPath="$PROJECT_DIR$/public/img/temperature.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/esp-web-app.iml" afterPath="$PROJECT_DIR$/.idea/esp-web-app.iml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/modules.xml" afterPath="$PROJECT_DIR$/.idea/modules.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/vcs.xml" afterPath="$PROJECT_DIR$/.idea/vcs.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/model/domain/Firmware.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/model/domain/commands/ConfigureWifiCommand.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/model/domain/commands/FlashCommand.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/model/mapper/FirmwareMapper.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/model/service/FirmwareService.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/componentOrder.json" afterPath="$PROJECT_DIR$/app/componentOrder.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/composer.json" afterPath="$PROJECT_DIR$/app/composer.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/composer.lock" afterPath="$PROJECT_DIR$/app/composer.lock" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/controller/AjaxRequestController.php" afterPath="$PROJECT_DIR$/app/controller/AjaxRequestController.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/controller/MainOverviewController.php" afterPath="$PROJECT_DIR$/app/controller/MainOverviewController.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/documentation/diagrams/request/Bootstrap.xml" afterPath="$PROJECT_DIR$/app/documentation/diagrams/request/Bootstrap.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/documentation/esp/json/DataModel.json" afterPath="$PROJECT_DIR$/app/documentation/esp/json/DataModel.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/documentation/esp/json/DummyData.json" afterPath="$PROJECT_DIR$/app/documentation/esp/json/DummyData.json" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/gridlayout.json" afterPath="$PROJECT_DIR$/app/gridlayout.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/model/domain/AjaxRequest.php" afterPath="$PROJECT_DIR$/app/model/domain/AjaxRequest.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/model/domain/ComponentType.php" afterPath="$PROJECT_DIR$/app/model/domain/ComponentType.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/model/domain/ConnectionEspPost.php" afterPath="$PROJECT_DIR$/app/model/domain/ConnectionEspPost.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/model/domain/ConnectionEspTcp.php" afterPath="$PROJECT_DIR$/app/model/domain/ConnectionEspTcp.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/model/domain/ConnectionEspUdp.php" afterPath="$PROJECT_DIR$/app/model/domain/ConnectionEspUdp.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/model/domain/Dht.php" afterPath="$PROJECT_DIR$/app/model/domain/Dht.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/model/domain/Door.php" afterPath="$PROJECT_DIR$/app/model/domain/Door.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/model/domain/Esp.php" afterPath="$PROJECT_DIR$/app/model/domain/Esp.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/model/domain/LedStrip.php" afterPath="$PROJECT_DIR$/app/model/domain/LedStrip.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/model/domain/Location.php" afterPath="$PROJECT_DIR$/app/model/domain/Location.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/model/domain/Relay.php" afterPath="$PROJECT_DIR$/app/model/domain/Relay.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/model/domain/Room.php" afterPath="$PROJECT_DIR$/app/model/domain/Room.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/model/domain/Window.php" afterPath="$PROJECT_DIR$/app/model/domain/Window.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/model/domain/baseclass/ComponentBase.php" afterPath="$PROJECT_DIR$/app/model/domain/baseclass/ComponentBase.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/model/domain/baseclass/ConnectionBase.php" afterPath="$PROJECT_DIR$/app/model/domain/baseclass/ConnectionBase.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/model/domain/baseclass/DatabaseObjectBase.php" afterPath="$PROJECT_DIR$/app/model/domain/baseclass/DatabaseObjectBase.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/model/mapper/ComponentTypeMapper.php" afterPath="$PROJECT_DIR$/app/model/mapper/ComponentTypeMapper.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/model/mapper/DoorMapper.php" afterPath="$PROJECT_DIR$/app/model/mapper/DoorMapper.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/model/mapper/EspMapper.php" afterPath="$PROJECT_DIR$/app/model/mapper/EspMapper.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/model/mapper/LocationMapper.php" afterPath="$PROJECT_DIR$/app/model/mapper/LocationMapper.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/model/mapper/RoomMapper.php" afterPath="$PROJECT_DIR$/app/model/mapper/RoomMapper.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/model/mapper/WindowMapper.php" afterPath="$PROJECT_DIR$/app/model/mapper/WindowMapper.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/model/mapper/_database/CreateDatabase.sql" afterPath="$PROJECT_DIR$/app/model/mapper/_database/CreateDatabase.sql" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/model/mapper/_database/DummyData.sql" afterPath="$PROJECT_DIR$/app/model/mapper/_database/DummyData.sql" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/model/mapper/component/ComponentMapper.php" afterPath="$PROJECT_DIR$/app/model/mapper/component/ComponentMapper.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/model/mapper/component/DhtDataMapper.php" afterPath="$PROJECT_DIR$/app/model/mapper/component/DhtDataMapper.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/model/mapper/component/LedStripDataMapper.php" afterPath="$PROJECT_DIR$/app/model/mapper/component/LedStripDataMapper.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/model/mapper/component/RelayDataMapper.php" afterPath="$PROJECT_DIR$/app/model/mapper/component/RelayDataMapper.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/model/mapper/interface/IDatabaseMapper.php" afterPath="$PROJECT_DIR$/app/model/mapper/interface/IDatabaseMapper.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/model/mapper/interface/IDatabaseObjectMapper.php" afterPath="$PROJECT_DIR$/app/model/mapper/interface/IDatabaseObjectMapper.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/model/service/ConnectionPostService.php" afterPath="$PROJECT_DIR$/app/model/service/ConnectionPostService.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/model/service/ConnectionTcpService.php" afterPath="$PROJECT_DIR$/app/model/service/ConnectionTcpService.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/model/service/ConnectionUdpService.php" afterPath="$PROJECT_DIR$/app/model/service/ConnectionUdpService.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/model/service/DoorService.php" afterPath="$PROJECT_DIR$/app/model/service/DoorService.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/model/service/ConfigurationService.php" afterPath="$PROJECT_DIR$/app/model/service/ConfigurationService.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/model/service/EspService.php" afterPath="$PROJECT_DIR$/app/model/service/EspService.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/model/service/GridLayoutService.php" afterPath="$PROJECT_DIR$/app/model/service/GridLayoutService.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/model/service/HeartbeatService.php" afterPath="$PROJECT_DIR$/app/model/service/HeartbeatService.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/model/service/LocationService.php" afterPath="$PROJECT_DIR$/app/model/service/LocationService.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/model/service/RoomService.php" afterPath="$PROJECT_DIR$/app/model/service/RoomService.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/model/service/WindowService.php" afterPath="$PROJECT_DIR$/app/model/service/WindowService.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/model/service/component/ComponentService.php" afterPath="$PROJECT_DIR$/app/model/service/component/ComponentService.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/model/service/component/ComponentTypeService.php" afterPath="$PROJECT_DIR$/app/model/service/component/ComponentTypeService.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/model/service/component/DhtDataService.php" afterPath="$PROJECT_DIR$/app/model/service/component/DhtDataService.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/model/service/component/LedStripDataService.php" afterPath="$PROJECT_DIR$/app/model/service/component/LedStripDataService.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/model/service/component/RelayDataService.php" afterPath="$PROJECT_DIR$/app/model/service/component/RelayDataService.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/model/service/interface/IDatabaseService.php" afterPath="$PROJECT_DIR$/app/model/service/interface/IDatabaseService.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/model/service/interface/IObserver.php" afterPath="$PROJECT_DIR$/app/model/service/interface/IObserver.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/model/service/interface/ISubject.php" afterPath="$PROJECT_DIR$/app/model/service/interface/ISubject.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/router/Route.php" afterPath="$PROJECT_DIR$/app/router/Route.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/router/Router.php" afterPath="$PROJECT_DIR$/app/router/Router.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/utility/Bootstrap.php" afterPath="$PROJECT_DIR$/app/utility/Bootstrap.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/utility/FrontController.php" afterPath="$PROJECT_DIR$/app/utility/FrontController.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/vendor/autoload.php" afterPath="$PROJECT_DIR$/app/vendor/autoload.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/vendor/composer/ClassLoader.php" afterPath="$PROJECT_DIR$/app/vendor/composer/ClassLoader.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/vendor/composer/LICENSE" afterPath="$PROJECT_DIR$/app/vendor/composer/LICENSE" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/vendor/composer/autoload_classmap.php" afterPath="$PROJECT_DIR$/app/vendor/composer/autoload_classmap.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/vendor/composer/autoload_namespaces.php" afterPath="$PROJECT_DIR$/app/vendor/composer/autoload_namespaces.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/vendor/composer/autoload_psr4.php" afterPath="$PROJECT_DIR$/app/vendor/composer/autoload_psr4.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/vendor/composer/autoload_real.php" afterPath="$PROJECT_DIR$/app/vendor/composer/autoload_real.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/vendor/composer/autoload_static.php" afterPath="$PROJECT_DIR$/app/vendor/composer/autoload_static.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/vendor/composer/installed.json" afterPath="$PROJECT_DIR$/app/vendor/composer/installed.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/vendor/rdlowrey/auryn/.gitignore" afterPath="$PROJECT_DIR$/app/vendor/rdlowrey/auryn/.gitignore" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/vendor/rdlowrey/auryn/.php_cs" afterPath="$PROJECT_DIR$/app/vendor/rdlowrey/auryn/.php_cs" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/vendor/rdlowrey/auryn/.travis.yml" afterPath="$PROJECT_DIR$/app/vendor/rdlowrey/auryn/.travis.yml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/vendor/rdlowrey/auryn/CONTRIBUTING.md" afterPath="$PROJECT_DIR$/app/vendor/rdlowrey/auryn/CONTRIBUTING.md" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/vendor/rdlowrey/auryn/LICENSE" afterPath="$PROJECT_DIR$/app/vendor/rdlowrey/auryn/LICENSE" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/vendor/rdlowrey/auryn/README.md" afterPath="$PROJECT_DIR$/app/vendor/rdlowrey/auryn/README.md" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/vendor/rdlowrey/auryn/composer.json" afterPath="$PROJECT_DIR$/app/vendor/rdlowrey/auryn/composer.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/vendor/rdlowrey/auryn/lib/CachingReflector.php" afterPath="$PROJECT_DIR$/app/vendor/rdlowrey/auryn/lib/CachingReflector.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/vendor/rdlowrey/auryn/lib/ConfigException.php" afterPath="$PROJECT_DIR$/app/vendor/rdlowrey/auryn/lib/ConfigException.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/vendor/rdlowrey/auryn/lib/Executable.php" afterPath="$PROJECT_DIR$/app/vendor/rdlowrey/auryn/lib/Executable.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/vendor/rdlowrey/auryn/lib/InjectionException.php" afterPath="$PROJECT_DIR$/app/vendor/rdlowrey/auryn/lib/InjectionException.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/vendor/rdlowrey/auryn/lib/Injector.php" afterPath="$PROJECT_DIR$/app/vendor/rdlowrey/auryn/lib/Injector.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/vendor/rdlowrey/auryn/lib/InjectorException.php" afterPath="$PROJECT_DIR$/app/vendor/rdlowrey/auryn/lib/InjectorException.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/vendor/rdlowrey/auryn/lib/ReflectionCache.php" afterPath="$PROJECT_DIR$/app/vendor/rdlowrey/auryn/lib/ReflectionCache.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/vendor/rdlowrey/auryn/lib/ReflectionCacheApc.php" afterPath="$PROJECT_DIR$/app/vendor/rdlowrey/auryn/lib/ReflectionCacheApc.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/vendor/rdlowrey/auryn/lib/ReflectionCacheArray.php" afterPath="$PROJECT_DIR$/app/vendor/rdlowrey/auryn/lib/ReflectionCacheArray.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/vendor/rdlowrey/auryn/lib/Reflector.php" afterPath="$PROJECT_DIR$/app/vendor/rdlowrey/auryn/lib/Reflector.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/vendor/rdlowrey/auryn/lib/StandardReflector.php" afterPath="$PROJECT_DIR$/app/vendor/rdlowrey/auryn/lib/StandardReflector.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/vendor/rdlowrey/auryn/phpunit.xml" afterPath="$PROJECT_DIR$/app/vendor/rdlowrey/auryn/phpunit.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/vendor/rdlowrey/auryn/test/Benchmark/ExecuteBenchmark.php" afterPath="$PROJECT_DIR$/app/vendor/rdlowrey/auryn/test/Benchmark/ExecuteBenchmark.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/vendor/rdlowrey/auryn/test/Benchmark/Noop.php" afterPath="$PROJECT_DIR$/app/vendor/rdlowrey/auryn/test/Benchmark/Noop.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/vendor/rdlowrey/auryn/test/InjectorTest.php" afterPath="$PROJECT_DIR$/app/vendor/rdlowrey/auryn/test/InjectorTest.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/vendor/rdlowrey/auryn/test/fixtures.php" afterPath="$PROJECT_DIR$/app/vendor/rdlowrey/auryn/test/fixtures.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/utility/AutoLoader.php" afterPath="$PROJECT_DIR$/app/utility/AutoLoader.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/view/template/ConfigTemplate.php" afterPath="$PROJECT_DIR$/app/view/template/ConfigTemplate.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/view/template/DhtTemplate.php" afterPath="$PROJECT_DIR$/app/view/template/DhtTemplate.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/view/template/EspTemplate.php" afterPath="$PROJECT_DIR$/app/view/template/EspTemplate.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/view/template/LedStripTemplate.php" afterPath="$PROJECT_DIR$/app/view/template/LedStripTemplate.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/view/template/Navigation.php" afterPath="$PROJECT_DIR$/app/view/template/Navigation.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/view/template/RelayTemplate.php" afterPath="$PROJECT_DIR$/app/view/template/RelayTemplate.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/view/template/RootTemplate.php" afterPath="$PROJECT_DIR$/app/view/template/RootTemplate.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/view/template/SortIconsTemplate.php" afterPath="$PROJECT_DIR$/app/view/template/SortIconsTemplate.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/view/template/TileTemplate.php" afterPath="$PROJECT_DIR$/app/view/template/TileTemplate.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/view/view/AjaxRequestView.php" afterPath="$PROJECT_DIR$/app/view/view/AjaxRequestView.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/view/view/MainOverviewView.php" afterPath="$PROJECT_DIR$/app/view/view/MainOverviewView.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lib/gridstack.css" afterPath="$PROJECT_DIR$/lib/gridstack.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lib/gridstack.jQueryUI.js" afterPath="$PROJECT_DIR$/lib/gridstack.jQueryUI.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lib/gridstack.js" afterPath="$PROJECT_DIR$/lib/gridstack.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lib/gridstack.min.css" afterPath="$PROJECT_DIR$/lib/gridstack.min.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lib/gridstack.min.js" afterPath="$PROJECT_DIR$/lib/gridstack.min.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lib/jquery.ui.touch-punch.min.js" afterPath="$PROJECT_DIR$/lib/jquery.ui.touch-punch.min.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lib/jscolor.min.js" afterPath="$PROJECT_DIR$/lib/jscolor.min.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lib/lodash.js" afterPath="$PROJECT_DIR$/lib/lodash.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/css/main.css" afterPath="$PROJECT_DIR$/public/css/main.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/index.php" afterPath="$PROJECT_DIR$/public/index.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/js/controller/ConfigController.js" afterPath="$PROJECT_DIR$/public/js/controller/ConfigController.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/js/controller/DashboardController.js" afterPath="$PROJECT_DIR$/public/js/controller/DashboardController.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/js/utility/ColorConversion.js" afterPath="$PROJECT_DIR$/public/js/utility/ColorConversion.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/js/utility/Init.js" afterPath="$PROJECT_DIR$/public/js/utility/Init.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/js/utility/JQueryExtensions.js" afterPath="$PROJECT_DIR$/public/js/utility/JQueryExtensions.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/js/utility/Navigation.js" afterPath="$PROJECT_DIR$/public/js/utility/Navigation.js" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -163,86 +50,101 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="450">
+      <file leaf-file-name="EspService.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/model/service/EspService.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="415">
+              <caret line="70" column="75" lean-forward="false" selection-start-line="70" selection-start-column="75" selection-end-line="70" selection-end-column="75" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="FlashCommand.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/model/domain/commands/FlashCommand.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="272">
+              <caret line="35" column="44" lean-forward="false" selection-start-line="35" selection-start-column="44" selection-end-line="35" selection-end-column="44" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="ConfigurationService.php" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/app/model/service/ConfigurationService.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="279">
+              <caret line="19" column="20" lean-forward="true" selection-start-line="19" selection-start-column="20" selection-end-line="19" selection-end-column="20" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="ConfigureWifiCommand.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/model/domain/commands/ConfigureWifiCommand.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="295">
+              <caret line="48" column="54" lean-forward="false" selection-start-line="48" selection-start-column="54" selection-end-line="48" selection-end-column="54" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Firmware.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/model/domain/Firmware.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="391">
+              <caret line="60" column="48" lean-forward="true" selection-start-line="60" selection-start-column="48" selection-end-line="60" selection-end-column="48" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="AutoLoader.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/utility/AutoLoader.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="0">
+              <caret line="6" column="37" lean-forward="false" selection-start-line="6" selection-start-column="37" selection-end-line="6" selection-end-column="37" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Esp.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/model/domain/Esp.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="167">
+              <caret line="104" column="16" lean-forward="true" selection-start-line="104" selection-start-column="16" selection-end-line="104" selection-end-column="16" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="DataModel.json" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/documentation/esp/json/DataModel.json">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="155">
+              <caret line="36" column="0" lean-forward="false" selection-start-line="36" selection-start-column="0" selection-end-line="49" selection-end-column="1" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="DummyData.json" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/documentation/esp/json/DummyData.json">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="560">
+              <caret line="35" column="9" lean-forward="true" selection-start-line="35" selection-start-column="9" selection-end-line="35" selection-end-column="9" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
       <file leaf-file-name="ConfigController.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/public/js/controller/ConfigController.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="125">
-              <caret line="123" column="76" lean-forward="false" selection-start-line="123" selection-start-column="76" selection-end-line="123" selection-end-column="76" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Navigation.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/public/js/utility/Navigation.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="112">
-              <caret line="7" column="31" lean-forward="false" selection-start-line="7" selection-start-column="31" selection-end-line="7" selection-end-column="31" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="gridlayout.json" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/app/gridlayout.json">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="0">
-              <caret line="0" column="105" lean-forward="false" selection-start-line="0" selection-start-column="105" selection-end-line="0" selection-end-column="105" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="main.css" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/public/css/main.css">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="477">
-              <caret line="406" column="4" lean-forward="true" selection-start-line="406" selection-start-column="4" selection-end-line="406" selection-end-column="4" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="ConfigWifiTableTemplate.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/view/template/ConfigWifiTableTemplate.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="272">
-              <caret line="17" column="70" lean-forward="false" selection-start-line="17" selection-start-column="70" selection-end-line="17" selection-end-column="70" />
-              <folding>
-                <element signature="n#style#0;n#div#0;n#!!top" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="RootTemplate.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/view/template/RootTemplate.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="459">
-              <caret line="33" column="37" lean-forward="true" selection-start-line="33" selection-start-column="37" selection-end-line="33" selection-end-column="37" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="ConfigTemplate.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/view/template/ConfigTemplate.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="443">
-              <caret line="90" column="10" lean-forward="true" selection-start-line="90" selection-start-column="10" selection-end-line="90" selection-end-column="10" />
-              <folding>
-                <element signature="n#style#0;n#div#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#div#1;n#!!top" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="EspTemplate.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/view/template/EspTemplate.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="0">
-              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+            <state relative-caret-position="299">
+              <caret line="142" column="54" lean-forward="true" selection-start-line="142" selection-start-column="54" selection-end-line="142" selection-end-column="54" />
               <folding />
             </state>
           </provider>
@@ -279,21 +181,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/app/model/domain/ConnectionEspPost.php" />
-        <option value="$PROJECT_DIR$/app/view/template/EspTemplate.php" />
-        <option value="$PROJECT_DIR$/app/view/view/MainOverviewView.php" />
-        <option value="$PROJECT_DIR$/app/model/service/HtmlPostService.php" />
-        <option value="$PROJECT_DIR$/app/model/service/ReceiveDataService.php" />
-        <option value="$PROJECT_DIR$/app/utility/FrontController.php" />
-        <option value="$PROJECT_DIR$/app/model/service/component/LedStripDataService.php" />
-        <option value="$PROJECT_DIR$/app/model/service/HeartbeatService.php" />
-        <option value="$PROJECT_DIR$/app/model/mapper/component/LedStripDataMapper.php" />
-        <option value="$PROJECT_DIR$/public/js/connectionEsp.js" />
-        <option value="$PROJECT_DIR$/app/model/service/RoomService.php" />
-        <option value="$PROJECT_DIR$/app/model/mapper/database/CreateDatabase.sql" />
-        <option value="$PROJECT_DIR$/app/model/domain/ConnectionEspTcp.php" />
-        <option value="$PROJECT_DIR$/app/model/domain/ConnectionEspUdp.php" />
-        <option value="$USER_HOME$/Downloads/RelaySketchTcp.ino" />
         <option value="$PROJECT_DIR$/app/model/mapper/ComponentTypeMapper.php" />
         <option value="$PROJECT_DIR$/public/js/navigation.js" />
         <option value="$PROJECT_DIR$/app/model/domain/ComponentType.php" />
@@ -304,9 +191,7 @@
         <option value="$PROJECT_DIR$/app/view/template/LedStripTemplate.php" />
         <option value="$PROJECT_DIR$/app/model/domain/baseclass/DatabaseObjectBase.php" />
         <option value="$PROJECT_DIR$/app/model/mapper/component/DhtDataMapper.php" />
-        <option value="$PROJECT_DIR$/app/model/service/EspService.php" />
         <option value="$PROJECT_DIR$/app/model/service/component/ComponentService.php" />
-        <option value="$PROJECT_DIR$/app/documentation/esp/json/DataModel.json" />
         <option value="$PROJECT_DIR$/app/model/mapper/component/ComponentMapper.php" />
         <option value="$PROJECT_DIR$/app/model/domain/LedStrip.php" />
         <option value="$PROJECT_DIR$/app/model/domain/Dht.php" />
@@ -314,22 +199,39 @@
         <option value="$PROJECT_DIR$/public/js/configUi.js" />
         <option value="$PROJECT_DIR$/public/js/ajaxCalls.js" />
         <option value="$PROJECT_DIR$/app/utility/Bootstrap.php" />
-        <option value="$PROJECT_DIR$/app/model/mapper/_database/CreateDatabase.sql" />
-        <option value="$PROJECT_DIR$/app/model/domain/Esp.php" />
-        <option value="$PROJECT_DIR$/app/model/mapper/_database/DummyData.sql" />
-        <option value="$PROJECT_DIR$/app/model/mapper/EspMapper.php" />
-        <option value="$PROJECT_DIR$/app/controller/AjaxRequestController.php" />
         <option value="$PROJECT_DIR$/app/model/service/ConnectionTcpService.php" />
-        <option value="$PROJECT_DIR$/app/model/service/ConfigurationService.php" />
-        <option value="$PROJECT_DIR$/app/view/template/ConfigTemplate.php" />
         <option value="$PROJECT_DIR$/app/view/template/ConfigSubNavigationTemplate.php" />
         <option value="$PROJECT_DIR$/app/model/domain/Configurator.php" />
         <option value="$PROJECT_DIR$/app/view/template/RootTemplate.php" />
         <option value="$PROJECT_DIR$/public/css/main.css" />
+        <option value="$PROJECT_DIR$/app/model/mapper/_database/CreateDatabase.sql" />
+        <option value="$PROJECT_DIR$/app/model/mapper/_database/DummyData.sql" />
+        <option value="$PROJECT_DIR$/app/model/domain/Framework.php" />
+        <option value="$PROJECT_DIR$/app/model/mapper/FrameworkMapper.php" />
+        <option value="$PROJECT_DIR$/app/model/service/FrameworkService.php" />
+        <option value="$PROJECT_DIR$/app/model/domain/Firmware.php" />
         <option value="$PROJECT_DIR$/app/view/template/ConfigWifiTableTemplate.php" />
+        <option value="$PROJECT_DIR$/app/model/service/FirmwareService.php" />
+        <option value="$PROJECT_DIR$/app/model/mapper/FirmwareMapper.php" />
+        <option value="$PROJECT_DIR$/app/model/service/EspService.php" />
+        <option value="$PROJECT_DIR$/app/view/template/ConfigTemplate.php" />
         <option value="$PROJECT_DIR$/public/js/controller/ConfigController.js" />
-        <option value="$PROJECT_DIR$/public/js/utility/Navigation.js" />
+        <option value="$PROJECT_DIR$/app/model/mapper/EspMapper.php" />
+        <option value="$PROJECT_DIR$/app/controller/AjaxRequestController.php" />
+        <option value="$PROJECT_DIR$/app/view/template/EspTemplate.php" />
         <option value="$PROJECT_DIR$/app/gridlayout.json" />
+        <option value="$PROJECT_DIR$/app/model/service/GridLayoutService.php" />
+        <option value="$PROJECT_DIR$/public/js/utility/Navigation.js" />
+        <option value="$PROJECT_DIR$/public/js/controller/DashboardController.js" />
+        <option value="$PROJECT_DIR$/app/documentation/esp/json/DataModel.json" />
+        <option value="$PROJECT_DIR$/app/model/domain/EspCommand.php" />
+        <option value="$PROJECT_DIR$/app/model/domain/FlashCommand.php" />
+        <option value="$PROJECT_DIR$/app/model/domain/Esp.php" />
+        <option value="$PROJECT_DIR$/app/model/commands/FlashCommand.php" />
+        <option value="$PROJECT_DIR$/app/utility/AutoLoader.php" />
+        <option value="$PROJECT_DIR$/app/model/domain/commands/FlashCommand.php" />
+        <option value="$PROJECT_DIR$/app/model/domain/commands/ConfigureWifiCommand.php" />
+        <option value="$PROJECT_DIR$/app/model/service/ConfigurationService.php" />
       </list>
     </option>
   </component>
@@ -339,13 +241,15 @@
     <detection-done>true</detection-done>
     <sorting>DEFINITION_ORDER</sorting>
   </component>
+  <component name="PhpDebugGeneral" listening_started="true" />
   <component name="PhpServers">
     <servers />
   </component>
   <component name="PhpWorkspaceProjectConfiguration" backward_compatibility_performed="true" />
   <component name="ProjectFrameBounds">
-    <option name="width" value="1280" />
-    <option name="height" value="773" />
+    <option name="x" value="-1" />
+    <option name="width" value="1282" />
+    <option name="height" value="386" />
   </component>
   <component name="ProjectView">
     <navigator currentView="ProjectPane" proportions="" version="1">
@@ -414,6 +318,14 @@
               <item name="app" type="2a2b976b:PhpTreeStructureProvider$1" />
               <item name="model" type="2a2b976b:PhpTreeStructureProvider$1" />
               <item name="domain" type="2a2b976b:PhpTreeStructureProvider$1" />
+            </path>
+            <path>
+              <item name="esp-web-app" type="b2602c69:ProjectViewProjectNode" />
+              <item name="esp-web-app" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="app" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="model" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="domain" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="commands" type="2a2b976b:PhpTreeStructureProvider$1" />
             </path>
             <path>
               <item name="esp-web-app" type="b2602c69:ProjectViewProjectNode" />
@@ -515,6 +427,12 @@
     <property name="nodejs_interpreter_path" value="C:/Program Files/nodejs/node" />
     <property name="js-jscs-nodeInterpreter" value="C:\Program Files\nodejs\node.exe" />
   </component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/app/model/domain" />
+      <recent name="$PROJECT_DIR$/app/model/commands" />
+    </key>
+  </component>
   <component name="RunDashboard">
     <option name="ruleStates">
       <list>
@@ -614,7 +532,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="166756000" />
+    <option name="totallyTimeSpent" value="179888000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-1" y="0" width="1282" height="773" extended-state="7" />
@@ -622,13 +540,13 @@
     <layout>
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.24765626" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3298647" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.29166666" sideWeight="0.503125" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32942098" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.29240376" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.29166666" sideWeight="0.496875" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32886904" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
@@ -660,83 +578,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/app/model/domain/baseclass/DatabaseObjectBase.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="325">
-          <caret line="13" column="9" lean-forward="false" selection-start-line="13" selection-start-column="9" selection-end-line="13" selection-end-column="9" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/model/service/component/RelayDataService.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="293">
-          <caret line="23" column="40" lean-forward="false" selection-start-line="23" selection-start-column="40" selection-end-line="23" selection-end-column="40" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/model/mapper/component/RelayDataMapper.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="127">
-          <caret line="33" column="76" lean-forward="true" selection-start-line="33" selection-start-column="76" selection-end-line="33" selection-end-column="76" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/model/mapper/component/DhtDataMapper.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="366">
-          <caret line="42" column="42" lean-forward="false" selection-start-line="42" selection-start-column="42" selection-end-line="42" selection-end-column="42" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/model/domain/AjaxRequest.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/model/domain/Door.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/model/mapper/component/ComponentMapper.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="600">
-          <caret line="24" column="0" lean-forward="true" selection-start-line="24" selection-start-column="0" selection-end-line="24" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/model/domain/LedStrip.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="587">
-          <caret line="92" column="12" lean-forward="true" selection-start-line="92" selection-start-column="12" selection-end-line="92" selection-end-column="41" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/model/domain/Location.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/model/domain/Dht.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="637">
-          <caret line="62" column="41" lean-forward="false" selection-start-line="62" selection-start-column="41" selection-end-line="62" selection-end-column="41" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/model/domain/Relay.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="649">
@@ -767,42 +608,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/model/domain/Esp.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="587">
-          <caret line="59" column="5" lean-forward="true" selection-start-line="59" selection-start-column="5" selection-end-line="59" selection-end-column="5" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/utility/Bootstrap.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="96">
           <caret line="6" column="0" lean-forward="true" selection-start-line="6" selection-start-column="0" selection-end-line="6" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/model/mapper/EspMapper.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="509">
-          <caret line="93" column="0" lean-forward="true" selection-start-line="93" selection-start-column="0" selection-end-line="93" selection-end-column="0" />
-          <folding>
-            <marker date="1504645082952" expanded="true" signature="371:421" ph="INSERT INTO esp... " />
-            <marker date="1504645082952" expanded="true" signature="371:430" ph="INSERT INTO esp... " />
-            <marker date="1504645082952" expanded="true" signature="1056:1266" ph="UPDATE esp S... " />
-            <marker date="1504645082952" expanded="true" signature="1806:1843" ph="DELETE FROM " />
-            <marker date="1504645082952" expanded="true" signature="2063:2164" ph="SELECT * FRO... esp" />
-            <marker date="1504645082952" expanded="true" signature="2547:2622" ph="SELECT * FRO... esp" />
-            <marker date="1504645082952" expanded="true" signature="3130:3181" ph="SELECT esp_i... esp" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/model/service/EspService.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="880">
-          <caret line="55" column="5" lean-forward="true" selection-start-line="55" selection-start-column="5" selection-end-line="55" selection-end-column="5" />
           <folding />
         </state>
       </provider>
@@ -855,22 +664,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/model/service/ConfigurationService.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="128">
-          <caret line="8" column="43" lean-forward="false" selection-start-line="8" selection-start-column="43" selection-end-line="8" selection-end-column="43" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/public/js/controller/DashboardController.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/view/template/Navigation.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
@@ -879,31 +672,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/controller/AjaxRequestController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="347">
-          <caret line="169" column="0" lean-forward="true" selection-start-line="169" selection-start-column="0" selection-end-line="169" selection-end-column="0" />
-          <folding>
-            <element signature="n#setWarmWhite#0;n#AjaxRequestController#0;n#!!top" expanded="false" />
-            <element signature="n#setColorUdp#0;n#AjaxRequestController#0;n#!!top" expanded="false" />
-            <element signature="n#getDashboardView#0;n#AjaxRequestController#0;n#!!top" expanded="false" />
-            <element signature="n#getGridLayout#0;n#AjaxRequestController#0;n#!!top" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/view/template/RelayTemplate.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/view/template/TileTemplate.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="35" />
           <folding />
         </state>
       </provider>
@@ -932,50 +704,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/view/template/EspTemplate.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/public/js/utility/JQueryExtensions.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/model/mapper/_database/DummyData.sql">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="123">
-          <caret line="16" column="74" lean-forward="false" selection-start-line="16" selection-start-column="74" selection-end-line="16" selection-end-column="74" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/documentation/esp/json/DummyData.json">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="560">
-          <caret line="35" column="9" lean-forward="true" selection-start-line="35" selection-start-column="9" selection-end-line="35" selection-end-column="9" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/documentation/esp/json/DataModel.json">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="304">
-          <caret line="19" column="9" lean-forward="true" selection-start-line="7" selection-start-column="8" selection-end-line="19" selection-end-column="9" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/model/mapper/_database/CreateDatabase.sql">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="235">
-          <caret line="55" column="12" lean-forward="false" selection-start-line="55" selection-start-column="12" selection-end-line="55" selection-end-column="12" />
           <folding />
         </state>
       </provider>
@@ -988,47 +720,117 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/view/template/RootTemplate.php">
+    <entry file="file://$PROJECT_DIR$/app/model/mapper/_database/DummyData.sql">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="459">
-          <caret line="33" column="37" lean-forward="true" selection-start-line="33" selection-start-column="37" selection-end-line="33" selection-end-column="37" />
+        <state relative-caret-position="539">
+          <caret line="42" column="46" lean-forward="false" selection-start-line="42" selection-start-column="46" selection-end-line="42" selection-end-column="46" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/model/domain/Dht.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="379">
+          <caret line="58" column="0" lean-forward="false" selection-start-line="58" selection-start-column="0" selection-end-line="65" selection-end-column="10" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/view/template/ConfigWifiTableTemplate.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="336">
+          <caret line="21" column="59" lean-forward="false" selection-start-line="21" selection-start-column="43" selection-end-line="21" selection-end-column="59" />
+          <folding>
+            <element signature="n#style#0;n#span#0;n#p#0;n#div#0;n#!!top" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/model/mapper/FirmwareMapper.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="400">
+          <caret line="31" column="151" lean-forward="false" selection-start-line="31" selection-start-column="151" selection-end-line="31" selection-end-column="151" />
+          <folding>
+            <marker date="1504675960048" expanded="true" signature="601:659" ph="SELECT * FRO... firmware" />
+            <marker date="1504675960048" expanded="true" signature="1099:1121" ph="SELECT * FRO... firmware" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/model/mapper/_database/CreateDatabase.sql">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="339">
+          <caret line="55" column="13" lean-forward="false" selection-start-line="55" selection-start-column="4" selection-end-line="55" selection-end-column="13" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/view/template/ConfigTemplate.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="443">
-          <caret line="90" column="10" lean-forward="true" selection-start-line="90" selection-start-column="10" selection-end-line="90" selection-end-column="10" />
-          <folding>
-            <element signature="n#style#0;n#div#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#div#1;n#!!top" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/view/template/ConfigWifiTableTemplate.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="272">
-          <caret line="17" column="70" lean-forward="false" selection-start-line="17" selection-start-column="70" selection-end-line="17" selection-end-column="70" />
-          <folding>
-            <element signature="n#style#0;n#div#0;n#!!top" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/public/js/controller/ConfigController.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="125">
-          <caret line="123" column="76" lean-forward="false" selection-start-line="123" selection-start-column="76" selection-end-line="123" selection-end-column="76" />
+        <state relative-caret-position="181">
+          <caret line="13" column="55" lean-forward="false" selection-start-line="13" selection-start-column="55" selection-end-line="13" selection-end-column="55" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/public/js/utility/Navigation.js">
+    <entry file="file://$PROJECT_DIR$/app/model/mapper/EspMapper.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="112">
-          <caret line="7" column="31" lean-forward="false" selection-start-line="7" selection-start-column="31" selection-end-line="7" selection-end-column="31" />
+        <state relative-caret-position="384">
+          <caret line="72" column="135" lean-forward="false" selection-start-line="72" selection-start-column="135" selection-end-line="72" selection-end-column="135" />
+          <folding>
+            <marker date="1504677010575" expanded="true" signature="371:421" ph="INSERT INTO esp... " />
+            <marker date="1504677010575" expanded="true" signature="371:430" ph="INSERT INTO esp... " />
+            <marker date="1504677010575" expanded="true" signature="1056:1266" ph="UPDATE esp S... " />
+            <marker date="1504677010575" expanded="true" signature="1806:1843" ph="DELETE FROM " />
+            <marker date="1504677010575" expanded="true" signature="2063:2164" ph="SELECT * FRO... esp" />
+            <marker date="1504677010575" expanded="true" signature="2555:2641" ph="SELECT * FRO... esp" />
+            <marker date="1504677010575" expanded="true" signature="3032:3107" ph="SELECT * FRO... esp" />
+            <marker date="1504677010575" expanded="true" signature="3615:3666" ph="SELECT esp_i... esp" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/componentOrder.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/controller/AjaxRequestController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="527">
+          <caret line="177" column="5" lean-forward="true" selection-start-line="177" selection-start-column="5" selection-end-line="177" selection-end-column="5" />
+          <folding>
+            <element signature="n#setWarmWhite#0;n#AjaxRequestController#0;n#!!top" expanded="false" />
+            <element signature="n#setColorUdp#0;n#AjaxRequestController#0;n#!!top" expanded="false" />
+            <element signature="n#getDashboardView#0;n#AjaxRequestController#0;n#!!top" expanded="false" />
+            <element signature="n#getGridLayout#0;n#AjaxRequestController#0;n#!!top" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/view/template/TileTemplate.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="35" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/view/template/SortIconsTemplate.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/view/template/RootTemplate.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="528">
+          <caret line="33" column="37" lean-forward="true" selection-start-line="33" selection-start-column="37" selection-end-line="33" selection-end-column="37" />
           <folding />
         </state>
       </provider>
@@ -1036,7 +838,127 @@
     <entry file="file://$PROJECT_DIR$/app/gridlayout.json">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
-          <caret line="0" column="105" lean-forward="false" selection-start-line="0" selection-start-column="105" selection-end-line="0" selection-end-column="105" />
+          <caret line="0" column="106" lean-forward="false" selection-start-line="0" selection-start-column="106" selection-end-line="0" selection-end-column="106" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/js/utility/Navigation.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="128">
+          <caret line="8" column="39" lean-forward="false" selection-start-line="8" selection-start-column="39" selection-end-line="8" selection-end-column="39" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/js/controller/DashboardController.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1005">
+          <caret line="102" column="70" lean-forward="false" selection-start-line="102" selection-start-column="70" selection-end-line="102" selection-end-column="70" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/view/template/EspTemplate.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="112">
+          <caret line="7" column="23" lean-forward="true" selection-start-line="7" selection-start-column="23" selection-end-line="7" selection-end-column="23" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/model/service/GridLayoutService.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="true" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/model/service/FirmwareService.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="256">
+          <caret line="25" column="56" lean-forward="false" selection-start-line="25" selection-start-column="56" selection-end-line="25" selection-end-column="56" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/model/service/EspService.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="415">
+          <caret line="70" column="75" lean-forward="false" selection-start-line="70" selection-start-column="75" selection-end-line="70" selection-end-column="75" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/documentation/esp/json/DummyData.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="560">
+          <caret line="35" column="9" lean-forward="true" selection-start-line="35" selection-start-column="9" selection-end-line="35" selection-end-column="9" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/model/domain/Esp.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="167">
+          <caret line="104" column="16" lean-forward="true" selection-start-line="104" selection-start-column="16" selection-end-line="104" selection-end-column="16" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/js/controller/ConfigController.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="299">
+          <caret line="142" column="54" lean-forward="true" selection-start-line="142" selection-start-column="54" selection-end-line="142" selection-end-column="54" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/documentation/esp/json/DataModel.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="155">
+          <caret line="36" column="0" lean-forward="false" selection-start-line="36" selection-start-column="0" selection-end-line="49" selection-end-column="1" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/utility/AutoLoader.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="6" column="37" lean-forward="false" selection-start-line="6" selection-start-column="37" selection-end-line="6" selection-end-column="37" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/model/domain/Firmware.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="391">
+          <caret line="60" column="48" lean-forward="true" selection-start-line="60" selection-start-column="48" selection-end-line="60" selection-end-column="48" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/model/domain/commands/ConfigureWifiCommand.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="295">
+          <caret line="48" column="54" lean-forward="false" selection-start-line="48" selection-start-column="54" selection-end-line="48" selection-end-column="54" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/model/domain/commands/FlashCommand.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="272">
+          <caret line="35" column="44" lean-forward="false" selection-start-line="35" selection-start-column="44" selection-end-line="35" selection-end-column="44" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/model/service/ConfigurationService.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="279">
+          <caret line="19" column="20" lean-forward="true" selection-start-line="19" selection-start-column="20" selection-end-line="19" selection-end-column="20" />
           <folding />
         </state>
       </provider>

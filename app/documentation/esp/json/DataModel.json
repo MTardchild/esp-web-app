@@ -34,3 +34,17 @@ Relay:
 	"action": "toggle"
 }
 
+{
+	"command":
+	{
+		"flash":
+		{
+			"path": {},
+			"ip": {}
+		},
+		"updateWifi": {
+			"ssid": {},
+			"password": {}
+		}
+	}
+}

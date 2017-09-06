@@ -109,3 +109,12 @@ CREATE TABLE component_data_led_strip
     PRIMARY KEY (cdl_id),
     FOREIGN KEY (cdl_component) REFERENCES component(cmp_id)
 );
+
+CREATE TABLE firmware
+(
+  fwa_id INT NOT NULL,
+  fwa_name VARCHAR(255),
+  fwa_path VARCHAR(1024) NOT NULL,
+  fwa_timestamp TIMESTAMP NOT NULL,
+  PRIMARY KEY (fwa_id)
+);

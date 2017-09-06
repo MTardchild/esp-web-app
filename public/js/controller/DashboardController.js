@@ -101,7 +101,6 @@ var DashboardController = {
                                 $('#dashboardView').visible();
 
                                 jscolor.installByClassName("jscolor");
-                                $('.grid-stack').off('change');
                                 $('.grid-stack').on('change', function (event, items) {
                                     DashboardController.saveGrid();
                                 });
@@ -165,6 +164,8 @@ var DashboardController = {
                 height: node.height
             };
         }, this);
+
+        console.log(this.serializedData);
 
         $.post("", {GridLayout: JSON.stringify(this.serializedData)}).done(function (data) {
 

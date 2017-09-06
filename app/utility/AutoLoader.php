@@ -16,6 +16,7 @@ class AutoLoader {
     private static function loadModelNamespace($className) {
         self::loadDomainNamespace($className);
         self::loadDomainAbstractNamespace($className);
+        self::loadDomainCommandsNamespace($className);
         self::loadMapperNamespace($className);
         self::loadMapperComponentsNamespace($className);
         self::loadMapperInterfaceNamespace($className);
@@ -46,6 +47,11 @@ class AutoLoader {
 
     private static function loadDomainAbstractNamespace($className) {
         $pathDirectory = join(DIRECTORY_SEPARATOR, array(__DIR__, '..', 'model', 'domain', 'baseclass', ''));
+        self::requireIfExistent($pathDirectory, $className);
+    }
+
+    private static function loadDomainCommandsNamespace($className) {
+        $pathDirectory = join(DIRECTORY_SEPARATOR, array(__DIR__, '..', 'model', 'domain', 'commands', ''));
         self::requireIfExistent($pathDirectory, $className);
     }
 

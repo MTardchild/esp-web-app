@@ -11,7 +11,7 @@
             </tr>
             </thead>
             <?php
-            $espCollection = $this->espService->getAllEsp();
+            $espCollection = $this->espService->findAll();
             foreach ($espCollection as $esp):
                 ?>
                 <tr class="espRow" id="espRow<?php echo $esp->getId(); ?>">

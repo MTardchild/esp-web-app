@@ -36,7 +36,7 @@ class EspService implements IDatabaseService {
         return $this->_espMapper->delete($espId);
     }
 
-    public function getEsp($espId) {
+    public function find($espId) {
         $esp = $this->_espMapper->find($espId);
         if ($esp === null) return null;
 
@@ -49,7 +49,7 @@ class EspService implements IDatabaseService {
         return $esp;
     }
 
-    public function getAllEsp() {
+    public function findAll() {
         $espCollection = $this->_espMapper->findAll();
 
         foreach ($espCollection as $esp) {
@@ -61,6 +61,19 @@ class EspService implements IDatabaseService {
         }
 
         return $espCollection;
+    }
+
+    public function findByHwId($hwId) {
+        $esp = $this->_espMapper->findByHwId($hwId);
+        if ($esp === null) return null;
+
+        $location = $this->_locationService->getLocation($esp->getLocation());
+        $components = $this->_componentService->getComponents($esp->getId());
+        $esp->setLocation($location);
+        $esp->setComponents($components);
+        $esp->populateComponentCollections();
+
+        return $esp;
     }
 
     public function findFreeId() {
