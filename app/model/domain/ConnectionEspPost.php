@@ -1,16 +1,12 @@
 <?php
 
 class ConnectionEspPost extends ConnectionBase {
-    public function pullData($data) {
-        
-    }
-
-    public function pushData($data) {
+    public function send($data) {
         $result = true;
         $defaults = array(
             CURLOPT_POST => 1,
             CURLOPT_HEADER => 0,
-            CURLOPT_URL => $this->_url,
+            CURLOPT_URL => $this->url,
             CURLOPT_PORT => 8080,
             CURLOPT_FRESH_CONNECT => 1,
             CURLOPT_RETURNTRANSFER => 1,

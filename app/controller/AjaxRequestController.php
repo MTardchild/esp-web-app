@@ -46,7 +46,7 @@ class AjaxRequestController {
     public function toggleRelay($action) {
         $data = array("componentId" => $action['id'], "action" => "toggle");
         $dataJson = json_encode($data);
-        $statusMessage = $this->connectionTcpService->pushDataComponent($action['id'], $dataJson);
+        $statusMessage = $this->connectionTcpService->sendByComponent($action['id'], $dataJson);
 
         if ($statusMessage === true) {
             $relay = $this->relayDataService->getLatestDataSet($action['id']);
@@ -72,7 +72,7 @@ class AjaxRequestController {
             )));
 
         $dataJson = json_encode($data);
-        $status = $this->connectionTcpService->pushDataComponent($action['id'], $dataJson);
+        $status = $this->connectionTcpService->sendByComponent($action['id'], $dataJson);
 
         if ($status === true) {
             $ledStrip = $this->ledStripDataService->findLatestDataSet($action['id']);
@@ -95,7 +95,7 @@ class AjaxRequestController {
             ));
 
         $dataJson = json_encode($data);
-        $status = $this->connectionTcpService->pushDataComponent($action['id'], $dataJson);
+        $status = $this->connectionTcpService->sendByComponent($action['id'], $dataJson);
 
         if ($status === true) {
             $ledStrip = $this->ledStripDataService->findLatestDataSet($action['id']);
@@ -120,7 +120,7 @@ class AjaxRequestController {
         $third = substr($blueStr, 8) . $warmWhiteStr;
 
         $rgbBytes = pack('n*', bindec($first), bindec($second), bindec($third));
-        $isSuccessful = $this->connectionUdpService->pushData($action['id'], $rgbBytes);
+        $isSuccessful = $this->connectionUdpService->send($action['id'], $rgbBytes);
         $this->ajaxRequest->setStatus($isSuccessful);
         $this->ajaxRequest->setMessage("Color successfully sent to LED-Strip.");
     }
@@ -175,10 +175,8 @@ class AjaxRequestController {
         $esp = $this->espService->findByHwId($action['esp']);
         $firmware = $this->firmwareService->find($action['firmware']);
         $this->configurationService->flash($esp, $firmware);
-    }
 
-    public function configureEspWifi($action) {
-//        $this->configurationService->configureWifi();
+        $this->ajaxRequest->setMessage("Flashed " . $esp->getIp());
     }
 
     public function getFirmwares($action) {

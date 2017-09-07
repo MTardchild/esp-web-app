@@ -46,7 +46,8 @@ class HeartbeatService
             $espJson['id'],
             $espJson['name'],
             $this->locationService->getLocation($espJson['location']),
-            $espJson['ip']
+            $espJson['ip'],
+            $espJson['hwId']
         );
 
         if ($this->espService->find($espJson['id']) instanceof Esp) {
@@ -133,7 +134,7 @@ class HeartbeatService
         $esp = Esp::createEsp($espId, "esp" . $espId, Location::createLocationEmptyId($this->locationService->findFreeId()), $espJson['ip']);
         $esp->setComponents($this->createComponentCollection($espJson, $espId));
         $this->espService->insert($esp);
-        $this->connectionTcpService->pushData($esp, json_encode($esp));
+        $this->connectionTcpService->send($esp, json_encode($esp));
 
         return $isSuccessful;
     }

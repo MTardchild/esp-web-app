@@ -5,6 +5,7 @@ ESP pushes info to WebApp:
 		"name": {},
 		"location": {},
 		"ip": {},
+		"hwId": {},
 		"components": [
 			{
 				"componentId": {},

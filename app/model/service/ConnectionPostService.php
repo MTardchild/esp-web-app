@@ -7,13 +7,9 @@ class ConnectionPostService
         $this->_componentService = $componentService;
     }
 
-    public function pullData($data) {
-
-    }
-
-    public function pushData($componentId, $data) {
+    public function send($componentId, $data) {
         $espIp = $this->_componentService->getEspIpByComponentId($componentId);
         $connectionEsp = new ConnectionEspPost($espIp);
-        return $connectionEsp->pushData($data);
+        return $connectionEsp->send($data);
     }
 }

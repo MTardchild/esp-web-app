@@ -2,13 +2,12 @@
 
 abstract class ConnectionBase
 {
-    protected $_url;
+    protected $url;
 
     public function __construct($url)
     {
-        $this->_url = $url;
+        $this->url = $url;
     }
 
-    public abstract function pullData($data);
-    public abstract function pushData($data);
+    public abstract function send($data);
 }

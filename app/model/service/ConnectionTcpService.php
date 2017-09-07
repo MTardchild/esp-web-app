@@ -8,20 +8,16 @@ class ConnectionTcpService
         $this->_componentService = $componentService;
     }
 
-    public function pullData($data) {
-
-    }
-
-    public function pushData($esp, $data) {
+    public function send($esp, $data) {
         $connectionEsp = new ConnectionEspTcp($esp->getIp());
 
-        return $connectionEsp->pushData($data);
+        return $connectionEsp->send($data);
     }
 
-    public function pushDataComponent($componentId, $data) {
+    public function sendByComponent($componentId, $data) {
         $espIp = $this->_componentService->getEspIpByComponentId($componentId);
         $connectionEsp = new ConnectionEspTcp($espIp);
 
-        return $connectionEsp->pushData($data);
+        return $connectionEsp->send($data);
     }
 }

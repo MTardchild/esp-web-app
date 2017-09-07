@@ -49,10 +49,18 @@ if (isset($_POST["ComponentOrder"])) {
     }
 }
 
+$wifiCredentials = null;
+if (isset($_POST["WifiCredentials"])) {
+    if (trim($_POST["WifiCredentials"]) != "") {
+        $wifiCredentials = $_POST['WifiCredentials'];
+    }
+}
+
 $injector->define('FrontController', [
     ':heartbeat' => $heartbeat,
     ':gridLayout' => $gridLayout,
-    ':componentOrder' => $componentOrder]);
+    ':componentOrder' => $componentOrder,
+    ':wifiCredentials' => $wifiCredentials]);
 $injector->share('FrontController');
 $injector->share('AjaxRequest');
 

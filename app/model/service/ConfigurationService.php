@@ -1,8 +1,10 @@
 <?php
 class ConfigurationService
 {
-    public function __construct() {
+    private $connectionTcpService;
 
+    public function __construct(ConnectionTcpService $connectionTcpService) {
+        $this->connectionTcpService = $connectionTcpService;
     }
 
     public function getWifiNetworks() {
@@ -11,19 +13,17 @@ class ConfigurationService
     }
 
     public function flash($esp, $firmware) {
-//        $url = "https://" + $_SERVER['SERVER_ADDR'] + $firmware->getPath();
-        $url = "https://192.168.0.119:80/arduino.bong";
+        $url = "https://" + $_SERVER['SERVER_ADDR'] + ":" + $_SERVER['SERVER_PORT'] + $firmware->getPath();
+//        $url = "https://192.168.0.119:80/arduino.bong";
         $command = FlashCommand::createFlashCommand($url);
 
-        var_dump("sending command");
-//        shell_exec('echo "' . json_encode($command) . '" > /dev/tcp/' . $esp->getIp() . '/420');
-        shell_exec('echo "new" > /dev/tcp/192.168.4.1/420');
+//        $command = ConfigureWifiCommand::createConfigureWifiCommand("KDG-328AB", "yB8cCwu24wwQ");
+        $this->connectionTcpService->send($esp, json_encode($command, JSON_UNESCAPED_SLASHES));
     }
 
     public function configureWifi($esp, $ssid, $password) {
         $command = ConfigureWifiCommand::createConfigureWifiCommand($ssid, $password);
 
-        var_dump($command);
-        shell_exec('echo "' . json_encode($command) . '" > /dev/tcp/' . $esp->getIp() . '/420');
+        $this->connectionTcpService->send($esp, json_encode($command, JSON_UNESCAPED_SLASHES));
     }
 }

@@ -1,11 +1,7 @@
 <?php
 
 class ConnectionEspTcp extends ConnectionBase {
-    public function pullData($data) {
-
-    }
-
-    public function pushData($data) {
+    public function send($data) {
         $result = true;
         $port = getservbyname('www', 'tcp');
 
@@ -14,7 +10,7 @@ class ConnectionEspTcp extends ConnectionBase {
             return $result;
         }
 
-        if ($error = socket_connect($socket, $this->_url, 420) === false) {
+        if ($error = socket_connect($socket, $this->url, 420) === false) {
             $result = $this->getErrorMessageConnect(socket_last_error($socket));
             return $result;
         }

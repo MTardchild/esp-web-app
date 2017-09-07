@@ -9,12 +9,15 @@ class FrontController {
 
     private $wasHtmlPostSuccessful;
     private $gridLayoutService;
+    private $configurationService;
 
     public function __construct(HeartbeatService $heartbeatService,
                                 GridLayoutService $gridLayoutService,
+                                ConfigurationService $configurationService,
                                 $heartbeat,
                                 $gridLayout,
-                                $componentOrder) {
+                                $componentOrder,
+                                $wifiCredentials) {
         $this->heartbeatService = $heartbeatService;
         $this->gridLayoutService = $gridLayoutService;
 
@@ -29,6 +32,12 @@ class FrontController {
         if (!is_null($componentOrder)) {
             $this->wasHtmlPostSuccessful = $this->gridLayoutService->saveComponentOrder($componentOrder);
         }
+
+        if (!is_null($wifiCredentials)) {
+            $this->wasHtmlPostSuccessful = $this->configurationService->configureWifi($wifiCredentials);
+        }
+
+        $this->configurationService = $configurationService;
     }
 
     public function setController($controller) {
