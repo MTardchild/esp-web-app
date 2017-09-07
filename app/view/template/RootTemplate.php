@@ -35,7 +35,7 @@
 
         <div class="loading">
             <div id="dashboardView" class="hidden">
-                <div class="grid-stack">
+                <div class="grid-stack" id="gridStackContainer">
 
                 </div>
             </div>

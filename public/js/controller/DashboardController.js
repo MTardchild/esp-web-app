@@ -69,7 +69,7 @@ var DashboardController = {
                 var espTiles = $('.grid-stack-item-content', parsedContent);
                 $.get("?route=ajax&action=getGridLayout",
                     function (data, status) {
-                        var gridLayout = GridStackUI.Utils.sort(JSON.parse(data));
+                        var gridLayout = JSON.parse(data);
 
                         for (var i = 0; i < espTiles.length; ++i) {
                             var espTile = $('<div></div>');
@@ -83,7 +83,7 @@ var DashboardController = {
                                 grid.removeWidget(oldTile);
                                 grid.addWidget(espTile, gridLayout[i].x,
                                     gridLayout[i].y, gridLayout[i].width,
-                                    gridLayout[i].height);
+                                    gridLayout[i].height, false);
                             } else {
                                 grid.addWidget(espTile,
                                     gridLayout[i].x, gridLayout[i].y,
@@ -106,11 +106,11 @@ var DashboardController = {
                                 });
                                 $('.arrowDown').click(function () {
                                     $(this).parents('.componentTile').moveDown();
-                                    DashboardController.saveComponentOrder();
+                                    DashboardController.saveComponentOrder(DashboardController.getComponentOrder());
                                 });
                                 $('.arrowUp').click(function () {
                                     $(this).parents('.componentTile').moveUp();
-                                    DashboardController.saveComponentOrder();
+                                    DashboardController.saveComponentOrder(DashboardController.getComponentOrder());
                                 });
                             }
                         );
@@ -119,20 +119,29 @@ var DashboardController = {
             }
         );
     },
-    saveComponentOrder: function() {
+    onComponentAdded: function(esp, component) {
+        var componentOrder = DashboardController.getComponentOrder();
+        var gridIdEsp = $('#esp' + esp).parent().index();
+        componentOrder[gridIdEsp].push("" + component);
+        DashboardController.saveComponentOrder(componentOrder);
+    },
+    getComponentOrder: function() {
         var fullComponentOrder = [];
         $('.grid-stack-item').each(function (index) {
             var components = $(this).find('.componentTile');
             var componentOrder = [];
 
             for (i = 0; i < components.length; ++i) {
-                componentOrder.push(components[i].id);
+                componentOrder.push(components[i].id.split('component')[1]);
             }
 
             fullComponentOrder.push(componentOrder);
         });
 
-        $.post("", {ComponentOrder: JSON.stringify(fullComponentOrder)}).done(function (data) {
+        return fullComponentOrder;
+    },
+    saveComponentOrder: function(componentOrder) {
+        $.post("", {ComponentOrder: JSON.stringify(componentOrder)}).done(function (data) {
 
         });
     },
@@ -146,7 +155,7 @@ var DashboardController = {
 
             for (i = 0; i < fullComponentOrder[index].length; ++i) {
                 for (j = 0; j < components.length; ++j) {
-                    if (components[j].id === fullComponentOrder[index][i]) {
+                    if (components[j].id.split('component')[1] === fullComponentOrder[index][i]) {
                         $(this).find('.espInfo').append(components[j]);
                     }
                 }

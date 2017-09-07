@@ -83,6 +83,8 @@ var ConfigController = {
                         );
                         break;
                 }
+
+                DashboardController.onComponentAdded(component.espId, component.id);
             }
         );
     },

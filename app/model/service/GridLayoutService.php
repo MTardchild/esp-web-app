@@ -25,7 +25,7 @@ class GridLayoutService
     public function saveComponentOrder($componentOrder)
     {
         unlink("../app/componentOrder.json");
-        $componentOrderFile = fopen("../app/componentOrder.json", "w") or die ("Unable to opfen file!");
+        $componentOrderFile = fopen("../app/componentOrder.json", "w") or die ("Unable to open file!");
         fwrite($componentOrderFile, $componentOrder);
         fclose($componentOrderFile);
 
@@ -35,5 +35,11 @@ class GridLayoutService
     public function loadComponentOrder()
     {
         return file_get_contents("../app/componentOrder.json");
+    }
+
+    public function addToComponentOrder($component) {
+        $componentOrder = file_get_contents("../app/componentOrder.json");
+        $componentOrderJson = json_decode($componentOrder);
+
     }
 }
