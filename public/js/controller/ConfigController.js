@@ -39,11 +39,9 @@ var ConfigController = {
                 });
                 $('.nameColumn').click(function (event) {
                     event.stopPropagation();
-                    console.log(event);
                 });
 
                 ConfigController.getWifiNetworks();
-                ConfigController.navigateToEspTableView();
             }
         );
     },
@@ -128,7 +126,8 @@ var ConfigController = {
                     }
                 });
 
-            $('.buttonFlash').click(function () {
+            $('.buttonFlash').click(function (event) {
+                event.stopPropagation();
                 var espId = $(this)[0].id.split('buttonFlash')[1];
                 $('#flashSelectedEsp').html(espId);
                 $( "#flash-dialog-confirm" ).dialog({
@@ -143,16 +142,35 @@ var ConfigController = {
                                 function (data, status) {
                                     console.log(data);
                                 });
-                            $( this ).dialog( "close" );
+                            $(this).dialog("close");
                         },
                         Cancel: function() {
-                            $( this ).dialog( "close" );
+                            $(this).dialog("close");
                         }
                     }
                 });
             });
 
-            $('.buttonUpdateWifi').click(function () {
+            $('.configEspTableLocationColumn').click(function (event) {
+                event.stopPropagation();
+                $('#modifyLocationDialog').dialog({
+                    resizable: false,
+                    height: "auto",
+                    width: 600,
+                    modal: true,
+                    buttons: {
+                        "Flash": function() {
+                            $(this).dialog("close");
+                        },
+                        Cancel: function() {
+                            $(this).dialog("close");
+                        }
+                    }
+                });
+            });
+
+            $('.buttonUpdateWifi').click(function (event) {
+                event.stopPropagation();
                 var espId = $(this)[0].id.split('buttonUpdateWifi')[1];
                 $('#updateWifiSelectedEsp').html(espId);
                 $( "#updateWifiDialogConfirm" ).dialog({
@@ -162,11 +180,10 @@ var ConfigController = {
                     modal: true,
                     buttons: {
                         "Update": function() {
-
-                            $( this ).dialog( "close" );
+                            $(this).dialog("close");
                         },
                         Cancel: function() {
-                            $( this ).dialog( "close" );
+                            $(this).dialog("close");
                         }
                     }
                 });
@@ -185,7 +202,7 @@ var ConfigController = {
             var buttonFlash = '<button class="buttonFlash" id="buttonFlash' + networks[i][1] + '">Flash</button>';
             var buttonsTd = '<td align="right">' + buttonUpdateWifi + buttonFlash + '</td>';
             var row = $('<tr>' + ssidTd + modeTd + channelTd + rateTd + signalTd + securityTd + buttonsTd + '</tr>');
-            $('#configWifiTableBody').append(row);
+            // $('#configWifiTableBody').append(row);
         }
     },
     navigateToEspTableView: function () {

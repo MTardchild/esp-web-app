@@ -1,23 +1,26 @@
 <?php include 'ConfigSubNavigationTemplate.php'; ?>
-<div id="configViewEspTableView" style="opacity: 100">
+<div id="configViewEspTableView">
     <div class="configViewLeft">
         <table id="configTable">
             <thead>
-            <tr>
-                <th>Identifier</th>
-                <th>ESP</th>
-                <th>Location</th>
-                <th>Devices</th>
-            </tr>
+                <tr>
+                    <th>Identifier</th>
+                    <th>Hardware Identifier</th>
+                    <th>Name</th>
+                    <th>Location</th>
+                    <th>Devices</th>
+                    <th></th>
+                </tr>
             </thead>
             <?php
             $espCollection = $this->espService->findAll();
             foreach ($espCollection as $esp):
-                ?>
+            ?>
                 <tr class="espRow" id="espRow<?php echo $esp->getId(); ?>">
-                    <td class="droppable"><?php echo $esp->getId(); ?></td>
+                    <td class="droppable configEspTableIdColumn"><?php echo $esp->getId(); ?></td>
+                    <td class="droppable configEspTableHwIdColumn"><?php echo $esp->getHwId(); ?></td>
                     <td class="droppable nameColumn"><?php echo $esp->getName(); ?></td>
-                    <td class="droppable"><?php echo $esp->getLocation()->getName(); ?></td>
+                    <td class="droppable configEspTableLocationColumn"><?php echo $esp->getLocation()->getName(); ?></td>
                     <td class="droppable devices">
                         <?php
                         foreach ($esp->getComponents() as $component) {
@@ -35,9 +38,12 @@
                         }
                         ?>
                     </td>
+                    <td align="right">
+                        <button class="buttonUpdateWifi" id="buttonUpdateWifi<?php echo $esp->getHwId(); ?>">Update Wifi</button>
+                    </td>
                 </tr>
                 <tr class="configDetail" id="configDetail<?php echo $esp->getId(); ?>">
-                    <td colspan="4">
+                    <td colspan="6">
                         <table>
                             <thead>
                             <tr>
@@ -90,6 +96,69 @@
         <?php endforeach ?>
     </div>
 </div>
-<div id="configViewWifiTableView" style="opacity: 100">
+<div id="configViewWifiTableView" style="display:none;">
     <?php include 'ConfigWifiTableTemplate.php'; ?>
+</div>
+<div id="modifyLocationDialog" title="Modify Location" style="display:none;">
+    <p>
+        <div class="textboxModifyLocation">
+            Id
+            <input type="text" disabled>
+        </div>
+        <div class="textboxModifyLocation">
+            Name
+            <input type="text">
+        </div>
+    </p>
+    <h4>Room</h4>
+    <p>
+    <div class="textboxModifyLocation">
+        Id
+        <input type="text" disabled>
+    </div>
+    <div class="textboxModifyLocation">
+        Name
+        <input type="text">
+    </div>
+    </p>
+    <h4>Window</h4>
+    <p>
+    <div class="textboxModifyLocation">
+        Id
+        <input type="text" disabled>
+    </div>
+    <div class="textboxModifyLocation">
+        Name
+        <input type="text">
+    </div>
+    <div class="">
+        Room
+        <select>
+
+        </select>
+    </div>
+    </p>
+    <h4>Door</h4>
+    <p>
+    <div class="textboxModifyLocation">
+        Id
+        <input type="text" disabled>
+    </div>
+    <div class="textboxModifyLocation">
+        Name
+        <input type="text">
+    </div>
+    <div class="">
+        Room
+        <select>
+
+        </select>
+    </div>
+    <div class="">
+        Room
+        <select>
+
+        </select>
+    </div>
+    </p>
 </div>

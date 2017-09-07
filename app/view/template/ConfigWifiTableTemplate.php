@@ -11,6 +11,7 @@
         </tr>
     </thead>
     <tbody id="configWifiTableBody">
+        <?php include 'ConfigWifiTableRowTemplate.php'; ?>
     </tbody>
 </table>
 <div id="flash-dialog-confirm" title="Flash Esp" style="display:none;">
