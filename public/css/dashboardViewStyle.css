@@ -15,11 +15,14 @@
 
 .componentTile {
     color: #000000;
-    width: 80%;
+    width: 98%;
     border: 1px solid rgba(0, 0, 0, 1);
     background-color: #f2f2f2;
-    padding: 0px 5px;
-    margin: 25px auto;
+    margin: 1%;
+}
+
+.componentRow {
+    display: flex;
 }
 
 .componentTile button {
@@ -76,4 +79,8 @@
 
 .arrowDown {
     right: 35px !important;
+}
+
+.halfIcon {
+    right: 70px !important;
 }

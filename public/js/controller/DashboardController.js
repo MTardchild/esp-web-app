@@ -36,7 +36,6 @@ var DashboardController = {
                 DashboardController.onColorSet(data, status);
             });
 
-
         this.showToast("Sent color value to led strip with ID " + componentId + ".");
     },
     onColorSet: function (data, status) {
@@ -105,12 +104,21 @@ var DashboardController = {
                                     DashboardController.saveGrid();
                                 });
                                 $('.arrowDown').click(function () {
+                                    if ($(this).parents('.componentTile').length === 1) {
+                                        $(this).parents('.componentRow').moveDown();
+                                    }
                                     $(this).parents('.componentTile').moveDown();
                                     DashboardController.saveComponentOrder(DashboardController.getComponentOrder());
                                 });
                                 $('.arrowUp').click(function () {
+                                    if ($(this).parents('.componentTile').length === 1) {
+                                        $(this).parents('.componentRow').moveUp();
+                                    }
                                     $(this).parents('.componentTile').moveUp();
                                     DashboardController.saveComponentOrder(DashboardController.getComponentOrder());
+                                });
+                                $('.halfIcon').click(function () {
+
                                 });
                             }
                         );
@@ -127,15 +135,18 @@ var DashboardController = {
     },
     getComponentOrder: function() {
         var fullComponentOrder = [];
-        $('.grid-stack-item').each(function (index) {
-            var components = $(this).find('.componentTile');
-            var componentOrder = [];
+        $('.grid-stack-item').each(function () {
+            var rowComponentOder = [];
+            $(this).find('.componentRow').each(function (index) {
+                var components = $(this).find('.componentTile');
+                var componentOrder = [];
+                for (var i = 0; i < components.length; ++i) {
+                    componentOrder.push(components[i].id.split('component')[1]);
+                }
 
-            for (i = 0; i < components.length; ++i) {
-                componentOrder.push(components[i].id.split('component')[1]);
-            }
-
-            fullComponentOrder.push(componentOrder);
+                rowComponentOder.push(componentOrder);
+            });
+            fullComponentOrder.push(rowComponentOder);
         });
 
         return fullComponentOrder;
@@ -153,10 +164,12 @@ var DashboardController = {
                 components[i].remove();
             }
 
-            for (i = 0; i < fullComponentOrder[index].length; ++i) {
-                for (j = 0; j < components.length; ++j) {
-                    if (components[j].id.split('component')[1] === fullComponentOrder[index][i]) {
-                        $(this).find('.espInfo').append(components[j]);
+            for (var i = 0; i < fullComponentOrder[index].length; ++i) {
+                for (var j = 0; j < fullComponentOrder[index][i].length; ++j) {
+                    for (var k = 0; k < components.length; ++k) {
+                        if (components[k].id.split('component')[1] === fullComponentOrder[index][i][j]) {
+                            $(this).find('.componentRow:eq(' + i + ')').append(components[k]);
+                        }
                     }
                 }
             }

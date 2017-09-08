@@ -17,10 +17,11 @@ $espCollection = $this->espService->findAll();
                 <?php echo $esp->getLocation()->getRoom()->getName(); ?>
             </span>
         </p>
-        <?php
-        include 'DhtTemplate.php';
-        include 'RelayTemplate.php';
-        include 'LedStripTemplate.php';
-        ?>
+        <br>
+            <?php
+            include 'DhtTemplate.php';
+            include 'RelayTemplate.php';
+            include 'LedStripTemplate.php';
+            ?>
     </div>
 <?php endforeach ?>

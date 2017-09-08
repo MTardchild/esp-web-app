@@ -1,4 +1,5 @@
 <?php foreach ($esp->getLedStripCollection() as $ledStrip): ?>
+<div class="componentRow">
     <div class="componentTile" id="component<?php echo $ledStrip->getId(); ?>">
         <?php include 'SortIconsTemplate.php'; ?>
         <p>
@@ -27,4 +28,5 @@
                        onchange="DashboardController.setWarmWhite(<?php echo $ledStrip->getId(); ?>, this.value)" />
             </p>
     </div>
+</div>
 <?php endforeach ?>
