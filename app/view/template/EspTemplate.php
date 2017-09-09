@@ -1,5 +1,5 @@
 <?php
-$i = 1;
+$i = 0;
 $espCollection = $this->espService->findAll();
 ?>
 <?php foreach ($espCollection as $esp): ?>
@@ -19,9 +19,28 @@ $espCollection = $this->espService->findAll();
         </p>
         <br>
             <?php
-            include 'DhtTemplate.php';
-            include 'RelayTemplate.php';
-            include 'LedStripTemplate.php';
+            $componentOrder = json_decode($this->gridLayoutService->loadComponentOrder());
+
+            for ($j = 0; $j < count($componentOrder[$i]); ++$j) {
+                for ($k = 0; $k < count($componentOrder[$i][$j]); ++$k) {
+                    for ($l = 0; $l < count($esp->getComponents()); ++$l) {
+                        if ($esp->getComponents()[$l]->getId() == $componentOrder[$i][$j][$k]) {
+                            $component = $esp->getComponents()[$l];
+                            if ($component instanceof Dht) {
+                                include 'DhtTemplate.php';
+                            } elseif ($component instanceof Relay) {
+                                include 'RelayTemplate.php';
+                            } elseif ($component instanceof LedStrip) {
+                                include 'LedStripTemplate.php';
+                            }
+                        }
+                    }
+                }
+            }
+
             ?>
     </div>
-<?php endforeach ?>
+<?php
+++$i;
+endforeach
+?>

@@ -142,6 +142,7 @@ var DashboardController = {
             clickedComponent.moveUp();
         }
 
+        DashboardController.setArrowDirections();
         DashboardController.saveComponentOrder(DashboardController.getComponentOrder());
     },
     onBtnClickArrowDown: function() {
@@ -166,6 +167,7 @@ var DashboardController = {
             clickedComponent.moveDown();
         }
 
+        DashboardController.setArrowDirections();
         DashboardController.saveComponentOrder(DashboardController.getComponentOrder());
     },
     onBtnClickGrow: function() {
@@ -179,7 +181,8 @@ var DashboardController = {
         if (clickedComponent.id() === currentRow.children().last().id()) {
             if (nextRow.children().length > 0) {
                 clickedComponent.remove();
-                currentRow.after(clickedComponent.wrap('<div class="componentRow"></div>'));
+                var newRow = clickedComponent.wrap($('<div class="componentRow"></div>')).parent();
+                currentRow.after(newRow);
             } else {
                 clickedComponent.remove();
                 nextRow.prepend(clickedComponent);
@@ -191,6 +194,7 @@ var DashboardController = {
             nextRow.prepend(nextComponent);
         }
 
+        DashboardController.setArrowDirections();
         DashboardController.bindSortButtons(nextComponent);
     },
     onBtnClickHalf: function() {
@@ -207,7 +211,27 @@ var DashboardController = {
             $(this).parents('.grid-stack-item-content').append(nextRow);
         }
 
+        DashboardController.setArrowDirections();
         DashboardController.bindSortButtons(nextComponent);
+    },
+    setArrowDirections: function() {
+        $('.componentRow').each(function () {
+            $(this).children().each(function () {
+                var components = $(this).parent('.componentRow').children();
+                $(this).find('.arrowUp').attr('src', 'img/arrowLeft.png');
+                $(this).find('.arrowDown').attr('src', 'img/arrowRight.png');
+
+                if (components.length > 1) {
+                    components.first().find('.arrowUp').attr('src', 'img/arrowUp.png');
+                    components.first().find('.arrowDown').attr('src', 'img/arrowRight.png');
+                    components.last().find('.arrowUp').attr('src', 'img/arrowLeft.png');
+                    components.last().find('.arrowDown').attr('src', 'img/arrowDown.png');
+                } else {
+                    components.first().find('.arrowUp').attr('src', 'img/arrowUp.png');
+                    components.first().find('.arrowDown').attr('src', 'img/arrowDown.png');
+                }
+            })
+        });
     },
     bindSortButtons: function(componentTile) {
         componentTile.find('.halfIcon').click(DashboardController.onBtnClickHalf);
@@ -256,6 +280,8 @@ var DashboardController = {
                 }
             }
         });
+
+        DashboardController.setArrowDirections();
     },
     saveGrid: function () {
         this.serializedData = _.map($('.grid-stack > .grid-stack-item:visible'), function (el) {

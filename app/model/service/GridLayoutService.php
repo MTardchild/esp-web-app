@@ -40,6 +40,5 @@ class GridLayoutService
     public function addToComponentOrder($component) {
         $componentOrder = file_get_contents("../app/componentOrder.json");
         $componentOrderJson = json_decode($componentOrder);
-
     }
 }
