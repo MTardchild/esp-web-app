@@ -16,6 +16,10 @@ jQuery.fn.exists = function () {
     return this.length !== 0;
 };
 
+jQuery.fn.id = function () {
+    return $(this)[0].id;
+};
+
 jQuery.fn.moveUp = function() {
     $.each(this, function() {
         $(this).after($(this).prev());

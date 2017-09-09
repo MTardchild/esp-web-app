@@ -103,23 +103,10 @@ var DashboardController = {
                                 $('.grid-stack').on('change', function (event, items) {
                                     DashboardController.saveGrid();
                                 });
-                                $('.arrowDown').click(function () {
-                                    if ($(this).parents('.componentTile').length === 1) {
-                                        $(this).parents('.componentRow').moveDown();
-                                    }
-                                    $(this).parents('.componentTile').moveDown();
-                                    DashboardController.saveComponentOrder(DashboardController.getComponentOrder());
-                                });
-                                $('.arrowUp').click(function () {
-                                    if ($(this).parents('.componentTile').length === 1) {
-                                        $(this).parents('.componentRow').moveUp();
-                                    }
-                                    $(this).parents('.componentTile').moveUp();
-                                    DashboardController.saveComponentOrder(DashboardController.getComponentOrder());
-                                });
-                                $('.halfIcon').click(function () {
-
-                                });
+                                $('.arrowDown').click(DashboardController.onBtnClickArrowDown);
+                                $('.arrowUp').click(DashboardController.onBtnClickArrowUp);
+                                $('.halfIcon').click(DashboardController.onBtnClickHalf);
+                                $('.growIcon').click(DashboardController.onBtnClickGrow);
                             }
                         );
                     }
@@ -132,6 +119,101 @@ var DashboardController = {
         var gridIdEsp = $('#esp' + esp).parent().index();
         componentOrder[gridIdEsp].push("" + component);
         DashboardController.saveComponentOrder(componentOrder);
+    },
+    onBtnClickArrowUp: function() {
+        var currentRow = $(this).parents('.componentRow');
+        var prevRow = currentRow.prev('.componentRow');
+        var clickedComponent = $(this).parents('.componentTile');
+
+        if (currentRow.children().length === 1 &&
+            prevRow.children().length === 1) {
+            currentRow.moveUp();
+        } else if (currentRow.children('.componentTile').first().id() === clickedComponent.id()) {
+            if (prevRow.children().length > 0) {
+                var prevComponent = prevRow.children().last();
+                clickedComponent.remove();
+                prevComponent.remove();
+                currentRow.prepend(prevComponent);
+                prevRow.append(clickedComponent);
+                DashboardController.bindSortButtons(prevComponent);
+                DashboardController.bindSortButtons(clickedComponent);
+            }
+        } else {
+            clickedComponent.moveUp();
+        }
+
+        DashboardController.saveComponentOrder(DashboardController.getComponentOrder());
+    },
+    onBtnClickArrowDown: function() {
+        var currentRow = $(this).parents('.componentRow');
+        var nextRow = currentRow.next('.componentRow');
+        var clickedComponent = $(this).parents('.componentTile');
+
+        if (currentRow.children().length === 1 &&
+            nextRow.children().length === 1) {
+            currentRow.moveDown();
+        } else if (currentRow.children('.componentTile').last().id() === clickedComponent.id()) {
+            if (nextRow.children().length > 0) {
+                var nextComponent = nextRow.children().first();
+                clickedComponent.remove();
+                nextComponent.remove();
+                currentRow.append(nextComponent);
+                nextRow.prepend(clickedComponent);
+                DashboardController.bindSortButtons(nextComponent);
+                DashboardController.bindSortButtons(clickedComponent);
+            }
+        } else {
+            clickedComponent.moveDown();
+        }
+
+        DashboardController.saveComponentOrder(DashboardController.getComponentOrder());
+    },
+    onBtnClickGrow: function() {
+        var currentRow = $(this).parents('.componentRow');
+        var nextRow = currentRow.next('.componentRow');
+        var clickedComponent = $(this).parents('.componentTile');
+        var nextComponent = clickedComponent.next('.componentTile');
+
+        if (currentRow.children().length === 1) return;
+
+        if (clickedComponent.id() === currentRow.children().last().id()) {
+            if (nextRow.children().length > 0) {
+                clickedComponent.remove();
+                currentRow.after(clickedComponent.wrap('<div class="componentRow"></div>'));
+            } else {
+                clickedComponent.remove();
+                nextRow.prepend(clickedComponent);
+            }
+
+            DashboardController.bindSortButtons(clickedComponent);
+        } else {
+            nextComponent.remove();
+            nextRow.prepend(nextComponent);
+        }
+
+        DashboardController.bindSortButtons(nextComponent);
+    },
+    onBtnClickHalf: function() {
+        var currentRow = $(this).parents('.componentRow');
+        var nextRow = currentRow.next('.componentRow');
+        var clickedComponent = $(this).parents('.componentTile');
+
+        var nextComponent = nextRow.children('.componentTile').first();
+        nextComponent.remove();
+        currentRow.append(nextComponent);
+
+        if (nextRow.children().length === 0) {
+            nextRow.remove();
+            $(this).parents('.grid-stack-item-content').append(nextRow);
+        }
+
+        DashboardController.bindSortButtons(nextComponent);
+    },
+    bindSortButtons: function(componentTile) {
+        componentTile.find('.halfIcon').click(DashboardController.onBtnClickHalf);
+        componentTile.find('.arrowUp').click(DashboardController.onBtnClickArrowUp);
+        componentTile.find('.arrowDown').click(DashboardController.onBtnClickArrowDown);
+        componentTile.find('.growIcon').click(DashboardController.onBtnClickGrow);
     },
     getComponentOrder: function() {
         var fullComponentOrder = [];
