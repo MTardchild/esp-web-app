@@ -100,65 +100,64 @@
     <?php include 'ConfigWifiTableTemplate.php'; ?>
 </div>
 <div id="modifyLocationDialog" title="Modify Location" style="display:none;">
-    <p>
-        <div class="textboxModifyLocation">
+    <div style="display: flex">
+        <div class="inputWrapper idInput">
             Id
             <input type="text" disabled>
         </div>
-        <div class="textboxModifyLocation">
+        <div class="inputWrapper">
             Name
             <input type="text">
         </div>
-    </p>
+    </div>
     <h4>Room</h4>
-    <p>
-    <div class="textboxModifyLocation">
-        Id
-        <input type="text" disabled>
+    <div style="display: flex">
+        <div class="inputWrapper idInput">
+            Id
+            <input type="text" disabled>
+        </div>
+        <div class="inputWrapper">
+            Name
+            <input type="text">
+        </div>
     </div>
-    <div class="textboxModifyLocation">
-        Name
-        <input type="text">
-    </div>
-    </p>
     <h4>Window</h4>
-    <p>
-    <div class="textboxModifyLocation">
-        Id
-        <input type="text" disabled>
-    </div>
-    <div class="textboxModifyLocation">
-        Name
-        <input type="text">
-    </div>
-    <div class="">
-        Room
-        <select>
+    <div style="display: flex">
+        <div class="inputWrapper idInput">
+            Id
+            <input type="text" disabled>
+        </div>
+        <div class="inputWrapper">
+            Name
+            <input type="text">
+        </div>
+        <div class="inputWrapper">
+            Room
+            <select>
 
-        </select>
+            </select>
+        </div>
     </div>
-    </p>
     <h4>Door</h4>
-    <p>
-    <div class="textboxModifyLocation">
-        Id
-        <input type="text" disabled>
-    </div>
-    <div class="textboxModifyLocation">
-        Name
-        <input type="text">
-    </div>
-    <div class="">
-        Room
-        <select>
+    <div style="display: flex">
+        <div class="inputWrapper idInput">
+            Id
+            <input type="text" disabled>
+        </div>
+        <div class="inputWrapper">
+            Name
+            <input type="text">
+        </div>
+        <div class="inputWrapper">
+            Room
+            <select>
+            </select>
+        </div>
+        <div class="inputWrapper">
+            Room
+            <select>
 
-        </select>
+            </select>
+        </div>
     </div>
-    <div class="">
-        Room
-        <select>
-
-        </select>
-    </div>
-    </p>
 </div>

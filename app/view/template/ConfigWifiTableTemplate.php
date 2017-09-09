@@ -22,11 +22,11 @@
     <p>
         <h4>Selected Esp (HWID): <span id="flashSelectedEsp"></span></h4>
     </p>
-    <p>
+    <div style="display: flex">
         <select id="firmwareDropDown">
 
         </select>
-    </p>
+    </div>
 </div>
 <div id="updateWifiDialogConfirm" title="Update Wifi Credentials" style="display:none;">
     <p>
@@ -36,14 +36,14 @@
     <p>
         <h4>Selected Esp (HWID): <span id="updateWifiSelectedEsp"></span></h4>
     </p>
-    <p>
-        <div class="textboxUpdateWifi">
+    <div style="display: flex">
+        <div class="inputWrapper">
             <h4>SSID</h4>
             <input type="text">
         </div>
-        <div class="textboxUpdateWifi">
+        <div class="inputWrapper">
             <h4>Password</h4>
             <input type="text">
         </div>
-    </p>
+    </div>
 </div>

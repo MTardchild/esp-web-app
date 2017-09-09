@@ -130,3 +130,12 @@ tr:nth-child(odd) td { background: #FEFEFE; }
 .configEspTableLocationColumn {
     cursor: pointer;
 }
+
+.inputWrapper {
+    width: 100%;
+    margin: 1%;
+}
+
+#configView button {
+    height: 25px;
+}
