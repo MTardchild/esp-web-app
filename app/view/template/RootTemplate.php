@@ -7,13 +7,10 @@
         <link rel="stylesheet" type="text/css" href="css/dashboardViewStyle.css" />
         <link rel="stylesheet" type="text/css" href="css/loadingScreenStyle.css" />
         <link rel="stylesheet" type="text/css" href="css/navigationStyle.css" />
-        <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+        <link rel="stylesheet" type="text/css" href="../lib/jquery-ui.min.css" />
 
-        <script type="text/javascript"
-                src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-        <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"
-                integrity="sha256-VazP97ZCwtekAsvgPBSUwPFKdrwD3unUfSGVYrahUqU="
-                crossorigin="anonymous"></script>
+        <script type="text/javascript" src="../lib/jquery-3.2.1.js"></script>
+        <script src="../lib/jquery-ui.js"></script>
 
         <script type="text/javascript" src="../lib/lodash.js"></script>
         <script type="text/javascript" src="../lib/jscolor.min.js"></script>
@@ -35,12 +32,16 @@
 
         <div class="loading">
             <div id="dashboardView" class="hidden">
-                <div class="grid-stack" id="gridStackContainer">
+                <div class="grid-stack">
 
                 </div>
             </div>
 
             <div id="configView">
+
+            </div>
+
+            <div id="ruleView">
 
             </div>
         </div>

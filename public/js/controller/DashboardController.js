@@ -196,6 +196,7 @@ var DashboardController = {
 
         DashboardController.setArrowDirections();
         DashboardController.bindSortButtons(nextComponent);
+        DashboardController.saveComponentOrder(DashboardController.getComponentOrder());
     },
     onBtnClickHalf: function() {
         var currentRow = $(this).parents('.componentRow');
@@ -213,6 +214,7 @@ var DashboardController = {
 
         DashboardController.setArrowDirections();
         DashboardController.bindSortButtons(nextComponent);
+        DashboardController.saveComponentOrder(DashboardController.getComponentOrder());
     },
     setArrowDirections: function() {
         $('.componentRow').each(function () {

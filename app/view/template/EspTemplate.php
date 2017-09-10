@@ -22,8 +22,8 @@ $espCollection = $this->espService->findAll();
             $componentOrder = json_decode($this->gridLayoutService->loadComponentOrder());
 
             for ($j = 0; $j < count($componentOrder[$i]); ++$j) {
+                echo '<div class="componentRow">';
                 for ($k = 0; $k < count($componentOrder[$i][$j]); ++$k) {
-                    echo '<div class="componentRow">';
                     for ($l = 0; $l < count($esp->getComponents()); ++$l) {
                         if ($esp->getComponents()[$l]->getId() == $componentOrder[$i][$j][$k]) {
                             $component = $esp->getComponents()[$l];
@@ -36,8 +36,8 @@ $espCollection = $this->espService->findAll();
                             }
                         }
                     }
-                    echo '</div>';
                 }
+                echo '</div>';
             }
 
             ?>

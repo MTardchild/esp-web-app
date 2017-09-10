@@ -31,3 +31,7 @@ jQuery.fn.moveDown = function() {
         $(this).before($(this).next());
     });
 };
+
+jQuery.fn.isDisplayed = function () {
+    return $(this).css('display') !== "none";
+};
