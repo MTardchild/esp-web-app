@@ -9,5 +9,8 @@ var Navigation = {
         DashboardController.requestDashboardGrid();
         $('#configView').fadeOut(250);
         $('#dashboardView').fadeIn(250);
+    },
+    toRulesView: function () {
+
     }
 };
