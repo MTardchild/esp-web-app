@@ -112,9 +112,21 @@ CREATE TABLE component_data_led_strip
 
 CREATE TABLE firmware
 (
-  fwa_id INT NOT NULL,
-  fwa_name VARCHAR(255),
-  fwa_path VARCHAR(1024) NOT NULL,
-  fwa_timestamp TIMESTAMP NOT NULL,
-  PRIMARY KEY (fwa_id)
+    fwa_id INT NOT NULL,
+    fwa_name VARCHAR(255),
+    fwa_path VARCHAR(1024) NOT NULL,
+    fwa_timestamp TIMESTAMP NOT NULL,
+    PRIMARY KEY (fwa_id)
+);
+
+CREATE TABLE rule (
+    rul_id INT NOT NULL,
+    rul_name VARCHAR(255) NOT NULL,
+    PRIMARY KEY (rul_id)
+);
+
+CREATE TABLE rule_value (
+    rva_id INT NOT NULL,
+    rva_value DECIMAL(5,2) NOT NULL,
+    PRIMARY KEY (rva_id)
 );

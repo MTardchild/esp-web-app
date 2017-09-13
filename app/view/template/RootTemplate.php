@@ -10,16 +10,17 @@
         <link rel="stylesheet" type="text/css" href="../lib/jquery-ui.min.css" />
 
         <script type="text/javascript" src="../lib/jquery-3.2.1.js"></script>
-        <script src="../lib/jquery-ui.js"></script>
-
+        <script type="text/javascript" src="../lib/jquery-ui.js"></script>
         <script type="text/javascript" src="../lib/lodash.js"></script>
         <script type="text/javascript" src="../lib/jscolor.min.js"></script>
         <script type="text/javascript" src="../lib/gridstack.js"></script>
         <script type="text/javascript" src="../lib/gridstack.jQueryUI.js"></script>
         <script type="text/javascript" src="../lib/jquery.ui.touch-punch.min.js"></script>
+        <script type="text/javascript" src="../lib/jquery.finder.js"></script>
 
         <script type="text/javascript" src="js/controller/ConfigController.js"></script>
         <script type="text/javascript" src="js/controller/DashboardController.js"></script>
+        <script type="text/javascript" src="js/controller/RulesController.js"></script>
         <script type="text/javascript" src="js/utility/ColorConversion.js"></script>
         <script type="text/javascript" src="js/utility/Init.js"></script>
         <script type="text/javascript" src="js/utility/JQueryExtensions.js"></script>
@@ -31,18 +32,18 @@
         ?>
 
         <div class="loading">
-            <div id="dashboardView" class="hidden">
+            <div id="dashboardView">
                 <div class="grid-stack">
 
                 </div>
             </div>
 
-            <div id="configView">
+            <div id="configView" style="display: none;">
 
             </div>
 
-            <div id="ruleView">
-
+            <div id="ruleView" style="display: none;">
+                <?php include 'RuleTemplate.php' ?>
             </div>
         </div>
 

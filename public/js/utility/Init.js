@@ -8,4 +8,6 @@ $(document).ready(function () {
     };
 
     $('.grid-stack').gridstack(options);
+
+    RulesController.initialize();
 });

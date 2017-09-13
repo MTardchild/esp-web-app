@@ -28,7 +28,7 @@ var ConfigController = {
                     }
                 });
 
-                $('#configDraggableContainer').children().draggable({revert: true});
+                $('#configDraggableContainer').children().draggable({revert: true, revertDuration: 250});
 
                 $('.nameColumn').prop('contentEditable', true);
                 $('.nameColumn').keypress(function (event) {
