@@ -71,6 +71,9 @@ class EspMapper implements IDatabaseMapper, IDatabaseObjectMapper {
 
         if ($espDb !== false) {
             $esp = Esp::createEsp($espDb['esp_id'], $espDb['esp_name'], $espDb['esp_location'], $espDb['esp_ip'], $espDb['esp_hw_id']);
+        } else {
+            $esp = Esp::createEspEmpty();
+            $esp->setHwId($hwId);
         }
 
         return $esp;

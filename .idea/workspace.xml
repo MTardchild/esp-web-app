@@ -5,22 +5,20 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="7edfbef3-50af-4196-a9e9-d2c58655f6b6" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/esp-web-app.iml" afterPath="$PROJECT_DIR$/.idea/esp-web-app.iml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/view/template/ConfigEspTable.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/view/template/ConfigWifiTableButtonTemplate.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/componentOrder.json" afterPath="$PROJECT_DIR$/app/componentOrder.json" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/controller/AjaxRequestController.php" afterPath="$PROJECT_DIR$/app/controller/AjaxRequestController.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/documentation/esp/json/DataModel.json" afterPath="$PROJECT_DIR$/app/documentation/esp/json/DataModel.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/model/domain/ConnectionEspPost.php" afterPath="$PROJECT_DIR$/app/model/domain/ConnectionEspPost.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/model/domain/ConnectionEspTcp.php" afterPath="$PROJECT_DIR$/app/model/domain/ConnectionEspTcp.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/model/domain/ConnectionEspUdp.php" afterPath="$PROJECT_DIR$/app/model/domain/ConnectionEspUdp.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/model/domain/baseclass/ConnectionBase.php" afterPath="$PROJECT_DIR$/app/model/domain/baseclass/ConnectionBase.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/gridlayout.json" afterPath="$PROJECT_DIR$/app/gridlayout.json" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/model/domain/Esp.php" afterPath="$PROJECT_DIR$/app/model/domain/Esp.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/model/mapper/EspMapper.php" afterPath="$PROJECT_DIR$/app/model/mapper/EspMapper.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/model/service/ConfigurationService.php" afterPath="$PROJECT_DIR$/app/model/service/ConfigurationService.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/model/service/ConnectionPostService.php" afterPath="$PROJECT_DIR$/app/model/service/ConnectionPostService.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/model/service/ConnectionTcpService.php" afterPath="$PROJECT_DIR$/app/model/service/ConnectionTcpService.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/model/service/ConnectionUdpService.php" afterPath="$PROJECT_DIR$/app/model/service/ConnectionUdpService.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/model/service/HeartbeatService.php" afterPath="$PROJECT_DIR$/app/model/service/HeartbeatService.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/utility/Bootstrap.php" afterPath="$PROJECT_DIR$/app/utility/Bootstrap.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/utility/FrontController.php" afterPath="$PROJECT_DIR$/app/utility/FrontController.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/model/service/EspService.php" afterPath="$PROJECT_DIR$/app/model/service/EspService.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/view/template/ConfigTemplate.php" afterPath="$PROJECT_DIR$/app/view/template/ConfigTemplate.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/view/template/ConfigWifiTableTemplate.php" afterPath="$PROJECT_DIR$/app/view/template/ConfigWifiTableTemplate.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/css/configViewStyle.css" afterPath="$PROJECT_DIR$/public/css/configViewStyle.css" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/css/dashboardViewStyle.css" afterPath="$PROJECT_DIR$/public/css/dashboardViewStyle.css" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/js/controller/ConfigController.js" afterPath="$PROJECT_DIR$/public/js/controller/ConfigController.js" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -49,9 +47,49 @@
       <file leaf-file-name="ConfigurationService.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/model/service/ConfigurationService.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="256">
-              <caret line="16" column="24" lean-forward="false" selection-start-line="16" selection-start-column="24" selection-end-line="16" selection-end-column="24" />
+            <state relative-caret-position="528">
+              <caret line="33" column="35" lean-forward="true" selection-start-line="33" selection-start-column="35" selection-end-line="33" selection-end-column="35" />
               <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="EspService.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/model/service/EspService.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="387">
+              <caret line="62" column="30" lean-forward="true" selection-start-line="62" selection-start-column="30" selection-end-line="62" selection-end-column="30" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="ConfigWifiTableTemplate.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/view/template/ConfigWifiTableTemplate.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="272">
+              <caret line="30" column="35" lean-forward="true" selection-start-line="30" selection-start-column="35" selection-end-line="30" selection-end-column="35" />
+              <folding>
+                <element signature="n#div#0;n#!!top" expanded="false" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="EspMapper.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/model/mapper/EspMapper.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="571">
+              <caret line="76" column="9" lean-forward="true" selection-start-line="76" selection-start-column="9" selection-end-line="76" selection-end-column="9" />
+              <folding>
+                <marker date="1506553612610" expanded="true" signature="371:430" ph="INSERT INTO esp... " />
+                <marker date="1506553612610" expanded="true" signature="1056:1266" ph="UPDATE esp S... " />
+                <marker date="1506553612610" expanded="true" signature="1806:1843" ph="DELETE FROM " />
+                <marker date="1506553612610" expanded="true" signature="2063:2164" ph="SELECT * FRO... esp" />
+                <marker date="1506553612610" expanded="true" signature="2555:2641" ph="SELECT * FRO... esp" />
+                <marker date="1506553612610" expanded="true" signature="3125:3200" ph="SELECT * FRO... esp" />
+                <marker date="1506553612610" expanded="true" signature="3708:3759" ph="SELECT esp_i... esp" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -59,8 +97,8 @@
       <file leaf-file-name="AjaxRequestController.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/controller/AjaxRequestController.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="475">
-              <caret line="191" column="4" lean-forward="true" selection-start-line="191" selection-start-column="4" selection-end-line="191" selection-end-column="4" />
+            <state relative-caret-position="427">
+              <caret line="182" column="44" lean-forward="true" selection-start-line="182" selection-start-column="44" selection-end-line="182" selection-end-column="44" />
               <folding>
                 <element signature="n#setWarmWhite#0;n#AjaxRequestController#0;n#!!top" expanded="false" />
                 <element signature="n#setColorUdp#0;n#AjaxRequestController#0;n#!!top" expanded="false" />
@@ -71,36 +109,61 @@
           </provider>
         </entry>
       </file>
+      <file leaf-file-name="Bootstrap.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/utility/Bootstrap.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="475">
+              <caret line="53" column="34" lean-forward="true" selection-start-line="53" selection-start-column="34" selection-end-line="53" selection-end-column="34" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
       <file leaf-file-name="ConfigController.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/public/js/controller/ConfigController.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="333">
-              <caret line="183" column="124" lean-forward="false" selection-start-line="183" selection-start-column="124" selection-end-line="183" selection-end-column="124" />
+            <state relative-caret-position="539">
+              <caret line="177" column="0" lean-forward="false" selection-start-line="177" selection-start-column="0" selection-end-line="177" selection-end-column="0" />
               <folding>
                 <element signature="n#!!block;n#addComponent#0;n#addComponent#0;n#!!block;n#ConfigController#0;n#!!top" expanded="false" />
                 <element signature="n#!!block;n#removeComponent#0;n#removeComponent#0;n#!!block;n#ConfigController#0;n#!!top" expanded="false" />
                 <element signature="n#!!block;n#addRowHandlers#0;n#addRowHandlers#0;n#!!block;n#ConfigController#0;n#!!top" expanded="false" />
+                <element signature="n#!!block;n#getFirmwares#0;n#getFirmwares#0;n#!!block;n#ConfigController#0;n#!!top" expanded="false" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="ConfigWifiTableTemplate.php" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/app/view/template/ConfigWifiTableTemplate.php">
+      <file leaf-file-name="ConfigWifiTableRowTemplate.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/view/template/ConfigWifiTableRowTemplate.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="411">
-              <caret line="35" column="8" lean-forward="false" selection-start-line="35" selection-start-column="8" selection-end-line="35" selection-end-column="8" />
+            <state relative-caret-position="208">
+              <caret line="13" column="0" lean-forward="false" selection-start-line="13" selection-start-column="0" selection-end-line="14" selection-end-column="0" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="DataModel.json" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/documentation/esp/json/DataModel.json">
+      <file leaf-file-name="ConfigTemplate.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/view/template/ConfigTemplate.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="587">
-              <caret line="50" column="1" lean-forward="true" selection-start-line="50" selection-start-column="1" selection-end-line="50" selection-end-column="1" />
-              <folding />
+            <state relative-caret-position="48">
+              <caret line="3" column="45" lean-forward="false" selection-start-line="3" selection-start-column="45" selection-end-line="3" selection-end-column="45" />
+              <folding>
+                <element signature="n#div#2;n#!!top" expanded="false" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="ConfigEspTable.php" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/app/view/template/ConfigEspTable.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="496">
+              <caret line="40" column="13" lean-forward="false" selection-start-line="40" selection-start-column="13" selection-end-line="40" selection-end-column="13" />
+              <folding>
+                <element signature="n#thead#0;n#table#0;n#!!top" expanded="false" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -128,6 +191,14 @@
       <find>configview</find>
       <find>config</find>
       <find>dash</find>
+      <find>GETWIFINETWORKS</find>
+      <find>CONFI</find>
+      <find>firmwaredropdown</find>
+      <find>componentrow</find>
+      <find>WifiCredentials</find>
+      <find>ComponentOrder</find>
+      <find>split</find>
+      <find>[0].id</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -136,10 +207,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/app/model/domain/baseclass/DatabaseObjectBase.php" />
-        <option value="$PROJECT_DIR$/app/model/mapper/component/DhtDataMapper.php" />
-        <option value="$PROJECT_DIR$/app/model/service/component/ComponentService.php" />
-        <option value="$PROJECT_DIR$/app/model/mapper/component/ComponentMapper.php" />
         <option value="$PROJECT_DIR$/app/model/domain/LedStrip.php" />
         <option value="$PROJECT_DIR$/app/model/domain/Dht.php" />
         <option value="$PROJECT_DIR$/app/model/domain/Relay.php" />
@@ -157,9 +224,6 @@
         <option value="$PROJECT_DIR$/app/model/domain/Firmware.php" />
         <option value="$PROJECT_DIR$/app/model/service/FirmwareService.php" />
         <option value="$PROJECT_DIR$/app/model/mapper/FirmwareMapper.php" />
-        <option value="$PROJECT_DIR$/app/model/service/EspService.php" />
-        <option value="$PROJECT_DIR$/app/view/template/ConfigTemplate.php" />
-        <option value="$PROJECT_DIR$/app/model/mapper/EspMapper.php" />
         <option value="$PROJECT_DIR$/app/view/template/EspTemplate.php" />
         <option value="$PROJECT_DIR$/app/gridlayout.json" />
         <option value="$PROJECT_DIR$/app/model/service/GridLayoutService.php" />
@@ -167,7 +231,6 @@
         <option value="$PROJECT_DIR$/public/js/controller/DashboardController.js" />
         <option value="$PROJECT_DIR$/app/model/domain/EspCommand.php" />
         <option value="$PROJECT_DIR$/app/model/domain/FlashCommand.php" />
-        <option value="$PROJECT_DIR$/app/model/domain/Esp.php" />
         <option value="$PROJECT_DIR$/app/model/commands/FlashCommand.php" />
         <option value="$PROJECT_DIR$/app/utility/AutoLoader.php" />
         <option value="$PROJECT_DIR$/app/model/domain/commands/FlashCommand.php" />
@@ -176,7 +239,6 @@
         <option value="$PROJECT_DIR$/app/model/domain/ConnectionEspTcp.php" />
         <option value="$PROJECT_DIR$/app/model/domain/ConnectionEspUdp.php" />
         <option value="$PROJECT_DIR$/app/model/domain/baseclass/ConnectionBase.php" />
-        <option value="$PROJECT_DIR$/app/controller/AjaxRequestController.php" />
         <option value="$PROJECT_DIR$/app/utility/Bootstrap.php" />
         <option value="$PROJECT_DIR$/app/utility/FrontController.php" />
         <option value="$PROJECT_DIR$/app/model/service/ConnectionTcpService.php" />
@@ -184,9 +246,18 @@
         <option value="$PROJECT_DIR$/app/model/service/ConnectionPostService.php" />
         <option value="$PROJECT_DIR$/app/model/service/HeartbeatService.php" />
         <option value="$PROJECT_DIR$/app/documentation/esp/json/DataModel.json" />
+        <option value="$PROJECT_DIR$/app/view/template/ConfigWifiTableButtonTemplate.php" />
+        <option value="$PROJECT_DIR$/public/css/configViewStyle.css" />
+        <option value="$PROJECT_DIR$/public/css/dashboardViewStyle.css" />
+        <option value="$PROJECT_DIR$/app/model/domain/Esp.php" />
         <option value="$PROJECT_DIR$/app/model/service/ConfigurationService.php" />
-        <option value="$PROJECT_DIR$/public/js/controller/ConfigController.js" />
+        <option value="$PROJECT_DIR$/app/model/service/EspService.php" />
+        <option value="$PROJECT_DIR$/app/model/mapper/EspMapper.php" />
+        <option value="$PROJECT_DIR$/app/controller/AjaxRequestController.php" />
         <option value="$PROJECT_DIR$/app/view/template/ConfigWifiTableTemplate.php" />
+        <option value="$PROJECT_DIR$/public/js/controller/ConfigController.js" />
+        <option value="$PROJECT_DIR$/app/view/template/ConfigTemplate.php" />
+        <option value="$PROJECT_DIR$/app/view/template/ConfigEspTable.php" />
       </list>
     </option>
   </component>
@@ -201,10 +272,9 @@
     <servers />
   </component>
   <component name="PhpWorkspaceProjectConfiguration" backward_compatibility_performed="true" />
-  <component name="ProjectFrameBounds" extendedState="7">
-    <option name="x" value="-1" />
-    <option name="width" value="641" />
-    <option name="height" value="773" />
+  <component name="ProjectFrameBounds" extendedState="6">
+    <option name="width" value="640" />
+    <option name="height" value="781" />
   </component>
   <component name="ProjectView">
     <navigator currentView="ProjectPane" proportions="" version="1">
@@ -221,6 +291,8 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scratches" />
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -244,6 +316,21 @@
               <item name="esp-web-app" type="2a2b976b:PhpTreeStructureProvider$1" />
               <item name="app" type="2a2b976b:PhpTreeStructureProvider$1" />
               <item name="documentation" type="2a2b976b:PhpTreeStructureProvider$1" />
+            </path>
+            <path>
+              <item name="esp-web-app" type="b2602c69:ProjectViewProjectNode" />
+              <item name="esp-web-app" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="app" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="documentation" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="diagrams" type="2a2b976b:PhpTreeStructureProvider$1" />
+            </path>
+            <path>
+              <item name="esp-web-app" type="b2602c69:ProjectViewProjectNode" />
+              <item name="esp-web-app" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="app" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="documentation" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="diagrams" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="request" type="2a2b976b:PhpTreeStructureProvider$1" />
             </path>
             <path>
               <item name="esp-web-app" type="b2602c69:ProjectViewProjectNode" />
@@ -378,8 +465,6 @@
           <select />
         </subPane>
       </pane>
-      <pane id="Scope" />
-      <pane id="Scratches" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -492,18 +577,31 @@
       <workItem from="1504478930403" duration="27036000" />
       <workItem from="1504534860824" duration="26114000" />
       <workItem from="1504743717280" duration="9548000" />
+      <workItem from="1506538267701" duration="188000" />
+      <workItem from="1506541654724" duration="101000" />
+      <workItem from="1506541972737" duration="59000" />
+      <workItem from="1506542103770" duration="14695000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="189927000" />
+    <option name="totallyTimeSpent" value="204970000" />
+  </component>
+  <component name="TodoView">
+    <todo-panel id="selected-file">
+      <is-autoscroll-to-source value="true" />
+    </todo-panel>
+    <todo-panel id="all">
+      <are-packages-shown value="true" />
+      <is-autoscroll-to-source value="true" />
+    </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="-1" y="0" width="1282" height="773" extended-state="7" />
+    <frame x="-1" y="0" width="1282" height="773" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.24765626" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
-      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.25078124" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32886904" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3298647" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.29166666" sideWeight="0.496875" order="1" side_tool="false" content_ui="tabs" />
@@ -530,50 +628,11 @@
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
-      <option name="time" value="16" />
+      <option name="time" value="17" />
     </breakpoint-manager>
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/app/view/template/LedStripTemplate.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="192">
-          <caret line="12" column="64" lean-forward="true" selection-start-line="12" selection-start-column="64" selection-end-line="12" selection-end-column="64" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/view/template/Navigation.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="6" selection-end-column="6" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/view/template/RelayTemplate.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/public/js/utility/Init.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/view/template/ConfigSubNavigationTemplate.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="48">
-          <caret line="3" column="75" lean-forward="false" selection-start-line="3" selection-start-column="75" selection-end-line="3" selection-end-column="75" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/public/js/utility/JQueryExtensions.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
@@ -581,13 +640,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/public/css/main.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="477">
-          <caret line="406" column="4" lean-forward="true" selection-start-line="406" selection-start-column="4" selection-end-line="406" selection-end-column="4" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/public/css/main.css" />
     <entry file="file://$PROJECT_DIR$/app/model/mapper/_database/DummyData.sql">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="539">
@@ -599,10 +652,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="400">
           <caret line="31" column="151" lean-forward="false" selection-start-line="31" selection-start-column="151" selection-end-line="31" selection-end-column="151" />
-          <folding>
-            <marker date="1504675960048" expanded="true" signature="601:659" ph="SELECT * FRO... firmware" />
-            <marker date="1504675960048" expanded="true" signature="1099:1121" ph="SELECT * FRO... firmware" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -610,32 +659,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="339">
           <caret line="55" column="13" lean-forward="false" selection-start-line="55" selection-start-column="4" selection-end-line="55" selection-end-column="13" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/view/template/ConfigTemplate.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="181">
-          <caret line="13" column="55" lean-forward="false" selection-start-line="13" selection-start-column="55" selection-end-line="13" selection-end-column="55" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/model/mapper/EspMapper.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="384">
-          <caret line="72" column="135" lean-forward="false" selection-start-line="72" selection-start-column="135" selection-end-line="72" selection-end-column="135" />
-          <folding>
-            <marker date="1504677010575" expanded="true" signature="371:421" ph="INSERT INTO esp... " />
-            <marker date="1504677010575" expanded="true" signature="371:430" ph="INSERT INTO esp... " />
-            <marker date="1504677010575" expanded="true" signature="1056:1266" ph="UPDATE esp S... " />
-            <marker date="1504677010575" expanded="true" signature="1806:1843" ph="DELETE FROM " />
-            <marker date="1504677010575" expanded="true" signature="2063:2164" ph="SELECT * FRO... esp" />
-            <marker date="1504677010575" expanded="true" signature="2555:2641" ph="SELECT * FRO... esp" />
-            <marker date="1504677010575" expanded="true" signature="3032:3107" ph="SELECT * FRO... esp" />
-            <marker date="1504677010575" expanded="true" signature="3615:3666" ph="SELECT esp_i... esp" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -650,7 +673,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="35" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -658,7 +680,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -666,7 +687,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="528">
           <caret line="33" column="37" lean-forward="true" selection-start-line="33" selection-start-column="37" selection-end-line="33" selection-end-column="37" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -681,7 +701,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="128">
           <caret line="8" column="39" lean-forward="false" selection-start-line="8" selection-start-column="39" selection-end-line="8" selection-end-column="39" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -696,15 +715,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="112">
           <caret line="7" column="23" lean-forward="true" selection-start-line="7" selection-start-column="23" selection-end-line="7" selection-end-column="23" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/model/service/EspService.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1120">
-          <caret line="70" column="75" lean-forward="false" selection-start-line="70" selection-start-column="75" selection-end-line="70" selection-end-column="75" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -712,7 +722,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="560">
           <caret line="35" column="9" lean-forward="true" selection-start-line="35" selection-start-column="9" selection-end-line="35" selection-end-column="9" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -720,7 +729,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="96">
           <caret line="6" column="37" lean-forward="false" selection-start-line="6" selection-start-column="37" selection-end-line="6" selection-end-column="37" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -728,7 +736,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="427">
           <caret line="47" column="47" lean-forward="true" selection-start-line="47" selection-start-column="47" selection-end-line="47" selection-end-column="47" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -736,7 +743,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="64">
           <caret line="4" column="18" lean-forward="false" selection-start-line="4" selection-start-column="18" selection-end-line="4" selection-end-column="18" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -744,7 +750,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="611">
           <caret line="60" column="48" lean-forward="true" selection-start-line="60" selection-start-column="48" selection-end-line="60" selection-end-column="48" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -752,7 +757,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -760,7 +764,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="403">
           <caret line="58" column="0" lean-forward="false" selection-start-line="58" selection-start-column="0" selection-end-line="65" selection-end-column="10" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -768,15 +771,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/model/domain/Esp.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="611">
-          <caret line="104" column="16" lean-forward="true" selection-start-line="104" selection-start-column="16" selection-end-line="104" selection-end-column="16" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -784,7 +778,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -792,7 +785,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -800,7 +792,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -808,15 +799,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="560">
           <caret line="35" column="44" lean-forward="true" selection-start-line="35" selection-start-column="44" selection-end-line="35" selection-end-column="44" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/utility/Bootstrap.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="491">
-          <caret line="54" column="45" lean-forward="true" selection-start-line="54" selection-start-column="45" selection-end-line="54" selection-end-column="45" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -824,7 +806,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="512">
           <caret line="36" column="70" lean-forward="false" selection-start-line="36" selection-start-column="50" selection-end-line="36" selection-end-column="70" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -832,7 +813,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="240">
           <caret line="15" column="37" lean-forward="false" selection-start-line="15" selection-start-column="37" selection-end-line="15" selection-end-column="37" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -840,7 +820,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="32">
           <caret line="2" column="47" lean-forward="false" selection-start-line="2" selection-start-column="47" selection-end-line="2" selection-end-column="47" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -848,7 +827,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="32">
           <caret line="2" column="47" lean-forward="false" selection-start-line="2" selection-start-column="47" selection-end-line="2" selection-end-column="47" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -856,7 +834,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="144">
           <caret line="9" column="24" lean-forward="false" selection-start-line="9" selection-start-column="24" selection-end-line="9" selection-end-column="24" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -864,7 +841,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="160">
           <caret line="10" column="24" lean-forward="false" selection-start-line="10" selection-start-column="24" selection-end-line="10" selection-end-column="24" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -872,7 +848,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="144">
           <caret line="9" column="0" lean-forward="true" selection-start-line="9" selection-start-column="0" selection-end-line="9" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -880,7 +855,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="48">
           <caret line="3" column="4" lean-forward="false" selection-start-line="3" selection-start-column="4" selection-end-line="3" selection-end-column="4" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -888,7 +862,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="496">
           <caret line="49" column="28" lean-forward="true" selection-start-line="49" selection-start-column="28" selection-end-line="49" selection-end-column="28" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -896,7 +869,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="true" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -910,24 +882,80 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/documentation/esp/json/DataModel.json">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="587">
-          <caret line="50" column="1" lean-forward="true" selection-start-line="50" selection-start-column="1" selection-end-line="50" selection-end-column="1" />
+        <state relative-caret-position="800">
+          <caret line="50" column="1" lean-forward="false" selection-start-line="50" selection-start-column="1" selection-end-line="50" selection-end-column="1" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/view/template/ConfigWifiTableButtonTemplate.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="9" lean-forward="true" selection-start-line="0" selection-start-column="9" selection-end-line="0" selection-end-column="21" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/css/configViewStyle.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="299">
+          <caret line="140" column="21" lean-forward="false" selection-start-line="140" selection-start-column="21" selection-end-line="140" selection-end-column="21" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/css/dashboardViewStyle.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="246">
+          <caret line="25" column="21" lean-forward="false" selection-start-line="25" selection-start-column="21" selection-end-line="25" selection-end-column="21" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/model/domain/Esp.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-768">
+          <caret line="21" column="20" lean-forward="false" selection-start-line="21" selection-start-column="20" selection-end-line="21" selection-end-column="20" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/model/service/ConfigurationService.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="256">
-          <caret line="16" column="24" lean-forward="false" selection-start-line="16" selection-start-column="24" selection-end-line="16" selection-end-column="24" />
+        <state relative-caret-position="528">
+          <caret line="33" column="35" lean-forward="true" selection-start-line="33" selection-start-column="35" selection-end-line="33" selection-end-column="35" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/model/mapper/EspMapper.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="571">
+          <caret line="76" column="9" lean-forward="true" selection-start-line="76" selection-start-column="9" selection-end-line="76" selection-end-column="9" />
+          <folding>
+            <marker date="1506553612610" expanded="true" signature="371:430" ph="INSERT INTO esp... " />
+            <marker date="1506553612610" expanded="true" signature="1056:1266" ph="UPDATE esp S... " />
+            <marker date="1506553612610" expanded="true" signature="1806:1843" ph="DELETE FROM " />
+            <marker date="1506553612610" expanded="true" signature="2063:2164" ph="SELECT * FRO... esp" />
+            <marker date="1506553612610" expanded="true" signature="2555:2641" ph="SELECT * FRO... esp" />
+            <marker date="1506553612610" expanded="true" signature="3125:3200" ph="SELECT * FRO... esp" />
+            <marker date="1506553612610" expanded="true" signature="3708:3759" ph="SELECT esp_i... esp" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/model/service/EspService.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="387">
+          <caret line="62" column="30" lean-forward="true" selection-start-line="62" selection-start-column="30" selection-end-line="62" selection-end-column="30" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/controller/AjaxRequestController.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="475">
-          <caret line="191" column="4" lean-forward="true" selection-start-line="191" selection-start-column="4" selection-end-line="191" selection-end-column="4" />
+        <state relative-caret-position="427">
+          <caret line="182" column="44" lean-forward="true" selection-start-line="182" selection-start-column="44" selection-end-line="182" selection-end-column="44" />
           <folding>
             <element signature="n#setWarmWhite#0;n#AjaxRequestController#0;n#!!top" expanded="false" />
             <element signature="n#setColorUdp#0;n#AjaxRequestController#0;n#!!top" expanded="false" />
@@ -937,23 +965,62 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/app/utility/Bootstrap.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="475">
+          <caret line="53" column="34" lean-forward="true" selection-start-line="53" selection-start-column="34" selection-end-line="53" selection-end-column="34" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/public/js/controller/ConfigController.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="333">
-          <caret line="183" column="124" lean-forward="false" selection-start-line="183" selection-start-column="124" selection-end-line="183" selection-end-column="124" />
+        <state relative-caret-position="539">
+          <caret line="177" column="0" lean-forward="false" selection-start-line="177" selection-start-column="0" selection-end-line="177" selection-end-column="0" />
           <folding>
             <element signature="n#!!block;n#addComponent#0;n#addComponent#0;n#!!block;n#ConfigController#0;n#!!top" expanded="false" />
             <element signature="n#!!block;n#removeComponent#0;n#removeComponent#0;n#!!block;n#ConfigController#0;n#!!top" expanded="false" />
             <element signature="n#!!block;n#addRowHandlers#0;n#addRowHandlers#0;n#!!block;n#ConfigController#0;n#!!top" expanded="false" />
+            <element signature="n#!!block;n#getFirmwares#0;n#getFirmwares#0;n#!!block;n#ConfigController#0;n#!!top" expanded="false" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/view/template/ConfigWifiTableRowTemplate.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="208">
+          <caret line="13" column="0" lean-forward="false" selection-start-line="13" selection-start-column="0" selection-end-line="14" selection-end-column="0" />
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/view/template/ConfigWifiTableTemplate.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="411">
-          <caret line="35" column="8" lean-forward="false" selection-start-line="35" selection-start-column="8" selection-end-line="35" selection-end-column="8" />
-          <folding />
+        <state relative-caret-position="272">
+          <caret line="30" column="35" lean-forward="true" selection-start-line="30" selection-start-column="35" selection-end-line="30" selection-end-column="35" />
+          <folding>
+            <element signature="n#div#0;n#!!top" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/view/template/ConfigTemplate.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="48">
+          <caret line="3" column="45" lean-forward="false" selection-start-line="3" selection-start-column="45" selection-end-line="3" selection-end-column="45" />
+          <folding>
+            <element signature="n#div#2;n#!!top" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/view/template/ConfigEspTable.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="496">
+          <caret line="40" column="13" lean-forward="false" selection-start-line="40" selection-start-column="13" selection-end-line="40" selection-end-column="13" />
+          <folding>
+            <element signature="n#thead#0;n#table#0;n#!!top" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>

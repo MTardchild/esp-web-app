@@ -23,6 +23,7 @@
 
 .componentRow {
     display: flex;
+    margin-bottom: 2%;
 }
 
 .componentTile button {

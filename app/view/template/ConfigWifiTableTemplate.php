@@ -39,11 +39,11 @@
     <div style="display: flex">
         <div class="inputWrapper">
             <h4>SSID</h4>
-            <input type="text">
+            <input type="text" id="updateWifiSsid">
         </div>
         <div class="inputWrapper">
             <h4>Password</h4>
-            <input type="text">
+            <input type="text" id="updateWifiPassword">
         </div>
     </div>
 </div>

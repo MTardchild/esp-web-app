@@ -40,7 +40,11 @@ var ConfigController = {
                 $('.nameColumn').click(function (event) {
                     event.stopPropagation();
                 });
+                $('#configViewWifiTableRefreshButton').click(function () {
+                    ConfigController.getWifiNetworks();
+                });
 
+                ConfigController.getFirmwares();
                 ConfigController.getWifiNetworks();
             }
         );
@@ -113,22 +117,22 @@ var ConfigController = {
             currentRow.onclick = createClickHandler(currentRow);
         }
     },
-    getWifiNetworks: function () {
-        $.get("?route=ajax&action=getWifiNetworks", function (data, status) {
-            var networks = JSON.parse(data);
-            var dummy = JSON.parse('[["", "esp_hwidshitz", "mode", "channel", "rate", "signal", "random", "security"]]');
-            ConfigController.addWifiRows(dummy);
-            ConfigController.addWifiRows(networks);
-            $.get("?route=ajax&action=getFirmwares",
-                function (data, status) {
-                    var firmwares = JSON.parse(data);
-                    for (i = 0; i < firmwares.length; ++i) {
-                        $("#firmwareDropDown").append(
-                            "<option value=\"" + firmwares[i].id + "\">" + firmwares[i].path + "</option>");
-                    }
-                });
-
-            $('.buttonFlash').click(function (event) {
+    getFirmwares: function() {
+        $.get("?route=ajax&action=getFirmwares",
+            function (data, status) {
+                var firmwares = JSON.parse(data);
+                var dropdownFirmwares = $("#firmwareDropDown");
+                dropdownFirmwares.empty();
+                for (i = 0; i < firmwares.length; ++i) {
+                    dropdownFirmwares.append(
+                        "<option value=\"" + firmwares[i].id + "\">" + firmwares[i].path + "</option>");
+                }
+            }
+        );
+    },
+    bindFlashButtons: function() {
+        $('.buttonFlash').click(
+            function (event) {
                 event.stopPropagation();
                 var espId = $(this)[0].id.split('buttonFlash')[1];
                 $('#flashSelectedEsp').html(espId);
@@ -151,48 +155,52 @@ var ConfigController = {
                         }
                     }
                 });
-            });
-
-            $('.configEspTableLocationColumn').click(function (event) {
-                event.stopPropagation();
-                $('#modifyLocationDialog').dialog({
-                    resizable: false,
-                    height: "auto",
-                    width: 600,
-                    modal: true,
-                    buttons: {
-                        "Flash": function() {
-                            $(this).dialog("close");
-                        },
-                        Cancel: function() {
-                            $(this).dialog("close");
-                        }
-                    }
-                });
-            });
-
-            $('.buttonUpdateWifi').click(function (event) {
+            }
+        );
+    },
+    bindUpdateWifiButtons: function () {
+        $('.buttonUpdateWifi').click(
+            function (event) {
                 event.stopPropagation();
                 var espId = $(this)[0].id.split('buttonUpdateWifi')[1];
                 $('#updateWifiSelectedEsp').html(espId);
-                $( "#updateWifiDialogConfirm" ).dialog({
+                $('#updateWifiDialogConfirm').dialog({
                     resizable: false,
                     height: "auto",
                     width: 600,
                     modal: true,
                     buttons: {
                         "Update": function() {
-                            $(this).dialog("close");
+                            var ssid = ('#updateWifiSsid').val();
+                            var password = ('#updateWifiPassword').val();
+                            var wifiCredentials = {ssid: ssid, password: password};
+                            $.post("", {WifiCredentials: JSON.stringify(wifiCredentials)}).done(function (data) {
+
+                            });
                         },
                         Cancel: function() {
                             $(this).dialog("close");
                         }
                     }
                 });
-            });
-        });
+            }
+        );
+    },
+    getWifiNetworks: function () {
+        $.get("?route=ajax&action=getWifiNetworks",
+            function (data, status) {
+                var networks = JSON.parse(data);
+                var dummy = JSON.parse('[["", "esp_hwidshitz", "mode", "channel", "rate", "signal", "random", "security"]]');
+                ConfigController.addWifiRows(networks);
+                ConfigController.addWifiRows(dummy);
+                ConfigController.bindFlashButtons();
+                ConfigController.bindUpdateWifiButtons();
+            }
+        );
     },
     addWifiRows: function(networks) {
+        var tableBody = $('#configWifiTableBody');
+        tableBody.empty();
         for (i = 0; i < networks.length; ++i) {
             var ssidTd = '<td>' + networks[i][1] + '</td>';
             var modeTd = '<td>' + networks[i][2] + '</td>';
@@ -204,7 +212,7 @@ var ConfigController = {
             var buttonFlash = '<button class="buttonFlash" id="buttonFlash' + networks[i][1] + '">Flash</button>';
             var buttonsTd = '<td align="right">' + buttonUpdateWifi + buttonFlash + '</td>';
             var row = $('<tr>' + ssidTd + modeTd + channelTd + rateTd + signalTd + securityTd + buttonsTd + '</tr>');
-            // $('#configWifiTableBody').append(row);
+            tableBody.append(row);
         }
     },
     navigateToEspTableView: function () {

@@ -17,7 +17,9 @@ class Esp extends DatabaseObjectBase implements JsonSerializable {
 	}
 
 	public static function createEspEmpty() {
-		return new Esp();
+		$esp = new Esp();
+		$esp->id = -1;
+	    return $esp;
 	}
 
 	public static function createEsp($id, $name, $location, $ip, $hwId) {

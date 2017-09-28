@@ -179,6 +179,13 @@ class AjaxRequestController {
         $this->ajaxRequest->setMessage("Flashed " . $esp->getIp());
     }
 
+//    public function updateWifi($action) {
+//        $esp = $this->espService->findByHwId($action['esp']);
+//        $this->configurationService->configureWifi($action)
+//
+//        $this->ajaxRequest->setMessage("Updated WiFi " . $esp->getHwId());
+//    }
+
     public function getFirmwares($action) {
         $this->ajaxRequest->setMessage(json_encode($this->firmwareService->findAll()));
     }

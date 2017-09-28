@@ -138,4 +138,19 @@ tr:nth-child(odd) td { background: #FEFEFE; }
 
 #configView button {
     height: 25px;
+    margin-left: 5px;
+}
+
+#configViewWifiTableView #buttonFooter {
+    position:fixed;
+    left: 0;
+    bottom: 0;
+    height: 35px;
+    width:100%;
+}
+
+#configViewWifiTableView #buttonFooter button {
+    display: block;
+    margin-right: 10px;
+    margin-left: auto;
 }

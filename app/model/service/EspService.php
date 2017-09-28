@@ -65,8 +65,6 @@ class EspService implements IDatabaseService {
 
     public function findByHwId($hwId) {
         $esp = $this->_espMapper->findByHwId($hwId);
-        if ($esp === null) return null;
-
         $location = $this->_locationService->getLocation($esp->getLocation());
         $components = $this->_componentService->getComponents($esp->getId());
         $esp->setLocation($location);
