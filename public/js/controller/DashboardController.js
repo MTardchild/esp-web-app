@@ -103,6 +103,7 @@ var DashboardController = {
                                 $('.grid-stack').on('change', function (event, items) {
                                     DashboardController.saveGrid();
                                 });
+                                $('.componentRow:empty').remove();
                                 $('.arrowDown').click(DashboardController.onBtnClickArrowDown);
                                 $('.arrowUp').click(DashboardController.onBtnClickArrowUp);
                                 $('.halfIcon').click(DashboardController.onBtnClickHalf);
@@ -142,6 +143,7 @@ var DashboardController = {
             clickedComponent.moveUp();
         }
 
+        $('.componentRow:empty').remove();
         DashboardController.setArrowDirections();
         DashboardController.saveComponentOrder(DashboardController.getComponentOrder());
     },
@@ -167,6 +169,7 @@ var DashboardController = {
             clickedComponent.moveDown();
         }
 
+        $('.componentRow:empty').remove();
         DashboardController.setArrowDirections();
         DashboardController.saveComponentOrder(DashboardController.getComponentOrder());
     },
@@ -194,6 +197,7 @@ var DashboardController = {
             nextRow.prepend(nextComponent);
         }
 
+        $('.componentRow:empty').remove();
         DashboardController.setArrowDirections();
         DashboardController.bindSortButtons(nextComponent);
         DashboardController.saveComponentOrder(DashboardController.getComponentOrder());
@@ -212,6 +216,7 @@ var DashboardController = {
             $(this).parents('.grid-stack-item-content').append(nextRow);
         }
 
+        $('.componentRow:empty').remove();
         DashboardController.setArrowDirections();
         DashboardController.bindSortButtons(nextComponent);
         DashboardController.saveComponentOrder(DashboardController.getComponentOrder());
