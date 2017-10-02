@@ -19,6 +19,7 @@
     border: 1px solid rgba(0, 0, 0, 1);
     background-color: #f2f2f2;
     margin: 1%;
+    opacity: 1.2;
 }
 
 .componentRow {
@@ -45,21 +46,25 @@
 }
 
 .relayOff {
-    background-color: #c0685b !important;
+    background-color: #BF2A2A !important;
 }
 
 .relayOn {
-    background-color: 	#FFFFFF !important;
+    background-color: 	#90D83E !important;
 }
 
 .grid-stack-item-content {
     color: #FFFFFF;
     display: inline-block;
-    border: 1px solid rgba(0, 0, 0, 1);
-    background-color: #1693a5;
+    border-style: solid;
+    border-width: 2px;
+    border-color: #D3D3D3;
+    background-color: rgba(255,255,255,0.7);
+  
     padding: 5px 15px 15px 15px;
     margin: 5px 15px;
     vertical-align: top;
+    border-radius: 5px;
 }
 
 .sortIcons {
@@ -88,4 +93,8 @@
 
 .growIcon {
     right: 105px !important;
+}
+
+.espInfo{
+    color: #191718;
 }
