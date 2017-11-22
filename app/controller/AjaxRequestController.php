@@ -14,6 +14,10 @@ class AjaxRequestController {
     private $componentService;
     private $configurationService;
     private $firmwareService;
+    private $roomService;
+    private $windowService;
+    private $locationService;
+    private $doorService;
 
     public function __construct(ConnectionPostService $connectionPostService,
                                 ConnectionUdpService $connectionUdpService,
@@ -27,7 +31,11 @@ class AjaxRequestController {
                                 GridLayoutService $gridLayoutService,
                                 ComponentService $componentService,
                                 ConfigurationService $configurationService,
-                                FirmwareService $firmwareService) {
+                                FirmwareService $firmwareService,
+                                RoomService $roomService,
+                                WindowService $windowService,
+                                LocationService $locationService,
+                                DoorService $doorService) {
         $this->connectionPostService = $connectionPostService;
         $this->connectionUdpService = $connectionUdpService;
         $this->connectionTcpService = $connectionTcpService;
@@ -41,6 +49,10 @@ class AjaxRequestController {
         $this->componentService = $componentService;
         $this->configurationService = $configurationService;
         $this->firmwareService = $firmwareService;
+        $this->roomService = $roomService;
+        $this->windowService = $windowService;
+        $this->locationService = $locationService;
+        $this->doorService = $doorService;
     }
 
     public function toggleRelay($action) {
@@ -188,6 +200,22 @@ class AjaxRequestController {
 
     public function getFirmwares($action) {
         $this->ajaxRequest->setMessage(json_encode($this->firmwareService->findAll()));
+    }
+
+    public function getRooms($action) {
+        $this->ajaxRequest->setMessage(json_encode($this->roomService->findAll()));
+    }
+
+    public function getWindows($action) {
+        $this->ajaxRequest->setMessage(json_encode($this->windowService->findAll()));
+    }
+
+    public function getDoors($action) {
+        $this->ajaxRequest->setMessage(json_encode($this->doorService->findAll()));
+    }
+
+    public function getLocations($action) {
+        $this->ajaxRequest->setMessage(json_encode($this->locationService->findAll()));
     }
 
     private function getTemplate($file) {

@@ -25,6 +25,7 @@
         <script type="text/javascript" src="js/utility/Init.js"></script>
         <script type="text/javascript" src="js/utility/JQueryExtensions.js"></script>
         <script type="text/javascript" src="js/utility/Navigation.js"></script>
+        <script type="text/javascript" src="js/utility/ArrayUtility.js"></script>
     </head>
     <body>
         <?php

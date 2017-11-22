@@ -64,6 +64,24 @@ class LocationMapper implements IDatabaseMapper, IDatabaseObjectMapper {
         return $location;
     }
 
+    public function findAll() {
+        $query = $this->database->prepare("SELECT * FROM location");
+        $query->execute();
+        $locationCollectionDb = $query->fetchAll();
+        $locationCollection = array();
+
+        if ($locationCollectionDb !== false) {
+            foreach ($locationCollectionDb as $locationDb) {
+                array_push($locationCollection, Location::createLocation(
+                    $locationDb['loc_id'], $locationDb['loc_name'],
+                    $locationDb['loc_room'], $locationDb['loc_door'],
+                    $locationDb['loc_window']));
+            }
+        }
+
+        return $locationCollection;
+    }
+
     public function findFreeId() {
         $query = $this->database->prepare("SELECT loc_id FROM location ORDER BY loc_id DESC LIMIT 1");
         $query->execute();
@@ -76,4 +94,3 @@ class LocationMapper implements IDatabaseMapper, IDatabaseObjectMapper {
         return $freeId['loc_id']+1;
     }
 }
-

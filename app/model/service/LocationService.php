@@ -29,19 +29,30 @@ class LocationService implements IDatabaseService {
         return $this->locationMapper->insert($locationId);
     }
 
-    public function getLocation($locationId) {
+    public function find($locationId) {
         $location = $this->locationMapper->find($locationId);
         if ($location != null) {
-            $location->setRoom($this->roomService->getRoom($location->getRoom()));
-            $location->setDoor($this->doorService->getDoor($location->getDoor()));
-            $location->setWindow($this->windowService->getWindow($location->getWindow()));
+            $location->setRoom($this->roomService->find($location->getRoom()));
+            $location->setDoor($this->doorService->find($location->getDoor()));
+            $location->setWindow($this->windowService->find($location->getWindow()));
         }
 
         return $location;
+    }
+
+    public function findAll() {
+        $locationCollection = $this->locationMapper->findAll();
+
+        foreach ($locationCollection as $location) {
+            $location->setRoom($this->roomService->find($location->getRoom()));
+            $location->setDoor($this->doorService->find($location->getDoor()));
+            $location->setWindow($this->windowService->find($location->getWindow()));
+        }
+
+        return $locationCollection;
     }
 
     public function findFreeId() {
         return $this->locationMapper->findFreeId();
     }
 }
-

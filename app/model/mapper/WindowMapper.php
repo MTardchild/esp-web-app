@@ -49,4 +49,19 @@ class WindowMapper implements IDatabaseMapper {
 
         return $window;
     }
+
+    public function findAll() {
+      $query = $this->database->prepare("SELECT * FROM window");
+      $query->execute();
+      $windowCollectionDb = $query->fetchAll();
+      $windowCollection = array();
+
+      if ($windowCollectionDb !== false) {
+          foreach ($windowCollectionDb as $windowDb) {
+              array_push($windowCollection, Window::createWindow($windowDb['win_id'], $windowDb['win_name'], $windowDb['win_room']));
+          }
+      }
+
+      return $windowCollection;
+    }
 }

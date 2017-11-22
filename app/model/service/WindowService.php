@@ -23,11 +23,20 @@ class WindowService implements IDatabaseService {
         return $this->windowMapper->insert($windowId);
     }
 
-    public function getWindow($windowId) {
+    public function find($windowId) {
         $window = $this->windowMapper->find($windowId);
         $window->setRoom($window->getRoom());
 
         return $window;
     }
-}
 
+    public function findAll() {
+        $windowCollection = $this->windowMapper->findAll();
+
+        foreach ($windowCollection as $window) {
+            $window->setRoom($this->roomService->find($window->getRoom()));
+        }
+
+        return $windowCollection;
+    }
+}

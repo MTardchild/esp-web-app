@@ -23,12 +23,22 @@ class DoorService implements IDatabaseService {
         return $this->doorMapper->insert($doorId);
     }
 
-    public function getDoor($doorId) {
+    public function find($doorId) {
         $door = $this->doorMapper->find($doorId);
-        $door->setRoom1($this->roomService->getRoom($door->getRoom1()));
-        $door->setRoom2($this->roomService->getRoom($door->getRoom2()));
+        $door->setRoom1($this->roomService->find($door->getRoom1()));
+        $door->setRoom2($this->roomService->find($door->getRoom2()));
 
         return $door;
     }
-}
 
+    public function findAll() {
+        $doorCollection = $this->doorMapper->findAll();
+
+        foreach ($doorCollection as $door) {
+            $door->setRoom1($this->roomService->find($door->getRoom1()));
+            $door->setRoom2($this->roomService->find($door->getRoom2()));
+        }
+
+        return $doorCollection;
+    }
+}

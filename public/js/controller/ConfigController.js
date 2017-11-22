@@ -1,4 +1,9 @@
 var ConfigController = {
+    espList: {},
+    windowList: {},
+    doorList: {},
+    roomList: {},
+    locationList: {},
     requestConfigView: function () {
         $.get("?route=ajax&action=getConfigView",
             function (data, status) {
@@ -40,6 +45,52 @@ var ConfigController = {
                 $('.nameColumn').click(function (event) {
                     event.stopPropagation();
                 });
+
+                $.get("?route=ajax&action=getAllEsp", function(data, status) {
+                    ConfigController.espList = JSON.parse(data);
+                });
+
+                $.get("?route=ajax&action=getWindows", function(data, status) {
+                    ConfigController.windowList = JSON.parse(data);
+                });
+
+                $.get("?route=ajax&action=getRooms", function(data, status) {
+                    ConfigController.roomList = JSON.parse(data);
+                });
+
+                $.get("?route=ajax&action=getDoors", function(data, status) {
+                    ConfigController.doorList = JSON.parse(data);
+                });
+
+                $.get("?route=ajax&action=getLocations", function(data, status) {
+                    ConfigController.locationList = JSON.parse(data);
+                });
+
+                $('.configEspTableLocationColumn').click(
+                  function (event) {
+                        event.stopPropagation();
+                        $("#modifyLocationDialog").dialog({
+                            resizable: false,
+                            height: "auto",
+                            width: 600,
+                            modal: true,
+                            buttons: {
+                                "Update": function() {
+                                        var modifiedEsp = ArrayUtility.findSingle(
+                                        ConfigController.espList, "esp", "id",
+                                        $(event.target).parent().id().split("espRow")[1]);
+                                    $.post("", {LocationUpdate: JSON.stringify(modifiedEsp.location)}).done(function (data) {
+                                    });
+                                    $(this).dialog("close");
+                                },
+                                Cancel: function() {
+                                    $(this).dialog("close");
+                                }
+                            }
+                        });
+                    }
+                );
+
                 $('#configViewWifiTableRefreshButton').click(function () {
                     ConfigController.getWifiNetworks();
                 });

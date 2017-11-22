@@ -48,5 +48,19 @@ class RoomMapper implements IDatabaseMapper, IDatabaseObjectMapper {
 
         return $room;
     }
-}
 
+    public function findAll() {
+      $query = $this->database->prepare("SELECT * FROM room");
+      $query->execute();
+      $roomCollectionDb = $query->fetchAll();
+      $roomCollection = array();
+
+      if ($roomCollectionDb !== false) {
+          foreach ($roomCollectionDb as $roomDb) {
+              array_push($roomCollection, Room::createRoom($roomDb['rom_id'], $roomDb['rom_name']));
+          }
+      }
+
+      return $roomCollection;
+    }
+}

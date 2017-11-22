@@ -52,5 +52,19 @@ class DoorMapper implements IDatabaseMapper, IDatabaseObjectMapper {
 
         return $door;
     }
-}
 
+    public function findAll() {
+        $query = $this->database->prepare("SELECT * FROM door");
+        $query->execute();
+        $doorCollectionDb = $query->fetchAll();
+        $doorCollection = array();
+
+        if ($doorCollectionDb !== false) {
+            foreach ($doorCollectionDb as $doorDb) {
+                array_push($doorCollection, Door::createDoor($doorDb['dor_id'], $doorDb['dor_name'], $doorDb['dor_room_1'], $doorDb['dor_room_2']));
+            }
+        }
+
+        return $doorCollection;
+    }
+}

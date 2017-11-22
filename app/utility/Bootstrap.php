@@ -56,6 +56,13 @@ if (isset($_POST["WifiCredentials"])) {
     }
 }
 
+$locationUpdate = null;
+if (isset($_POST["LocationUpdate"])) {
+    if (trim($_POST["LocationUpdate"]) != "") {
+        $locationUpdate = $_POST['LocationUpdate'];
+    }
+}
+
 $injector->define('FrontController', [
     ':heartbeat' => $heartbeat,
     ':gridLayout' => $gridLayout,

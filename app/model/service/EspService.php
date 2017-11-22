@@ -15,7 +15,7 @@ class EspService implements IDatabaseService {
     }
 
     public function insert($esp) {
-        if (!$this->_locationService->getLocation($esp->getLocation()->getId()) instanceof Location) {
+        if (!$this->_locationService->find($esp->getLocation()->getId()) instanceof Location) {
             $this->_locationService->insert($esp->getLocation());
         }
 
@@ -40,7 +40,7 @@ class EspService implements IDatabaseService {
         $esp = $this->_espMapper->find($espId);
         if ($esp === null) return null;
 
-        $location = $this->_locationService->getLocation($esp->getLocation());
+        $location = $this->_locationService->find($esp->getLocation());
         $components = $this->_componentService->getComponents($espId);
         $esp->setLocation($location);
         $esp->setComponents($components);
@@ -53,7 +53,7 @@ class EspService implements IDatabaseService {
         $espCollection = $this->_espMapper->findAll();
 
         foreach ($espCollection as $esp) {
-            $location = $this->_locationService->getLocation($esp->getLocation());
+            $location = $this->_locationService->find($esp->getLocation());
             $components = $this->_componentService->getComponents($esp->getId());
             $esp->setLocation($location);
             $esp->setComponents($components);
@@ -65,7 +65,7 @@ class EspService implements IDatabaseService {
 
     public function findByHwId($hwId) {
         $esp = $this->_espMapper->findByHwId($hwId);
-        $location = $this->_locationService->getLocation($esp->getLocation());
+        $location = $this->_locationService->find($esp->getLocation());
         $components = $this->_componentService->getComponents($esp->getId());
         $esp->setLocation($location);
         $esp->setComponents($components);

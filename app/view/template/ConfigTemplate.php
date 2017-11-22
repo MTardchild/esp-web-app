@@ -21,37 +21,37 @@
     <div style="display: flex">
         <div class="inputWrapper idInput">
             Id
-            <input type="text" disabled>
+            <input id="modifyLocationDialog_Id" type="text" disabled>
         </div>
         <div class="inputWrapper">
             Name
-            <input type="text">
+            <input id="modifyLocationDialog_Name" type="text">
         </div>
     </div>
     <h4>Room</h4>
     <div style="display: flex">
         <div class="inputWrapper idInput">
             Id
-            <input type="text" disabled>
+            <input id="modifyLocationDialog_Room_Id" type="text" disabled>
         </div>
         <div class="inputWrapper">
             Name
-            <input type="text">
+            <input id="modifyLocationDialog_Room_Name" type="text">
         </div>
     </div>
     <h4>Window</h4>
     <div style="display: flex">
         <div class="inputWrapper idInput">
             Id
-            <input type="text" disabled>
+            <input id="modifyLocationDialog_Window_Id" type="text" disabled>
         </div>
         <div class="inputWrapper">
             Name
-            <input type="text">
+            <input id="modifyLocationDialog_Window_Id" type="text">
         </div>
         <div class="inputWrapper">
             Room
-            <select>
+            <select  id="modifyLocationDialog_Room_Room">
 
             </select>
         </div>
@@ -60,20 +60,20 @@
     <div style="display: flex">
         <div class="inputWrapper idInput">
             Id
-            <input type="text" disabled>
+            <input id="modifyLocationDialog_Door_Id" type="text" disabled>
         </div>
         <div class="inputWrapper">
             Name
-            <input type="text">
+            <input id="modifyLocationDialog_Door_Id" type="text">
         </div>
         <div class="inputWrapper">
             Room
-            <select>
+            <select id="modifyLocationDialog_Door_Room1">
             </select>
         </div>
         <div class="inputWrapper">
             Room
-            <select>
+            <select id="modifyLocationDialog_Door_Room2">
 
             </select>
         </div>

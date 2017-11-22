@@ -45,7 +45,7 @@ class HeartbeatService
         $esp = Esp::createEsp(
             $espJson['id'],
             $espJson['name'],
-            $this->locationService->getLocation($espJson['location']),
+            $this->locationService->find($espJson['location']),
             $espJson['ip'],
             $espJson['hwId']
         );

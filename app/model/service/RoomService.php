@@ -20,8 +20,11 @@ class RoomService implements IDatabaseService {
         return $this->roomMapper->insert($roomId);
     }
 
-    public function getRoom($roomId) {
+    public function find($roomId) {
         return $this->roomMapper->find($roomId);
     }
-}
 
+    public function findAll() {
+      return $this->roomMapper->findAll();
+    }
+}
