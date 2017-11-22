@@ -1,7 +1,7 @@
 <?php include 'ConfigSubNavigationTemplate.php'; ?>
 <div id="configViewEspTableView">
     <div class="configViewLeft">
-        <?php include 'ConfigEspTable.php' ?>
+        <?php include 'ConfigEspTableTemplate.php' ?>
     </div>
     <div id="configDraggableContainer" class="configViewRight">
         <?php

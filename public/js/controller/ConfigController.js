@@ -11,7 +11,11 @@ var ConfigController = {
                 var parsedContent = $('<div></div>');
                 parsedContent.html(data);
                 configView.html(parsedContent);
-                ConfigController.addRowHandlers();
+                ConfigController.addConfiguredEspRowHandlers();
+                ConfigController.addLocationRowHandlers();
+                ConfigController.addRoomRowHandlers();
+                ConfigController.addDoorRowHandlers();
+                ConfigController.addWindowRowHandlers();
                 $('.configDetail').hide();
                 $('.droppable').droppable({
                     over: function () {
@@ -35,15 +39,30 @@ var ConfigController = {
 
                 $('#configDraggableContainer').children().draggable({revert: true, revertDuration: 250});
 
-                $('.nameColumn').prop('contentEditable', true);
-                $('.nameColumn').keypress(function (event) {
+                ConfigController.makeEditable('.configEspTableNameColumn');
+                $('.configEspTableNameColumn').keypress(function (event) {
                     if (event.originalEvent.keyCode === 13) {
                         event.stopPropagation();
                         $(this).blur();
+                        var selectedEspId = $(this).parent(2).children().first().text();
+                        var selectedEsp = ArrayUtility.findSingleLayerTwo(ConfigController.espList, "esp", "id", selectedEspId);
+                        selectedEsp.name = $(this).text();
+                        $.post("", {EspUpdate: JSON.stringify(selectedEsp)}).done(function (data) {
+                        });
                     }
                 });
-                $('.nameColumn').click(function (event) {
-                    event.stopPropagation();
+
+                ConfigController.makeEditable('.configDoorTableNameColumn');
+                $('.configDoorTableNameColumn').keypress(function (event) {
+                    if (event.originalEvent.keyCode === 13) {
+                        event.stopPropagation();
+                        $(this).blur();
+                        var selectedDoorId = $(this).parent(2).children().first().text();
+                        var selectedDoor = ArrayUtility.findSingle(ConfigController.doorList, "id", selectedDoorId);
+                        selectedDoor.name = $(this).text();
+                        $.post("", {DoorUpdate: JSON.stringify(selectedDoor)}).done(function (data) {
+                        });
+                    }
                 });
 
                 $.get("?route=ajax&action=getAllEsp", function(data, status) {
@@ -101,6 +120,12 @@ var ConfigController = {
             }
         );
     },
+    makeEditable: function(selector) {
+        $(selector).prop('contentEditable', true);
+        $(selector).click(function (event) {
+            event.stopPropagation();
+        });
+    },
     addComponent: function (espId, componentTypeId) {
         $.get("?route=ajax&action=addComponent&esp=" + espId + "&type=" + componentTypeId,
             function (data, status) {
@@ -153,7 +178,7 @@ var ConfigController = {
                 $('.component' + componentId).remove();
             });
     },
-    addRowHandlers: function () {
+    addConfiguredEspRowHandlers: function () {
         var rows = $('#configTable').find('.espRow');
         for (i = 0; i < rows.length; i++) {
             var currentRow = rows[i];
@@ -168,6 +193,18 @@ var ConfigController = {
 
             currentRow.onclick = createClickHandler(currentRow);
         }
+    },
+    addDoorRowHandlers: function() {
+
+    },
+    addWindowRowHandlers: function() {
+
+    },
+    addLocationRowHandlers: function() {
+
+    },
+    addRoomRowHandlers: function() {
+
     },
     getFirmwares: function() {
         $.get("?route=ajax&action=getFirmwares",

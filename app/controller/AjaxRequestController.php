@@ -183,21 +183,6 @@ class AjaxRequestController {
         $this->ajaxRequest->setMessage(json_encode($wifiNetworks));
     }
 
-    public function flash($action) {
-        $esp = $this->espService->findByHwId($action['esp']);
-        $firmware = $this->firmwareService->find($action['firmware']);
-        $this->configurationService->flash($esp, $firmware);
-
-        $this->ajaxRequest->setMessage("Flashed " . $esp->getIp());
-    }
-
-//    public function updateWifi($action) {
-//        $esp = $this->espService->findByHwId($action['esp']);
-//        $this->configurationService->configureWifi($action)
-//
-//        $this->ajaxRequest->setMessage("Updated WiFi " . $esp->getHwId());
-//    }
-
     public function getFirmwares($action) {
         $this->ajaxRequest->setMessage(json_encode($this->firmwareService->findAll()));
     }
@@ -231,4 +216,19 @@ class AjaxRequestController {
 
         return $buffer;
     }
+
+    public function flash($action) {
+        $esp = $this->espService->findByHwId($action['esp']);
+        $firmware = $this->firmwareService->find($action['firmware']);
+        $this->configurationService->flash($esp, $firmware);
+
+        $this->ajaxRequest->setMessage("Flashed " . $esp->getIp());
+    }
+
+//    public function updateWifi($action) {
+//        $esp = $this->espService->findByHwId($action['esp']);
+//        $this->configurationService->configureWifi($action)
+//
+//        $this->ajaxRequest->setMessage("Updated WiFi " . $esp->getHwId());
+//    }
 }

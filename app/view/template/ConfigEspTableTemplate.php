@@ -16,7 +16,7 @@
         <tr class="espRow" id="espRow<?php echo $esp->getId(); ?>">
             <td class="droppable configEspTableIdColumn"><?php echo $esp->getId(); ?></td>
             <td class="droppable configEspTableHwIdColumn"><?php echo $esp->getHwId(); ?></td>
-            <td class="droppable nameColumn"><?php echo $esp->getName(); ?></td>
+            <td class="droppable configEspTableNameColumn"><?php echo $esp->getName(); ?></td>
             <td class="droppable configEspTableLocationColumn"><?php echo $esp->getLocation()->getName(); ?></td>
             <td class="droppable devices">
                 <?php

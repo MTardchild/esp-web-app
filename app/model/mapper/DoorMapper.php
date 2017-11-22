@@ -26,7 +26,7 @@ class DoorMapper implements IDatabaseMapper, IDatabaseObjectMapper {
         $isSuccessful = false;
 
         if ($door instanceof Door) {
-            $query = $this->database->prepare("UPDATE door SET door.dor_name = :name, door.dor_room1 = :room1, door.dor_room2 = :room2 WHERE door.dor_id = :id;");
+            $query = $this->database->prepare("UPDATE door SET door.dor_name = :name, door.dor_room_1 = :room1, door.dor_room_2 = :room2 WHERE door.dor_id = :id;");
             $isSuccessful = $query->execute(array(  'id' => $door->getId(),
                                                     'name' => $door->getName(),
                                                     'room1' => $door->getRoom1()->getId(),

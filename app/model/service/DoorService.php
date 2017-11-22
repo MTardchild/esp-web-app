@@ -16,7 +16,7 @@ class DoorService implements IDatabaseService {
     }
 
     public function update($door) {
-        return $this->doorMapper->insert($door);
+        return $this->doorMapper->update($door);
     }
 
     public function delete($doorId) {
