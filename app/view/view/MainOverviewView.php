@@ -2,10 +2,22 @@
 //namespace App\View;
 
 class MainOverviewView {
-	private $_espService;
+	private $espService;
+	private $roomService;
+	private $doorService;
+	private $locationService;
+	private $windowService;
 
-	public function __construct(EspService $espService) {
-		$this->_espService = $espService;
+	public function __construct(EspService $espService,
+					RoomService $roomService,
+					DoorService $doorService,
+					LocationService $locationService,
+					WindowService $windowService) {
+		$this->espService = $espService;
+		$this->roomService = $roomService;
+		$this->doorService = $doorService;
+		$this->locationService = $locationService;
+		$this->windowService = $windowService;
 	}
 
 	public function output() {

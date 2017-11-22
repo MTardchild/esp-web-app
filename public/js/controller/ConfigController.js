@@ -76,9 +76,10 @@ var ConfigController = {
                             modal: true,
                             buttons: {
                                 "Update": function() {
-                                        var modifiedEsp = ArrayUtility.findSingle(
-                                        ConfigController.espList, "esp", "id",
-                                        $(event.target).parent().id().split("espRow")[1]);
+                                    var modifiedEsp = ArrayUtility.findSingle(
+                                    ConfigController.espList, "esp", "id",
+                                    $(event.target).parent().id().split("espRow")[1]);
+
                                     $.post("", {LocationUpdate: JSON.stringify(modifiedEsp.location)}).done(function (data) {
                                     });
                                     $(this).dialog("close");
@@ -267,11 +268,52 @@ var ConfigController = {
         }
     },
     navigateToEspTableView: function () {
-        $('#configViewEspTableView').fadeIn(250);
-        $('#configViewWifiTableView').fadeOut(250);
+        ConfigController.fadeIdIn('#configViewEspTableView');
     },
     navigateToWifiTableView: function () {
-        $('#configViewEspTableView').fadeOut(250);
-        $('#configViewWifiTableView').fadeIn(250);
+        ConfigController.fadeIdIn('#configViewWifiTableView');
+    },
+    navigateToRoomTableView: function () {
+        ConfigController.fadeIdIn('#configViewRoomTableView');
+    },
+    navigateToDoorTableView: function() {
+        ConfigController.fadeIdIn('#configViewDoorTableView');
+    },
+    navigateToLocationTableView: function() {
+        ConfigController.fadeIdIn('#configViewLocationTableView');
+    },
+    navigateToWindowTableView: function() {
+        ConfigController.fadeIdIn('#configViewWindowTableView');
+    },
+    fadeIdIn: function(id) {
+        if ('#configViewWifiTableView' == id)
+            $('#configViewWifiTableView').fadeIn(250);
+        else
+            $('#configViewWifiTableView').fadeOut(250);
+
+        if ('#configViewEspTableView' == id)
+            $('#configViewEspTableView').fadeIn(250);
+        else
+            $('#configViewEspTableView').fadeOut(250);
+
+        if ('#configViewRoomTableView' == id)
+            $('#configViewRoomTableView').fadeIn(250);
+        else
+            $('#configViewRoomTableView').fadeOut(250);
+
+        if ('#configViewDoorTableView' == id)
+            $('#configViewDoorTableView').fadeIn(250);
+        else
+            $('#configViewDoorTableView').fadeOut(250);
+
+        if ('#configViewLocationTableView' == id)
+            $('#configViewLocationTableView').fadeIn(250);
+        else
+            $('#configViewLocationTableView').fadeOut(250);
+
+        if ('#configViewWindowTableView' == id)
+            $('#configViewWindowTableView').fadeIn(250);
+        else
+            $('#configViewWindowTableView').fadeOut(250);
     }
 };

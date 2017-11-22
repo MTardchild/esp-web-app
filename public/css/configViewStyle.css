@@ -9,6 +9,32 @@
 }
 
 #configViewWifiTableView {
+    position: absolute;
+    width: 100%;
+    margin: 0 1%;
+}
+
+#configViewRoomTableView {
+    position: absolute;
+    width: 100%;
+    margin: 0 1%;
+}
+
+#configViewDoorTableView {
+    position: absolute;
+    width: 100%;
+    margin: 0 1%;
+}
+
+#configViewWindowTableView {
+    position: absolute;
+    width: 100%;
+    margin: 0 1%;
+}
+
+#configViewLocationTableView {
+    position: absolute;
+    width: 100%;
     margin: 0 1%;
 }
 

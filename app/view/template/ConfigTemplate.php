@@ -13,9 +13,21 @@
         <?php endforeach ?>
     </div>
 </div>
-<div id="configViewWifiTableView" style="display:none;">
+<div id="configViewWifiTableView" style="display: none;">
     <?php include 'ConfigWifiTableTemplate.php'; ?>
     <?php include 'ConfigWifiTableButtonTemplate.php' ?>
+</div>
+<div id="configViewRoomTableView" style="display: none;">
+    <?php include 'ConfigRoomTableTemplate.php' ?>
+</div>
+<div id="configViewDoorTableView" style="display: none;">
+    <?php include 'ConfigDoorTableTemplate.php' ?>
+</div>
+<div id="configViewWindowTableView" style="display: none;">
+    <?php include 'ConfigWindowTableTemplate.php' ?>
+</div>
+<div id="configViewLocationTableView" style="display: none;">
+    <?php include 'ConfigLocationTableTemplate.php' ?>
 </div>
 <div id="modifyLocationDialog" title="Modify Location" style="display:none;">
     <div style="display: flex">
