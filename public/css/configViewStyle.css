@@ -5,36 +5,36 @@
 
 #configViewEspTableView {
     position: absolute;
-    width: 100%;
+    width: 98%;
 }
 
 #configViewWifiTableView {
     position: absolute;
-    width: 100%;
+    width: 98%;
     margin: 0 1%;
 }
 
 #configViewRoomTableView {
     position: absolute;
-    width: 100%;
+    width: 98%;
     margin: 0 1%;
 }
 
 #configViewDoorTableView {
     position: absolute;
-    width: 100%;
+    width: 98%;
     margin: 0 1%;
 }
 
 #configViewWindowTableView {
     position: absolute;
-    width: 100%;
+    width: 98%;
     margin: 0 1%;
 }
 
 #configViewLocationTableView {
     position: absolute;
-    width: 100%;
+    width: 98%;
     margin: 0 1%;
 }
 
