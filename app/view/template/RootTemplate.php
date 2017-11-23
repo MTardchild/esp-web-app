@@ -21,11 +21,15 @@
         <script type="text/javascript" src="js/controller/ConfigController.js"></script>
         <script type="text/javascript" src="js/controller/DashboardController.js"></script>
         <script type="text/javascript" src="js/controller/RulesController.js"></script>
+        <script type="text/javascript" src="js/controller/ConfiguredEspConfigurationController.js"></script>
+        <script type="text/javascript" src="js/controller/UnconfiguredEspConfigurationController.js"></script>
+
         <script type="text/javascript" src="js/utility/ColorConversion.js"></script>
         <script type="text/javascript" src="js/utility/Init.js"></script>
         <script type="text/javascript" src="js/utility/JQueryExtensions.js"></script>
         <script type="text/javascript" src="js/utility/Navigation.js"></script>
         <script type="text/javascript" src="js/utility/ArrayUtility.js"></script>
+        <script type="text/javascript" src="js/utility/ConfigNavigation.js"></script>
     </head>
     <body>
         <?php
