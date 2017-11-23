@@ -9,7 +9,13 @@ class Firmware extends DatabaseObjectBase implements JsonSerializable {
     }
 
     public static function createFirmwareEmpty() {
-        return new Firmware();
+        $firmware = new Firmware();
+        $firmware->id = -1;
+        $firmware->name = "";
+        $firmware->path = "";
+        $firmware->timestamp = "";
+
+        return $firmware;
     }
 
     public static function createFirmware($id, $name, $path, $timestamp) {

@@ -87,7 +87,35 @@ var ConfigController = {
 
                 $('.configEspTableLocationColumn').click(
                   function (event) {
+                        var modifiedEsp = ArrayUtility.findSingleLayerTwo(
+                        ConfigController.espList, "esp", "id",
+                        $(event.target).parent().id().split("espRow")[1]);
+
                         event.stopPropagation();
+                        $('#modifyLocationDialog_Id').val(modifiedEsp.location.id);
+                        $('#modifyLocationDialog_Name').val(modifiedEsp.location.name);
+                        $('#modifyLocationDialog_Room_Id').val(modifiedEsp.location.room.id);
+                        $('#modifyLocationDialog_Room_Name').val(modifiedEsp.location.room.name);
+                        $('#modifyLocationDialog_Window_Id').val(modifiedEsp.location.window.id);
+                        $('#modifyLocationDialog_Window_Name').val(modifiedEsp.location.window.name);
+                        $('#modifyLocationDialog_Door_Id').val(modifiedEsp.location.door.id);
+                        $('#modifyLocationDialog_Door_Name').val(modifiedEsp.location.door.name);
+                        ConfigController.populateRoomSelect('#modifyLocationDialog_Room_Room');
+                        if (modifiedEsp.location.window.room != null) {
+                            ConfigController.selectId('#modifyLocationDialog_Room_Room', modifiedEsp.location.window.room.id);
+                            $('#modifyLocationDialog_AddWindow').fadeOut();
+                            $('#modifyLocationDialog_Window').fadeIn();
+                        } else {
+                            $('#modifyLocationDialog_Window').fadeOut();
+                            $('#modifyLocationDialog_AddWindow').fadeIn();
+                        }
+
+                        ConfigController.populateRoomSelect('#modifyLocationDialog_Door_Room1');
+                        if (modifiedEsp.location.door.room1 != null)
+                            ConfigController.selectId('#modifyLocationDialog_Door_Room1', modifiedEsp.location.door.room1.id);
+                        ConfigController.populateRoomSelect('#modifyLocationDialog_Door_Room2');
+                        if (modifiedEsp.location.door.room2 != null)
+                            ConfigController.selectId('#modifyLocationDialog_Door_Room2', modifiedEsp.location.door.room2.id);
                         $("#modifyLocationDialog").dialog({
                             resizable: false,
                             height: "auto",
@@ -95,11 +123,41 @@ var ConfigController = {
                             modal: true,
                             buttons: {
                                 "Update": function() {
-                                    var modifiedEsp = ArrayUtility.findSingle(
-                                    ConfigController.espList, "esp", "id",
-                                    $(event.target).parent().id().split("espRow")[1]);
+                                    modifiedEsp.location.name = $('#modifyLocationDialog_Name').val();
+                                    if (modifiedEsp.location.room != null)
+                                        modifiedEsp.location.room.name = $('#modifyLocationDialog_Room_Name').val();
+                                    if (modifiedEsp.location.window.room != null)
+                                        modifiedEsp.location.window.room.id = $('#modifyLocationDialog_Room_Room').val();
+                                    if (modifiedEsp.location.window != null)
+                                        modifiedEsp.location.window.name = $('#modifyLocationDialog_Window_Name').val();
+                                    if (modifiedEsp.location.door != null)
+                                        modifiedEsp.location.door.name = $('#modifyLocationDialog_Door_Name').val();
+                                    if (modifiedEsp.location.door.room1 != null)
+                                        modifiedEsp.location.door.room1.id = $('#modifyLocationDialog_Door_Room1').val();
+                                    if (modifiedEsp.location.door.room2 != null)
+                                        modifiedEsp.location.door.room2.id = $('#modifyLocationDialog_Door_Room2').val();
+                                    $('#configEspTableLocationColumn' + modifiedEsp.id).text(modifiedEsp.location.name);
+                                    
+                                    if (modifiedEsp.location.window != null) {
+                                        $.post("", {WindowUpdate: JSON.stringify(modifiedEsp.location.window)}).done(function (data) {
+                                            //console.log(data);
+                                        });
+                                    }
+
+                                    if (modifiedEsp.location.door != null) {
+                                        $.post("", {DoorUpdate: JSON.stringify(modifiedEsp.location.door)}).done(function (data) {
+                                            //console.log(data);
+                                        });
+                                    }
+
+                                    if (modifiedEsp.location.room != null) {
+                                        $.post("", {RoomUpdate: JSON.stringify(modifiedEsp.location.room)}).done(function (data) {
+                                            //console.log(data);
+                                        });
+                                    }
 
                                     $.post("", {LocationUpdate: JSON.stringify(modifiedEsp.location)}).done(function (data) {
+                                        //console.log(data);
                                     });
                                     $(this).dialog("close");
                                 },
@@ -119,6 +177,18 @@ var ConfigController = {
                 ConfigController.getWifiNetworks();
             }
         );
+    },
+    selectId: function(selector, id) {
+        $(selector).val(id);
+    },
+    populateRoomSelect: function(selector) {
+        $(selector).empty();
+        $.each(ConfigController.roomList, function (i, room) {
+            $(selector).append($('<option>', {
+                value: room.id,
+                text : room.name
+            }));
+        });
     },
     makeEditable: function(selector) {
         $(selector).prop('contentEditable', true);

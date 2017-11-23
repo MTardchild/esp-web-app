@@ -13,11 +13,11 @@ class RoomService implements IDatabaseService {
     }
 
     public function update($room) {
-        return $this->roomMapper->insert($room);
+        return $this->roomMapper->update($room);
     }
 
     public function delete($roomId) {
-        return $this->roomMapper->insert($roomId);
+        return $this->roomMapper->delete($roomId);
     }
 
     public function find($roomId) {

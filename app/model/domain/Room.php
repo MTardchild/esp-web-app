@@ -9,7 +9,11 @@ class Room extends DatabaseObjectBase implements JsonSerializable {
 	}
 
 	public static function createRoomEmpty() {
-		return new Room();
+		$room = new Room();
+		$room->id = -1;
+		$room->name = "";
+
+		return $room;
 	}
 
 	public static function createRoom($id, $name) {
@@ -36,4 +40,3 @@ class Room extends DatabaseObjectBase implements JsonSerializable {
         ];
     }
 }
-

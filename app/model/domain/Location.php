@@ -13,6 +13,11 @@ class Location extends DatabaseObjectBase implements JsonSerializable {
 
 	public static function createLocationEmpty() {
 		$location = new Location();
+		$location->id = -1;
+		$location->name = "";
+		$location->room = Room::createRoomEmpty();
+		$location->door = Door::createDoorEmpty();
+		$location->window = Window::createWindowEmpty();
 
 		return $location;
 	}
@@ -79,4 +84,3 @@ class Location extends DatabaseObjectBase implements JsonSerializable {
         ];
     }
 }
-

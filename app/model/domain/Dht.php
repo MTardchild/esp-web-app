@@ -12,6 +12,8 @@ class Dht extends ComponentBase implements JsonSerializable {
 
 	public static function createDhtEmpty() {
         $dht = new Dht();
+		$dht->id = -1;
+		$dht->espId = -1;
         $dht->typeId = COMPONENT_TYPE_DHT;
 
         return $dht;

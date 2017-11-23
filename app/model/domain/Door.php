@@ -12,6 +12,8 @@ class Door extends DatabaseObjectBase implements JsonSerializable {
 
 	public static function createDoorEmpty() {
 		$door = new Door();
+		$door->id = -1;
+		$door->name = "";
 		$door->room1 = Room::createRoomEmpty();
 		$door->room2 = Room::createRoomEmpty();
 

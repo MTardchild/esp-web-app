@@ -22,19 +22,22 @@ class FrontController {
                                 LocationService $locationService,
                                 RoomService $roomService,
                                 EspService $espService,
+                                WindowService $windowService,
                                 $heartbeat,
                                 $gridLayout,
                                 $componentOrder,
                                 $wifiCredentials,
                                 $doorUpdate,
                                 $locationUpdate,
-                                $espUpdate) {
+                                $espUpdate,
+                                $roomUpdate) {
         $this->heartbeatService = $heartbeatService;
         $this->gridLayoutService = $gridLayoutService;
         $this->doorService = $doorService;
         $this->locationService = $locationService;
         $this->roomService = $roomService;
         $this->espService = $espService;
+        $this->windowService = $windowService;
 
         if (!is_null($heartbeat)) {
             $this->wasHtmlPostSuccessful = $this->heartbeatService->evaluate($heartbeat);
@@ -62,7 +65,15 @@ class FrontController {
         }
 
         if (!is_null($locationUpdate)) {
-            $this->wasHtmlPostSuccessful = false;
+            $locationJson = json_decode($locationUpdate, true);
+            //var_dump($locationJson);
+            $location = $this->locationService->find($locationJson["id"]);
+            $location->setName($locationJson["name"]);
+            $location->setRoom($this->roomService->find($locationJson["room"]["id"]));
+            $location->setDoor($this->doorService->find($locationJson["door"]["id"]));
+            $location->setWindow($this->windowService->find($locationJson["window"]["id"]));
+            //var_dump($location);
+            $this->wasHtmlPostSuccessful = $this->locationService->update($location);
         }
 
         if (!is_null($espUpdate)) {
@@ -73,6 +84,13 @@ class FrontController {
             $esp->setIp($espJson["ip"]);
             //$esp->setIp($espJson["hwId"]);
             $this->wasHtmlPostSuccessful = $this->espService->update($esp);
+        }
+
+        if (!is_null($roomUpdate)) {
+            $roomJson = json_decode($roomUpdate, true);
+            $room = $this->roomService->find($roomJson["id"]);
+            $room->setName($roomJson["name"]);
+            $this->wasHtmlPostSuccessful = $this->roomService->update($room);
         }
 
         $this->configurationService = $configurationService;

@@ -46,6 +46,10 @@
     border-bottom: 1px solid #1693a5;
 }
 
+#modifyLocationDialog_AddWindow_Button {
+    width: 100%;
+}
+
 table {
     color: #333;
     font-family: Helvetica, Arial, sans-serif;

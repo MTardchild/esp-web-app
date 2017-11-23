@@ -52,14 +52,17 @@
         </div>
     </div>
     <h4>Window</h4>
-    <div style="display: flex">
+    <div id="modifyLocationDialog_AddWindow" style="display: none">
+        <button id="modifyLocationDialog_AddWindow_Button">Add</button>
+    </div>
+    <div id="modifyLocationDialog_Window" style="display: flex">
         <div class="inputWrapper idInput">
             Id
             <input id="modifyLocationDialog_Window_Id" type="text" disabled>
         </div>
         <div class="inputWrapper">
             Name
-            <input id="modifyLocationDialog_Window_Id" type="text">
+            <input id="modifyLocationDialog_Window_Name" type="text">
         </div>
         <div class="inputWrapper">
             Room
@@ -76,7 +79,7 @@
         </div>
         <div class="inputWrapper">
             Name
-            <input id="modifyLocationDialog_Door_Id" type="text">
+            <input id="modifyLocationDialog_Door_Name" type="text">
         </div>
         <div class="inputWrapper">
             Room

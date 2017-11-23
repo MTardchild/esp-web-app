@@ -14,10 +14,10 @@
     foreach ($espCollection as $esp):
     ?>
         <tr class="espRow" id="espRow<?php echo $esp->getId(); ?>">
-            <td class="droppable configEspTableIdColumn"><?php echo $esp->getId(); ?></td>
-            <td class="droppable configEspTableHwIdColumn"><?php echo $esp->getHwId(); ?></td>
-            <td class="droppable configEspTableNameColumn"><?php echo $esp->getName(); ?></td>
-            <td class="droppable configEspTableLocationColumn"><?php echo $esp->getLocation()->getName(); ?></td>
+            <td class="droppable configEspTableIdColumn" id="configEspTableIdColumn<?php echo $esp->getId() ?>"><?php echo $esp->getId(); ?></td>
+            <td class="droppable configEspTableHwIdColumn" id="configEspTableHwIdColumn<?php echo $esp->getId() ?>"><?php echo $esp->getHwId(); ?></td>
+            <td class="droppable configEspTableNameColumn" id="configEspTableNameColumn<?php echo $esp->getId() ?>"><?php echo $esp->getName(); ?></td>
+            <td class="droppable configEspTableLocationColumn" id="configEspTableLocationColumn<?php echo $esp->getId() ?>"><?php echo $esp->getLocation()->getName(); ?></td>
             <td class="droppable devices">
                 <?php
                 foreach ($esp->getComponents() as $component) {

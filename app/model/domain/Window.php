@@ -11,6 +11,8 @@ class Window extends DatabaseObjectBase implements JsonSerializable {
 
 	public static function createWindowEmpty() {
 		$window = new Window();
+		$window->id = -1;
+		$window->name = "";
 		$window->room = Room::createRoomEmpty();
 
 		return $window;
@@ -50,4 +52,3 @@ class Window extends DatabaseObjectBase implements JsonSerializable {
         ];
     }
 }
-

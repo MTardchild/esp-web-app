@@ -77,6 +77,20 @@ if (isset($_POST["EspUpdate"])) {
     }
 }
 
+$windowUpdate = null;
+if (isset($_POST["WindowUpdate"])) {
+    if (trim($_POST["WindowUpdate"]) != "") {
+        $windowUpdate = $_POST['WindowUpdate'];
+    }
+}
+
+$roomUpdate = null;
+if (isset($_POST["RoomUpdate"])) {
+    if (trim($_POST["RoomUpdate"]) != "") {
+        $roomUpdate = $_POST['RoomUpdate'];
+    }
+}
+
 $injector->define('FrontController', [
     ':heartbeat' => $heartbeat,
     ':gridLayout' => $gridLayout,
@@ -84,7 +98,9 @@ $injector->define('FrontController', [
     ':wifiCredentials' => $wifiCredentials,
     ':locationUpdate' => $locationUpdate,
     ':doorUpdate' => $doorUpdate,
-    ':espUpdate' => $espUpdate]);
+    ':espUpdate' => $espUpdate,
+    ':windowUpdate' => $windowUpdate,
+    ':roomUpdate' => $roomUpdate]);
 $injector->share('FrontController');
 $injector->share('AjaxRequest');
 

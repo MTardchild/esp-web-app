@@ -22,11 +22,11 @@ class LocationService implements IDatabaseService {
     }
 
     public function update($location) {
-        return $this->locationMapper->insert($location);
+        return $this->locationMapper->update($location);
     }
 
     public function delete($locationId) {
-        return $this->locationMapper->insert($locationId);
+        return $this->locationMapper->delete($locationId);
     }
 
     public function find($locationId) {

@@ -16,6 +16,8 @@ class LedStrip extends ComponentBase implements JsonSerializable
 
     public static function createLedStripEmpty() {
         $ledStrip = new LedStrip();
+        $ledStrip->id = -1;
+        $ledStrip->espId = -1;
         $ledStrip->typeId = COMPONENT_TYPE_LED_STRIP;
 
         return $ledStrip;

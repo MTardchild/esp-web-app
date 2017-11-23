@@ -26,13 +26,14 @@ class LocationMapper implements IDatabaseMapper, IDatabaseObjectMapper {
     public function update($location) {
         $isSuccessful = false;
 
-        if ($location instanceof Room) {
-            $query = $this->database->prepare("UPDATE location SET location.loc_name = :name, location.loc_room = :room, location.loc_door = :door, location.loc_window = :window WHERE room.rom_id = :id;");
+        if ($location instanceof Location) {
+            var_dump($location);
+            $query = $this->database->prepare("UPDATE location SET location.loc_name = :name, location.loc_room = :room, location.loc_door = :door, location.loc_window = :window WHERE location.loc_id = :id;");
             $isSuccessful = $query->execute(array(  'id' => $location->getId(),
                                                     'name' => $location->getName(),
-                                                    'room' => $location->getRoom()->getId(),
-                                                    'door' => $location->getDoor()->getId(),
-                                                    'window' => $location->getWindow()->getId()));
+                                                    'room' => $location->getRoom()->getId() === 0 ? null : $location->getRoom()->getId(),
+                                                    'door' => $location->getDoor()->getId() === 0 ? null : $location->getDoor()->getId(),
+                                                    'window' => $location->getWindow()->getId() === 0 ? null : $location->getWindow()->getId()));
         }
 
         return $isSuccessful;

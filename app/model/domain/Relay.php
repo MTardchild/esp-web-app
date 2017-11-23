@@ -14,6 +14,9 @@ class Relay extends ComponentBase implements JsonSerializable {
 
 	public static function createRelayEmpty() {
         $relay = new Relay();
+		$relay->id = -1;
+		$relay->name = "";
+        $relay->espId = -1;
         $relay->typeId = COMPONENT_TYPE_RELAY;
 
         return $relay;
