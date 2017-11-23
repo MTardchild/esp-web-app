@@ -9,7 +9,7 @@ class DatabaseObjectBase {
     }
 
     public function setId($id) {
-        if (is_null($this->id)) {
+        if (is_null($this->id) || $this->id == -1) {
             $this->id = $id;
         }
     }

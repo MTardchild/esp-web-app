@@ -25,6 +25,7 @@ var ConfiguredEspConfigurationController = {
     addComponent: function (espId, componentTypeId) {
         $.get("?route=ajax&action=addComponent&esp=" + espId + "&type=" + componentTypeId,
             function (data, status) {
+                console.log(data);
                 var component = JSON.parse(data);
                 component.name = component.name == null ? "" : component.name;
 

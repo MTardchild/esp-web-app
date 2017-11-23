@@ -16,7 +16,7 @@ class ComponentMapper implements IDatabaseMapper, IDatabaseObjectMapper {
             $isSuccessful = $query->execute(array(
                 'id' => $component->getId(),
                 'name' => $component->getName(),
-                'esp' => $component->getEspId(),
+                'esp' => $component->getEspId() == 0 ? null : $component->getEspId(),
                 'type' => $component->getTypeId()
             ));
         }
@@ -86,4 +86,3 @@ class ComponentMapper implements IDatabaseMapper, IDatabaseObjectMapper {
         return $freeId['cmp_id']+1;
     }
 }
-
