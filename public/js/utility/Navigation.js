@@ -1,6 +1,6 @@
 var Navigation = {
     toConfigView: function () {
-        ConfigController.requestConfigView();
+        // ConfigController.requestConfigView();
 
         if ($('#ruleView').isDisplayed()) {
             $('#ruleView').fadeOut(250);
@@ -12,7 +12,8 @@ var Navigation = {
     },
     toDashboardView: function () {
         $('.grid-stack').off('change');
-        DashboardController.requestDashboardGrid();
+        // DashboardController.requestDashboardGrid();
+        $('.loading').removeClass('loading');
 
         if ($('#ruleView').isDisplayed()) {
             $('#ruleView').fadeOut(250);

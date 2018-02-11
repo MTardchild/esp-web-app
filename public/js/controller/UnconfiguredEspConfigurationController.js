@@ -6,8 +6,8 @@ var UnconfiguredEspConfigurationController = {
                 var dummy = JSON.parse('[["", "esp_hwidshitz", "mode", "channel", "rate", "signal", "random", "security"]]');
                 UnconfiguredEspConfigurationController.addWifiRows(networks);
                 UnconfiguredEspConfigurationController.addWifiRows(dummy);
-                ConfigController.bindFlashButtons();
-                ConfigController.bindUpdateWifiButtons();
+                configViewModel.bindFlashButtons();
+                configViewModel.bindUpdateWifiButtons();
             }
         );
     },

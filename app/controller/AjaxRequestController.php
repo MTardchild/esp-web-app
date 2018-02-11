@@ -137,18 +137,6 @@ class AjaxRequestController {
         $this->ajaxRequest->setMessage("Color successfully sent to LED-Strip.");
     }
 
-    public function getDashboardView($action) {
-        $file = __DIR__ . "/../view/template/TileTemplate.php";
-        $template = $this->getTemplate($file);
-        $this->ajaxRequest->setMessage($template);
-    }
-
-    public function getConfigView($action) {
-        $file = __DIR__ . "/../view/template/ConfigTemplate.php";
-        $template = $this->getTemplate($file);
-        $this->ajaxRequest->setMessage($template);
-    }
-
     public function getGridLayout($action) {
         $this->ajaxRequest->setMessage($this->gridLayoutService->load());
     }
@@ -157,7 +145,7 @@ class AjaxRequestController {
         $this->ajaxRequest->setMessage($this->gridLayoutService->loadComponentOrder());
     }
 
-    public function getAllEsp($action) {
+    public function getEsps($action) {
         $this->ajaxRequest->setMessage(json_encode($this->espService->findAll()));
     }
 
@@ -201,20 +189,6 @@ class AjaxRequestController {
 
     public function getLocations($action) {
         $this->ajaxRequest->setMessage(json_encode($this->locationService->findAll()));
-    }
-
-    private function getTemplate($file) {
-        $buffer = "Could not find template";
-        $exists = file_exists($file);
-
-        if ($exists) {
-            ob_start();
-            include $file;
-            $buffer = ob_get_contents();
-            ob_end_clean();
-        }
-
-        return $buffer;
     }
 
     public function flash($action) {

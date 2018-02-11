@@ -22,7 +22,7 @@
             "fabpot/php-cs-fixer": "~1.9",
             "phpunit/phpunit": "^4.7"
         },
-        "time": "2016-03-14 20:10:19",
+        "time": "2016-03-14T20:10:19+00:00",
         "type": "library",
         "installation-source": "dist",
         "autoload": {
@@ -60,6 +60,59 @@
             "dependency injection",
             "dic",
             "ioc"
+        ]
+    },
+    {
+        "name": "twbs/bootstrap",
+        "version": "v4.0.0",
+        "version_normalized": "4.0.0.0",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/twbs/bootstrap.git",
+            "reference": "8a628b943cf31ca0a002c08af661a95772480225"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/twbs/bootstrap/zipball/8a628b943cf31ca0a002c08af661a95772480225",
+            "reference": "8a628b943cf31ca0a002c08af661a95772480225",
+            "shasum": ""
+        },
+        "replace": {
+            "twitter/bootstrap": "self.version"
+        },
+        "time": "2018-01-18T18:29:48+00:00",
+        "type": "library",
+        "extra": {
+            "branch-alias": {
+                "dev-master": "3.3.x-dev"
+            }
+        },
+        "installation-source": "dist",
+        "notification-url": "https://packagist.org/downloads/",
+        "license": [
+            "MIT"
+        ],
+        "authors": [
+            {
+                "name": "Jacob Thornton",
+                "email": "jacobthornton@gmail.com"
+            },
+            {
+                "name": "Mark Otto",
+                "email": "markdotto@gmail.com"
+            }
+        ],
+        "description": "The most popular front-end framework for developing responsive, mobile first projects on the web.",
+        "homepage": "https://getbootstrap.com",
+        "keywords": [
+            "JS",
+            "css",
+            "framework",
+            "front-end",
+            "mobile-first",
+            "responsive",
+            "sass",
+            "web"
         ]
     }
 ]
