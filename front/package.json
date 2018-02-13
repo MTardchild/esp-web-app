@@ -1,0 +1,22 @@
+{
+  "name": "public",
+  "version": "0.1.0",
+  "private": true,
+  "homepage": "build/",
+  "dependencies": {
+    "bootstrap": "^4.0.0",
+    "bootstrap-colorpicker": "^2.5.2",
+    "jquery": "^3.3.1",
+    "popper.js": "^1.12.9",
+    "react": "^16.2.0",
+    "react-color": "^2.13.8",
+    "react-dom": "^16.2.0",
+    "react-scripts": "1.1.1"
+  },
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test --env=jsdom",
+    "eject": "react-scripts eject"
+  }
+}

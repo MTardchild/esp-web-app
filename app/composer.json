@@ -1,6 +1,0 @@
-{
-    "require": {
-        "rdlowrey/auryn": "^1.4",
-        "twbs/bootstrap": "4.0.0"
-    }
-}
