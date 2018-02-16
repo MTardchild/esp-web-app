@@ -1,10 +1,12 @@
-import React, { Component } from 'react';
+import React from 'react';
 import '../node_modules/bootstrap/dist/css/bootstrap.min.css';
 import '../node_modules/bootstrap/dist/js/bootstrap.min';
 import './App.css';
 import 'bootstrap-colorpicker';
 import {Navigation} from './components/navigation.jsx';
 import {Dashboard} from './components/dashboard.jsx';
+import {Configuration} from "./components/configuration";
+import {Rules} from "./components/rules";
 
 class App extends React.Component {
     constructor(props) {
@@ -12,6 +14,12 @@ class App extends React.Component {
         this.state = {
             view: 0
         };
+
+        this.onNavClicked = this.onNavClicked.bind(this)
+    }
+    onNavClicked(id, event) {
+        event.preventDefault();
+        this.setState({view: id});
     }
     getActiveView() {
         let activeView;
@@ -20,10 +28,12 @@ class App extends React.Component {
                 activeView = <Dashboard/>;
                 break;
             case 1:
-                // activeView = <Configuration/>
+                activeView = <Configuration/>;
                 break;
             case 2:
-                // activeView = <Rules/>
+                activeView = <Rules/>;
+                break;
+            default:
                 break;
         }
 
@@ -32,7 +42,7 @@ class App extends React.Component {
   render() {
     return (
       <div className="App">
-          <Navigation/>
+          <Navigation onNavClicked={this.onNavClicked}/>
           {this.getActiveView()}
       </div>
     );

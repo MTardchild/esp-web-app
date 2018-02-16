@@ -37,6 +37,8 @@ export class Dashboard extends React.Component {
                 componentHtml = <LedStrip name={component.name} red={component.red} blue={component.blue}
                                           green={component.green} warmWhite={component.warmWhite} />;
                 break;
+            default:
+                break;
         }
 
         return componentHtml;

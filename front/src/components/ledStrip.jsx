@@ -1,22 +1,22 @@
 import React from 'react';
-import { AlphaPicker, HuePicker } from 'react-color';
+import { ChromePicker } from 'react-color';
 
 export class LedStrip extends React.Component {
-    constructor(props) {
-        super(props);
-    }
     static convertToByte(color) {
         return color/16;
     }
+    handleChangeComplete = (color, event) => {
+        console.log(color.hsv);
+        console.log(color.rgb);
+    };
     render() {
         return (
             <div>
-                <HuePicker width="100%" color={{
-                    r: LedStrip.convertToByte(this.props.red),
+                <ChromePicker color={{r: LedStrip.convertToByte(this.props.red),
                     g: LedStrip.convertToByte(this.props.green),
-                    b: LedStrip.convertToByte(this.props.blue)}}
-                />
-                <AlphaPicker width="100%" color={{a: this.props.warmWhite}}/>
+                    b: LedStrip.convertToByte(this.props.blue),
+                    a: this.props.warmWhite}}
+                    onChange={this.handleChangeComplete}/>
                 <p>
                     <div className="container">
                         <div className="row">

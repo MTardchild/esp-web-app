@@ -76,3 +76,25 @@ input:checked + .slider:before {
 .alpha-picker > div {
   border: 1px solid grey;
 }
+
+.github-picker {
+  width: 100% !important;
+  margin-left: -5px;
+  padding: 5px !important;
+}
+
+.chrome-picker {
+  width: 100% !important;
+  margin-left: -5px;
+  padding: 5px !important;
+}
+
+@media screen and (max-width: 500px) {
+  .card-columns {
+    column-count: 1 !important;
+  }
+}
+
+.nav-tabs {
+  padding-left: 5px;
+}
