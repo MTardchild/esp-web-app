@@ -165,7 +165,7 @@ class AjaxRequestController {
         $this->ajaxRequest->setMessage(json_encode($component));
     }
 
-    public function getWifiNetworks($action) {
+    public function getUnconfiguredEsps($action) {
         $wifiNetworks = $this->configurationService->getWifiNetworks();
 
         $this->ajaxRequest->setMessage(json_encode($wifiNetworks));

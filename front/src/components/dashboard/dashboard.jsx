@@ -4,25 +4,6 @@ import {Relay} from "./relay"
 import {LedStrip} from "./ledStrip"
 
 export class Dashboard extends React.Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            esps: []
-        };
-        this.getEsps();
-    }
-    getEsps() {
-        const self = this;
-        fetch("?route=ajax&action=getEsps")
-            .then(function (response) {
-                response.json().then(function(data) {
-                    self.setState({esps: data});
-                });
-            })
-            .catch(function (error) {
-                console.warn(error);
-            });
-    }
     static getComponent(component) {
         let componentHtml;
         switch(component.typeId) {
@@ -45,14 +26,13 @@ export class Dashboard extends React.Component {
     }
     getComponents(esp) {
         if (esp.components !== undefined) {
-            console.log(esp);
             return esp.components.map((component) =>
                 Dashboard.getComponent(component)
             );
         }
     }
     render() {
-        let espCards = this.state.esps.map((esp) =>
+        let espCards = this.props.esps.map((esp) =>
             <div className="card">
                 <div className="card-body">
                     <span> </span><h5 className="card-title">{esp.name}</h5>
