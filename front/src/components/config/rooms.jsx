@@ -32,7 +32,7 @@ export class Rooms extends React.Component {
         return (
             <div>
                 <div class="table-toolbar">
-                    <button className="btn btn-primary">Add Room</button>
+                    <button className="btn btn-outline-primary">Add Room</button>
                 </div>
                 <ReactDataGrid
                     rowGetter={this.rowGetter}

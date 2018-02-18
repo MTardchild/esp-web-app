@@ -54,7 +54,7 @@ export class Doors extends React.Component {
         return (
             <div>
                 <div class="table-toolbar">
-                    <button className="btn btn-primary">Add Door</button>
+                    <button className="btn btn-outline-primary">Add Door</button>
                 </div>
                 <ReactDataGrid
                     rowGetter={this.rowGetter}

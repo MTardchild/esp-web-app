@@ -37,7 +37,7 @@ export class Windows extends React.Component {
         return (
             <div>
                 <div class="table-toolbar">
-                    <button className="btn btn-primary">Add Window</button>
+                    <button className="btn btn-outline-primary">Add Window</button>
                 </div>
                 <ReactDataGrid
                     rowGetter={this.rowGetter}

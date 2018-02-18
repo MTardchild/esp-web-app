@@ -39,11 +39,24 @@ export class Firmwares extends React.Component {
     rowGetter = (i) => {
         return this.state.rows[i];
     };
+    handleAddRow = () => {
+        const newRow = {
+            id: parseInt(this.state.rows[this.state.rows.length-1].id) + 1,
+            name: "",
+            path: "",
+            timestamp: Date.now()
+        };
+
+        let newRows = this.state.rows.slice();
+        newRows.push(newRow);
+
+        this.setState({rows: newRows})
+    };
     render() {
         return (
             <div>
                 <div class="table-toolbar">
-                    <button className="btn btn-primary">Add Firmware</button>
+                    <button className="btn btn-outline-primary" onClick={this.handleAddRow}>Add Firmware</button>
                 </div>
                 <ReactDataGrid
                     rowGetter={this.rowGetter}
