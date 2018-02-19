@@ -11,6 +11,13 @@ export class Rooms extends React.Component {
             isModalOpen: false
         };
     }
+    createRow = (room) => {
+        let newRoom = {};
+        newRoom.id = this.getFreeId();
+        newRoom.name = room.name;
+        newRoom.buttons = this.getButtons(newRoom.id);
+        return newRoom;
+    };
     createRows = () => {
         return this.props.rooms.map((room) =>
             ({id: room.id,
@@ -51,6 +58,13 @@ export class Rooms extends React.Component {
     closeModal = () => {
         this.setState({isModalOpen: false});
     };
+    handleGridAdd = (room) => {
+        let rows = this.state.rows.slice();
+        let newRoom = this.createRow(room);
+        rows.push(newRoom);
+        this.setState({rows: rows});
+        this.closeModal();
+    };
     handleGridDelete = (roomId) => {
         let rows = this.state.rows.slice();
         let rowIndex = this.state.rows.map((row) => row.id).indexOf(roomId);
@@ -68,6 +82,12 @@ export class Rooms extends React.Component {
 
         this.setState({ rows });
     };
+    getFreeId = () => {
+        let freeId = 1;
+        if (this.state.rows.length > 0)
+            freeId = parseInt(this.state.rows[this.state.rows.length-1].id, 10)+1;
+        return freeId;
+    };
     render() {
         return (
             <div>
@@ -83,7 +103,8 @@ export class Rooms extends React.Component {
 
                 <RoomAddModal isModalOpen={this.state.isModalOpen}
                               closeModal={this.closeModal}
-                              freeId={parseInt(this.state.rows[this.state.rows.length-1].id)+1}/>
+                              add={this.handleGridAdd}
+                              freeId={this.getFreeId()}/>
             </div>
         );
     }

@@ -26,10 +26,10 @@ export class WifiModal extends React.Component {
         return "";
     };
     onSsidChanged = (event) => {
-        this.setState({ssid: event.currentTarget.value})
+        this.setState({ssid: event.currentTarget.value});
     };
     onPasswordChanged = (event) => {
-        this.setState({password: event.currentTarget.value})
+        this.setState({password: event.currentTarget.value});
     };
     render() {
         return (

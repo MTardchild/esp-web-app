@@ -5,14 +5,27 @@ export class WindowAddModal extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            newFirmware: {}
+            window: {
+                name: "",
+                roomId: this.props.rooms[0].id
+            }
         };
     }
     getSelectOptionsRooms() {
         return this.props.rooms.map((room) =>
-            <option>{room.name}</option>
+            <option value={room.id}>{room.name}</option>
         );
     }
+    onNameChanged = (event) => {
+        let window = this.state.window;
+        window.name = event.currentTarget.value;
+        this.setState({window: window});
+    };
+    onRoomChanged = (event) => {
+        let window = this.state.window;
+        window.roomId = event.currentTarget.value;
+        this.setState({window: window});
+    };
     render() {
         let selectOptionsRooms = this.getSelectOptionsRooms();
 
@@ -36,7 +49,8 @@ export class WindowAddModal extends React.Component {
                             <div className="input-group-prepend">
                                 <span className="input-group-text">Name</span>
                             </div>
-                            <input type="text" className="form-control"/>
+                            <input type="text" className="form-control" value={this.state.window.name}
+                                   onChange={this.onNameChanged}/>
                         </div>
                     </div>
                 </div>
@@ -44,7 +58,8 @@ export class WindowAddModal extends React.Component {
                     <div className="input-group-prepend">
                         <span className="input-group-text">Room</span>
                     </div>
-                    <select className="form-control">
+                    <select className="form-control" value={this.state.window.roomId}
+                            onChange={this.onRoomChanged}>
                         {selectOptionsRooms}
                     </select>
                 </div>
@@ -52,8 +67,10 @@ export class WindowAddModal extends React.Component {
                 <div className="row">
                     <div className="col">
                         <div className="float-right">
-                            <button type="button" className="btn btn-outline-secondary" onClick={this.props.closeModal}>Close</button>
-                            <button type="button" className="btn btn-outline-primary margin-left-md">Add</button>
+                            <button type="button" className="btn btn-outline-secondary"
+                                    onClick={this.props.closeModal}>Close</button>
+                            <button type="button" className="btn btn-outline-primary margin-left-md"
+                                    onClick={() => this.props.add(this.state.window)}>Add</button>
                         </div>
                     </div>
                 </div>

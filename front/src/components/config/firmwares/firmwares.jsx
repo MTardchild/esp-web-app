@@ -62,6 +62,14 @@ export class Firmwares extends React.Component {
     closeModal = () => {
         this.setState({isModalOpen: false});
     };
+    handleGridAdd = (firmware) => {
+        let rows = this.state.rows.slice();
+        firmware.id = this.getFreeId();
+        firmware.buttons = this.getButtons(firmware.id);
+        rows.push(firmware);
+        this.setState({rows: rows});
+        this.closeModal();
+    };
     handleGridDelete = (firmwareId) => {
         let rows = this.state.rows.slice();
         let rowIndex = this.state.rows.map((row) => row.id).indexOf(firmwareId);
@@ -79,6 +87,12 @@ export class Firmwares extends React.Component {
 
         this.setState({ rows });
     };
+    getFreeId = () => {
+        let freeId = 1;
+        if (this.state.rows.length > 0)
+            freeId = parseInt(this.state.rows[this.state.rows.length-1].id, 10)+1;
+        return freeId;
+    };
     render() {
         return (
             <div>
@@ -94,7 +108,8 @@ export class Firmwares extends React.Component {
 
                 <FirmwareAddModal isModalOpen={this.state.isModalOpen}
                                   closeModal={this.closeModal}
-                                  freeId={parseInt(this.state.rows[this.state.rows.length-1].id)+1}/>
+                                  add={this.handleGridAdd}
+                                  freeId={this.getFreeId()}/>
             </div>
         );
     }

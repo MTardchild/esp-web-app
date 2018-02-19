@@ -21,6 +21,19 @@ export class Doors extends React.Component {
                 room2: door.room2.name,
                 buttons: this.getButtons(door.id)}));
     };
+    createRow = (door) => {
+        let newDoor = {};
+        newDoor.id = this.getFreeId();
+        newDoor.name = door.name;
+        let room1Index = this.props.rooms.map((room) => room.id).indexOf(door.room1Id);
+        newDoor.room1 = this.props.rooms[room1Index].name;
+        if (door.room2Id > 0) {
+            let room2Index = this.props.rooms.map((room) => room.id).indexOf(door.room2Id);
+            newDoor.room2 = this.props.rooms[room2Index].name;
+        }
+        newDoor.buttons = this.getButtons(newDoor.id);
+        return newDoor;
+    };
     getDropdownOptions = () => {
           return this.props.rooms.map((room) =>
               {
@@ -75,23 +88,18 @@ export class Doors extends React.Component {
         rows.splice(rowIndex, 1);
         this.setState({rows: rows});
     };
-    handleAddRow = ({ newRowIndex }) => {
-        const newRow = {
-            id: newRowIndex,
-            name: '',
-            room1: '',
-            room2: ''
-        };
-
-        let rows = this.state.rows.slice();
-        rows.push(newRow);
-        this.setState({ rows });
-    };
     openModal = () => {
         this.setState({isModalOpen: true});
     };
     closeModal = () => {
         this.setState({isModalOpen: false});
+    };
+    handleGridAdd = (door) => {
+        let rows = this.state.rows.slice();
+        let newDoor = this.createRow(door);
+        rows.push(newDoor);
+        this.setState({rows: rows});
+        this.closeModal();
     };
     handleGridRowsUpdated = ({ fromRow, toRow, updated }) => {
         let rows = this.state.rows.slice();
@@ -103,6 +111,12 @@ export class Doors extends React.Component {
         }
 
         this.setState({ rows });
+    };
+    getFreeId = () => {
+        let freeId = 1;
+        if (this.state.rows.length > 0)
+            freeId = parseInt(this.state.rows[this.state.rows.length-1].id, 10)+1;
+        return freeId;
     };
     render() {
         return (
@@ -120,7 +134,8 @@ export class Doors extends React.Component {
                 <DoorAddModal isModalOpen={this.state.isModalOpen}
                               closeModal={this.closeModal}
                               rooms={this.props.rooms}
-                              freeId={parseInt(this.state.rows[this.state.rows.length-1].id)+1}/>
+                              add={this.handleGridAdd}
+                              freeId={this.getFreeId()}/>
             </div>
         );
     }

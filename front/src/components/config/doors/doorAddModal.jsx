@@ -5,14 +5,33 @@ export class DoorAddModal extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            newFirmware: {}
+            door: {
+                name: "",
+                room1Id: this.props.rooms[0].id,
+                room2Id: 0
+            }
         };
     }
     getSelectOptionsRooms() {
         return this.props.rooms.map((room) =>
-            <option>{room.name}</option>
+            <option value={room.id}>{room.name}</option>
         );
     }
+    onNameChanged = (event) => {
+        let door = this.state.door;
+        door.name = event.currentTarget.value;
+        this.setState({door: door});
+    };
+    onRoom1Changed = (event) => {
+        let door = this.state.door;
+        door.room1Id = event.currentTarget.value;
+        this.setState({door: door});
+    };
+    onRoom2Changed = (event) => {
+        let door = this.state.door;
+        door.room2Id = event.currentTarget.value;
+        this.setState({door: door});
+    };
     render() {
         let selectOptionsRooms = this.getSelectOptionsRooms();
 
@@ -36,7 +55,8 @@ export class DoorAddModal extends React.Component {
                             <div className="input-group-prepend">
                                 <span className="input-group-text">Name</span>
                             </div>
-                            <input type="text" className="form-control"/>
+                            <input type="text" className="form-control" value={this.state.door.name}
+                                    onChange={this.onNameChanged}/>
                         </div>
                     </div>
                 </div>
@@ -44,7 +64,8 @@ export class DoorAddModal extends React.Component {
                     <div className="input-group-prepend">
                         <span className="input-group-text">Room</span>
                     </div>
-                    <select className="form-control">
+                    <select className="form-control" value={this.state.door.room1Id}
+                            onChange={this.onRoom1Changed}>
                         {selectOptionsRooms}
                     </select>
                 </div>
@@ -52,8 +73,9 @@ export class DoorAddModal extends React.Component {
                     <div className="input-group-prepend">
                         <span className="input-group-text">Room</span>
                     </div>
-                    <select className="form-control">
-                        <option />
+                    <select className="form-control" value={this.state.door.room2Id}
+                            onChange={this.onRoom2Changed}>
+                        <option value={0} />
                         {selectOptionsRooms}
                     </select>
                 </div>
@@ -61,8 +83,10 @@ export class DoorAddModal extends React.Component {
                 <div className="row">
                     <div className="col">
                         <div className="float-right">
-                            <button type="button" className="btn btn-outline-secondary" onClick={this.props.closeModal}>Close</button>
-                            <button type="button" className="btn btn-outline-primary margin-left-md">Add</button>
+                            <button type="button" className="btn btn-outline-secondary"
+                                    onClick={this.props.closeModal}>Close</button>
+                            <button type="button" className="btn btn-outline-primary margin-left-md"
+                                    onClick={() => this.props.add(this.state.door)}>Add</button>
                         </div>
                     </div>
                 </div>

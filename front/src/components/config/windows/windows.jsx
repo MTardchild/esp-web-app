@@ -13,6 +13,15 @@ export class Windows extends React.Component {
             isModalOpen: false
         };
     }
+    createRow = (window) => {
+        let newWindow = {};
+        newWindow.id = this.getFreeId();
+        newWindow.name = window.name;
+        let roomIndex = this.props.rooms.map((room) => room.id).indexOf(window.roomId);
+        newWindow.room = this.props.rooms[roomIndex].name;
+        newWindow.buttons = this.getButtons(newWindow.id);
+        return newWindow;
+    };
     createRows = () => {
         return this.props.windows.map((window) =>
             ({id: window.id,
@@ -69,6 +78,13 @@ export class Windows extends React.Component {
     closeModal = () => {
         this.setState({isModalOpen: false});
     };
+    handleGridAdd = (window) => {
+        let rows = this.state.rows.slice();
+        let newWindow = this.createRow(window);
+        rows.push(newWindow);
+        this.setState({rows: rows});
+        this.closeModal();
+    };
     handleGridDelete = (windowId) => {
         let rows = this.state.rows.slice();
         let rowIndex = this.state.rows.map((row) => row.id).indexOf(windowId);
@@ -86,6 +102,12 @@ export class Windows extends React.Component {
 
         this.setState({ rows });
     };
+    getFreeId = () => {
+        let freeId = 1;
+        if (this.state.rows.length > 0)
+            freeId = parseInt(this.state.rows[this.state.rows.length-1].id, 10)+1;
+        return freeId;
+    };
     render() {
         return (
             <div>
@@ -102,7 +124,8 @@ export class Windows extends React.Component {
                 <WindowAddModal isModalOpen={this.state.isModalOpen}
                                 closeModal={this.closeModal}
                                 rooms={this.props.rooms}
-                                freeId={parseInt(this.state.rows[this.state.rows.length-1].id)+1}/>
+                                add={this.handleGridAdd}
+                                freeId={this.getFreeId()}/>
             </div>
         );
     }
