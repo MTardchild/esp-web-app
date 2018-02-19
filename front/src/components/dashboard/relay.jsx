@@ -1,4 +1,5 @@
 import React from 'react';
+import { withAlert } from 'react-alert'
 
 export class Relay extends React.Component {
     constructor(props) {
@@ -9,9 +10,21 @@ export class Relay extends React.Component {
 
         this.toggle = this.toggle.bind(this);
     }
-    toggle() {
+    toggle = () => {
+        const self = this;
+        this.props.alert.show('Toggling ' + this.props.name + " ...");
+        fetch("?route=ajax&action=toggleRelay&id=" + this.props.id)
+            .then(function (response) {
+                response.then(function(data) {
+                    self.props.alert.success('Toggled ' + self.props.name);
+                });
+            })
+            .catch(function (error) {
+                self.setState({'state': !self.state.state});
+                self.props.alert.error('Unable to toggle ' + self.props.name);
+            });
         this.setState({'state': !this.state.state});
-    }
+    };
     render() {
         return (
             <div>
@@ -25,3 +38,5 @@ export class Relay extends React.Component {
         );
     }
 }
+
+export default withAlert(Relay)

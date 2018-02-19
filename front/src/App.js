@@ -83,12 +83,12 @@ class App extends React.Component {
     }
   render() {
     return (
-      <div className="App">
-          <Navigation onNavClicked={this.onNavClicked}/>
-          {this.getActiveView()}
-      </div>
+        <div className="App">
+            <Navigation onNavClicked={this.onNavClicked}/>
+            {this.getActiveView()}
+        </div>
     );
   }
 }
 
-export default App;
+export default App

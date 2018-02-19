@@ -1,21 +1,23 @@
 import React from "react";
 import {Dht} from "./dht";
-import {Relay} from "./relay"
-import {LedStrip} from "./ledStrip"
+import Relay from "./relay"
+import LedStrip from "./ledStrip"
 
 export class Dashboard extends React.Component {
     static getComponent(component) {
         let componentHtml;
         switch(component.typeId) {
             case 1: // dht
-                componentHtml = <Dht name={component.name} temperature={component.temperature}
-                                     humidity={component.humidity} />;
+                componentHtml = <Dht id={component.id} name={component.name}
+                                     temperature={component.temperature} humidity={component.humidity} />;
                 break;
             case 2: // switch/relay
-                componentHtml = <Relay name={component.name} state={component.state} />;
+                componentHtml = <Relay id={component.id}  name={component.name}
+                                       state={component.state} />;
                 break;
             case 3: // led strip
-                componentHtml = <LedStrip name={component.name} red={component.red} blue={component.blue}
+                componentHtml = <LedStrip id={component.id}  name={component.name}
+                                          red={component.red} blue={component.blue}
                                           green={component.green} warmWhite={component.warmWhite} />;
                 break;
             default:
@@ -43,7 +45,7 @@ export class Dashboard extends React.Component {
             </div>
         );
         return (
-            <div class="card-columns" style={{margin: "10px"}}>{espCards}</div>
+            <div className="card-columns" style={{margin: "10px"}}>{espCards}</div>
         );
     }
 }

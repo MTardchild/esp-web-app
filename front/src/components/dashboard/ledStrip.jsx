@@ -1,5 +1,6 @@
 import React from 'react';
 import { ChromePicker } from 'react-color';
+import {withAlert} from "react-alert";
 
 export class LedStrip extends React.Component {
     static convertToByte(color) {
@@ -40,3 +41,5 @@ export class LedStrip extends React.Component {
         );
     }
 }
+
+export default withAlert(LedStrip)
