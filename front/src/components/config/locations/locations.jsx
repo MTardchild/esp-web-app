@@ -149,7 +149,8 @@ export class Locations extends React.Component {
                     doors={this.props.doors}
                     windows={this.props.windows}
                     isModalOpen={this.state.isModalOpen}
-                    closeModal={this.closeModal}/>
+                    closeModal={this.closeModal}
+                    freeId={parseInt(this.state.rows[this.state.rows.length-1].id)+1}/>
             </div>
         );
     }

@@ -119,7 +119,8 @@ export class Doors extends React.Component {
 
                 <DoorAddModal isModalOpen={this.state.isModalOpen}
                               closeModal={this.closeModal}
-                              rooms={this.props.rooms}/>
+                              rooms={this.props.rooms}
+                              freeId={parseInt(this.state.rows[this.state.rows.length-1].id)+1}/>
             </div>
         );
     }

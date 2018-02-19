@@ -92,7 +92,9 @@ export class Firmwares extends React.Component {
                     enableCellSelect={true}
                     onGridRowsUpdated={this.handleGridRowsUpdated}/>
 
-                <FirmwareAddModal isModalOpen={this.state.isModalOpen} closeModal={this.closeModal} />
+                <FirmwareAddModal isModalOpen={this.state.isModalOpen}
+                                  closeModal={this.closeModal}
+                                  freeId={parseInt(this.state.rows[this.state.rows.length-1].id)+1}/>
             </div>
         );
     }

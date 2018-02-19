@@ -3,12 +3,12 @@ USE espwebapp;
 INSERT INTO room VALUES (1, "Living Room");
 INSERT INTO room VALUES (2, "Kitchen");
 
-INSERT INTO door VALUES (1, "", 1, 2);
+INSERT INTO door VALUES (1, "Random Door", 1, 2);
 
 INSERT INTO window VALUES (1, "TV Left", 1);
 INSERT INTO window VALUES (2, "TV Right", 1);
 
-INSERT INTO location VALUES (1, "", 1, 1, NULL);
+INSERT INTO location VALUES (1, "My Place To Be", 1, 1, NULL);
 INSERT INTO location VALUES (2, "Behind TV", 1, NULL, NULL);
 INSERT INTO location VALUES (3, "Garden", NULL, NULL, NULL);
 

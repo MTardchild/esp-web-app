@@ -19,7 +19,7 @@ CREATE TABLE door
     dor_id INT NOT NULL,
     dor_name VARCHAR(255),
     dor_room_1 INT NOT NULL,
-    dor_room_2 INT NOT NULL,
+    dor_room_2 INT,
     PRIMARY KEY (dor_id),
     FOREIGN KEY (dor_room_1) REFERENCES room(rom_id),
     FOREIGN KEY (dor_room_2) REFERENCES room(rom_id)
@@ -37,7 +37,7 @@ CREATE TABLE window
 CREATE TABLE location
 (
     loc_id INT NOT NULL,
-    loc_name VARCHAR(255),
+    loc_name VARCHAR(255) NOT NULL,
     loc_room INT,
     loc_door INT,
     loc_window INT,

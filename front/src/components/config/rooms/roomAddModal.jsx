@@ -21,7 +21,7 @@ export class RoomAddModal extends React.Component {
                             <div className="input-group-prepend">
                                 <span className="input-group-text">ID</span>
                             </div>
-                            <input type="text" className="form-control"/>
+                            <input disabled={true} type="text" className="form-control" value={this.props.freeId}/>
                         </div>
                     </div>
                     <div className="col">

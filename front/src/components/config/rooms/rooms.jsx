@@ -81,7 +81,9 @@ export class Rooms extends React.Component {
                     enableCellSelect={true}
                     onGridRowsUpdated={this.handleGridRowsUpdated}/>
 
-                <RoomAddModal isModalOpen={this.state.isModalOpen} closeModal={this.closeModal} />
+                <RoomAddModal isModalOpen={this.state.isModalOpen}
+                              closeModal={this.closeModal}
+                              freeId={parseInt(this.state.rows[this.state.rows.length-1].id)+1}/>
             </div>
         );
     }
