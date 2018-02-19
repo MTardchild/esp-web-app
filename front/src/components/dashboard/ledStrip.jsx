@@ -3,21 +3,70 @@ import { ChromePicker } from 'react-color';
 import {withAlert} from "react-alert";
 
 export class LedStrip extends React.Component {
-    static convertToByte(color) {
+    constructor(props) {
+        super(props);
+        this.state = {
+            red: this.props.red,
+            green: this.props.green,
+            blue: this.props.blue,
+            warmWhite: this.props.warmWhite
+        };
+    }
+    static convertTo8(color) {
         return color/16;
     }
+    static convertTo12(color) {
+        return color*16;
+    }
+    handleChange = (color, event) => {
+        const self = this;
+        fetch(this.getUrl(color))
+            .then(function (response) {
+                response.then(function(data) {
+
+                });
+            })
+            .catch(function (error) {
+
+            });
+
+        this.updateState(color);
+    };
     handleChangeComplete = (color, event) => {
-        console.log(color.hsv);
-        console.log(color.rgb);
+        const self = this;
+        this.props.alert.show('Coloring ' + this.props.name + " ...");
+        fetch(this.getUrl(color))
+            .then(function (response) {
+                response.then(function(data) {
+                    self.props.alert.success('Colored ' + self.props.name);
+                });
+            })
+            .catch(function (error) {
+                self.props.alert.error('Unable to color ' + self.props.name);
+            });
+
+        this.updateState(color);
+    };
+    updateState = (color) => {
+        this.setState({
+            red: LedStrip.convertTo12(color.rgb.r),
+            green: LedStrip.convertTo12(color.rgb.g),
+            blue: LedStrip.convertTo12(color.rgb.b)});
+    };
+    getUrl = (color) => {
+        return "?route=ajax&action=setColor&id=" + this.props.id +
+            "&r=" + LedStrip.convertTo12(color.rgb.r) + "&g=" + LedStrip.convertTo12(color.rgb.g) +
+            "&b=" + LedStrip.convertTo12(color.rgb.b)
     };
     render() {
         return (
             <div>
-                <ChromePicker color={{r: LedStrip.convertToByte(this.props.red),
-                    g: LedStrip.convertToByte(this.props.green),
-                    b: LedStrip.convertToByte(this.props.blue),
-                    a: this.props.warmWhite}}
-                    onChange={this.handleChangeComplete}/>
+                <ChromePicker color={{r: LedStrip.convertTo8(this.state.red),
+                    g: LedStrip.convertTo8(this.state.green),
+                    b: LedStrip.convertTo8(this.state.blue),
+                    a: this.state.warmWhite}}
+                    onChange={this.handleChange}
+                    onChangeComplete={this.handleChangeComplete}/>
                 <p>
                     <div className="container">
                         <div className="row">

@@ -7,8 +7,6 @@ export class Relay extends React.Component {
         this.state = {
             state: this.props.state
         };
-
-        this.toggle = this.toggle.bind(this);
     }
     toggle = () => {
         const self = this;
@@ -20,10 +18,10 @@ export class Relay extends React.Component {
                 });
             })
             .catch(function (error) {
-                self.setState({'state': !self.state.state});
+                self.setState({state: !self.state.state});
                 self.props.alert.error('Unable to toggle ' + self.props.name);
             });
-        this.setState({'state': !this.state.state});
+        this.setState({state: !this.state.state});
     };
     render() {
         return (
