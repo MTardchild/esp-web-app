@@ -52,7 +52,7 @@ export class Rooms extends React.Component {
     render() {
         return (
             <div>
-                <div className="table-toolbar">
+                <div className="table-toolbar float-right">
                     <button className="btn btn-outline-primary" onClick={this.openModal}>Add Room</button>
                 </div>
                 <ReactDataGrid
