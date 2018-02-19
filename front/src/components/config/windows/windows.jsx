@@ -16,7 +16,8 @@ export class Windows extends React.Component {
         return this.props.windows.map((window) =>
             ({id: window.id,
                 name: window.name,
-                room: window.room.name}));
+                room: window.room.name,
+                buttons: this.getButtons()}));
     };
     getDropdownOptions = () => {
         return this.props.rooms.map((room) =>
@@ -43,8 +44,20 @@ export class Windows extends React.Component {
             key: 'room',
             name: 'Room',
             editor: this.RoomEditor
+        },
+        {
+            key: "buttons",
+            name: "",
+            width: 75
         }
     ];
+    getButtons = () => {
+        return (
+            <div className="justify-content-center">
+                <button className="btn btn-sm btn-outline-danger padding-x-sm">Delete</button>
+            </div>
+        );
+    };
     rowGetter = (i) => {
         return this.state.rows[i];
     };

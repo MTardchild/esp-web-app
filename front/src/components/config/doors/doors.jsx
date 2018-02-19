@@ -17,7 +17,8 @@ export class Doors extends React.Component {
             ({id: door.id,
                 name: door.name,
                 room1: door.room1.name,
-                room2: door.room2.name}));
+                room2: door.room2.name,
+                buttons: this.getButtons()}));
     };
     getDropdownOptions = () => {
           return this.props.rooms.map((room) =>
@@ -27,6 +28,13 @@ export class Doors extends React.Component {
                   return roomDropdown;
               }
           );
+    };
+    getButtons = () => {
+        return (
+            <div className="justify-content-center">
+                <button className="btn btn-sm btn-outline-danger padding-x-sm">Delete</button>
+            </div>
+        );
     };
     RoomEditor = <AutoCompleteEditor options={this.getDropdownOptions()} />;
     columns = [
@@ -49,6 +57,11 @@ export class Doors extends React.Component {
             key: 'room2',
             name: 'Adjacent Room',
             editor: this.RoomEditor
+        },
+        {
+            key: "buttons",
+            name: "",
+            width: 75
         }
     ];
     rowGetter = (i) => {

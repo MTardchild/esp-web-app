@@ -1,12 +1,12 @@
 import React from 'react';
 import {ConfigNavigation} from "./configNavigation";
-import {Firmwares} from "./firmwares";
-import {ConfiguredEsps} from "./configuredEsps";
-import {UnconfiguredEsps} from "./unconfiguredEsps";
-import {Windows} from "./windows";
-import {Doors} from "./doors";
-import {Rooms} from "./rooms";
-import {Locations} from "./locations";
+import {Firmwares} from "./firmwares/firmwares";
+import {ConfiguredEsps} from "./configured/configuredEsps";
+import {UnconfiguredEsps} from "./unconfigured/unconfiguredEsps";
+import {Windows} from "./windows/windows";
+import {Doors} from "./doors/doors";
+import {Rooms} from "./rooms/rooms";
+import {Locations} from "./locations/locations";
 
 export class Config extends React.Component {
     constructor(props) {
@@ -29,7 +29,7 @@ export class Config extends React.Component {
                 activeView = <ConfiguredEsps esps={this.props.esps}/>;
                 break;
             case 1:
-                activeView = <UnconfiguredEsps unconfiguredEsps={this.props.unconfiguredEsps}/>;
+                activeView = <UnconfiguredEsps unconfiguredEsps={this.props.unconfiguredEsps} firmwares={this.props.firmwares}/>;
                 break;
             case 2:
                 activeView = <Firmwares firmwares={this.props.firmwares}/>;
