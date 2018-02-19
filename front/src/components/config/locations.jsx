@@ -1,6 +1,8 @@
 import React from 'react';
 import ReactDataGrid from 'react-data-grid';
 import {LocationAddModal} from './locationAddModal'
+const { Editors, Formatters } = require('react-data-grid-addons');
+const { AutoComplete: AutoCompleteEditor, DropDownEditor } = Editors;
 
 export class Locations extends React.Component {
     constructor(props) {
@@ -18,6 +20,36 @@ export class Locations extends React.Component {
                 door: location.door.name,
                 window: location.window.name}));
     };
+    getDropdownOptionRooms = () => {
+        return this.props.rooms.map((room) =>
+            {
+                let roomOptions = room;
+                roomOptions.title = room.name;
+                return roomOptions;
+            }
+        );
+    };
+    getDropdownOptionDoors = () => {
+        return this.props.doors.map((door) =>
+            {
+                let doorOptions = door;
+                doorOptions.title = door.name;
+                return doorOptions;
+            }
+        );
+    };
+    getDropdownOptionWindows = () => {
+        return this.props.windows.map((window) =>
+            {
+                let windowOptions = window;
+                windowOptions.title = window.name;
+                return windowOptions;
+            }
+        );
+    };
+    RoomEditor = <AutoCompleteEditor options={this.getDropdownOptionRooms()} />;
+    DoorEditor = <AutoCompleteEditor options={this.getDropdownOptionDoors()} />;
+    WindowEditor = <AutoCompleteEditor options={this.getDropdownOptionWindows()} />;
     columns = [
         {
             key: 'id',
@@ -31,15 +63,18 @@ export class Locations extends React.Component {
         },
         {
             key: 'room',
-            name: 'Room'
+            name: 'Room',
+            editor: this.RoomEditor
         },
         {
             key: 'door',
-            name: 'Door'
+            name: 'Door',
+            editor: this.DoorEditor
         },
         {
             key: 'window',
-            name: 'Window'
+            name: 'Window',
+            editor: this.WindowEditor
         }
     ];
     rowGetter = (i) => {

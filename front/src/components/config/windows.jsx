@@ -1,6 +1,8 @@
 import React from 'react';
 import ReactDataGrid from 'react-data-grid';
 import {WindowAddModal} from "./windowAddModal";
+const { Editors, Formatters } = require('react-data-grid-addons');
+const { AutoComplete: AutoCompleteEditor, DropDownEditor } = Editors;
 
 export class Windows extends React.Component {
     constructor(props) {
@@ -16,6 +18,16 @@ export class Windows extends React.Component {
                 name: window.name,
                 room: window.room.name}));
     };
+    getDropdownOptions = () => {
+        return this.props.rooms.map((room) =>
+            {
+                let roomDropdown = room;
+                roomDropdown.title = room.name;
+                return roomDropdown;
+            }
+        );
+    };
+    RoomEditor = <AutoCompleteEditor options={this.getDropdownOptions()} />;
     columns = [
         {
             key: 'id',
@@ -29,7 +41,8 @@ export class Windows extends React.Component {
         },
         {
             key: 'room',
-            name: 'Room'
+            name: 'Room',
+            editor: this.RoomEditor
         }
     ];
     rowGetter = (i) => {
