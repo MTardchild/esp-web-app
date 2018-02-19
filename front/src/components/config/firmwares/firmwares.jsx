@@ -1,6 +1,7 @@
 import React from 'react';
 import ReactDataGrid from 'react-data-grid';
 import {FirmwareAddModal} from './firmwareAddModal'
+import update from "immutability-helper/index";
 
 export class Firmwares extends React.Component {
     constructor(props) {
@@ -16,12 +17,13 @@ export class Firmwares extends React.Component {
                 name: firmware.name,
                 path: firmware.path,
                 timestamp: firmware.timestamp,
-                buttons: this.getButtons()}));
+                buttons: this.getButtons(firmware.id)}));
     };
-    getButtons = () => {
+    getButtons = (firmwareId) => {
         return (
             <div className="justify-content-center">
-                <button className="btn btn-sm btn-outline-danger padding-x-sm">Delete</button>
+                <button className="btn btn-sm btn-outline-danger padding-x-sm"
+                        onClick={() => this.handleGridDelete(firmwareId)}>Delete</button>
             </div>
         );
     };
@@ -60,6 +62,23 @@ export class Firmwares extends React.Component {
     closeModal = () => {
         this.setState({isModalOpen: false});
     };
+    handleGridDelete = (firmwareId) => {
+        let rows = this.state.rows.slice();
+        let rowIndex = this.state.rows.map((row) => row.id).indexOf(firmwareId);
+        rows.splice(rowIndex, 1);
+        this.setState({rows: rows});
+    };
+    handleGridRowsUpdated = ({ fromRow, toRow, updated }) => {
+        let rows = this.state.rows.slice();
+
+        for (let i = fromRow; i <= toRow; i++) {
+            let rowToUpdate = rows[i];
+            let updatedRow = update(rowToUpdate, {$merge: updated});
+            rows[i] = updatedRow;
+        }
+
+        this.setState({ rows });
+    };
     render() {
         return (
             <div>
@@ -70,7 +89,8 @@ export class Firmwares extends React.Component {
                     rowGetter={this.rowGetter}
                     columns={this.columns}
                     rowsCount={this.state.rows.length}
-                    enableCellSelect={true}/>
+                    enableCellSelect={true}
+                    onGridRowsUpdated={this.handleGridRowsUpdated}/>
 
                 <FirmwareAddModal isModalOpen={this.state.isModalOpen} closeModal={this.closeModal} />
             </div>

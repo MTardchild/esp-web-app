@@ -1,6 +1,7 @@
 import React from 'react';
 import ReactDataGrid from 'react-data-grid';
 import {DoorAddModal} from "./doorAddModal";
+import update from "immutability-helper/index";
 const { Editors, Formatters } = require('react-data-grid-addons');
 const { AutoComplete: AutoCompleteEditor, DropDownEditor } = Editors;
 
@@ -18,7 +19,7 @@ export class Doors extends React.Component {
                 name: door.name,
                 room1: door.room1.name,
                 room2: door.room2.name,
-                buttons: this.getButtons()}));
+                buttons: this.getButtons(door.id)}));
     };
     getDropdownOptions = () => {
           return this.props.rooms.map((room) =>
@@ -29,10 +30,11 @@ export class Doors extends React.Component {
               }
           );
     };
-    getButtons = () => {
+    getButtons = (doorId) => {
         return (
             <div className="justify-content-center">
-                <button className="btn btn-sm btn-outline-danger padding-x-sm">Delete</button>
+                <button className="btn btn-sm btn-outline-danger padding-x-sm"
+                        onClick={() => this.handleGridDelete(doorId)}>Delete</button>
             </div>
         );
     };
@@ -67,6 +69,12 @@ export class Doors extends React.Component {
     rowGetter = (i) => {
         return this.state.rows[i];
     };
+    handleGridDelete = (doorId) => {
+        let rows = this.state.rows.slice();
+        let rowIndex = this.state.rows.map((row) => row.id).indexOf(doorId);
+        rows.splice(rowIndex, 1);
+        this.setState({rows: rows});
+    };
     handleAddRow = ({ newRowIndex }) => {
         const newRow = {
             id: newRowIndex,
@@ -85,6 +93,17 @@ export class Doors extends React.Component {
     closeModal = () => {
         this.setState({isModalOpen: false});
     };
+    handleGridRowsUpdated = ({ fromRow, toRow, updated }) => {
+        let rows = this.state.rows.slice();
+
+        for (let i = fromRow; i <= toRow; i++) {
+            let rowToUpdate = rows[i];
+            let updatedRow = update(rowToUpdate, {$merge: updated});
+            rows[i] = updatedRow;
+        }
+
+        this.setState({ rows });
+    };
     render() {
         return (
             <div>
@@ -95,7 +114,8 @@ export class Doors extends React.Component {
                     rowGetter={this.rowGetter}
                     columns={this.columns}
                     rowsCount={this.state.rows.length}
-                    enableCellSelect={true}/>
+                    enableCellSelect={true}
+                    onGridRowsUpdated={this.handleGridRowsUpdated}/>
 
                 <DoorAddModal isModalOpen={this.state.isModalOpen}
                               closeModal={this.closeModal}

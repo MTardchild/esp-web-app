@@ -7,6 +7,7 @@
     "bootstrap": "^4.0.0",
     "bootstrap-colorpicker": "^2.5.2",
     "create-react-class": "^15.6.3",
+    "immutability-helper": "^2.6.5",
     "jquery": "^3.3.1",
     "popper.js": "^1.12.9",
     "prop-types": "^15.6.0",

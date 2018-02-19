@@ -1,6 +1,7 @@
 import React from 'react';
 import ReactDataGrid from 'react-data-grid';
 import {WindowAddModal} from "./windowAddModal";
+import update from "immutability-helper/index";
 const { Editors, Formatters } = require('react-data-grid-addons');
 const { AutoComplete: AutoCompleteEditor, DropDownEditor } = Editors;
 
@@ -17,7 +18,7 @@ export class Windows extends React.Component {
             ({id: window.id,
                 name: window.name,
                 room: window.room.name,
-                buttons: this.getButtons()}));
+                buttons: this.getButtons(window.id)}));
     };
     getDropdownOptions = () => {
         return this.props.rooms.map((room) =>
@@ -51,10 +52,11 @@ export class Windows extends React.Component {
             width: 75
         }
     ];
-    getButtons = () => {
+    getButtons = (windowId) => {
         return (
             <div className="justify-content-center">
-                <button className="btn btn-sm btn-outline-danger padding-x-sm">Delete</button>
+                <button className="btn btn-sm btn-outline-danger padding-x-sm"
+                        onClick={() => this.handleGridDelete(windowId)}>Delete</button>
             </div>
         );
     };
@@ -67,6 +69,23 @@ export class Windows extends React.Component {
     closeModal = () => {
         this.setState({isModalOpen: false});
     };
+    handleGridDelete = (windowId) => {
+        let rows = this.state.rows.slice();
+        let rowIndex = this.state.rows.map((row) => row.id).indexOf(windowId);
+        rows.splice(rowIndex, 1);
+        this.setState({rows: rows});
+    };
+    handleGridRowsUpdated = ({ fromRow, toRow, updated }) => {
+        let rows = this.state.rows.slice();
+
+        for (let i = fromRow; i <= toRow; i++) {
+            let rowToUpdate = rows[i];
+            let updatedRow = update(rowToUpdate, {$merge: updated});
+            rows[i] = updatedRow;
+        }
+
+        this.setState({ rows });
+    };
     render() {
         return (
             <div>
@@ -77,7 +96,8 @@ export class Windows extends React.Component {
                     rowGetter={this.rowGetter}
                     columns={this.columns}
                     rowsCount={this.state.rows.length}
-                    enableCellSelect={true}/>
+                    enableCellSelect={true}
+                    onGridRowsUpdated={this.handleGridRowsUpdated}/>
 
                 <WindowAddModal isModalOpen={this.state.isModalOpen}
                                 closeModal={this.closeModal}

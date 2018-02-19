@@ -1,5 +1,6 @@
 import React from 'react';
 import ReactDataGrid from 'react-data-grid';
+import update from 'immutability-helper'
 
 export class ConfiguredEsps extends React.Component {
     constructor(props) {
@@ -8,13 +9,6 @@ export class ConfiguredEsps extends React.Component {
             rows: this.createRows()
         };
     }
-    createRows = () => {
-        return this.props.esps.map((esp) =>
-            ({id: esp.id,
-              name: esp.name,
-              ip: esp.ip,
-              location: esp.location.name}));
-    };
     columns = [
         {
             key: 'id',
@@ -36,8 +30,26 @@ export class ConfiguredEsps extends React.Component {
             name: 'Location'
         }
     ];
+    createRows = () => {
+        return this.props.esps.map((esp) =>
+            ({id: esp.id,
+              name: esp.name,
+              ip: esp.ip,
+              location: esp.location.name}));
+    };
     rowGetter = (i) => {
         return this.state.rows[i];
+    };
+    handleGridRowsUpdated = ({ fromRow, toRow, updated }) => {
+        let rows = this.state.rows.slice();
+
+        for (let i = fromRow; i <= toRow; i++) {
+            let rowToUpdate = rows[i];
+            let updatedRow = update(rowToUpdate, {$merge: updated});
+            rows[i] = updatedRow;
+        }
+
+        this.setState({ rows });
     };
     render() {
         return (
@@ -46,7 +58,8 @@ export class ConfiguredEsps extends React.Component {
                     rowGetter={this.rowGetter}
                     columns={this.columns}
                     rowsCount={this.state.rows.length}
-                    enableCellSelect={true}/>
+                    enableCellSelect={true}
+                    onGridRowsUpdated={this.handleGridRowsUpdated}/>
             </div>
         );
     }

@@ -1,6 +1,7 @@
 import React from 'react';
 import ReactDataGrid from 'react-data-grid';
 import {RoomAddModal} from "./roomAddModal";
+import update from "immutability-helper/index";
 
 export class Rooms extends React.Component {
     constructor(props) {
@@ -14,7 +15,7 @@ export class Rooms extends React.Component {
         return this.props.rooms.map((room) =>
             ({id: room.id,
                 name: room.name,
-                buttons: this.getButtons()}));
+                buttons: this.getButtons(room.id)}));
     };
     columns = [
         {
@@ -33,10 +34,11 @@ export class Rooms extends React.Component {
             width: 75
         }
     ];
-    getButtons = () => {
+    getButtons = (roomId) => {
         return (
             <div className="justify-content-center">
-                <button className="btn btn-sm btn-outline-danger padding-x-sm">Delete</button>
+                <button className="btn btn-sm btn-outline-danger padding-x-sm"
+                        onClick={() => this.handleGridDelete(roomId)}>Delete</button>
             </div>
         );
     };
@@ -49,6 +51,23 @@ export class Rooms extends React.Component {
     closeModal = () => {
         this.setState({isModalOpen: false});
     };
+    handleGridDelete = (roomId) => {
+        let rows = this.state.rows.slice();
+        let rowIndex = this.state.rows.map((row) => row.id).indexOf(roomId);
+        rows.splice(rowIndex, 1);
+        this.setState({rows: rows});
+    };
+    handleGridRowsUpdated = ({ fromRow, toRow, updated }) => {
+        let rows = this.state.rows.slice();
+
+        for (let i = fromRow; i <= toRow; i++) {
+            let rowToUpdate = rows[i];
+            let updatedRow = update(rowToUpdate, {$merge: updated});
+            rows[i] = updatedRow;
+        }
+
+        this.setState({ rows });
+    };
     render() {
         return (
             <div>
@@ -59,7 +78,8 @@ export class Rooms extends React.Component {
                     rowGetter={this.rowGetter}
                     columns={this.columns}
                     rowsCount={this.state.rows.length}
-                    enableCellSelect={true}/>
+                    enableCellSelect={true}
+                    onGridRowsUpdated={this.handleGridRowsUpdated}/>
 
                 <RoomAddModal isModalOpen={this.state.isModalOpen} closeModal={this.closeModal} />
             </div>

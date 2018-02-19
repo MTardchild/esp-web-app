@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDataGrid from 'react-data-grid';
-import {FlashModal} from "./flashModal";
-import {WifiModal} from "./wifiModal";
+import FlashModal from "./flashModal";
+import WifiModal from "./wifiModal";
 
 export class UnconfiguredEsps extends React.Component {
     constructor(props) {
@@ -9,18 +9,20 @@ export class UnconfiguredEsps extends React.Component {
         this.state = {
             rows: this.createRows(),
             isModalWifiOpen: false,
-            isModalFlashOpen: false
+            isModalFlashOpen: false,
+            selectedHardwareId: -1
         };
     }
     openModalFlash = (hardwareId) => {
-        console.log("hi");
-        this.setState({isModalFlashOpen: true});
+        this.setState({isModalFlashOpen: true,
+            selectedHardwareId: hardwareId});
     };
     closeModalFlash = () => {
         this.setState({isModalFlashOpen: false});
     };
     openModalWifi = (hardwareId) => {
-        this.setState({isModalWifiOpen: true});
+        this.setState({isModalWifiOpen: true,
+            selectedHardwareId: hardwareId});
     };
     closeModalWifi = () => {
         this.setState({isModalWifiOpen: false});
@@ -93,9 +95,11 @@ export class UnconfiguredEsps extends React.Component {
 
                 <FlashModal isModalOpen={this.state.isModalFlashOpen}
                             closeModal={this.closeModalFlash}
-                            firmwares={this.props.firmwares}/>
+                            firmwares={this.props.firmwares}
+                            hardwareId={this.state.selectedHardwareId}/>
                 <WifiModal isModalOpen={this.state.isModalWifiOpen}
-                           closeModal={this.closeModalWifi}/>
+                           closeModal={this.closeModalWifi}
+                           hardwareId={this.state.selectedHardwareId}/>
             </div>
         );
     }

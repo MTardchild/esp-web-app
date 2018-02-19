@@ -1,6 +1,7 @@
 import React from 'react';
 import ReactDataGrid from 'react-data-grid';
 import {LocationAddModal} from './locationAddModal'
+import update from "immutability-helper/index";
 const { Editors, Formatters } = require('react-data-grid-addons');
 const { AutoComplete: AutoCompleteEditor, DropDownEditor } = Editors;
 
@@ -12,45 +13,6 @@ export class Locations extends React.Component {
             isModalOpen: false
         };
     }
-    createRows = () => {
-        return this.props.locations.map((location) =>
-            ({id: location.id,
-                name: location.name,
-                room: location.room.name,
-                door: location.door.name,
-                window: location.window.name,
-                buttons: this.getButtons()}));
-    };
-    getDropdownOptionRooms = () => {
-        return this.props.rooms.map((room) =>
-            {
-                let roomOptions = room;
-                roomOptions.title = room.name;
-                return roomOptions;
-            }
-        );
-    };
-    getDropdownOptionDoors = () => {
-        return this.props.doors.map((door) =>
-            {
-                let doorOptions = door;
-                doorOptions.title = door.name;
-                return doorOptions;
-            }
-        );
-    };
-    getDropdownOptionWindows = () => {
-        return this.props.windows.map((window) =>
-            {
-                let windowOptions = window;
-                windowOptions.title = window.name;
-                return windowOptions;
-            }
-        );
-    };
-    RoomEditor = <AutoCompleteEditor options={this.getDropdownOptionRooms()} />;
-    DoorEditor = <AutoCompleteEditor options={this.getDropdownOptionDoors()} />;
-    WindowEditor = <AutoCompleteEditor options={this.getDropdownOptionWindows()} />;
     columns = [
         {
             key: 'id',
@@ -83,10 +45,50 @@ export class Locations extends React.Component {
             width: 75
         }
     ];
-    getButtons = () => {
+    createRows = () => {
+        return this.props.locations.map((location) =>
+            ({id: location.id,
+                name: location.name,
+                room: location.room.name,
+                door: location.door.name,
+                window: location.window.name,
+                buttons: this.getButtons(location.id)}));
+    };
+    getDropdownOptionRooms = () => {
+        return this.props.rooms.map((room) =>
+            {
+                let roomOptions = room;
+                roomOptions.title = room.name;
+                return roomOptions;
+            }
+        );
+    };
+    getDropdownOptionDoors = () => {
+        return this.props.doors.map((door) =>
+            {
+                let doorOptions = door;
+                doorOptions.title = door.name;
+                return doorOptions;
+            }
+        );
+    };
+    getDropdownOptionWindows = () => {
+        return this.props.windows.map((window) =>
+            {
+                let windowOptions = window;
+                windowOptions.title = window.name;
+                return windowOptions;
+            }
+        );
+    };
+    RoomEditor = <AutoCompleteEditor options={this.getDropdownOptionRooms()} />;
+    DoorEditor = <AutoCompleteEditor options={this.getDropdownOptionDoors()} />;
+    WindowEditor = <AutoCompleteEditor options={this.getDropdownOptionWindows()} />;
+    getButtons = (locationId) => {
         return (
             <div className="justify-content-center">
-                <button className="btn btn-sm btn-outline-danger padding-x-sm">Delete</button>
+                <button className="btn btn-sm btn-outline-danger padding-x-sm"
+                        onClick={() => this.handleGridDelete(locationId)}>Delete</button>
             </div>
         );
     };
@@ -112,6 +114,23 @@ export class Locations extends React.Component {
     closeModal = () => {
         this.setState({isModalOpen: false});
     };
+    handleGridDelete = (locationId) => {
+        let rows = this.state.rows.slice();
+        let rowIndex = this.state.rows.map((row) => row.id).indexOf(locationId);
+        rows.splice(rowIndex, 1);
+        this.setState({rows: rows});
+    };
+    handleGridRowsUpdated = ({ fromRow, toRow, updated }) => {
+        let rows = this.state.rows.slice();
+
+        for (let i = fromRow; i <= toRow; i++) {
+            let rowToUpdate = rows[i];
+            let updatedRow = update(rowToUpdate, {$merge: updated});
+            rows[i] = updatedRow;
+        }
+
+        this.setState({ rows });
+    };
     render() {
         return (
             <div>
@@ -122,7 +141,8 @@ export class Locations extends React.Component {
                     rowGetter={this.rowGetter}
                     columns={this.columns}
                     rowsCount={this.state.rows.length}
-                    enableCellSelect={true}/>
+                    enableCellSelect={true}
+                    onGridRowsUpdated={this.handleGridRowsUpdated}/>
 
                 <LocationAddModal
                     rooms={this.props.rooms}
