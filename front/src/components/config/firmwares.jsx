@@ -1,11 +1,13 @@
 import React from 'react';
 import ReactDataGrid from 'react-data-grid';
+import {FirmwareAddModal} from './firmwareAddModal'
 
 export class Firmwares extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            rows: this.createRows()
+            rows: this.createRows(),
+            isModalOpen: false
         };
     }
     createRows = () => {
@@ -52,17 +54,25 @@ export class Firmwares extends React.Component {
 
         this.setState({rows: newRows})
     };
+    openModal = () => {
+        this.setState({isModalOpen: true});
+    };
+    closeModal = () => {
+        this.setState({isModalOpen: false});
+    };
     render() {
         return (
             <div>
-                <div class="table-toolbar">
-                    <button className="btn btn-outline-primary" onClick={this.handleAddRow}>Add Firmware</button>
+                <div className="table-toolbar">
+                    <button className="btn btn-outline-primary" onClick={this.openModal}>Add Firmware</button>
                 </div>
                 <ReactDataGrid
                     rowGetter={this.rowGetter}
                     columns={this.columns}
                     rowsCount={this.state.rows.length}
                     enableCellSelect={true}/>
+
+                <FirmwareAddModal isModalOpen={this.state.isModalOpen} closeModal={this.closeModal} />
             </div>
         );
     }

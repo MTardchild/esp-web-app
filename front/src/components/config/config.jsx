@@ -35,16 +35,19 @@ export class Config extends React.Component {
                 activeView = <Firmwares firmwares={this.props.firmwares}/>;
                 break;
             case 3:
-                activeView = <Locations locations={this.props.locations}/>;
+                activeView = <Locations locations={this.props.locations}
+                                        rooms={this.props.rooms}
+                                        doors={this.props.doors}
+                                        windows={this.props.windows}/>;
                 break;
             case 4:
                 activeView = <Rooms rooms={this.props.rooms}/>;
                 break;
             case 5:
-                activeView = <Doors doors={this.props.doors}/>;
+                activeView = <Doors doors={this.props.doors} rooms={this.props.rooms}/>;
                 break;
             case 6:
-                activeView = <Windows windows={this.props.windows}/>;
+                activeView = <Windows windows={this.props.windows} rooms={this.props.rooms}/>;
                 break;
             default:
                 break;

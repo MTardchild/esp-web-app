@@ -1,14 +1,13 @@
 import React from 'react';
 import ReactDataGrid from 'react-data-grid';
-import Modal from 'react-modal';
+import {LocationAddModal} from './locationAddModal'
 
 export class Locations extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
             rows: this.createRows(),
-            isModalOpen: false,
-            newLocation: {}
+            isModalOpen: false
         };
     }
     createRows = () => {
@@ -68,7 +67,7 @@ export class Locations extends React.Component {
     render() {
         return (
             <div>
-                <div class="table-toolbar">
+                <div className="table-toolbar">
                     <button className="btn btn-outline-primary" onClick={this.openModal}>Add Location</button>
                 </div>
                 <ReactDataGrid
@@ -77,37 +76,12 @@ export class Locations extends React.Component {
                     rowsCount={this.state.rows.length}
                     enableCellSelect={true}/>
 
-                <Modal
-                    isOpen={this.state.isModalOpen}
-                    shouldCloseOnOverlayClick={false}
-                    contentLabel="Add Location Modal">
-                    <h1>Add Location</h1>
-                    <div className="row">
-                        <div className="col-2">
-                            <div className="input-group mb-3">
-                                <div className="input-group-prepend">
-                                    <span className="input-group-text" id="inputGroup-sizing-default">ID</span>
-                                </div>
-                                <input type="text" className="form-control" aria-label="new-location-id" aria-describedby="inputGroup-sizing-default"/>
-                            </div>
-                        </div>
-                        <div className="col">
-                            <div className="input-group mb-3">
-                                <div className="input-group-prepend">
-                                    <span className="input-group-text" id="inputGroup-sizing-default">Name</span>
-                                </div>
-                                <input type="text" className="form-control" aria-label="new-location-name" aria-describedby="inputGroup-sizing-default"/>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="container">
-                        <div className="row">
-                            <button type="button" class="btn btn-outline-secondary" onClick={this.closeModal}>Close</button>
-                            <button type="button" class="btn btn-outline-primary">Add</button>
-                        </div>
-                    </div>
-                </Modal>
+                <LocationAddModal
+                    rooms={this.props.rooms}
+                    doors={this.props.doors}
+                    windows={this.props.windows}
+                    isModalOpen={this.state.isModalOpen}
+                    closeModal={this.closeModal}/>
             </div>
         );
     }
