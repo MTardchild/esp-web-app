@@ -12,6 +12,7 @@ export class Rooms extends React.Component {
             isModalOpen: false
         };
     }
+
     createRow = (room) => {
         let newRoom = {};
         newRoom.id = this.getFreeId();
@@ -19,12 +20,16 @@ export class Rooms extends React.Component {
         newRoom.buttons = this.getButtons(newRoom.id);
         return newRoom;
     };
+
     createRows = () => {
         return this.props.rooms.map((room) =>
-            ({id: room.id,
+            ({
+                id: room.id,
                 name: room.name,
-                buttons: this.getButtons(room.id)}));
+                buttons: this.getButtons(room.id)
+            }));
     };
+
     columns = [
         {
             key: 'id',
@@ -42,37 +47,46 @@ export class Rooms extends React.Component {
             width: 75
         }
     ];
+
     getButtons = (roomId) => {
         return (
             <div className="justify-content-center">
                 <button className="btn btn-sm btn-outline-danger padding-x-sm"
-                        onClick={() => this.handleGridDelete(roomId)}>Delete</button>
+                        onClick={() => this.handleGridDelete(roomId)}>Delete
+                </button>
             </div>
         );
     };
+
     rowGetter = (i) => {
         return this.state.rows[i];
     };
+
     openModal = () => {
         this.setState({isModalOpen: true});
     };
+
     closeModal = () => {
         this.setState({isModalOpen: false});
     };
+
     handleGridAdd = (room) => {
         let rows = this.state.rows.slice();
         let newRoom = this.createRow(room);
         rows.push(newRoom);
         this.setState({rows: rows});
+        this.updateServer("insert", newRoom);
         this.closeModal();
     };
+
     handleGridDelete = (roomId) => {
         let rows = this.state.rows.slice();
         let rowIndex = this.state.rows.map((row) => row.id).indexOf(roomId);
         rows.splice(rowIndex, 1);
         this.setState({rows: rows});
     };
-    handleGridRowsUpdated = ({ fromRow, toRow, updated }) => {
+
+    handleGridRowsUpdated = ({fromRow, toRow, updated}) => {
         let rows = this.state.rows.slice();
 
         for (let i = fromRow; i <= toRow; i++) {
@@ -80,8 +94,9 @@ export class Rooms extends React.Component {
             this.updateServer("update", rows[i]);
         }
 
-        this.setState({ rows });
+        this.setState({rows});
     };
+
     updateServer = (action, room) => {
         let update = {
             action: action,
@@ -98,12 +113,14 @@ export class Rooms extends React.Component {
             .then((data) => this.props.alert.success('Updated ID: ' + room.id))
             .catch((err) => this.props.alert.error('Failed updating ID: ' + room.id));
     };
+
     getFreeId = () => {
         let freeId = 1;
         if (this.state.rows.length > 0)
-            freeId = parseInt(this.state.rows[this.state.rows.length-1].id, 10)+1;
+            freeId = parseInt(this.state.rows[this.state.rows.length - 1].id, 10) + 1;
         return freeId;
     };
+
     render() {
         return (
             <div>

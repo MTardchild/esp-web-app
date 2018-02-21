@@ -48,10 +48,12 @@ class WindowMapper implements IDatabaseMapper
     public function find($windowId)
     {
         $windowId = intval($windowId);
+        if ($windowId <= 0) return Window::createWindowEmpty();
+
         $query = $this->database->prepare("SELECT * FROM window WHERE window.win_id = :windowId");
         $query->execute(array("windowId" => $windowId));
         $windowDb = $query->fetch();
-        $window = Window::createWindow($windowId, $windowDb['win_name'], $windowDb['win_room']);
+        $window = Window::createWindow($windowId, $windowDb['win_name'], Room::createRoomId($windowDb['win_room']));
 
         return $window;
     }
@@ -65,10 +67,21 @@ class WindowMapper implements IDatabaseMapper
 
         if ($windowCollectionDb !== false) {
             foreach ($windowCollectionDb as $windowDb) {
-                array_push($windowCollection, Window::createWindow($windowDb['win_id'], $windowDb['win_name'], $windowDb['win_room']));
+                array_push($windowCollection,
+                    Window::createWindow($windowDb['win_id'], $windowDb['win_name'],
+                        Room::createRoomId($windowDb['win_room'])));
             }
         }
 
         return $windowCollection;
+    }
+
+    public function findFreeId()
+    {
+        $query = $this->database->prepare("SELECT win_id FROM window ORDER BY win_id DESC LIMIT 1");
+        $query->execute();
+        $freeId = $query->fetch();
+
+        return $freeId['win_id'] + 1;
     }
 }

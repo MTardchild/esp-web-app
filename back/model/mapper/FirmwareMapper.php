@@ -9,19 +9,46 @@ class FirmwareMapper implements IDatabaseMapper, IDatabaseObjectMapper
         $this->database = $database;
     }
 
-    public function insert($object)
+    public function insert($firmware)
     {
-        // TODO: Implement insert() method.
+        $isSuccessful = false;
+
+        if ($firmware instanceof Firmware) {
+            $query = $this->database->prepare("INSERT INTO firmware VALUES (:id, :name, :path, :timestamp);");
+            $isSuccessful = $query->execute(array('id' => $firmware->getId(),
+                'name' => $firmware->getName(),
+                'path' => $firmware->getPath(),
+                'timestamp' => $firmware->getTimestamp()));
+        }
+
+        return $isSuccessful;
     }
 
-    public function delete($object)
+    public function delete($firmwareId)
     {
-        // TODO: Implement delete() method.
+        $query = $this->database->prepare("DELETE FROM firmware WHERE fwa_id = :firmwareId");
+        $isSuccessful = $query->execute(array("firmwareId" => $firmwareId));
+
+        return $isSuccessful;
     }
 
-    public function update($object)
+    public function update($firmware)
     {
-        // TODO: Implement update() method.
+        $isSuccessful = false;
+
+        if ($firmware instanceof Firmware) {
+            $query = $this->database->prepare(
+                "UPDATE firmware 
+                          SET fwa_name = :name, fwa_path = :path, 
+                          fwa_timestamp = :timestamp
+                          WHERE fwa_id = :id;");
+            $isSuccessful = $query->execute(array('id' => $firmware->getId(),
+                'name' => $firmware->getName(),
+                'path' => $firmware->getPath(),
+                'timestamp' => $firmware->getTimestamp()));
+        }
+
+        return $isSuccessful;
     }
 
     public function find($firmwareId)
@@ -53,5 +80,14 @@ class FirmwareMapper implements IDatabaseMapper, IDatabaseObjectMapper
         }
 
         return $firmwareCollection;
+    }
+
+    public function findFreeId()
+    {
+        $query = $this->database->prepare("SELECT fwa_id FROM firmware ORDER BY fwa_id DESC LIMIT 1");
+        $query->execute();
+        $freeId = $query->fetch();
+
+        return $freeId['fwa_id'] + 1;
     }
 }

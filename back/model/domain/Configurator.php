@@ -34,7 +34,8 @@ class Configurator
 
         if ($esp->getId() === -1) {
             $this->connectWifi($esp->getHwId(), $esp->getHwId());
-            // TODO: Find out IP of ESP when he hosted the AP.
+            // AP default IP: 192.168.4.1
+            $esp->setIp("192.168.4.1");
         }
 
         $connectionEsp = new ConnectionEspTcp($esp->getIp());
@@ -52,7 +53,8 @@ class Configurator
         $command = ConfigureWifiCommand::createConfigureWifiCommand($ssid, $password);
         if ($esp->getId() === -1) {
             $this->connectWifi($esp->getHwId(), $esp->getHwId());
-            // TODO: Find out IP of ESP when he hosted the AP.
+            // AP default IP: 192.168.4.1
+            $esp->setIp("192.168.4.1");
         }
 
         $connectionEsp = new ConnectionEspTcp($esp->getIp());

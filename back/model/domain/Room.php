@@ -19,6 +19,14 @@ class Room extends DatabaseObjectBase implements JsonSerializable
         return $room;
     }
 
+    public static function createRoomId($id)
+    {
+        $room = new Room();
+        $room->id = $id;
+
+        return $room;
+    }
+
     public static function createRoom($id, $name)
     {
         $room = new Room();

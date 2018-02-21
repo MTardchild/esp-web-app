@@ -102,6 +102,7 @@ export class Windows extends React.Component {
         let newWindow = this.createRow(window);
         rows.push(newWindow);
         this.setState({rows: rows});
+        this.updateServer("insert", newWindow);
         this.closeModal();
     };
 

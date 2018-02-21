@@ -19,7 +19,7 @@ class DoorMapper implements IDatabaseMapper, IDatabaseObjectMapper
             $isSuccessful = $query->execute(array('id' => $door->getId(),
                 'name' => $door->getName(),
                 'room1' => $door->getRoom1()->getId(),
-                'room2' => $door->getRoom2()->getId()));
+                'room2' => $door->getRoom2()->getId() <= 0 ? null : $door->getRoom2()->getId()));
         }
 
         return $isSuccessful;
@@ -42,8 +42,8 @@ class DoorMapper implements IDatabaseMapper, IDatabaseObjectMapper
 
     public function delete($espId)
     {
-        $query = $this->database->prepare("DELETE FROM esp WHERE esp_id = :espId");
-        $isSuccessful = $query->execute(array("espId" => $espId));
+        $query = $this->database->prepare("DELETE FROM door WHERE dor_id = :doorId");
+        $isSuccessful = $query->execute(array("doorId" => $espId));
 
         return $isSuccessful;
     }
@@ -51,10 +51,14 @@ class DoorMapper implements IDatabaseMapper, IDatabaseObjectMapper
     public function find($doorId)
     {
         $doorId = intval($doorId);
+        if ($doorId <= 0) return Door::createDoorEmpty();
+
         $query = $this->database->prepare("SELECT * FROM door WHERE door.dor_id = :doorId");
         $query->execute(array("doorId" => $doorId));
         $doorDb = $query->fetch();
-        $door = Door::createDoor($doorId, $doorDb['dor_name'], $doorDb['dor_room_1'], $doorDb['dor_room_2']);
+        $door = Door::createDoor($doorId, $doorDb['dor_name'],
+            Room::createRoomId($doorDb['dor_room_1']),
+            Room::createRoomId($doorDb['dor_room_2']));
 
         return $door;
     }
@@ -68,10 +72,21 @@ class DoorMapper implements IDatabaseMapper, IDatabaseObjectMapper
 
         if ($doorCollectionDb !== false) {
             foreach ($doorCollectionDb as $doorDb) {
-                array_push($doorCollection, Door::createDoor($doorDb['dor_id'], $doorDb['dor_name'], $doorDb['dor_room_1'], $doorDb['dor_room_2']));
+                array_push($doorCollection, Door::createDoor($doorDb['dor_id'], $doorDb['dor_name'],
+                    Room::createRoomId($doorDb['dor_room_1']),
+                    Room::createRoomId($doorDb['dor_room_2'])));
             }
         }
 
         return $doorCollection;
+    }
+
+    public function findFreeId()
+    {
+        $query = $this->database->prepare("SELECT dor_id FROM door ORDER BY dor_id DESC LIMIT 1");
+        $query->execute();
+        $freeId = $query->fetch();
+
+        return $freeId['dor_id'] + 1;
     }
 }

@@ -32,7 +32,10 @@ export class Doors extends React.Component {
         if (door.room2Id > 0) {
             let room2Index = this.props.rooms.map((room) => room.id).indexOf(door.room2Id);
             newDoor.room2 = this.props.rooms[room2Index];
+        } else {
+            newDoor.room2 = { id: 0, name: "" }
         }
+
         newDoor.buttons = this.getButtons(newDoor.id);
         return newDoor;
     };
@@ -105,6 +108,7 @@ export class Doors extends React.Component {
         let newDoor = this.createRow(door);
         rows.push(newDoor);
         this.setState({rows: rows});
+        this.updateServer("insert", newDoor);
         this.closeModal();
     };
     handleGridRowsUpdated = ({ fromRow, toRow, updated }) => {

@@ -49,13 +49,13 @@ class FirmwareService implements IDatabaseService
             $firmware = $this->find($update["firmware"]["id"]);
             $firmware->setName($update["firmware"]["name"]);
             $firmware->setPath($update["firmware"]["path"]);
-            $firmware->setTimestamp(DateTime::ATOM);
+            $firmware->setTimestamp(date("Y-m-d H:i:s"));
             $this->update($firmware);
         }
 
         if ($update["action"] === "insert") {
             $firmware = Firmware::createFirmware($this->findFreeId(), $update["firmware"]["name"],
-                $update["firmware"]["path"], DateTime::ATOM);
+                $update["firmware"]["path"], date("Y-m-d H:i:s"));
             $this->insert($firmware);
         }
     }

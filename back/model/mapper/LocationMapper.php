@@ -18,9 +18,9 @@ class LocationMapper implements IDatabaseMapper, IDatabaseObjectMapper
             $query = $this->database->prepare("INSERT INTO location VALUES (:id, :name, :room, :door, :window);");
             $isSuccessful = $query->execute(array('id' => $location->getId(),
                 'name' => $location->getName(),
-                'room' => $location->getRoom() === null ? null : $location->getRoom()->getId(),
-                'door' => $location->getDoor() === null ? null : $location->getDoor()->getId(),
-                'window' => $location->getWindow() === null ? null : $location->getWindow()->getId()));
+                'room' => $location->getRoom()->getId() <= 0 ? null : $location->getRoom()->getId(),
+                'door' => $location->getDoor()->getId() <= 0 ? null : $location->getDoor()->getId(),
+                'window' => $location->getWindow()->getId() <= 0 ? null : $location->getWindow()->getId()));
         }
 
         return $isSuccessful;
@@ -35,9 +35,9 @@ class LocationMapper implements IDatabaseMapper, IDatabaseObjectMapper
             $query = $this->database->prepare("UPDATE location SET location.loc_name = :name, location.loc_room = :room, location.loc_door = :door, location.loc_window = :window WHERE location.loc_id = :id;");
             $isSuccessful = $query->execute(array('id' => $location->getId(),
                 'name' => $location->getName(),
-                'room' => $location->getRoom()->getId() === 0 ? null : $location->getRoom()->getId(),
-                'door' => $location->getDoor()->getId() === 0 ? null : $location->getDoor()->getId(),
-                'window' => $location->getWindow()->getId() === 0 ? null : $location->getWindow()->getId()));
+                'room' => $location->getRoom()->getId() <= 0 ? null : $location->getRoom()->getId(),
+                'door' => $location->getDoor()->getId() <= 0 ? null : $location->getDoor()->getId(),
+                'window' => $location->getWindow()->getId() <= 0 ? null : $location->getWindow()->getId()));
         }
 
         return $isSuccessful;
@@ -53,7 +53,9 @@ class LocationMapper implements IDatabaseMapper, IDatabaseObjectMapper
 
     public function find($locationId)
     {
-        $espId = intval($locationId);
+        $locationId = intval($locationId);
+        if ($locationId <= 0) return Location::createLocationEmpty();
+
         $query = $this->database->prepare("SELECT * FROM location WHERE location.loc_id = :locationId");
         $query->execute(array("locationId" => $locationId));
         $locationDb = $query->fetch();
@@ -63,9 +65,9 @@ class LocationMapper implements IDatabaseMapper, IDatabaseObjectMapper
         } else {
             $location = Location::createLocation($locationDb["loc_id"],
                 $locationDb["loc_name"],
-                $locationDb["loc_room"],
-                $locationDb["loc_door"],
-                $locationDb["loc_window"]);
+                Room::createRoomId($locationDb["loc_room"]),
+                Door::createDoorId($locationDb["loc_door"]),
+                Window::createWindowId($locationDb["loc_window"]));
         }
 
         return $location;
@@ -82,8 +84,9 @@ class LocationMapper implements IDatabaseMapper, IDatabaseObjectMapper
             foreach ($locationCollectionDb as $locationDb) {
                 array_push($locationCollection, Location::createLocation(
                     $locationDb['loc_id'], $locationDb['loc_name'],
-                    $locationDb['loc_room'], $locationDb['loc_door'],
-                    $locationDb['loc_window']));
+                    Room::createRoomId($locationDb["loc_room"]),
+                    Door::createDoorId($locationDb["loc_door"]),
+                    Window::createWindowId($locationDb["loc_window"])));
             }
         }
 
@@ -95,10 +98,6 @@ class LocationMapper implements IDatabaseMapper, IDatabaseObjectMapper
         $query = $this->database->prepare("SELECT loc_id FROM location ORDER BY loc_id DESC LIMIT 1");
         $query->execute();
         $freeId = $query->fetch();
-
-        if ($freeId === false) {
-            // TODO error
-        }
 
         return $freeId['loc_id'] + 1;
     }

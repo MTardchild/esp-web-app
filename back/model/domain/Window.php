@@ -21,6 +21,14 @@ class Window extends DatabaseObjectBase implements JsonSerializable
         return $window;
     }
 
+    public static function createWindowId($id)
+    {
+        $window = new Window();
+        $window->id = $id;
+
+        return $window;
+    }
+
     public static function createWindow($id, $name, $room)
     {
         $window = new Window();

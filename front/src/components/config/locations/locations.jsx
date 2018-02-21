@@ -28,14 +28,22 @@ export class Locations extends React.Component {
         if (location.roomId > 0) {
             let roomIndex = this.props.rooms.map((room) => room.id).indexOf(location.roomId);
             newLocation.room = this.props.rooms[roomIndex];
+        } else {
+            newLocation.room = { id: 0, name: "" }
         }
+
         if (location.doorId > 0) {
             let doorIndex = this.props.doors.map((door) => door.id).indexOf(location.doorId);
             newLocation.door = this.props.doors[doorIndex];
+        } else {
+            newLocation.door = { id: 0, name: "" }
         }
+
         if (location.windowId > 0) {
             let windowIndex = this.props.windows.map((window) => window.id).indexOf(location.windowId);
             newLocation.window = this.props.windows[windowIndex];
+        } else {
+            newLocation.window = { id: 0, name: "" }
         }
         newLocation.buttons = this.getButtons(newLocation.id);
         return newLocation;
@@ -154,7 +162,7 @@ export class Locations extends React.Component {
         let newLocation = this.createRow(location);
         rows.push(newLocation);
         this.setState({rows: rows});
-        this.updateServer("insert", location);
+        this.updateServer("insert", newLocation);
         this.closeModal();
     };
 
@@ -212,6 +220,7 @@ export class Locations extends React.Component {
             action: action,
             location: location
         };
+        console.log(update);
 
         let formData = new FormData();
         formData.append('LocationUpdate', JSON.stringify(update));

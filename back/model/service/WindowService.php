@@ -31,7 +31,7 @@ class WindowService implements IDatabaseService
     public function find($windowId)
     {
         $window = $this->windowMapper->find($windowId);
-        $window->setRoom($window->getRoom());
+        $window->setRoom($window->getRoom()->getId());
 
         return $window;
     }
@@ -41,7 +41,7 @@ class WindowService implements IDatabaseService
         $windowCollection = $this->windowMapper->findAll();
 
         foreach ($windowCollection as $window) {
-            $window->setRoom($this->roomService->find($window->getRoom()));
+            $window->setRoom($this->roomService->find($window->getRoom()->getId()));
         }
 
         return $windowCollection;

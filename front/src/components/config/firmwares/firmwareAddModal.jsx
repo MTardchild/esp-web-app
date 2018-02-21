@@ -8,10 +8,16 @@ export class FirmwareAddModal extends React.Component {
             firmware: {
                 name: "",
                 path: "",
-                timestamp: Date.now()
+                timestamp: FirmwareAddModal.getTimestamp()
             }
         };
     }
+    static getTimestamp = () => {
+        let date = new Date(Date.now());
+        return date.getFullYear() + '-' + ('0' + date.getMonth()).slice(-2) + '-' +
+            ('0' + date.getDate()).slice(-2) + ' ' + date.getHours() + ':' + date.getMinutes()
+            + ':' + date.getSeconds();
+    };
     onNameChanged = (event) => {
         let firmware = this.state.firmware;
         firmware.name = event.currentTarget.value;

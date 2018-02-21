@@ -47,6 +47,8 @@ class RoomMapper implements IDatabaseMapper, IDatabaseObjectMapper
     public function find($roomId)
     {
         $roomId = intval($roomId);
+        if ($roomId <= 0) return Room::createRoomEmpty();
+
         $query = $this->database->prepare("SELECT * FROM room WHERE room.rom_id = :id");
         $query->execute(array("id" => $roomId));
         $roomDb = $query->fetch();
@@ -69,5 +71,14 @@ class RoomMapper implements IDatabaseMapper, IDatabaseObjectMapper
         }
 
         return $roomCollection;
+    }
+
+    public function findFreeId()
+    {
+        $query = $this->database->prepare("SELECT rom_id FROM room ORDER BY rom_id DESC LIMIT 1");
+        $query->execute();
+        $freeId = $query->fetch();
+
+        return $freeId['rom_id'] + 1;
     }
 }

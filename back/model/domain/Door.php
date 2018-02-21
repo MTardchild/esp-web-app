@@ -23,6 +23,14 @@ class Door extends DatabaseObjectBase implements JsonSerializable
         return $door;
     }
 
+    public static function createDoorId($id)
+    {
+        $door = new Door();
+        $door->id = $id;
+
+        return $door;
+    }
+
     public static function createDoor($id, $name, $room1, $room2)
     {
         $door = new Door();

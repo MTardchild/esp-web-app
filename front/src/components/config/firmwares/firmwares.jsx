@@ -72,6 +72,7 @@ export class Firmwares extends React.Component {
         firmware.id = this.getFreeId();
         firmware.buttons = this.getButtons(firmware.id);
         rows.push(firmware);
+        this.updateServer("insert", firmware);
         this.setState({rows: rows});
         this.closeModal();
     };

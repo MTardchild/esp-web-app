@@ -38,9 +38,9 @@ class LocationService implements IDatabaseService
     {
         $location = $this->locationMapper->find($locationId);
         if ($location != null) {
-            $location->setRoom($this->roomService->find($location->getRoom()));
-            $location->setDoor($this->doorService->find($location->getDoor()));
-            $location->setWindow($this->windowService->find($location->getWindow()));
+            $location->setRoom($this->roomService->find($location->getRoom()->getId()));
+            $location->setDoor($this->doorService->find($location->getDoor()->getId()));
+            $location->setWindow($this->windowService->find($location->getWindow()->getId()));
         }
 
         return $location;
@@ -51,9 +51,9 @@ class LocationService implements IDatabaseService
         $locationCollection = $this->locationMapper->findAll();
 
         foreach ($locationCollection as $location) {
-            $location->setRoom($this->roomService->find($location->getRoom()));
-            $location->setDoor($this->doorService->find($location->getDoor()));
-            $location->setWindow($this->windowService->find($location->getWindow()));
+            $location->setRoom($this->roomService->find($location->getRoom()->getId()));
+            $location->setDoor($this->doorService->find($location->getDoor()->getId()));
+            $location->setWindow($this->windowService->find($location->getWindow()->getId()));
         }
 
         return $locationCollection;

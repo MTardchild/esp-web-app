@@ -77,6 +77,13 @@ if (isset($_POST["RoomUpdate"])) {
     }
 }
 
+$firmwareUpdate = null;
+if (isset($_POST["FirmwareUpdate"])) {
+    if (trim($_POST["FirmwareUpdate"]) != "") {
+        $firmwareUpdate = $_POST['FirmwareUpdate'];
+    }
+}
+
 $injector->define('FrontController', [
     ':heartbeat' => $heartbeat,
     ':wifiCredentials' => $wifiCredentials,
@@ -84,7 +91,8 @@ $injector->define('FrontController', [
     ':locationUpdate' => $locationUpdate,
     ':espUpdate' => $espUpdate,
     ':windowUpdate' => $windowUpdate,
-    ':roomUpdate' => $roomUpdate]);
+    ':roomUpdate' => $roomUpdate,
+    ':firmwareUpdate' => $firmwareUpdate]);
 $injector->share('FrontController');
 $injector->share('AjaxRequest');
 

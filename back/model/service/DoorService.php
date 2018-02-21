@@ -25,14 +25,14 @@ class DoorService implements IDatabaseService
 
     public function delete($doorId)
     {
-        return $this->doorMapper->insert($doorId);
+        return $this->doorMapper->delete($doorId);
     }
 
     public function find($doorId)
     {
         $door = $this->doorMapper->find($doorId);
-        $door->setRoom1($this->roomService->find($door->getRoom1()));
-        $door->setRoom2($this->roomService->find($door->getRoom2()));
+        $door->setRoom1($this->roomService->find($door->getRoom1()->getId()));
+        $door->setRoom2($this->roomService->find($door->getRoom2()->getId()));
 
         return $door;
     }
@@ -42,8 +42,8 @@ class DoorService implements IDatabaseService
         $doorCollection = $this->doorMapper->findAll();
 
         foreach ($doorCollection as $door) {
-            $door->setRoom1($this->roomService->find($door->getRoom1()));
-            $door->setRoom2($this->roomService->find($door->getRoom2()));
+            $door->setRoom1($this->roomService->find($door->getRoom1()->getId()));
+            $door->setRoom2($this->roomService->find($door->getRoom2()->getId()));
         }
 
         return $doorCollection;
