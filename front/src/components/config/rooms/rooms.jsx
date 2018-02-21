@@ -111,7 +111,10 @@ export class Rooms extends React.Component {
             method: "POST",
             body: formData
         }).then((res) => res)
-            .then((data) => this.props.alert.success('Updated ID: ' + room.id))
+            .then((data) => {
+                this.props.alert.success('Updated ID: ' + room.id);
+                this.props.updateAppState();
+            })
             .catch((err) => this.props.alert.error('Failed updating ID: ' + room.id));
     };
 

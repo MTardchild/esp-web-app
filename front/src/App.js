@@ -24,6 +24,11 @@ class App extends React.Component {
             view: 0
         };
 
+        this.updateState();
+        this.onNavClicked = this.onNavClicked.bind(this);
+    }
+
+    updateState = () => {
         this.getAjax("esps");
         this.getAjax("unconfiguredEsps");
         this.getAjax("firmwares");
@@ -31,13 +36,13 @@ class App extends React.Component {
         this.getAjax("windows");
         this.getAjax("locations");
         this.getAjax("rooms");
-        this.onNavClicked = this.onNavClicked.bind(this);
-    }
+    };
+
     getAjax(datasetName) {
         const self = this;
         fetch("?route=ajax&action=get" + App.upperCaseFirstChar(datasetName))
             .then(function (response) {
-                response.json().then(function(data) {
+                response.json().then(function (data) {
                     // workaround to use string as key
                     let set = [];
                     set[datasetName] = data;
@@ -48,13 +53,16 @@ class App extends React.Component {
                 console.warn(error);
             });
     }
+
     static upperCaseFirstChar(string) {
         return string.charAt(0).toUpperCase() + string.slice(1);
     }
+
     onNavClicked(id, event) {
         event.preventDefault();
         this.setState({view: id});
     }
+
     getActiveView() {
         let activeView;
         switch (this.state.view) {
@@ -70,7 +78,8 @@ class App extends React.Component {
                     doors={this.state.doors}
                     windows={this.state.windows}
                     locations={this.state.locations}
-                    rooms={this.state.rooms}/>;
+                    rooms={this.state.rooms}
+                    updateAppState={this.updateState}/>;
                 break;
             case 2:
                 activeView = <Rules/>;
@@ -81,14 +90,15 @@ class App extends React.Component {
 
         return activeView;
     }
-  render() {
-    return (
-        <div className="App">
-            <Navigation onNavClicked={this.onNavClicked}/>
-            {this.getActiveView()}
-        </div>
-    );
-  }
+
+    render() {
+        return (
+            <div className="App">
+                <Navigation onNavClicked={this.onNavClicked}/>
+                {this.getActiveView()}
+            </div>
+        );
+    }
 }
 
 export default App

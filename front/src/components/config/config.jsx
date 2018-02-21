@@ -27,29 +27,38 @@ export class Config extends React.Component {
         switch (this.state.view) {
             case 0:
                 activeView = <ConfiguredEsps esps={this.props.esps}
-                                             locations={this.props.locations}/>;
+                                             locations={this.props.locations}
+                                             updateAppState={this.props.updateAppState}/>;
                 break;
             case 1:
                 activeView = <UnconfiguredEsps unconfiguredEsps={this.props.unconfiguredEsps}
-                                               firmwares={this.props.firmwares}/>;
+                                               firmwares={this.props.firmwares}
+                                               updateAppState={this.props.updateAppState}/>;
                 break;
             case 2:
-                activeView = <Firmwares firmwares={this.props.firmwares}/>;
+                activeView = <Firmwares firmwares={this.props.firmwares}
+                                        updateAppState={this.props.updateAppState}/>;
                 break;
             case 3:
                 activeView = <Locations locations={this.props.locations}
                                         rooms={this.props.rooms}
                                         doors={this.props.doors}
-                                        windows={this.props.windows}/>;
+                                        windows={this.props.windows}
+                                        updateAppState={this.props.updateAppState}/>;
                 break;
             case 4:
-                activeView = <Rooms rooms={this.props.rooms}/>;
+                activeView = <Rooms rooms={this.props.rooms}
+                                    updateAppState={this.props.updateAppState}/>;
                 break;
             case 5:
-                activeView = <Doors doors={this.props.doors} rooms={this.props.rooms}/>;
+                activeView = <Doors doors={this.props.doors}
+                                    rooms={this.props.rooms}
+                                    updateAppState={this.props.updateAppState}/>;
                 break;
             case 6:
-                activeView = <Windows windows={this.props.windows} rooms={this.props.rooms}/>;
+                activeView = <Windows windows={this.props.windows}
+                                      rooms={this.props.rooms}
+                                      updateAppState={this.props.updateAppState}/>;
                 break;
             default:
                 break;

@@ -227,7 +227,10 @@ export class Locations extends React.Component {
             method: "POST",
             body: formData
         }).then((res) => res)
-            .then((data) => this.props.alert.success('Updated ID: ' + location.id))
+            .then((data) => {
+                this.props.alert.success('Updated ID: ' + location.id);
+                this.props.updateAppState();
+            })
             .catch((err) => this.props.alert.error('Failed updating ID: ' + location.id));
     };
 

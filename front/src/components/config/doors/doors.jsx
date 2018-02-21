@@ -163,7 +163,10 @@ export class Doors extends React.Component {
             method: "POST",
             body: formData
         }).then((res) => res)
-            .then((data) => this.props.alert.success('Updated ID: ' + door.id))
+            .then((data) => {
+                this.props.alert.success('Updated ID: ' + door.id);
+                this.props.updateAppState();
+            })
             .catch((err) => this.props.alert.error('Failed updating ID: ' + door.id));
     };
     getFreeId = () => {
