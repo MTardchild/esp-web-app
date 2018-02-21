@@ -96,6 +96,7 @@ class LedStrip extends ComponentBase implements JsonSerializable
             'id' => $this->getId(),
             'name' => $this->getName(),
             'typeId' => $this->getTypeId(),
+            'typeString' => "LED-Strip",
             'espId' => $this->getEspId(),
             'red' => $this->getRed(),
             'blue' => $this->getBlue(),

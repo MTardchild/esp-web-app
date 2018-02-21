@@ -71,6 +71,7 @@ class Dht extends ComponentBase implements JsonSerializable
             'id' => $this->getId(),
             'name' => $this->getName(),
             'typeId' => $this->getTypeId(),
+            'typeString' => "DHT",
             'espId' => $this->getEspId(),
             'temperature' => $this->getTemperature(),
             'humidity' => $this->getHumidity()

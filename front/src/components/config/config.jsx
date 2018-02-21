@@ -28,6 +28,7 @@ export class Config extends React.Component {
             case 0:
                 activeView = <ConfiguredEsps esps={this.props.esps}
                                              locations={this.props.locations}
+                                             firmwares={this.props.firmwares}
                                              updateAppState={this.props.updateAppState}/>;
                 break;
             case 1:

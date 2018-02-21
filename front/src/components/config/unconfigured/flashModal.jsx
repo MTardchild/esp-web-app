@@ -9,17 +9,19 @@ export class FlashModal extends React.Component {
             selectedFirmwareId: 1
         };
     }
+
     getSelectOptionsFirmwares() {
         return this.props.firmwares.map((firmware) =>
             <option value={firmware.id}>{firmware.name + ": " + firmware.path}</option>
         );
     }
+
     flash = () => {
         const self = this;
         self.props.alert.show("Flashing firmware to ESP " + self.props.hardwareId + " ...");
         fetch(this.getUrl())
             .then(function (response) {
-                response.then(function(data) {
+                response.then(function (data) {
                     self.props.alert.success("Updated firmware of ESP " + self.props.hardwareId);
                 });
             })
@@ -28,12 +30,15 @@ export class FlashModal extends React.Component {
             });
         this.props.closeModal();
     };
+
     getUrl = () => {
         return "?route=ajax&action=flash&firmware=" + this.state.selectedFirmwareId + "&esp=" + this.props.hardwareId;
     };
+
     onFirmwareSelected = (event) => {
         this.setState({selectedFirmwareId: event.currentTarget.value})
     };
+
     render() {
         let selectOptionsFirmwares = this.getSelectOptionsFirmwares();
 
@@ -44,7 +49,7 @@ export class FlashModal extends React.Component {
                 contentLabel="Flash Modal">
                 <h1>Flash New Firmware</h1>
                 <div className="row">
-                    <div className="col-2">
+                    <div className="col-4">
                         <div className="input-group mb-3">
                             <div className="input-group-prepend">
                                 <span className="input-group-text">HWID</span>
@@ -70,9 +75,11 @@ export class FlashModal extends React.Component {
                     <div className="col">
                         <div className="float-right">
                             <button type="button" className="btn btn-outline-secondary"
-                                    onClick={this.props.closeModal}>Close</button>
+                                    onClick={this.props.closeModal}>Close
+                            </button>
                             <button type="button" className="btn btn-outline-primary margin-left-md"
-                                    onClick={this.flash}>Flash</button>
+                                    onClick={this.flash}>Flash
+                            </button>
                         </div>
                     </div>
                 </div>

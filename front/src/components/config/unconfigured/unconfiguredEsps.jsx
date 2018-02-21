@@ -15,32 +15,53 @@ export class UnconfiguredEsps extends React.Component {
             selectedHardwareId: -1
         };
     }
+
     openModalFlash = (hardwareId) => {
-        this.setState({isModalFlashOpen: true,
-            selectedHardwareId: hardwareId});
+        this.setState({
+            isModalFlashOpen: true,
+            selectedHardwareId: hardwareId
+        });
     };
+
     closeModalFlash = () => {
         this.setState({isModalFlashOpen: false});
     };
+
     openModalWifi = (hardwareId) => {
-        this.setState({isModalWifiOpen: true,
-            selectedHardwareId: hardwareId});
+        this.setState({
+            isModalWifiOpen: true,
+            selectedHardwareId: hardwareId
+        });
     };
+
     closeModalWifi = () => {
         this.setState({isModalWifiOpen: false});
     };
+
     getButtons = (hardwareId) => {
         return (
             <div className="float-right">
                 <button className="btn btn-sm btn-outline-primary padding-x-sm"
-                        onClick={() => this.openModalWifi(hardwareId)}>Update Wifi</button>
+                        onClick={() => this.openModalWifi(hardwareId)}>Update Wifi
+                </button>
                 <button className="btn btn-sm btn-outline-primary padding-x-sm margin-left-sm"
-                        onClick={() => this.openModalFlash(hardwareId)}>Flash</button>
+                        onClick={() => this.openModalFlash(hardwareId)}>Flash
+                </button>
             </div>
         );
     };
+
     createRows = () => {
-        return [{ ssid: "dummyESP", hwid: "123", mode: "", channel: "", rate: "", strength: "", security: "", buttons: this.getButtons("123")}];
+        return [{
+            ssid: "dummyESP",
+            hwid: "123",
+            mode: "",
+            channel: "",
+            rate: "",
+            strength: "",
+            security: "",
+            buttons: this.getButtons("123")
+        }];
         // return this.props.unconfiguredEsps.map((esp) =>
         //     ({  ssid: esp.ssid,
         //         mode: "",
@@ -49,6 +70,7 @@ export class UnconfiguredEsps extends React.Component {
         //         strength: "",
         //         security: ""}));
     };
+
     columns = [
         {
             key: 'ssid',
@@ -80,16 +102,20 @@ export class UnconfiguredEsps extends React.Component {
         },
         {
             key: "buttons",
-            name: ""
+            name: "",
+            width: 165
         }
     ];
+
     rowGetter = (i) => {
         return this.state.rows[i];
     };
+
     render() {
         return (
             <div>
                 <ReactDataGrid
+                    minHeight={90 + 'vh'}
                     rowGetter={this.rowGetter}
                     columns={this.columns}
                     rowsCount={this.state.rows.length}

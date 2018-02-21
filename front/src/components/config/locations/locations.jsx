@@ -248,6 +248,7 @@ export class Locations extends React.Component {
                     <button className="btn btn-outline-primary" onClick={this.openModal}>Add Location</button>
                 </div>
                 <ReactDataGrid
+                    minHeight={85 + 'vh'}
                     rowGetter={this.rowGetter}
                     columns={this.columns}
                     rowsCount={this.state.rows.length}
