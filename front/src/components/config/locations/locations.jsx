@@ -64,42 +64,45 @@ export class Locations extends React.Component {
     };
 
     getDropdownOptionRooms = () => {
-        return this.props.rooms.map((room) =>
-            {
-                return {
+        let options = [{id: 0, title: <div style={{height: 20 + 'px'}} id={0}/>, text: "", value: ""}];
+        this.props.rooms.map((room) => {
+                options.push({
                     id: room.id,
                     title: <div id={room.id}>{room.name}</div>,
                     text: room.name,
                     value: room.name
-                };
+                });
             }
         );
+        return options;
     };
 
     getDropdownOptionDoors = () => {
-        return this.props.doors.map((door) =>
-            {
-                return {
+        let options = [{id: 0, title: <div style={{height: 20 + 'px'}} id={0}/>, text: "", value: ""}];
+        this.props.doors.map((door) => {
+                options.push({
                     id: door.id,
                     title: <div id={door.id}>{door.name}</div>,
                     text: door.name,
                     value: door.name
-                };
+                });
             }
         );
+        return options;
     };
 
     getDropdownOptionWindows = () => {
-        return this.props.windows.map((window) =>
-            {
-                return {
+        let options = [{id: 0, title: <div style={{height: 20 + 'px'}} id={0}/>, text: "", value: ""}];
+        this.props.windows.map((window) => {
+                options.push({
                     id: window.id,
                     title: <div id={window.id}>{window.name}</div>,
                     text: window.name,
                     value: window.name
-                };
+                });
             }
         );
+        return options;
     };
 
     columns = [
@@ -151,6 +154,7 @@ export class Locations extends React.Component {
         let newLocation = this.createRow(location);
         rows.push(newLocation);
         this.setState({rows: rows});
+        this.updateServer("insert", location);
         this.closeModal();
     };
 
@@ -159,11 +163,14 @@ export class Locations extends React.Component {
         let rowIndex = this.state.rows.map((row) => row.id).indexOf(locationId);
         rows.splice(rowIndex, 1);
         this.setState({rows: rows});
+
+        let locationIndex = this.props.locations.map((location) => location.id).indexOf(locationId);
+        this.updateServer("delete", this.props.location[locationIndex]);
     };
 
     handleGridRowsUpdated = ({fromRow, toRow, updated}) => {
         // Cancer code to make this shitty dropdown work the way I need it
-        if (updated.hasOwnProperty('room')) {
+        if (updated.hasOwnProperty('room') && updated.room.props !== undefined) {
             updated = {
                 room: {
                     id: updated.room.props.id,
@@ -172,7 +179,7 @@ export class Locations extends React.Component {
             };
         }
 
-        if (updated.hasOwnProperty('door')) {
+        if (updated.hasOwnProperty('door') && updated.door.props !== undefined) {
             updated = {
                 door: {
                     id: updated.door.props.id,
@@ -181,7 +188,7 @@ export class Locations extends React.Component {
             };
         }
 
-        if (updated.hasOwnProperty('window')) {
+        if (updated.hasOwnProperty('window') && updated.window.props !== undefined) {
             updated = {
                 window: {
                     id: updated.window.props.id,

@@ -76,7 +76,7 @@ export class Doors extends React.Component {
         {
             key: 'room2',
             name: 'Adjacent Room',
-            editor: <AutoCompleteEditor options={this.getDropdownOptions()}/>,
+            editor: <AutoCompleteEditor options={[{id: 0, title: <div style={{height: 20 + 'px'}} id={0}/>, text: "", value: ""}].concat(this.getDropdownOptions())}/>,
             formatter: ObjectFormatterGrid
         },
         {
