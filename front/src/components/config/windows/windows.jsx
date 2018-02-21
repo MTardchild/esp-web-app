@@ -110,6 +110,7 @@ export class Windows extends React.Component {
         let rows = this.state.rows.slice();
         let rowIndex = this.state.rows.map((row) => row.id).indexOf(windowId);
         rows.splice(rowIndex, 1);
+        this.updateServer("delete", {id: windowId});
         this.setState({rows: rows});
     };
 

@@ -23,6 +23,7 @@ export class Firmwares extends React.Component {
                 buttons: this.getButtons(firmware.id)
             }));
     };
+
     getButtons = (firmwareId) => {
         return (
             <div className="justify-content-center">
@@ -32,6 +33,7 @@ export class Firmwares extends React.Component {
             </div>
         );
     };
+
     columns = [
         {
             key: 'id',
@@ -58,15 +60,19 @@ export class Firmwares extends React.Component {
             width: 75
         }
     ];
+
     rowGetter = (i) => {
         return this.state.rows[i];
     };
+
     openModal = () => {
         this.setState({isModalOpen: true});
     };
+
     closeModal = () => {
         this.setState({isModalOpen: false});
     };
+
     handleGridAdd = (firmware) => {
         let rows = this.state.rows.slice();
         firmware.id = this.getFreeId();
@@ -76,12 +82,15 @@ export class Firmwares extends React.Component {
         this.setState({rows: rows});
         this.closeModal();
     };
+
     handleGridDelete = (firmwareId) => {
         let rows = this.state.rows.slice();
         let rowIndex = this.state.rows.map((row) => row.id).indexOf(firmwareId);
         rows.splice(rowIndex, 1);
+        this.updateServer("delete", {id: firmwareId});
         this.setState({rows: rows});
     };
+
     handleGridRowsUpdated = ({fromRow, toRow, updated}) => {
         let rows = this.state.rows.slice();
 
@@ -92,6 +101,7 @@ export class Firmwares extends React.Component {
 
         this.setState({rows});
     };
+
     getFreeId = () => {
         let freeId = 1;
         if (this.state.rows.length > 0)

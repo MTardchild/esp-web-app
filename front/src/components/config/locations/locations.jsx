@@ -29,21 +29,21 @@ export class Locations extends React.Component {
             let roomIndex = this.props.rooms.map((room) => room.id).indexOf(location.roomId);
             newLocation.room = this.props.rooms[roomIndex];
         } else {
-            newLocation.room = { id: 0, name: "" }
+            newLocation.room = {id: 0, name: ""}
         }
 
         if (location.doorId > 0) {
             let doorIndex = this.props.doors.map((door) => door.id).indexOf(location.doorId);
             newLocation.door = this.props.doors[doorIndex];
         } else {
-            newLocation.door = { id: 0, name: "" }
+            newLocation.door = {id: 0, name: ""}
         }
 
         if (location.windowId > 0) {
             let windowIndex = this.props.windows.map((window) => window.id).indexOf(location.windowId);
             newLocation.window = this.props.windows[windowIndex];
         } else {
-            newLocation.window = { id: 0, name: "" }
+            newLocation.window = {id: 0, name: ""}
         }
         newLocation.buttons = this.getButtons(newLocation.id);
         return newLocation;
@@ -170,10 +170,8 @@ export class Locations extends React.Component {
         let rows = this.state.rows.slice();
         let rowIndex = this.state.rows.map((row) => row.id).indexOf(locationId);
         rows.splice(rowIndex, 1);
+        this.updateServer("delete", {id: locationId});
         this.setState({rows: rows});
-
-        let locationIndex = this.props.locations.map((location) => location.id).indexOf(locationId);
-        this.updateServer("delete", this.props.location[locationIndex]);
     };
 
     handleGridRowsUpdated = ({fromRow, toRow, updated}) => {

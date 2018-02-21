@@ -83,6 +83,7 @@ export class Rooms extends React.Component {
         let rows = this.state.rows.slice();
         let rowIndex = this.state.rows.map((row) => row.id).indexOf(roomId);
         rows.splice(rowIndex, 1);
+        this.updateServer("delete", {id: roomId});
         this.setState({rows: rows});
     };
 

@@ -4,8 +4,9 @@ import {DoorAddModal} from "./doorAddModal";
 import update from "immutability-helper/index";
 import {withAlert} from "react-alert";
 import {ObjectFormatterGrid} from '../formatterGrid/objectFormatterGrid'
-const { Editors } = require('react-data-grid-addons');
-const { AutoComplete: AutoCompleteEditor, DropDownEditor } = Editors;
+
+const {Editors} = require('react-data-grid-addons');
+const {AutoComplete: AutoCompleteEditor, DropDownEditor} = Editors;
 
 export class Doors extends React.Component {
     constructor(props) {
@@ -15,13 +16,16 @@ export class Doors extends React.Component {
             isModalOpen: false
         };
     }
+
     createRows = () => {
         return this.props.doors.map((door) =>
-            ({id: door.id,
+            ({
+                id: door.id,
                 name: door.name,
                 room1: door.room1,
                 room2: door.room2,
-                buttons: this.getButtons(door.id)}));
+                buttons: this.getButtons(door.id)
+            }));
     };
     createRow = (door) => {
         let newDoor = {};
@@ -33,29 +37,29 @@ export class Doors extends React.Component {
             let room2Index = this.props.rooms.map((room) => room.id).indexOf(door.room2Id);
             newDoor.room2 = this.props.rooms[room2Index];
         } else {
-            newDoor.room2 = { id: 0, name: "" }
+            newDoor.room2 = {id: 0, name: ""}
         }
 
         newDoor.buttons = this.getButtons(newDoor.id);
         return newDoor;
     };
     getDropdownOptions = () => {
-          return this.props.rooms.map((room) =>
-              {
-                  return {
-                      id: room.id,
-                      title: <div id={room.id}>{room.name}</div>,
-                      text: room.name,
-                      value: room.name
-                  };
-              }
-          );
+        return this.props.rooms.map((room) => {
+                return {
+                    id: room.id,
+                    title: <div id={room.id}>{room.name}</div>,
+                    text: room.name,
+                    value: room.name
+                };
+            }
+        );
     };
     getButtons = (doorId) => {
         return (
             <div className="justify-content-center">
                 <button className="btn btn-sm btn-outline-danger padding-x-sm"
-                        onClick={() => this.handleGridDelete(doorId)}>Delete</button>
+                        onClick={() => this.handleGridDelete(doorId)}>Delete
+                </button>
             </div>
         );
     };
@@ -79,7 +83,12 @@ export class Doors extends React.Component {
         {
             key: 'room2',
             name: 'Adjacent Room',
-            editor: <AutoCompleteEditor options={[{id: 0, title: <div style={{height: 20 + 'px'}} id={0}/>, text: "", value: ""}].concat(this.getDropdownOptions())}/>,
+            editor: <AutoCompleteEditor options={[{
+                id: 0,
+                title: <div style={{height: 20 + 'px'}} id={0}/>,
+                text: "",
+                value: ""
+            }].concat(this.getDropdownOptions())}/>,
             formatter: ObjectFormatterGrid
         },
         {
@@ -95,6 +104,7 @@ export class Doors extends React.Component {
         let rows = this.state.rows.slice();
         let rowIndex = this.state.rows.map((row) => row.id).indexOf(doorId);
         rows.splice(rowIndex, 1);
+        this.updateServer("delete", {id: doorId});
         this.setState({rows: rows});
     };
     openModal = () => {
@@ -111,7 +121,7 @@ export class Doors extends React.Component {
         this.updateServer("insert", newDoor);
         this.closeModal();
     };
-    handleGridRowsUpdated = ({ fromRow, toRow, updated }) => {
+    handleGridRowsUpdated = ({fromRow, toRow, updated}) => {
         // Cancer code to make this shitty dropdown work the way I need it
         if (updated.hasOwnProperty('room1')) {
             updated = {
@@ -138,7 +148,7 @@ export class Doors extends React.Component {
             this.updateServer("update", rows[i]);
         }
 
-        this.setState({ rows });
+        this.setState({rows});
     };
     updateServer = (action, door) => {
         let update = {
@@ -159,9 +169,10 @@ export class Doors extends React.Component {
     getFreeId = () => {
         let freeId = 1;
         if (this.state.rows.length > 0)
-            freeId = parseInt(this.state.rows[this.state.rows.length-1].id, 10)+1;
+            freeId = parseInt(this.state.rows[this.state.rows.length - 1].id, 10) + 1;
         return freeId;
     };
+
     render() {
         return (
             <div>

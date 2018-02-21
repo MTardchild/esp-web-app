@@ -12,22 +12,26 @@ export class FirmwareAddModal extends React.Component {
             }
         };
     }
+
     static getTimestamp = () => {
         let date = new Date(Date.now());
         return date.getFullYear() + '-' + ('0' + date.getMonth()).slice(-2) + '-' +
             ('0' + date.getDate()).slice(-2) + ' ' + date.getHours() + ':' + date.getMinutes()
             + ':' + date.getSeconds();
     };
+
     onNameChanged = (event) => {
         let firmware = this.state.firmware;
         firmware.name = event.currentTarget.value;
         this.setState({firmware: firmware});
     };
+
     onPathChanged = (event) => {
         let firmware = this.state.firmware;
         firmware.path = event.currentTarget.value;
         this.setState({firmware: firmware});
     };
+
     render() {
         return (
             <Modal
@@ -71,9 +75,11 @@ export class FirmwareAddModal extends React.Component {
                     <div className="col">
                         <div className="float-right">
                             <button type="button" className="btn btn-outline-secondary"
-                                    onClick={this.props.closeModal}>Close</button>
+                                    onClick={this.props.closeModal}>Close
+                            </button>
                             <button type="button" className="btn btn-outline-primary margin-left-md"
-                                    onClick={() => this.props.add(this.state.firmware)}>Add</button>
+                                    onClick={() => this.props.add(this.state.firmware)}>Add
+                            </button>
                         </div>
                     </div>
                 </div>
