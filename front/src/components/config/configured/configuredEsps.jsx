@@ -4,6 +4,7 @@ import update from 'immutability-helper'
 import {withAlert} from "react-alert";
 import {ObjectFormatterGrid} from "../formatterGrid/objectFormatterGrid";
 import FlashModal from "../unconfigured/flashModal";
+import {ComponentAddModal} from "./componentAddModal";
 
 const {Editors} = require('react-data-grid-addons');
 const {AutoComplete: AutoCompleteEditor, DropDownEditor} = Editors;
@@ -14,8 +15,10 @@ export class ConfiguredEsps extends React.Component {
         this.state = {
             expanded: {},
             rows: this.createRows(),
-            isModalOpen: false,
-            selectedHardwareId: -1
+            isModalFlashOpen: false,
+            isModalComponentOpen: false,
+            selectedHardwareId: -1,
+            selectedEspId: -1
         };
     }
 
@@ -110,6 +113,7 @@ export class ConfiguredEsps extends React.Component {
     };
 
     onDeleteSubRow = (args) => {
+        if (args.rowData.id === "") return;
         let idToDelete = args.rowData.id;
         let rows = this.state.rows.slice(0);
         // Remove sub row from parent row.
@@ -137,14 +141,13 @@ export class ConfiguredEsps extends React.Component {
         return (
             <div className="justify-content-center">
                 <button className="btn btn-sm btn-outline-primary padding-x-sm"
-                        onClick={() => this.openModal(hardwareId)}>Flash
+                        onClick={() => this.openModalFlash(hardwareId)}>Flash
                 </button>
             </div>
         );
     };
 
     createRows = () => {
-
         return this.props.esps.map((esp) => {
             let components = esp.components.map((component) => {
                 return {
@@ -153,6 +156,16 @@ export class ConfiguredEsps extends React.Component {
                     components: <div className="margin-left-md">{component.typeString}</div>
                 };
             });
+            components.push({
+                id: "",
+                name: "",
+                components: <div className="margin-left-md">
+                    <button type="button"
+                            className="btn btn-outline-primary btn-sm padding-x-sm"
+                            onClick={() => this.openModalComponent(esp.id)}>&#x2795;</button>
+                </div>
+            });
+
             return {
                 id: <b>{esp.id}</b>,
                 name: esp.name,
@@ -190,15 +203,26 @@ export class ConfiguredEsps extends React.Component {
         this.setState({rows});
     };
 
-    openModal = (hardwareId) => {
+    openModalFlash = (hardwareId) => {
         this.setState({
-            isModalOpen: true,
+            isModalFlashOpen: true,
             selectedHardwareId: hardwareId
         });
     };
 
-    closeModal = () => {
-        this.setState({isModalOpen: false});
+    closeModalFlash = () => {
+        this.setState({isModalFlashOpen: false});
+    };
+
+    openModalComponent = (espId) => {
+        this.setState({
+            isModalComponentOpen: true,
+            selectedEspId: espId
+        });
+    };
+
+    closeModalComponent = () => {
+        this.setState({isModalComponentOpen: false});
     };
 
     updateServer = (action, esp) => {
@@ -236,10 +260,17 @@ export class ConfiguredEsps extends React.Component {
                     getSubRowDetails={this.getSubRowDetails}
                     onGridRowsUpdated={this.handleGridRowsUpdated}/>
 
-                <FlashModal isModalOpen={this.state.isModalOpen}
-                            closeModal={this.closeModal}
+                <FlashModal isModalOpen={this.state.isModalFlashOpen}
+                            closeModal={this.closeModalFlash}
                             firmwares={this.props.firmwares}
                             hardwareId={this.state.selectedHardwareId}/>
+
+                <ComponentAddModal isModalOpen={this.state.isModalComponentOpen}
+                                   closeModal={this.closeModalComponent}
+                                   componentTypes={[{id: 1, name: "TODO"}]}
+                                   freeId={0}
+                                   add={this.onAddSubRow}
+                                   espId={this.state.selectedEspId}/>
             </div>
         );
     }

@@ -82,6 +82,10 @@
 .margin-left-lg { margin-left: 1.5em !important; }
 .margin-left-xl { margin-left: 3em !important; }
 
+.rdg-child-row-btn {
+  z-index: 0 !important;
+}
+
 /* The switch - the box around the slider */
 .switch {
   position: relative;
