@@ -2,8 +2,11 @@ import React from 'react';
 import ReactDataGrid from 'react-data-grid';
 import {LocationAddModal} from './locationAddModal'
 import update from "immutability-helper/index";
-const { Editors, Formatters } = require('react-data-grid-addons');
-const { AutoComplete: AutoCompleteEditor, DropDownEditor } = Editors;
+import {withAlert} from "react-alert";
+import {ObjectFormatterGrid} from "../formatterGrid/objectFormatterGrid";
+
+const {Editors, Formatters} = require('react-data-grid-addons');
+const {AutoComplete: AutoCompleteEditor, DropDownEditor} = Editors;
 
 export class Locations extends React.Component {
     constructor(props) {
@@ -13,36 +16,92 @@ export class Locations extends React.Component {
             isModalOpen: false
         };
     }
+
+    rowGetter = (i) => {
+        return this.state.rows[i];
+    };
+
+    createRow = (location) => {
+        let newLocation = {};
+        newLocation.id = this.getFreeId();
+        newLocation.name = location.name;
+        if (location.roomId > 0) {
+            let roomIndex = this.props.rooms.map((room) => room.id).indexOf(location.roomId);
+            newLocation.room = this.props.rooms[roomIndex];
+        }
+        if (location.doorId > 0) {
+            let doorIndex = this.props.doors.map((door) => door.id).indexOf(location.doorId);
+            newLocation.door = this.props.doors[doorIndex];
+        }
+        if (location.windowId > 0) {
+            let windowIndex = this.props.windows.map((window) => window.id).indexOf(location.windowId);
+            newLocation.window = this.props.windows[windowIndex];
+        }
+        newLocation.buttons = this.getButtons(newLocation.id);
+        return newLocation;
+    };
+
+    createRows = () => {
+        return this.props.locations.map((location) =>
+            ({
+                id: location.id,
+                name: location.name,
+                room: location.room,
+                door: location.door,
+                window: location.window,
+                buttons: this.getButtons(location.id)
+            }));
+    };
+
+    getButtons = (locationId) => {
+        return (
+            <div className="justify-content-center">
+                <button className="btn btn-sm btn-outline-danger padding-x-sm"
+                        onClick={() => this.handleGridDelete(locationId)}>Delete
+                </button>
+            </div>
+        );
+    };
+
     getDropdownOptionRooms = () => {
         return this.props.rooms.map((room) =>
             {
-                let roomOptions = room;
-                roomOptions.title = room.name;
-                return roomOptions;
+                return {
+                    id: room.id,
+                    title: <div id={room.id}>{room.name}</div>,
+                    text: room.name,
+                    value: room.name
+                };
             }
         );
     };
+
     getDropdownOptionDoors = () => {
         return this.props.doors.map((door) =>
             {
-                let doorOptions = door;
-                doorOptions.title = door.name;
-                return doorOptions;
+                return {
+                    id: door.id,
+                    title: <div id={door.id}>{door.name}</div>,
+                    text: door.name,
+                    value: door.name
+                };
             }
         );
     };
+
     getDropdownOptionWindows = () => {
         return this.props.windows.map((window) =>
             {
-                let windowOptions = window;
-                windowOptions.title = window.name;
-                return windowOptions;
+                return {
+                    id: window.id,
+                    title: <div id={window.id}>{window.name}</div>,
+                    text: window.name,
+                    value: window.name
+                };
             }
         );
     };
-    RoomEditor = <AutoCompleteEditor options={this.getDropdownOptionRooms()} />;
-    DoorEditor = <AutoCompleteEditor options={this.getDropdownOptionDoors()} />;
-    WindowEditor = <AutoCompleteEditor options={this.getDropdownOptionWindows()} />;
+
     columns = [
         {
             key: 'id',
@@ -57,17 +116,20 @@ export class Locations extends React.Component {
         {
             key: 'room',
             name: 'Room',
-            editor: this.RoomEditor
+            editor: <AutoCompleteEditor options={this.getDropdownOptionRooms()}/>,
+            formatter: ObjectFormatterGrid
         },
         {
             key: 'door',
             name: 'Door',
-            editor: this.DoorEditor
+            editor: <AutoCompleteEditor options={this.getDropdownOptionDoors()}/>,
+            formatter: ObjectFormatterGrid
         },
         {
             key: 'window',
             name: 'Window',
-            editor: this.WindowEditor
+            editor: <AutoCompleteEditor options={this.getDropdownOptionWindows()}/>,
+            formatter: ObjectFormatterGrid
         },
         {
             key: "buttons",
@@ -75,64 +137,15 @@ export class Locations extends React.Component {
             width: 75
         }
     ];
-    createRow = (location) => {
-        let newLocation = {};
-        newLocation.id = this.getFreeId();
-        newLocation.name = location.name;
-        if (location.roomId > 0) {
-            let roomIndex = this.props.rooms.map((room) => room.id).indexOf(location.roomId);
-            newLocation.room = this.props.rooms[roomIndex].name;
-        }
-        if (location.doorId > 0) {
-            let doorIndex = this.props.doors.map((door) => door.id).indexOf(location.doorId);
-            newLocation.door = this.props.doors[doorIndex].name;
-        }
-        if (location.windowId > 0) {
-            let windowIndex = this.props.windows.map((window) => window.id).indexOf(location.windowId);
-            newLocation.window = this.props.windows[windowIndex].name;
-        }
-        newLocation.buttons = this.getButtons(newLocation.id);
-        return newLocation;
-    };
-    createRows = () => {
-        return this.props.locations.map((location) =>
-            ({id: location.id,
-                name: location.name,
-                room: location.room.name,
-                door: location.door.name,
-                window: location.window.name,
-                buttons: this.getButtons(location.id)}));
-    };
-    getButtons = (locationId) => {
-        return (
-            <div className="justify-content-center">
-                <button className="btn btn-sm btn-outline-danger padding-x-sm"
-                        onClick={() => this.handleGridDelete(locationId)}>Delete</button>
-            </div>
-        );
-    };
-    rowGetter = (i) => {
-        return this.state.rows[i];
-    };
-    handleAddRow = () => {
-        const newRow = {
-            id: parseInt(this.state.rows[this.state.rows.length-1].id) + 1,
-            name: "",
-            room: "",
-            timestamp: Date.now()
-        };
 
-        let newRows = this.state.rows.slice();
-        newRows.push(newRow);
-
-        this.setState({rows: newRows})
-    };
     openModal = () => {
         this.setState({isModalOpen: true});
     };
+
     closeModal = () => {
         this.setState({isModalOpen: false});
     };
+
     handleGridAdd = (location) => {
         let rows = this.state.rows.slice();
         let newLocation = this.createRow(location);
@@ -140,29 +153,72 @@ export class Locations extends React.Component {
         this.setState({rows: rows});
         this.closeModal();
     };
+
     handleGridDelete = (locationId) => {
         let rows = this.state.rows.slice();
         let rowIndex = this.state.rows.map((row) => row.id).indexOf(locationId);
         rows.splice(rowIndex, 1);
         this.setState({rows: rows});
     };
-    handleGridRowsUpdated = ({ fromRow, toRow, updated }) => {
+
+    handleGridRowsUpdated = ({fromRow, toRow, updated}) => {
+        // Cancer code to make this shitty dropdown work the way I need it
+        if (updated.hasOwnProperty('room')) {
+            updated = {
+                room: {
+                    id: updated.room.props.id,
+                    name: updated.room.props.children
+                }
+            };
+        }
+
+        if (updated.hasOwnProperty('door')) {
+            updated = {
+                door: {
+                    id: updated.door.props.id,
+                    name: updated.door.props.children
+                }
+            };
+        }
+
+        if (updated.hasOwnProperty('window')) {
+            updated = {
+                window: {
+                    id: updated.window.props.id,
+                    name: updated.window.props.children
+                }
+            };
+        }
+
         let rows = this.state.rows.slice();
 
         for (let i = fromRow; i <= toRow; i++) {
-            let rowToUpdate = rows[i];
-            let updatedRow = update(rowToUpdate, {$merge: updated});
-            rows[i] = updatedRow;
+            rows[i] = update(rows[i], {$merge: updated});
+            this.updateServer(rows[i]);
         }
 
-        this.setState({ rows });
+        this.setState({rows});
     };
+
+    updateServer = (location) => {
+        let formData = new FormData();
+        formData.append('LocationUpdate', JSON.stringify(location));
+        this.props.alert.show('Updating ID: ' + location.id + " ...");
+        fetch("", {
+            method: "POST",
+            body: formData
+        }).then((res) => res)
+            .then((data) => this.props.alert.success('Updated ID: ' + location.id))
+            .catch((err) => this.props.alert.error('Failed updating ID: ' + location.id));
+    };
+
     getFreeId = () => {
         let freeId = 1;
         if (this.state.rows.length > 0)
-            freeId = parseInt(this.state.rows[this.state.rows.length-1].id, 10)+1;
+            freeId = parseInt(this.state.rows[this.state.rows.length - 1].id, 10) + 1;
         return freeId;
     };
+
     render() {
         return (
             <div>
@@ -188,3 +244,5 @@ export class Locations extends React.Component {
         );
     }
 }
+
+export default withAlert(Locations)

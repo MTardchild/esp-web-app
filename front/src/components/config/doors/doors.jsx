@@ -2,7 +2,9 @@ import React from 'react';
 import ReactDataGrid from 'react-data-grid';
 import {DoorAddModal} from "./doorAddModal";
 import update from "immutability-helper/index";
-const { Editors, Formatters } = require('react-data-grid-addons');
+import {withAlert} from "react-alert";
+import {ObjectFormatterGrid} from '../formatterGrid/objectFormatterGrid'
+const { Editors } = require('react-data-grid-addons');
 const { AutoComplete: AutoCompleteEditor, DropDownEditor } = Editors;
 
 export class Doors extends React.Component {
@@ -17,8 +19,8 @@ export class Doors extends React.Component {
         return this.props.doors.map((door) =>
             ({id: door.id,
                 name: door.name,
-                room1: door.room1.name,
-                room2: door.room2.name,
+                room1: door.room1,
+                room2: door.room2,
                 buttons: this.getButtons(door.id)}));
     };
     createRow = (door) => {
@@ -26,10 +28,10 @@ export class Doors extends React.Component {
         newDoor.id = this.getFreeId();
         newDoor.name = door.name;
         let room1Index = this.props.rooms.map((room) => room.id).indexOf(door.room1Id);
-        newDoor.room1 = this.props.rooms[room1Index].name;
+        newDoor.room1 = this.props.rooms[room1Index];
         if (door.room2Id > 0) {
             let room2Index = this.props.rooms.map((room) => room.id).indexOf(door.room2Id);
-            newDoor.room2 = this.props.rooms[room2Index].name;
+            newDoor.room2 = this.props.rooms[room2Index];
         }
         newDoor.buttons = this.getButtons(newDoor.id);
         return newDoor;
@@ -37,9 +39,12 @@ export class Doors extends React.Component {
     getDropdownOptions = () => {
           return this.props.rooms.map((room) =>
               {
-                  let roomDropdown = room;
-                  roomDropdown.title = room.name;
-                  return roomDropdown;
+                  return {
+                      id: room.id,
+                      title: <div id={room.id}>{room.name}</div>,
+                      text: room.name,
+                      value: room.name
+                  };
               }
           );
     };
@@ -51,7 +56,6 @@ export class Doors extends React.Component {
             </div>
         );
     };
-    RoomEditor = <AutoCompleteEditor options={this.getDropdownOptions()} />;
     columns = [
         {
             key: 'id',
@@ -66,12 +70,14 @@ export class Doors extends React.Component {
         {
             key: 'room1',
             name: 'Adjacent Room',
-            editor: this.RoomEditor
+            editor: <AutoCompleteEditor options={this.getDropdownOptions()}/>,
+            formatter: ObjectFormatterGrid
         },
         {
             key: 'room2',
             name: 'Adjacent Room',
-            editor: this.RoomEditor
+            editor: <AutoCompleteEditor options={this.getDropdownOptions()}/>,
+            formatter: ObjectFormatterGrid
         },
         {
             key: "buttons",
@@ -102,15 +108,44 @@ export class Doors extends React.Component {
         this.closeModal();
     };
     handleGridRowsUpdated = ({ fromRow, toRow, updated }) => {
+        // Cancer code to make this shitty dropdown work the way I need it
+        if (updated.hasOwnProperty('room1')) {
+            updated = {
+                room1: {
+                    id: updated.room1.props.id,
+                    name: updated.room1.props.children
+                }
+            };
+        }
+
+        if (updated.hasOwnProperty('room2')) {
+            updated = {
+                room2: {
+                    id: updated.room2.props.id,
+                    name: updated.room2.props.children
+                }
+            };
+        }
+
         let rows = this.state.rows.slice();
 
         for (let i = fromRow; i <= toRow; i++) {
-            let rowToUpdate = rows[i];
-            let updatedRow = update(rowToUpdate, {$merge: updated});
-            rows[i] = updatedRow;
+            rows[i] = update(rows[i], {$merge: updated});
+            this.updateServer(rows[i]);
         }
 
         this.setState({ rows });
+    };
+    updateServer = (door) => {
+        let formData = new FormData();
+        formData.append('DoorUpdate', JSON.stringify(door));
+        this.props.alert.show('Updating ID: ' + door.id + " ...");
+        fetch("", {
+            method: "POST",
+            body: formData
+        }).then((res) => res)
+            .then((data) => this.props.alert.success('Updated ID: ' + door.id))
+            .catch((err) => this.props.alert.error('Failed updating ID: ' + door.id));
     };
     getFreeId = () => {
         let freeId = 1;
@@ -140,3 +175,5 @@ export class Doors extends React.Component {
         );
     }
 }
+
+export default withAlert(Doors)

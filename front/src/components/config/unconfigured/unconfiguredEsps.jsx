@@ -38,7 +38,7 @@ export class UnconfiguredEsps extends React.Component {
         );
     };
     createRows = () => {
-        return [{ ssid: "", hwid: "", mode: "", channel: "", rate: "", strength: "", security: "", buttons: this.getButtons("123")}];
+        return [{ ssid: "dummyESP", hwid: "123", mode: "", channel: "", rate: "", strength: "", security: "", buttons: this.getButtons("123")}];
         // return this.props.unconfiguredEsps.map((esp) =>
         //     ({  ssid: esp.ssid,
         //         mode: "",

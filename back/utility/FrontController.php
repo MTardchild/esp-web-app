@@ -30,7 +30,8 @@ class FrontController {
                                 $doorUpdate,
                                 $locationUpdate,
                                 $espUpdate,
-                                $roomUpdate) {
+                                $roomUpdate,
+                                $windowUpdate) {
         $this->heartbeatService = $heartbeatService;
         $this->gridLayoutService = $gridLayoutService;
         $this->doorService = $doorService;
@@ -91,6 +92,14 @@ class FrontController {
             $room = $this->roomService->find($roomJson["id"]);
             $room->setName($roomJson["name"]);
             $this->wasHtmlPostSuccessful = $this->roomService->update($room);
+        }
+
+        if (!is_null($windowUpdate)) {
+            $windowJson = json_decode($windowUpdate, true);
+            $window = $this->windowService->find($windowJson["id"]);
+            $window->setName($windowJson["name"]);
+            $window->setRoom($this->roomService->find($windowJson["room"]["id"]));
+            $this->wasHtmlPostSuccessful = $this->windowService->update($window);
         }
 
         $this->configurationService = $configurationService;

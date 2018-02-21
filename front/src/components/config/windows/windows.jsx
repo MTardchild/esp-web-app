@@ -2,8 +2,11 @@ import React from 'react';
 import ReactDataGrid from 'react-data-grid';
 import {WindowAddModal} from "./windowAddModal";
 import update from "immutability-helper/index";
-const { Editors, Formatters } = require('react-data-grid-addons');
-const { AutoComplete: AutoCompleteEditor, DropDownEditor } = Editors;
+import {ObjectFormatterGrid} from "../formatterGrid/objectFormatterGrid";
+import {withAlert} from "react-alert";
+
+const {Editors} = require('react-data-grid-addons');
+const {AutoComplete: AutoCompleteEditor, DropDownEditor} = Editors;
 
 export class Windows extends React.Component {
     constructor(props) {
@@ -13,32 +16,55 @@ export class Windows extends React.Component {
             isModalOpen: false
         };
     }
-    createRow = (window) => {
-        let newWindow = {};
-        newWindow.id = this.getFreeId();
-        newWindow.name = window.name;
-        let roomIndex = this.props.rooms.map((room) => room.id).indexOf(window.roomId);
-        newWindow.room = this.props.rooms[roomIndex].name;
-        newWindow.buttons = this.getButtons(newWindow.id);
-        return newWindow;
+
+    rowGetter = (i) => {
+        return this.state.rows[i];
     };
+
+    createRow = (window) => {
+        let roomIndex = this.props.rooms.map((room) => room.id).indexOf(window.roomId);
+        let freeId = this.getFreeId();
+
+        return {
+            id: freeId,
+            name: window.name,
+            room: this.props.rooms[roomIndex],
+            buttons: this.getButtons(freeId)
+        };
+    };
+
     createRows = () => {
         return this.props.windows.map((window) =>
-            ({id: window.id,
+            ({
+                id: window.id,
                 name: window.name,
-                room: window.room.name,
-                buttons: this.getButtons(window.id)}));
+                room: window.room,
+                buttons: this.getButtons(window.id)
+            }));
     };
+
     getDropdownOptions = () => {
-        return this.props.rooms.map((room) =>
-            {
-                let roomDropdown = room;
-                roomDropdown.title = room.name;
-                return roomDropdown;
+        return this.props.rooms.map((room) => {
+                return {
+                    id: room.id,
+                    title: <div id={room.id}>{room.name}</div>,
+                    text: room.name,
+                    value: room.name
+                };
             }
         );
     };
-    RoomEditor = <AutoCompleteEditor options={this.getDropdownOptions()} />;
+
+    getButtons = (windowId) => {
+        return (
+            <div className="justify-content-center">
+                <button className="btn btn-sm btn-outline-danger padding-x-sm"
+                        onClick={() => this.handleGridDelete(windowId)}>Delete
+                </button>
+            </div>
+        );
+    };
+
     columns = [
         {
             key: 'id',
@@ -53,7 +79,8 @@ export class Windows extends React.Component {
         {
             key: 'room',
             name: 'Room',
-            editor: this.RoomEditor
+            editor: <AutoCompleteEditor options={this.getDropdownOptions()}/>,
+            formatter: ObjectFormatterGrid
         },
         {
             key: "buttons",
@@ -61,23 +88,15 @@ export class Windows extends React.Component {
             width: 75
         }
     ];
-    getButtons = (windowId) => {
-        return (
-            <div className="justify-content-center">
-                <button className="btn btn-sm btn-outline-danger padding-x-sm"
-                        onClick={() => this.handleGridDelete(windowId)}>Delete</button>
-            </div>
-        );
-    };
-    rowGetter = (i) => {
-        return this.state.rows[i];
-    };
+
     openModal = () => {
         this.setState({isModalOpen: true});
     };
+
     closeModal = () => {
         this.setState({isModalOpen: false});
     };
+
     handleGridAdd = (window) => {
         let rows = this.state.rows.slice();
         let newWindow = this.createRow(window);
@@ -85,29 +104,54 @@ export class Windows extends React.Component {
         this.setState({rows: rows});
         this.closeModal();
     };
+
     handleGridDelete = (windowId) => {
         let rows = this.state.rows.slice();
         let rowIndex = this.state.rows.map((row) => row.id).indexOf(windowId);
         rows.splice(rowIndex, 1);
         this.setState({rows: rows});
     };
-    handleGridRowsUpdated = ({ fromRow, toRow, updated }) => {
+
+    handleGridRowsUpdated = ({fromRow, toRow, updated}) => {
+        // Cancer code to make this shitty dropdown work the way I need it
+        if (updated.hasOwnProperty('room')) {
+            updated = {
+                room: {
+                    id: updated.room.props.id,
+                    name: updated.room.props.children
+                }
+            };
+        }
+
         let rows = this.state.rows.slice();
 
         for (let i = fromRow; i <= toRow; i++) {
-            let rowToUpdate = rows[i];
-            let updatedRow = update(rowToUpdate, {$merge: updated});
-            rows[i] = updatedRow;
+            rows[i] = update(rows[i], {$merge: updated});
+            this.updateServer(rows[i]);
         }
 
-        this.setState({ rows });
+        this.setState({rows});
     };
+
+    updateServer = (window) => {
+        let formData = new FormData();
+        formData.append('WindowUpdate', JSON.stringify(window));
+        this.props.alert.show('Updating ID: ' + window.id + " ...");
+        fetch("", {
+            method: "POST",
+            body: formData
+        }).then((res) => res)
+            .then((data) => this.props.alert.success('Updated ID: ' + window.id))
+            .catch((err) => this.props.alert.error('Failed updating ID: ' + window.id));
+    };
+
     getFreeId = () => {
         let freeId = 1;
         if (this.state.rows.length > 0)
-            freeId = parseInt(this.state.rows[this.state.rows.length-1].id, 10)+1;
+            freeId = parseInt(this.state.rows[this.state.rows.length - 1].id, 10) + 1;
         return freeId;
     };
+
     render() {
         return (
             <div>
@@ -130,3 +174,5 @@ export class Windows extends React.Component {
         );
     }
 }
+
+export default withAlert(Windows)

@@ -3,10 +3,10 @@ import {ConfigNavigation} from "./configNavigation";
 import {Firmwares} from "./firmwares/firmwares";
 import {ConfiguredEsps} from "./configured/configuredEsps";
 import {UnconfiguredEsps} from "./unconfigured/unconfiguredEsps";
-import {Windows} from "./windows/windows";
-import {Doors} from "./doors/doors";
-import {Rooms} from "./rooms/rooms";
-import {Locations} from "./locations/locations";
+import Windows from "./windows/windows";
+import Doors from "./doors/doors";
+import Rooms from "./rooms/rooms";
+import Locations from "./locations/locations";
 
 export class Config extends React.Component {
     constructor(props) {
@@ -15,13 +15,13 @@ export class Config extends React.Component {
         this.state = {
             view: 0
         };
-
-        this.onNavClicked = this.onNavClicked.bind(this);
     }
-    onNavClicked(id, event) {
+
+    onNavClicked = (id, event) => {
         event.preventDefault();
         this.setState({view: id});
-    }
+    };
+
     getActiveView() {
         let activeView;
         switch (this.state.view) {
@@ -29,7 +29,8 @@ export class Config extends React.Component {
                 activeView = <ConfiguredEsps esps={this.props.esps}/>;
                 break;
             case 1:
-                activeView = <UnconfiguredEsps unconfiguredEsps={this.props.unconfiguredEsps} firmwares={this.props.firmwares}/>;
+                activeView =
+                    <UnconfiguredEsps unconfiguredEsps={this.props.unconfiguredEsps} firmwares={this.props.firmwares}/>;
                 break;
             case 2:
                 activeView = <Firmwares firmwares={this.props.firmwares}/>;
@@ -55,6 +56,7 @@ export class Config extends React.Component {
 
         return activeView;
     }
+
     render() {
         return (
             <div>

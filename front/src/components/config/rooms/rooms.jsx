@@ -2,6 +2,7 @@ import React from 'react';
 import ReactDataGrid from 'react-data-grid';
 import {RoomAddModal} from "./roomAddModal";
 import update from "immutability-helper/index";
+import {withAlert} from "react-alert";
 
 export class Rooms extends React.Component {
     constructor(props) {
@@ -75,12 +76,22 @@ export class Rooms extends React.Component {
         let rows = this.state.rows.slice();
 
         for (let i = fromRow; i <= toRow; i++) {
-            let rowToUpdate = rows[i];
-            let updatedRow = update(rowToUpdate, {$merge: updated});
-            rows[i] = updatedRow;
+            rows[i] = update(rows[i], {$merge: updated});
+            this.updateServer(rows[i]);
         }
 
         this.setState({ rows });
+    };
+    updateServer = (room) => {
+        let formData = new FormData();
+        formData.append('RoomUpdate', JSON.stringify(room));
+        this.props.alert.show('Updating ID: ' + room.id + " ...");
+        fetch("", {
+            method: "POST",
+            body: formData
+        }).then((res) => res)
+            .then((data) => this.props.alert.success('Updated ID: ' + room.id))
+            .catch((err) => this.props.alert.error('Failed updating ID: ' + room.id));
     };
     getFreeId = () => {
         let freeId = 1;
@@ -109,3 +120,5 @@ export class Rooms extends React.Component {
         );
     }
 }
+
+export default withAlert(Rooms)

@@ -16,11 +16,11 @@ class WindowService implements IDatabaseService {
     }
 
     public function update($window) {
-        return $this->windowMapper->insert($window);
+        return $this->windowMapper->update($window);
     }
 
     public function delete($windowId) {
-        return $this->windowMapper->insert($windowId);
+        return $this->windowMapper->delete($windowId);
     }
 
     public function find($windowId) {
