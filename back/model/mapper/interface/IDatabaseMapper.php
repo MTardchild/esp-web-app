@@ -1,8 +1,10 @@
 <?php
 //namespace App\Model\Mapper\Interface;
 
-interface IDatabaseMapper {
+interface IDatabaseMapper
+{
     public function insert($object);
+
     public function delete($object);
 }
 

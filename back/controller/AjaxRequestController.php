@@ -1,6 +1,7 @@
 <?php
 
-class AjaxRequestController {
+class AjaxRequestController
+{
     private $connectionPostService;
     private $connectionUdpService;
     private $connectionTcpService;
@@ -28,14 +29,14 @@ class AjaxRequestController {
                                 LedStripDataService $ledStripDataService,
                                 AjaxRequest $ajaxRequest,
                                 ComponentTypeService $componentTypeService,
-                                GridLayoutService $gridLayoutService,
                                 ComponentService $componentService,
                                 ConfigurationService $configurationService,
                                 FirmwareService $firmwareService,
                                 RoomService $roomService,
                                 WindowService $windowService,
                                 LocationService $locationService,
-                                DoorService $doorService) {
+                                DoorService $doorService)
+    {
         $this->connectionPostService = $connectionPostService;
         $this->connectionUdpService = $connectionUdpService;
         $this->connectionTcpService = $connectionTcpService;
@@ -45,7 +46,6 @@ class AjaxRequestController {
         $this->ledStripDataService = $ledStripDataService;
         $this->espService = $espService;
         $this->componentTypeService = $componentTypeService;
-        $this->gridLayoutService = $gridLayoutService;
         $this->componentService = $componentService;
         $this->configurationService = $configurationService;
         $this->firmwareService = $firmwareService;
@@ -55,7 +55,8 @@ class AjaxRequestController {
         $this->doorService = $doorService;
     }
 
-    public function toggleRelay($action) {
+    public function toggleRelay($action)
+    {
         $data = array("componentId" => $action['id'], "action" => "toggle");
         $dataJson = json_encode($data);
         $statusMessage = $this->connectionTcpService->sendByComponent($action['id'], $dataJson);
@@ -71,17 +72,18 @@ class AjaxRequestController {
         }
     }
 
-    public function setColor($action) {
+    public function setColor($action)
+    {
         $data = array(
             "esp" => array(
                 "id" => "1",
-            "componentId" => $action['id'],
-            "action" => "changeColor",
-            "values" => array(
-                "red" => $action['r'],
-                "green" => $action['g'],
-                "blue" => $action['b']
-            )));
+                "componentId" => $action['id'],
+                "action" => "changeColor",
+                "values" => array(
+                    "red" => $action['r'],
+                    "green" => $action['g'],
+                    "blue" => $action['b']
+                )));
 
         $dataJson = json_encode($data);
         $status = $this->connectionTcpService->sendByComponent($action['id'], $dataJson);
@@ -98,7 +100,8 @@ class AjaxRequestController {
         }
     }
 
-    public function setWarmWhite($action) {
+    public function setWarmWhite($action)
+    {
         $data = array(
             "componentId" => $action['id'],
             "action" => "changeWarmWhite",
@@ -119,7 +122,8 @@ class AjaxRequestController {
         }
     }
 
-    public function setColorUdp($action) {
+    public function setColorUdp($action)
+    {
         $redStr = str_pad(decbin($action['r']), 12, 0, STR_PAD_LEFT);
         $greenStr = str_pad(decbin($action['g']), 12, 0, STR_PAD_LEFT);
         $blueStr = str_pad(decbin($action['b']), 12, 0, STR_PAD_LEFT);
@@ -137,19 +141,13 @@ class AjaxRequestController {
         $this->ajaxRequest->setMessage("Color successfully sent to LED-Strip.");
     }
 
-    public function getGridLayout($action) {
-        $this->ajaxRequest->setMessage($this->gridLayoutService->load());
-    }
-
-    public function getComponentOrder($action) {
-        $this->ajaxRequest->setMessage($this->gridLayoutService->loadComponentOrder());
-    }
-
-    public function getEsps($action) {
+    public function getEsps($action)
+    {
         $this->ajaxRequest->setMessage(json_encode($this->espService->findAll()));
     }
 
-    public function addComponent($action) {
+    public function addComponent($action)
+    {
         $component = $this->componentTypeService->getComponentOfType(intval($action["type"]));
         $component->setId($this->componentService->findFreeId());
         $component->setEspId($action["esp"]);
@@ -158,40 +156,48 @@ class AjaxRequestController {
         $this->ajaxRequest->setMessage(json_encode($component));
     }
 
-    public function removeComponent($action) {
+    public function removeComponent($action)
+    {
         $this->componentService->removeComponentFromEsp($action["id"]);
-        $component = $this->componentService->findComponent($action["id"]);
+        $component = $this->componentService->find($action["id"]);
 
         $this->ajaxRequest->setMessage(json_encode($component));
     }
 
-    public function getUnconfiguredEsps($action) {
+    public function getUnconfiguredEsps($action)
+    {
         $wifiNetworks = $this->configurationService->getWifiNetworks();
 
         $this->ajaxRequest->setMessage(json_encode($wifiNetworks));
     }
 
-    public function getFirmwares($action) {
+    public function getFirmwares($action)
+    {
         $this->ajaxRequest->setMessage(json_encode($this->firmwareService->findAll()));
     }
 
-    public function getRooms($action) {
+    public function getRooms($action)
+    {
         $this->ajaxRequest->setMessage(json_encode($this->roomService->findAll()));
     }
 
-    public function getWindows($action) {
+    public function getWindows($action)
+    {
         $this->ajaxRequest->setMessage(json_encode($this->windowService->findAll()));
     }
 
-    public function getDoors($action) {
+    public function getDoors($action)
+    {
         $this->ajaxRequest->setMessage(json_encode($this->doorService->findAll()));
     }
 
-    public function getLocations($action) {
+    public function getLocations($action)
+    {
         $this->ajaxRequest->setMessage(json_encode($this->locationService->findAll()));
     }
 
-    public function flash($action) {
+    public function flash($action)
+    {
         $esp = $this->espService->findByHwId($action['esp']);
         $firmware = $this->firmwareService->find($action['firmware']);
         $this->configurationService->flash($esp, $firmware);

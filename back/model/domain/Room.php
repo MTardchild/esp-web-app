@@ -1,36 +1,42 @@
 <?php
 //namespace App\Model\Domain;
 
-class Room extends DatabaseObjectBase implements JsonSerializable {
-	private $name;
+class Room extends DatabaseObjectBase implements JsonSerializable
+{
+    private $name;
 
-	private function __construct() {
+    private function __construct()
+    {
 
-	}
+    }
 
-	public static function createRoomEmpty() {
-		$room = new Room();
-		$room->id = -1;
-		$room->name = "";
+    public static function createRoomEmpty()
+    {
+        $room = new Room();
+        $room->id = -1;
+        $room->name = "";
 
-		return $room;
-	}
+        return $room;
+    }
 
-	public static function createRoom($id, $name) {
-		$room = new Room();
-		$room->id = $id;
-		$room->name = $name;
+    public static function createRoom($id, $name)
+    {
+        $room = new Room();
+        $room->id = $id;
+        $room->name = $name;
 
-		return $room;
-	}
+        return $room;
+    }
 
-	public function getName() {
-		return $this->name;
-	}
+    public function getName()
+    {
+        return $this->name;
+    }
 
-	public function setName($name) {
-		$this->name = $name;
-	}
+    public function setName($name)
+    {
+        $this->name = $name;
+    }
 
     function jsonSerialize()
     {

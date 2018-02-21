@@ -1,7 +1,9 @@
 <?php
 
-class ConnectionEspTcp extends ConnectionBase {
-    public function send($data) {
+class ConnectionEspTcp extends ConnectionBase
+{
+    public function send($data)
+    {
         $result = true;
         $port = getservbyname('www', 'tcp');
 
@@ -21,10 +23,11 @@ class ConnectionEspTcp extends ConnectionBase {
         return $result;
     }
 
-    private function getErrorMessageConnect($errorNumber) {
+    private function getErrorMessageConnect($errorNumber)
+    {
         $errorMessage = "";
 
-        switch($errorNumber) {
+        switch ($errorNumber) {
             case 10060:
                 $errorMessage = "Unable to connect. Host is down.";
                 break;

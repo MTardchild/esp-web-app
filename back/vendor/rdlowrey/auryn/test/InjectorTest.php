@@ -89,16 +89,16 @@ class InjectorTest extends \PHPUnit_Framework_TestCase
     public function testMakeInstanceUsesCustomDefinitionIfSpecified()
     {
         $injector = new Injector;
-        $injector->define('Auryn\Test\TestNeedsDep', array('testDep'=>'Auryn\Test\TestDependency'));
-        $injected = $injector->make('Auryn\Test\TestNeedsDep', array('testDep'=>'Auryn\Test\TestDependency2'));
+        $injector->define('Auryn\Test\TestNeedsDep', array('testDep' => 'Auryn\Test\TestDependency'));
+        $injected = $injector->make('Auryn\Test\TestNeedsDep', array('testDep' => 'Auryn\Test\TestDependency2'));
         $this->assertEquals('testVal2', $injected->testDep->testProp);
     }
 
     public function testMakeInstanceCustomDefinitionOverridesExistingDefinitions()
     {
         $injector = new Injector;
-        $injector->define('Auryn\Test\InjectorTestChildClass', array(':arg1'=>'First argument', ':arg2'=>'Second argument'));
-        $injected = $injector->make('Auryn\Test\InjectorTestChildClass', array(':arg1'=>'Override'));
+        $injector->define('Auryn\Test\InjectorTestChildClass', array(':arg1' => 'First argument', ':arg2' => 'Second argument'));
+        $injected = $injector->make('Auryn\Test\InjectorTestChildClass', array(':arg1' => 'Override'));
         $this->assertEquals('Override', $injected->arg1);
         $this->assertEquals('Second argument', $injected->arg2);
     }
@@ -113,11 +113,11 @@ class InjectorTest extends \PHPUnit_Framework_TestCase
     public function testMakeInstanceUsesReflectionForUnknownParamsInMultiBuildWithDeps()
     {
         $injector = new Injector;
-        $obj = $injector->make('Auryn\Test\TestMultiDepsWithCtor', array('val1'=>'Auryn\Test\TestDependency'));
+        $obj = $injector->make('Auryn\Test\TestMultiDepsWithCtor', array('val1' => 'Auryn\Test\TestDependency'));
         $this->assertInstanceOf('Auryn\Test\TestMultiDepsWithCtor', $obj);
 
         $obj = $injector->make('Auryn\Test\NoTypehintNoDefaultConstructorClass',
-            array('val1'=>'Auryn\Test\TestDependency')
+            array('val1' => 'Auryn\Test\TestDependency')
         );
         $this->assertInstanceOf('Auryn\Test\NoTypehintNoDefaultConstructorClass', $obj);
         $this->assertEquals(null, $obj->testParam);
@@ -202,7 +202,7 @@ class InjectorTest extends \PHPUnit_Framework_TestCase
      */
     public function testMakeInstanceThrowsExceptionWhenDelegateDoes()
     {
-        $injector= new Injector;
+        $injector = new Injector;
 
         $callable = $this->getMock(
             'CallableMock',
@@ -226,7 +226,7 @@ class InjectorTest extends \PHPUnit_Framework_TestCase
 
     public function testMakeInstanceDelegate()
     {
-        $injector= new Injector;
+        $injector = new Injector;
 
         $callable = $this->getMock(
             'CallableMock',
@@ -245,7 +245,7 @@ class InjectorTest extends \PHPUnit_Framework_TestCase
 
     public function testMakeInstanceWithStringDelegate()
     {
-        $injector= new Injector;
+        $injector = new Injector;
         $injector->delegate('StdClass', 'Auryn\Test\StringStdClassDelegateMock');
         $obj = $injector->make('StdClass');
         $this->assertEquals(42, $obj->test);
@@ -256,7 +256,7 @@ class InjectorTest extends \PHPUnit_Framework_TestCase
      */
     public function testMakeInstanceThrowsExceptionIfStringDelegateClassHasNoInvokeMethod()
     {
-        $injector= new Injector;
+        $injector = new Injector;
         $injector->delegate('StdClass', 'StringDelegateWithNoInvokeMethod');
     }
 
@@ -265,7 +265,7 @@ class InjectorTest extends \PHPUnit_Framework_TestCase
      */
     public function testMakeInstanceThrowsExceptionIfStringDelegateClassInstantiationFails()
     {
-        $injector= new Injector;
+        $injector = new Injector;
         $injector->delegate('StdClass', 'SomeClassThatDefinitelyDoesNotExistForReal');
     }
 
@@ -461,7 +461,9 @@ class InjectorTest extends \PHPUnit_Framework_TestCase
 
         // 10 ------------------------------------------------------------------------------------->
 
-        $toInvoke = function () { return 42; };
+        $toInvoke = function () {
+            return 42;
+        };
         $args = array();
         $expectedResult = 42;
         $return[] = array($toInvoke, $args, $expectedResult);
@@ -677,7 +679,7 @@ class InjectorTest extends \PHPUnit_Framework_TestCase
         );
     }
 
-     /**
+    /**
      * @dataProvider provideCyclicDependencies
      * @expectedException \Auryn\InjectionException
      * @expectedExceptionCode \Auryn\Injector::E_CYCLIC_DEPENDENCY
@@ -829,7 +831,7 @@ class InjectorTest extends \PHPUnit_Framework_TestCase
         );
         $injector->buildExecutable(array($object, 'nonExistentMethod'));
     }
-    
+
     public function testMakeExecutableFailsOnNonExistentStaticMethod()
     {
         $injector = new Injector();
@@ -911,7 +913,6 @@ class InjectorTest extends \PHPUnit_Framework_TestCase
 
         $this->assertSame(42, $obj->testProp);
     }
-
 
 
     /**
@@ -1073,13 +1074,14 @@ class InjectorTest extends \PHPUnit_Framework_TestCase
         $this->assertSame($expected, $actual);
     }
 
-    public function testChildWithoutConstructorWorks() {
+    public function testChildWithoutConstructorWorks()
+    {
 
         $injector = new Injector;
         try {
             $injector->define('Auryn\Test\ParentWithConstructor', array(':foo' => 'parent'));
             $injector->define('Auryn\Test\ChildWithoutConstructor', array(':foo' => 'child'));
-            
+
             $injector->share('Auryn\Test\ParentWithConstructor');
             $injector->share('Auryn\Test\ChildWithoutConstructor');
 
@@ -1088,18 +1090,18 @@ class InjectorTest extends \PHPUnit_Framework_TestCase
 
             $parent = $injector->make('Auryn\Test\ParentWithConstructor');
             $this->assertEquals('parent', $parent->foo);
-        }
-        catch (\Auryn\InjectionException $ie) {
+        } catch (\Auryn\InjectionException $ie) {
             echo $ie->getMessage();
             $this->fail("Auryn failed to locate the ");
         }
     }
-    
+
     /**
      * @expectedException \Auryn\InjectionException
      * @expectedExceptionCode \Auryn\Injector::E_UNDEFINED_PARAM
      */
-    public function testChildWithoutConstructorMissingParam() {
+    public function testChildWithoutConstructorMissingParam()
+    {
         $injector = new Injector;
         $injector->define('Auryn\Test\ParentWithConstructor', array(':foo' => 'parent'));
         $injector->make('Auryn\Test\ChildWithoutConstructor');

@@ -1,45 +1,51 @@
 <?php
 //namespace App\Model\Mapper;
 
-class RoomMapper implements IDatabaseMapper, IDatabaseObjectMapper {
+class RoomMapper implements IDatabaseMapper, IDatabaseObjectMapper
+{
     private $database;
 
-    public function __construct(PDO $database) {
+    public function __construct(PDO $database)
+    {
         $this->database = $database;
     }
 
-    public function insert($room) {
+    public function insert($room)
+    {
         $isSuccessful = false;
 
         if ($room instanceof Room) {
             $query = $this->database->prepare("INSERT INTO room VALUES (:id, :name);");
-            $isSuccessful = $query->execute(array(  'id' => $room->getId(),
-                                                    'name' => $room->getName()));
+            $isSuccessful = $query->execute(array('id' => $room->getId(),
+                'name' => $room->getName()));
         }
 
         return $isSuccessful;
     }
 
-    public function update($room) {
+    public function update($room)
+    {
         $isSuccessful = false;
 
         if ($room instanceof Room) {
             $query = $this->database->prepare("UPDATE room SET room.rom_name = :name WHERE room.rom_id = :id;");
-            $isSuccessful = $query->execute(array(  'id' => $room->getId(),
-                                                    'name' => $room->getName()));
+            $isSuccessful = $query->execute(array('id' => $room->getId(),
+                'name' => $room->getName()));
         }
 
         return $isSuccessful;
     }
 
-    public function delete($roomId) {
+    public function delete($roomId)
+    {
         $query = $this->database->prepare("DELETE FROM room WHERE room.rom_id = :id");
         $isSuccessful = $query->execute(array("id" => $roomId));
 
         return $isSuccessful;
     }
 
-    public function find($roomId) {
+    public function find($roomId)
+    {
         $roomId = intval($roomId);
         $query = $this->database->prepare("SELECT * FROM room WHERE room.rom_id = :id");
         $query->execute(array("id" => $roomId));
@@ -49,18 +55,19 @@ class RoomMapper implements IDatabaseMapper, IDatabaseObjectMapper {
         return $room;
     }
 
-    public function findAll() {
-      $query = $this->database->prepare("SELECT * FROM room");
-      $query->execute();
-      $roomCollectionDb = $query->fetchAll();
-      $roomCollection = array();
+    public function findAll()
+    {
+        $query = $this->database->prepare("SELECT * FROM room");
+        $query->execute();
+        $roomCollectionDb = $query->fetchAll();
+        $roomCollection = array();
 
-      if ($roomCollectionDb !== false) {
-          foreach ($roomCollectionDb as $roomDb) {
-              array_push($roomCollection, Room::createRoom($roomDb['rom_id'], $roomDb['rom_name']));
-          }
-      }
+        if ($roomCollectionDb !== false) {
+            foreach ($roomCollectionDb as $roomDb) {
+                array_push($roomCollection, Room::createRoom($roomDb['rom_id'], $roomDb['rom_name']));
+            }
+        }
 
-      return $roomCollection;
+        return $roomCollection;
     }
 }

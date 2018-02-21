@@ -2,6 +2,8 @@ import React from 'react';
 import ReactDataGrid from 'react-data-grid';
 import FlashModal from "./flashModal";
 import WifiModal from "./wifiModal";
+import {withAlert} from "react-alert";
+import {ConfiguredEsps} from "../configured/configuredEsps";
 
 export class UnconfiguredEsps extends React.Component {
     constructor(props) {
@@ -54,7 +56,7 @@ export class UnconfiguredEsps extends React.Component {
         },
         {
             key: "hwid",
-            name: "Hardware-ID"
+            name: "Hardware ID"
         },
         {
             key: 'mode',
@@ -104,3 +106,5 @@ export class UnconfiguredEsps extends React.Component {
         );
     }
 }
+
+export default withAlert(UnconfiguredEsps)

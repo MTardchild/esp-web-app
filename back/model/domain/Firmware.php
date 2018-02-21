@@ -1,14 +1,18 @@
 <?php
-class Firmware extends DatabaseObjectBase implements JsonSerializable {
+
+class Firmware extends DatabaseObjectBase implements JsonSerializable
+{
     private $name;
     private $path;
     private $timestamp;
 
-    private function __construct() {
+    private function __construct()
+    {
 
     }
 
-    public static function createFirmwareEmpty() {
+    public static function createFirmwareEmpty()
+    {
         $firmware = new Firmware();
         $firmware->id = -1;
         $firmware->name = "";
@@ -18,7 +22,8 @@ class Firmware extends DatabaseObjectBase implements JsonSerializable {
         return $firmware;
     }
 
-    public static function createFirmware($id, $name, $path, $timestamp) {
+    public static function createFirmware($id, $name, $path, $timestamp)
+    {
         $firmware = new Firmware();
         $firmware->id = $id;
         $firmware->name = $name;

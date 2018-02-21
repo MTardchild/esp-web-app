@@ -8,6 +8,7 @@ class InaccessibleExecutableClassMethod
     {
         return 42;
     }
+
     protected function doSomethingProtected()
     {
         return 42;
@@ -20,6 +21,7 @@ class InaccessibleStaticExecutableClassMethod
     {
         return 42;
     }
+
     protected static function doSomethingProtected()
     {
         return 42;
@@ -99,6 +101,7 @@ class NotSharedClass implements SharedAliasedInterface
 class DependencyWithDefinedParam
 {
     public $foo;
+
     public function __construct($foo)
     {
         $this->foo = $foo;
@@ -108,6 +111,7 @@ class DependencyWithDefinedParam
 class RequiresDependencyWithDefinedParam
 {
     public $obj;
+
     public function __construct(DependencyWithDefinedParam $obj)
     {
         $this->obj = $obj;
@@ -194,7 +198,8 @@ class TestMultiDepsWithCtor
 class NoTypehintNullDefaultConstructorClass
 {
     public $testParam = 1;
-    public function __construct(TestDependency $val1, $arg=42)
+
+    public function __construct(TestDependency $val1, $arg = 42)
     {
         $this->testParam = $arg;
     }
@@ -203,6 +208,7 @@ class NoTypehintNullDefaultConstructorClass
 class NoTypehintNoDefaultConstructorClass
 {
     public $testParam = 1;
+
     public function __construct(TestDependency $val1, $arg = null)
     {
         $this->testParam = $arg;
@@ -212,12 +218,15 @@ class NoTypehintNoDefaultConstructorClass
 interface DepInterface
 {
 }
+
 interface SomeInterface
 {
 }
+
 class SomeImplementation implements SomeInterface
 {
 }
+
 class PreparesImplementationTest implements SomeInterface
 {
     public $testProp = 0;
@@ -231,6 +240,7 @@ class DepImplementation implements DepInterface
 class RequiresInterface
 {
     public $dep;
+
     public function __construct(DepInterface $dep)
     {
         $this->testDep = $dep;
@@ -240,20 +250,24 @@ class RequiresInterface
 class ClassInnerA
 {
     public $dep;
+
     public function __construct(ClassInnerB $dep)
     {
         $this->dep = $dep;
     }
 }
+
 class ClassInnerB
 {
     public function __construct()
     {
     }
 }
+
 class ClassOuter
 {
     public $dep;
+
     public function __construct(ClassInnerA $dep)
     {
         $this->dep = $dep;
@@ -275,6 +289,7 @@ interface TestNoExplicitDefine
 class InjectorTestCtorParamWithNoTypehintOrDefault implements TestNoExplicitDefine
 {
     public $val = 42;
+
     public function __construct($val)
     {
         $this->val = $val;
@@ -284,6 +299,7 @@ class InjectorTestCtorParamWithNoTypehintOrDefault implements TestNoExplicitDefi
 class InjectorTestCtorParamWithNoTypehintOrDefaultDependent
 {
     private $param;
+
     public function __construct(TestNoExplicitDefine $param)
     {
         $this->param = $param;
@@ -339,6 +355,7 @@ class CallableMock
 class ProviderTestCtorParamWithNoTypehintOrDefault implements TestNoExplicitDefine
 {
     public $val = 42;
+
     public function __construct($val)
     {
         $this->val = $val;
@@ -348,6 +365,7 @@ class ProviderTestCtorParamWithNoTypehintOrDefault implements TestNoExplicitDefi
 class ProviderTestCtorParamWithNoTypehintOrDefaultDependent
 {
     private $param;
+
     public function __construct(TestNoExplicitDefine $param)
     {
         $this->param = $param;
@@ -360,6 +378,7 @@ class StringStdClassDelegateMock
     {
         return $this->make();
     }
+
     private function make()
     {
         $obj = new \StdClass;
@@ -385,6 +404,7 @@ class ExecuteClassDeps
     public function __construct(TestDependency $testDep)
     {
     }
+
     public function execute()
     {
         return 42;
@@ -396,6 +416,7 @@ class ExecuteClassDepsWithMethodDeps
     public function __construct(TestDependency $testDep)
     {
     }
+
     public function execute(TestDependency $dep, $arg = null)
     {
         return isset($arg) ? $arg : 42;
@@ -476,6 +497,7 @@ class RequiresDelegatedInterface
     {
         $this->interface = $interface;
     }
+
     public function foo()
     {
         $this->interface->foo();
@@ -492,6 +514,7 @@ class TestMissingDependency
 class NonConcreteDependencyWithDefaultValue
 {
     public $interface;
+
     public function __construct(DelegatableInterface $i = null)
     {
         $this->interface = $i;
@@ -502,6 +525,7 @@ class NonConcreteDependencyWithDefaultValue
 class ConcreteDependencyWithDefaultValue
 {
     public $dependency;
+
     public function __construct(\StdClass $instance = null)
     {
         $this->dependency = $instance;
@@ -596,6 +620,7 @@ class TestDelegationSimple
 class TestDelegationDependency
 {
     public $delgateCalled = false;
+
     public function __construct(TestDelegationSimple $testDelegationSimple)
     {
     }
@@ -624,6 +649,7 @@ class BaseExecutableClass
     {
         return 'This is the BaseExecutableClass';
     }
+
     public static function bar()
     {
         return 'This is the BaseExecutableClass';
@@ -636,6 +662,7 @@ class ExtendsExecutableClass extends BaseExecutableClass
     {
         return 'This is the ExtendsExecutableClass';
     }
+
     public static function bar()
     {
         return 'This is the ExtendsExecutableClass';
@@ -675,6 +702,7 @@ function getDelegateClosureInGlobalScope()
 class CloneTest
 {
     public $injector;
+
     public function __construct(\Auryn\Injector $injector)
     {
         $this->injector = clone $injector;
@@ -704,12 +732,16 @@ class DependencyChainTest
     }
 }
 
-class ParentWithConstructor {
+class ParentWithConstructor
+{
     public $foo;
-    function __construct($foo) {
+
+    function __construct($foo)
+    {
         $this->foo = $foo;
     }
 }
 
-class ChildWithoutConstructor extends ParentWithConstructor {
+class ChildWithoutConstructor extends ParentWithConstructor
+{
 }

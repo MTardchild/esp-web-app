@@ -1,5 +1,5 @@
 {
-    "require": {
-        "rdlowrey/auryn": "^1.4"
-    }
+  "require": {
+    "rdlowrey/auryn": "^1.4"
+  }
 }

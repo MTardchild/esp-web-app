@@ -1,21 +1,24 @@
 <?php
+
 class Configurator
 {
-    public function __construct() {
+    public function __construct()
+    {
 
     }
 
-    public function getWifiNetworks() {
+    public function getWifiNetworks()
+    {
         $wifiNetworksString = shell_exec("nmcli device wifi list");
         $wifiNetworks = array();
         $rows = preg_split('(\r\n|\r|\n)', $wifiNetworksString);
 
-        foreach($rows as $row) {
+        foreach ($rows as $row) {
             $column = preg_split('/\s\s+/', $row);
 
             if (count($column) > 1) {
                 $ssidColumn = $column[1];
-                if (substr($ssidColumn, 0, 4 ) === "esp_") {
+                if (substr($ssidColumn, 0, 4) === "esp_") {
                     array_push($wifiNetworks, $column);
                 }
             }
@@ -24,11 +27,35 @@ class Configurator
         return $wifiNetworks;
     }
 
-    public function flash($esp, $firmwarePath) {
-        $wifiNetworks = $this->getWifiNetworks();
+    public function flash(Esp $esp, Firmware $firmware)
+    {
+        $url = "https://" . $_SERVER['SERVER_ADDR'] . ":" . $_SERVER['SERVER_PORT'] . $firmware->getPath();
+        $command = FlashCommand::createFlashCommand($url);
+
+        if ($esp->getId() === -1) {
+            $this->connectWifi($esp->getHwId(), $esp->getHwId());
+            // TODO: Find out IP of ESP when he hosted the AP.
+        }
+
+        $connectionEsp = new ConnectionEspTcp($esp->getIp());
+        return $connectionEsp->send(json_encode($command, JSON_UNESCAPED_SLASHES));
     }
 
-    public function configureWifi($esp, $ssid, $password) {
+    public function connectWifi($ssid, $password)
+    {
+        shell_exec("nmcli device wifi connect " . $ssid . " password " . $password);
+        sleep(5);
+    }
 
+    public function configureWifi(Esp $esp, $ssid, $password)
+    {
+        $command = ConfigureWifiCommand::createConfigureWifiCommand($ssid, $password);
+        if ($esp->getId() === -1) {
+            $this->connectWifi($esp->getHwId(), $esp->getHwId());
+            // TODO: Find out IP of ESP when he hosted the AP.
+        }
+
+        $connectionEsp = new ConnectionEspTcp($esp->getIp());
+        return $connectionEsp->send(json_encode($command, JSON_UNESCAPED_SLASHES));
     }
 }

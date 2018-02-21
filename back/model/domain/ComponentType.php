@@ -1,17 +1,21 @@
 <?php
 
-class ComponentType extends DatabaseObjectBase {
+class ComponentType extends DatabaseObjectBase
+{
     private $name;
 
-    private function __construct() {
+    private function __construct()
+    {
 
     }
 
-    public static function createComponentTypeEmpty() {
+    public static function createComponentTypeEmpty()
+    {
         return new ComponentType();
     }
 
-    public static function createComponentType($id, $name) {
+    public static function createComponentType($id, $name)
+    {
         $componentType = new ComponentType();
         $componentType->id = $id;
         $componentType->name = $name;
@@ -19,11 +23,13 @@ class ComponentType extends DatabaseObjectBase {
         return $componentType;
     }
 
-    public function getName() {
+    public function getName()
+    {
         return $this->name;
     }
 
-    public function setName($name) {
+    public function setName($name)
+    {
         $this->name = $name;
     }
 }

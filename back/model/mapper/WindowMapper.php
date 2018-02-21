@@ -1,46 +1,52 @@
 <?php
 //namespace App\Model\Mapper;
 
-class WindowMapper implements IDatabaseMapper {
+class WindowMapper implements IDatabaseMapper
+{
     private $database;
 
-    public function __construct(PDO $database) {
+    public function __construct(PDO $database)
+    {
         $this->database = $database;
     }
 
-    public function insert($window) {
+    public function insert($window)
+    {
         $isSuccessful = false;
 
         if ($window instanceof Window) {
             $query = $this->database->prepare("INSERT INTO window VALUES (:windowId, :windowName, :windowRoom);");
             $isSuccessful = $query->execute(array('windowId' => $window->getId(),
-                                                  'windowName' => $window->getName(),
-                                                  'windowRoom' => $window->getRoom()->getId()));
+                'windowName' => $window->getName(),
+                'windowRoom' => $window->getRoom()->getId()));
         }
 
         return $isSuccessful;
     }
 
-    public function update($window) {
+    public function update($window)
+    {
         $isSuccessful = false;
 
         if ($window instanceof Window) {
             $query = $this->database->prepare("UPDATE window SET window.win_name = :windowName, window.win_room = :windowRoom WHERE win_id = :windowId;");
             $isSuccessful = $query->execute(array('windowId' => $window->getId(),
-                                                  'windowName' => $window->getName(),
-                                                  'windowRoom' => $window->getRoom()->getId()));
+                'windowName' => $window->getName(),
+                'windowRoom' => $window->getRoom()->getId()));
         }
 
         return $isSuccessful;
     }
 
-    public function delete($windowId) {
+    public function delete($windowId)
+    {
         $query = $this->database->prepare("DELETE FROM window WHERE window.win_id = :windowId");
         $isSuccessful = $query->execute(array("windowId" => $windowId));
         return $isSuccessful;
     }
 
-    public function find($windowId) {
+    public function find($windowId)
+    {
         $windowId = intval($windowId);
         $query = $this->database->prepare("SELECT * FROM window WHERE window.win_id = :windowId");
         $query->execute(array("windowId" => $windowId));
@@ -50,18 +56,19 @@ class WindowMapper implements IDatabaseMapper {
         return $window;
     }
 
-    public function findAll() {
-      $query = $this->database->prepare("SELECT * FROM window");
-      $query->execute();
-      $windowCollectionDb = $query->fetchAll();
-      $windowCollection = array();
+    public function findAll()
+    {
+        $query = $this->database->prepare("SELECT * FROM window");
+        $query->execute();
+        $windowCollectionDb = $query->fetchAll();
+        $windowCollection = array();
 
-      if ($windowCollectionDb !== false) {
-          foreach ($windowCollectionDb as $windowDb) {
-              array_push($windowCollection, Window::createWindow($windowDb['win_id'], $windowDb['win_name'], $windowDb['win_room']));
-          }
-      }
+        if ($windowCollectionDb !== false) {
+            foreach ($windowCollectionDb as $windowDb) {
+                array_push($windowCollection, Window::createWindow($windowDb['win_id'], $windowDb['win_name'], $windowDb['win_room']));
+            }
+        }
 
-      return $windowCollection;
+        return $windowCollection;
     }
 }

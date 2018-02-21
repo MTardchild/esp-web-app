@@ -1,8 +1,8 @@
 import React from 'react';
 import {ConfigNavigation} from "./configNavigation";
-import {Firmwares} from "./firmwares/firmwares";
-import {ConfiguredEsps} from "./configured/configuredEsps";
-import {UnconfiguredEsps} from "./unconfigured/unconfiguredEsps";
+import ConfiguredEsps from "./configured/configuredEsps";
+import UnconfiguredEsps from "./unconfigured/unconfiguredEsps";
+import Firmwares from "./firmwares/firmwares";
 import Windows from "./windows/windows";
 import Doors from "./doors/doors";
 import Rooms from "./rooms/rooms";
@@ -26,11 +26,12 @@ export class Config extends React.Component {
         let activeView;
         switch (this.state.view) {
             case 0:
-                activeView = <ConfiguredEsps esps={this.props.esps}/>;
+                activeView = <ConfiguredEsps esps={this.props.esps}
+                                             locations={this.props.locations}/>;
                 break;
             case 1:
-                activeView =
-                    <UnconfiguredEsps unconfiguredEsps={this.props.unconfiguredEsps} firmwares={this.props.firmwares}/>;
+                activeView = <UnconfiguredEsps unconfiguredEsps={this.props.unconfiguredEsps}
+                                               firmwares={this.props.firmwares}/>;
                 break;
             case 2:
                 activeView = <Firmwares firmwares={this.props.firmwares}/>;

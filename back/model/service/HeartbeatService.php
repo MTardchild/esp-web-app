@@ -1,4 +1,5 @@
 <?php
+
 class HeartbeatService
 {
     private $dhtDataService;
@@ -27,20 +28,21 @@ class HeartbeatService
         $this->connectionTcpService = $connectionTcpService;
     }
 
-    public function evaluate ($heartbeatJsonString) {
-        $isSuccessful = false;
+    public function evaluate($heartbeatJsonString)
+    {
         $heartbeatJson = json_decode($heartbeatJsonString, true);
 
         if ($this->IsEspIdValid($heartbeatJson['esp']['id'])) {
-            $isSuccessful = $this->updateEsp($heartbeatJson['esp']);
+            $this->updateEsp($heartbeatJson['esp']);
         } else {
-            $isSuccessful = $this->configureEsp($heartbeatJson['esp']);
+            $this->configureEsp($heartbeatJson['esp']);
         }
 
-        return $isSuccessful;
+        return true;
     }
 
-    private function updateEsp($espJson) {
+    private function updateEsp($espJson)
+    {
         $isSuccessful = false;
         $esp = Esp::createEsp(
             $espJson['id'],
@@ -52,13 +54,14 @@ class HeartbeatService
 
         if ($this->espService->find($espJson['id']) instanceof Esp) {
             $isSuccessful = $this->espService->update($esp)
-            && $this->insertComponentData($espJson['id'], $espJson['components']);
+                && $this->insertComponentData($espJson['id'], $espJson['components']);
         }
 
         return $isSuccessful;
     }
 
-    private function insertComponentData($espId, $componentsJson) {
+    private function insertComponentData($espId, $componentsJson)
+    {
         $isSuccessful = false;
 
         if (!is_null($componentsJson)) {
@@ -80,7 +83,8 @@ class HeartbeatService
         return $isSuccessful;
     }
 
-    private function insertDhtData($espId, $dhtData) {
+    private function insertDhtData($espId, $dhtData)
+    {
         $dht = Dht::createDht(
             $dhtData['componentId'],
             $dhtData['temperature'],
@@ -92,7 +96,8 @@ class HeartbeatService
         return $this->dhtDataService->insert($dht);
     }
 
-    private function insertRelayData($espId, $relayData) {
+    private function insertRelayData($espId, $relayData)
+    {
         $relay = Relay::createRelay(
             $relayData['componentId'],
             $relayData['name'],
@@ -103,7 +108,8 @@ class HeartbeatService
         return $this->relayDataService->insert($relay);
     }
 
-    private function insertLedStripData($espId, $ledStripData) {
+    private function insertLedStripData($espId, $ledStripData)
+    {
         $ledStrip = LedStrip::createLedStrip(
             $ledStripData['componentId'],
             $ledStripData['name'],
@@ -128,18 +134,21 @@ class HeartbeatService
 
     private function configureEsp($espJson)
     {
-        $isSuccessful = false;
-
         $espId = $this->espService->findFreeId();
-        $esp = Esp::createEsp($espId, "esp" . $espId, Location::createLocationEmptyId($this->locationService->findFreeId()), $espJson['ip']);
+        $esp = Esp::createEsp(
+            $espId,
+            "esp" . $espId,
+            Location::createLocationEmptyId($this->locationService->findFreeId()),
+            $espJson['ip'],
+            $espJson["hwId"]);
+
         $esp->setComponents($this->createComponentCollection($espJson, $espId));
         $this->espService->insert($esp);
         $this->connectionTcpService->send($esp, json_encode($esp));
-
-        return $isSuccessful;
     }
 
-    private function createComponentCollection($espJson, $espId) {
+    private function createComponentCollection($espJson, $espId)
+    {
         $components = array();
         $freeId = $this->componentService->findFreeId();
 

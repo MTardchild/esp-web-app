@@ -4,7 +4,8 @@ class LedStripDataMapper implements IDatabaseMapper
 {
     private $database;
 
-    public function __construct(PDO $database) {
+    public function __construct(PDO $database)
+    {
         $this->database = $database;
     }
 
@@ -14,7 +15,8 @@ class LedStripDataMapper implements IDatabaseMapper
         return null;
     }
 
-    public function update($ledStripData) {
+    public function update($ledStripData)
+    {
         // TODO: Implement update() method.
         return null;
     }
@@ -25,7 +27,8 @@ class LedStripDataMapper implements IDatabaseMapper
         return null;
     }
 
-    public function findLatestDataSet($ledStripId) {
+    public function findLatestDataSet($ledStripId)
+    {
         $ledStripId = intval($ledStripId);
         $query = $this->database->prepare(
             "SELECT cdlQ1.cdl_red, cdlQ1.cdl_green, cdlQ1.cdl_blue, cdlQ1.cdl_warm_white, 
@@ -45,7 +48,8 @@ class LedStripDataMapper implements IDatabaseMapper
         return $ledStrip;
     }
 
-    public function findCollectionCurrentDay($ledStripId) {
+    public function findCollectionCurrentDay($ledStripId)
+    {
 
     }
 }

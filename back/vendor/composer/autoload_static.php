@@ -6,18 +6,18 @@ namespace Composer\Autoload;
 
 class ComposerStaticInit1d2981cda156c120010ea82403820fc4
 {
-    public static $prefixLengthsPsr4 = array (
-        'A' => 
-        array (
-            'Auryn\\' => 6,
-        ),
+    public static $prefixLengthsPsr4 = array(
+        'A' =>
+            array(
+                'Auryn\\' => 6,
+            ),
     );
 
-    public static $prefixDirsPsr4 = array (
-        'Auryn\\' => 
-        array (
-            0 => __DIR__ . '/..' . '/rdlowrey/auryn/lib',
-        ),
+    public static $prefixDirsPsr4 = array(
+        'Auryn\\' =>
+            array(
+                0 => __DIR__ . '/..' . '/rdlowrey/auryn/lib',
+            ),
     );
 
     public static function getInitializer(ClassLoader $loader)

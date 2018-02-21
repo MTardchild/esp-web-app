@@ -2,6 +2,7 @@ import React from 'react';
 import ReactDataGrid from 'react-data-grid';
 import {FirmwareAddModal} from './firmwareAddModal'
 import update from "immutability-helper/index";
+import {withAlert} from "react-alert";
 
 export class Firmwares extends React.Component {
     constructor(props) {
@@ -11,19 +12,23 @@ export class Firmwares extends React.Component {
             isModalOpen: false
         };
     }
+
     createRows = () => {
         return this.props.firmwares.map((firmware) =>
-            ({id: firmware.id,
+            ({
+                id: firmware.id,
                 name: firmware.name,
                 path: firmware.path,
                 timestamp: firmware.timestamp,
-                buttons: this.getButtons(firmware.id)}));
+                buttons: this.getButtons(firmware.id)
+            }));
     };
     getButtons = (firmwareId) => {
         return (
             <div className="justify-content-center">
                 <button className="btn btn-sm btn-outline-danger padding-x-sm"
-                        onClick={() => this.handleGridDelete(firmwareId)}>Delete</button>
+                        onClick={() => this.handleGridDelete(firmwareId)}>Delete
+                </button>
             </div>
         );
     };
@@ -76,23 +81,40 @@ export class Firmwares extends React.Component {
         rows.splice(rowIndex, 1);
         this.setState({rows: rows});
     };
-    handleGridRowsUpdated = ({ fromRow, toRow, updated }) => {
+    handleGridRowsUpdated = ({fromRow, toRow, updated}) => {
         let rows = this.state.rows.slice();
 
         for (let i = fromRow; i <= toRow; i++) {
-            let rowToUpdate = rows[i];
-            let updatedRow = update(rowToUpdate, {$merge: updated});
-            rows[i] = updatedRow;
+            rows[i] = update(rows[i], {$merge: updated});
+            this.updateServer("update", rows[i]);
         }
 
-        this.setState({ rows });
+        this.setState({rows});
     };
     getFreeId = () => {
         let freeId = 1;
         if (this.state.rows.length > 0)
-            freeId = parseInt(this.state.rows[this.state.rows.length-1].id, 10)+1;
+            freeId = parseInt(this.state.rows[this.state.rows.length - 1].id, 10) + 1;
         return freeId;
     };
+
+    updateServer = (action, firmware) => {
+        let update = {
+            action: action,
+            firmware: firmware
+        };
+
+        let formData = new FormData();
+        formData.append('FirmwareUpdate', JSON.stringify(update));
+        this.props.alert.show('Updating ID: ' + firmware.id + " ...");
+        fetch("", {
+            method: "POST",
+            body: formData
+        }).then((res) => res)
+            .then((data) => this.props.alert.success('Updated ID: ' + firmware.id))
+            .catch((err) => this.props.alert.error('Failed updating ID: ' + firmware.id));
+    };
+
     render() {
         return (
             <div>
@@ -114,3 +136,5 @@ export class Firmwares extends React.Component {
         );
     }
 }
+
+export default withAlert(Firmwares)

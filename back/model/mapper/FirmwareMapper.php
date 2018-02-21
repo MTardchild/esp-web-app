@@ -1,8 +1,11 @@
 <?php
-class FirmwareMapper implements IDatabaseMapper, IDatabaseObjectMapper {
+
+class FirmwareMapper implements IDatabaseMapper, IDatabaseObjectMapper
+{
     private $database;
 
-    public function __construct(PDO $database) {
+    public function __construct(PDO $database)
+    {
         $this->database = $database;
     }
 
@@ -21,7 +24,8 @@ class FirmwareMapper implements IDatabaseMapper, IDatabaseObjectMapper {
         // TODO: Implement update() method.
     }
 
-    public function find($firmwareId) {
+    public function find($firmwareId)
+    {
         $firmwareId = intval($firmwareId);
         $query = $this->database->prepare("SELECT * FROM firmware WHERE firmware.fwa_id = :firmwareId");
         $query->execute(array("firmwareId" => $firmwareId));
@@ -35,7 +39,8 @@ class FirmwareMapper implements IDatabaseMapper, IDatabaseObjectMapper {
         return $firmware;
     }
 
-    public function findAll() {
+    public function findAll()
+    {
         $query = $this->database->prepare("SELECT * FROM firmware");
         $query->execute();
         $firmwareCollectionDb = $query->fetchAll();

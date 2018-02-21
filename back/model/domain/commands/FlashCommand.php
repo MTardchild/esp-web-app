@@ -1,4 +1,5 @@
 <?php
+
 class FlashCommand implements JsonSerializable
 {
     private $url;
@@ -13,15 +14,18 @@ class FlashCommand implements JsonSerializable
         $this->url = $url;
     }
 
-    private function __construct() {
+    private function __construct()
+    {
 
     }
 
-    public static function createFlashCommandEmpty() {
+    public static function createFlashCommandEmpty()
+    {
         return new FlashCommand();
     }
 
-    public static function createFlashCommand($url) {
+    public static function createFlashCommand($url)
+    {
         $command = new FlashCommand();
         $command->url = $url;
 

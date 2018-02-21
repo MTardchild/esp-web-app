@@ -1,9 +1,11 @@
 <?php
 
-class ComponentTypeService implements IDatabaseService {
+class ComponentTypeService implements IDatabaseService
+{
     private $_componentTypeMapper;
 
-    public function __construct(ComponentTypeMapper $componentTypeMapper) {
+    public function __construct(ComponentTypeMapper $componentTypeMapper)
+    {
         $this->_componentTypeMapper = $componentTypeMapper;
     }
 
@@ -22,14 +24,16 @@ class ComponentTypeService implements IDatabaseService {
         // TODO: Implement delete() method.
     }
 
-    public function findAll() {
+    public function findAll()
+    {
         return $this->_componentTypeMapper->findAll();
     }
 
-    public function getComponentOfType($componentType) {
+    public function getComponentOfType($componentType)
+    {
         $component = null;
 
-        switch($componentType) {
+        switch ($componentType) {
             case 1:
                 $component = Dht::createDhtEmpty();
                 break;

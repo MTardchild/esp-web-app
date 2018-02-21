@@ -1,7 +1,9 @@
 <?php
 
-class ConnectionEspPost extends ConnectionBase {
-    public function send($data) {
+class ConnectionEspPost extends ConnectionBase
+{
+    public function send($data)
+    {
         $result = true;
         $defaults = array(
             CURLOPT_POST => 1,
@@ -28,10 +30,11 @@ class ConnectionEspPost extends ConnectionBase {
         return $result;
     }
 
-    private function getErrorMessage($errorNumber) {
+    private function getErrorMessage($errorNumber)
+    {
         $errorMessage = "";
 
-        switch($errorNumber) {
+        switch ($errorNumber) {
             case "28":
                 $errorMessage = "Connection attempt timed out after 4000 ms.";
                 break;

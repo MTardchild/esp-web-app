@@ -4,7 +4,8 @@ class ComponentTypeMapper implements IDatabaseMapper, IDatabaseObjectMapper
 {
     private $database;
 
-    public function __construct(PDO $database) {
+    public function __construct(PDO $database)
+    {
         $this->database = $database;
     }
 
@@ -23,7 +24,8 @@ class ComponentTypeMapper implements IDatabaseMapper, IDatabaseObjectMapper
         // TODO: Implement update() method.
     }
 
-    public function findAll() {
+    public function findAll()
+    {
         $query = $this->database->prepare("SELECT * FROM component_type");
         $query->execute();
         $cmpTypeCollectionDb = $query->fetchAll();

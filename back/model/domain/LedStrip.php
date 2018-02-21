@@ -7,14 +7,16 @@ class LedStrip extends ComponentBase implements JsonSerializable
     private $blue;
     private $warmWhite;
 
-    private function __construct() {
+    private function __construct()
+    {
         $this->red = 0;
         $this->green = 0;
         $this->blue = 0;
         $this->warmWhite = 0;
     }
 
-    public static function createLedStripEmpty() {
+    public static function createLedStripEmpty()
+    {
         $ledStrip = new LedStrip();
         $ledStrip->id = -1;
         $ledStrip->espId = -1;
@@ -23,7 +25,8 @@ class LedStrip extends ComponentBase implements JsonSerializable
         return $ledStrip;
     }
 
-    public static function createLedStripNoData($id, $espId) {
+    public static function createLedStripNoData($id, $espId)
+    {
         $ledStrip = new LedStrip();
         $ledStrip->id = $id;
         $ledStrip->espId = $espId;
@@ -32,7 +35,8 @@ class LedStrip extends ComponentBase implements JsonSerializable
         return $ledStrip;
     }
 
-    public static function createLedStrip($id, $name, $red, $green, $blue, $warmWhite, $espId) {
+    public static function createLedStrip($id, $name, $red, $green, $blue, $warmWhite, $espId)
+    {
         $ledStrip = new LedStrip();
         $ledStrip->id = $id;
         $ledStrip->name = $name;

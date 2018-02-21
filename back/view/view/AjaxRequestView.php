@@ -1,13 +1,16 @@
 <?php
 
-class AjaxRequestView {
+class AjaxRequestView
+{
     private $_ajaxRequest;
 
-    public function __construct(AjaxRequest $ajaxRequest) {
+    public function __construct(AjaxRequest $ajaxRequest)
+    {
         $this->_ajaxRequest = $ajaxRequest;
     }
 
-    public function output() {
+    public function output()
+    {
         return $this->_ajaxRequest->getMessage();
     }
 }

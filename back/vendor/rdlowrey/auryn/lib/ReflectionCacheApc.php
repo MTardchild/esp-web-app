@@ -14,7 +14,7 @@ class ReflectionCacheApc implements ReflectionCache
 
     public function setTimeToLive($seconds)
     {
-        $seconds = (int) $seconds;
+        $seconds = (int)$seconds;
         $this->timeToLive = ($seconds > 0) ? $seconds : $this->timeToLive;
 
         return $this;

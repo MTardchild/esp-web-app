@@ -77,14 +77,19 @@ export class Rooms extends React.Component {
 
         for (let i = fromRow; i <= toRow; i++) {
             rows[i] = update(rows[i], {$merge: updated});
-            this.updateServer(rows[i]);
+            this.updateServer("update", rows[i]);
         }
 
         this.setState({ rows });
     };
-    updateServer = (room) => {
+    updateServer = (action, room) => {
+        let update = {
+            action: action,
+            room: room
+        };
+
         let formData = new FormData();
-        formData.append('RoomUpdate', JSON.stringify(room));
+        formData.append('RoomUpdate', JSON.stringify(update));
         this.props.alert.show('Updating ID: ' + room.id + " ...");
         fetch("", {
             method: "POST",

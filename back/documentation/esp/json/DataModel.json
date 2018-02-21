@@ -1,51 +1,56 @@
 ESP pushes info to WebApp:
 {
-	"esp": {
-		"id": {},
-		"name": {},
-		"location": {},
-		"ip": {},
-		"hwId": {},
-		"components": [
-			{
-				"componentId": {},
-				"temperature": {},
-				"humidity": {},
-				"componentType": {}
-			},
-			{
-				"componentId": {},
-				"state": {},
-				"componentType": {}
-			}
-		]
-	}
+"esp": {
+"id": {},
+"name": {
+},
+"location": {
+},
+"ip": {
+},
+"hwId": {
+},
+"components": [
+{
+"componentId": {},
+"temperature": {},
+"humidity": {
+},
+"componentType": {
+}
+},
+{
+"componentId": {},
+"state": {},
+"componentType": {}
+}
+]
+}
 }
 
-WebApp pushes info to ESP:
-GetData:
+WebApp pushes info to ESP: GetData:
 {
-	"componentId": {},
-	"action": "get"
+"componentId": {},
+"action": "get"
 }
 
-Relay:
-{
-	"componentId": {},
-	"action": "toggle"
+Relay: {
+"componentId": {},
+"action": "toggle"
 }
 
 {
-	"command":
-	{
-		"flash":
-		{
-			"path": {},
-			"ip": {}
-		},
-		"updateWifi": {
-			"ssid": {},
-			"password": {}
-		}
-	}
+"command": {
+"flash": {
+"path": {
+},
+"ip": {
+}
+},
+"updateWifi": {
+"ssid": {},
+"password": {
+}
+}
+}
 }

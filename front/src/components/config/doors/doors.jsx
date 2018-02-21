@@ -131,14 +131,19 @@ export class Doors extends React.Component {
 
         for (let i = fromRow; i <= toRow; i++) {
             rows[i] = update(rows[i], {$merge: updated});
-            this.updateServer(rows[i]);
+            this.updateServer("update", rows[i]);
         }
 
         this.setState({ rows });
     };
-    updateServer = (door) => {
+    updateServer = (action, door) => {
+        let update = {
+            action: action,
+            door: door
+        };
+
         let formData = new FormData();
-        formData.append('DoorUpdate', JSON.stringify(door));
+        formData.append('DoorUpdate', JSON.stringify(update));
         this.props.alert.show('Updating ID: ' + door.id + " ...");
         fetch("", {
             method: "POST",

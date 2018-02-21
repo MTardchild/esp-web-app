@@ -1,7 +1,8 @@
 <?php
 //namespace App\Model\Service;
 
-class ComponentService implements IDatabaseService {
+class ComponentService implements IDatabaseService
+{
     private $componentMapper;
     private $dhtDataService;
     private $relayDataService;
@@ -10,56 +11,71 @@ class ComponentService implements IDatabaseService {
     public function __construct(ComponentMapper $componentMapper,
                                 DhtDataService $dhtDataService,
                                 RelayDataService $relayDataService,
-                                LedStripDataService $ledStripDataService) {
+                                LedStripDataService $ledStripDataService)
+    {
         $this->componentMapper = $componentMapper;
         $this->dhtDataService = $dhtDataService;
         $this->relayDataService = $relayDataService;
         $this->ledStripDataService = $ledStripDataService;
     }
 
-    public function insert($component) {
+    public function insert($component)
+    {
         return $this->componentMapper->insert($component);
     }
 
-    public function update($component) {
+    public function update($component)
+    {
         return $this->componentMapper->update($component);
     }
 
-    public function delete($component) {
+    public function delete($component)
+    {
         return $this->componentMapper->delete($component);
     }
 
-    public function findComponent($componentId) {
-        $componentDb = $this->componentMapper->findComponent($componentId);
+    public function find($componentId)
+    {
+        $componentDb = $this->componentMapper->find($componentId);
         $component = $this->createComponentObject($componentDb);
 
         return $component;
     }
 
-    public function removeComponentFromEsp($componentId) {
-        $component = $this->findComponent($componentId);
+    public function findAll()
+    {
+        return $this->componentMapper->findAll();
+    }
+
+    public function findFreeId()
+    {
+        return $this->componentMapper->findFreeId();
+    }
+
+    public function removeComponentFromEsp($componentId)
+    {
+        $component = $this->find($componentId);
         $component->setEspId(null);
 
         return $this->componentMapper->update($component);
     }
 
-    public function getComponents($espId) {
+    public function getComponents($espId)
+    {
         $componentsDb = $this->componentMapper->findComponents($espId);
         $components = $this->createComponentObjects($componentsDb);
 
         return $components;
     }
 
-    public function getEspIpByComponentId($componentId) {
+    public function getEspIpByComponentId($componentId)
+    {
         return $this->componentMapper->getEspIpByComponentId($componentId);
     }
 
-    public function findFreeId() {
-        return $this->componentMapper->findFreeId();
-    }
-
-    private function createComponentObject($componentDb) {
-        switch($componentDb["cty_type"]) {
+    private function createComponentObject($componentDb)
+    {
+        switch ($componentDb["cty_type"]) {
             case "dht":
                 return $this->dhtDataService->getLatestDataSet($componentDb["cmp_id"]);
             case "relay":
@@ -71,7 +87,8 @@ class ComponentService implements IDatabaseService {
         return null;
     }
 
-    private function createComponentObjects($componentsDb) {
+    private function createComponentObjects($componentsDb)
+    {
         $componentsArray = array();
 
         foreach ($componentsDb as $component) {

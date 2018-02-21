@@ -270,7 +270,7 @@ class Injector
                 array_key_exists(1, $callableOrMethodStr)
             ) {
                 if (is_string($callableOrMethodStr[0]) && is_string($callableOrMethodStr[1])) {
-                    $errorDetail = " but received ['".$callableOrMethodStr[0]."', '".$callableOrMethodStr[1]."']";
+                    $errorDetail = " but received ['" . $callableOrMethodStr[0] . "', '" . $callableOrMethodStr[1] . "']";
                 }
             }
             throw new ConfigException(
@@ -477,14 +477,14 @@ class Injector
         if (!is_array($definition)) {
             throw new InjectionException(
                 $this->inProgressMakes
-                // @TODO Add message
+            // @TODO Add message
             );
         }
 
         if (!isset($definition[0], $definition[1])) {
             throw new InjectionException(
                 $this->inProgressMakes
-                // @TODO Add message
+            // @TODO Add message
             );
         }
 

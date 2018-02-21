@@ -1,8 +1,11 @@
 <?php
-class FirmwareService implements IDatabaseService {
+
+class FirmwareService implements IDatabaseService
+{
     private $firmwareMapper;
 
-    public function __construct(FirmwareMapper $firmwareMapper) {
+    public function __construct(FirmwareMapper $firmwareMapper)
+    {
         $this->firmwareMapper = $firmwareMapper;
     }
 
@@ -31,4 +34,29 @@ class FirmwareService implements IDatabaseService {
         return $this->firmwareMapper->findAll();
     }
 
+    public function findFreeId()
+    {
+        return $this->firmwareMapper->findFreeId();
+    }
+
+    public function handleUpdate($update)
+    {
+        $update = json_decode($update, true);
+
+        if ($update["action"] === "delete") $this->delete($update["firmware"]["id"]);
+
+        if ($update["action"] === "update") {
+            $firmware = $this->find($update["firmware"]["id"]);
+            $firmware->setName($update["firmware"]["name"]);
+            $firmware->setPath($update["firmware"]["path"]);
+            $firmware->setTimestamp(DateTime::ATOM);
+            $this->update($firmware);
+        }
+
+        if ($update["action"] === "insert") {
+            $firmware = Firmware::createFirmware($this->findFreeId(), $update["firmware"]["name"],
+                $update["firmware"]["path"], DateTime::ATOM);
+            $this->insert($firmware);
+        }
+    }
 }

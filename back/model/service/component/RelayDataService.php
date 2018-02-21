@@ -1,30 +1,37 @@
 <?php
 //namespace App\Model\Service;
 
-class RelayDataService implements IDatabaseService {
+class RelayDataService implements IDatabaseService
+{
     private $relayDataMapper;
 
-    public function __construct(RelayDataMapper $relayDataMapper) {
+    public function __construct(RelayDataMapper $relayDataMapper)
+    {
         $this->relayDataMapper = $relayDataMapper;
     }
 
-    public function insert($ledStripData) {
+    public function insert($ledStripData)
+    {
         return $this->relayDataMapper->insert($ledStripData);
     }
 
-    public function update($relayData) {
+    public function update($relayData)
+    {
         return $this->relayDataMapper->update($relayData);
     }
 
-    public function delete($relayDataId) {
+    public function delete($relayDataId)
+    {
         return $this->relayDataMapper->delete($relayDataId);
     }
 
-    public function getLatestDataSet($relayId) {
+    public function getLatestDataSet($relayId)
+    {
         return $this->relayDataMapper->findLatestDataSet($relayId);
     }
 
-    public function getCollectionCurrentDay($relayId) {
+    public function getCollectionCurrentDay($relayId)
+    {
         return $this->relayDataMapper->findCollectionCurrentDay($relayId);
     }
 }

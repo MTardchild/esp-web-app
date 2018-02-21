@@ -35,20 +35,6 @@ if (isset($_POST["EspHeartbeat"])) {
     }
 }
 
-$gridLayout = null;
-if (isset($_POST["GridLayout"])) {
-    if (trim($_POST["GridLayout"]) != "") {
-        $gridLayout = $_POST['GridLayout'];
-    }
-}
-
-$componentOrder = null;
-if (isset($_POST["ComponentOrder"])) {
-    if (trim($_POST["ComponentOrder"]) != "") {
-        $componentOrder = $_POST['ComponentOrder'];
-    }
-}
-
 $wifiCredentials = null;
 if (isset($_POST["WifiCredentials"])) {
     if (trim($_POST["WifiCredentials"]) != "") {
@@ -93,11 +79,9 @@ if (isset($_POST["RoomUpdate"])) {
 
 $injector->define('FrontController', [
     ':heartbeat' => $heartbeat,
-    ':gridLayout' => $gridLayout,
-    ':componentOrder' => $componentOrder,
     ':wifiCredentials' => $wifiCredentials,
-    ':locationUpdate' => $locationUpdate,
     ':doorUpdate' => $doorUpdate,
+    ':locationUpdate' => $locationUpdate,
     ':espUpdate' => $espUpdate,
     ':windowUpdate' => $windowUpdate,
     ':roomUpdate' => $roomUpdate]);

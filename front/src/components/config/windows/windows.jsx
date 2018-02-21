@@ -127,15 +127,20 @@ export class Windows extends React.Component {
 
         for (let i = fromRow; i <= toRow; i++) {
             rows[i] = update(rows[i], {$merge: updated});
-            this.updateServer(rows[i]);
+            this.updateServer("update", rows[i]);
         }
 
         this.setState({rows});
     };
 
-    updateServer = (window) => {
+    updateServer = (action, window) => {
+        let update = {
+            action: action,
+            window: window
+        };
+
         let formData = new FormData();
-        formData.append('WindowUpdate', JSON.stringify(window));
+        formData.append('WindowUpdate', JSON.stringify(update));
         this.props.alert.show('Updating ID: ' + window.id + " ...");
         fetch("", {
             method: "POST",

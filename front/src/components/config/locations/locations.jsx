@@ -5,7 +5,7 @@ import update from "immutability-helper/index";
 import {withAlert} from "react-alert";
 import {ObjectFormatterGrid} from "../formatterGrid/objectFormatterGrid";
 
-const {Editors, Formatters} = require('react-data-grid-addons');
+const {Editors} = require('react-data-grid-addons');
 const {AutoComplete: AutoCompleteEditor, DropDownEditor} = Editors;
 
 export class Locations extends React.Component {
@@ -194,15 +194,20 @@ export class Locations extends React.Component {
 
         for (let i = fromRow; i <= toRow; i++) {
             rows[i] = update(rows[i], {$merge: updated});
-            this.updateServer(rows[i]);
+            this.updateServer("update", rows[i]);
         }
 
         this.setState({rows});
     };
 
-    updateServer = (location) => {
+    updateServer = (action, location) => {
+        let update = {
+            action: action,
+            location: location
+        };
+
         let formData = new FormData();
-        formData.append('LocationUpdate', JSON.stringify(location));
+        formData.append('LocationUpdate', JSON.stringify(update));
         this.props.alert.show('Updating ID: ' + location.id + " ...");
         fetch("", {
             method: "POST",
