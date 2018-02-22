@@ -18,7 +18,7 @@ export class ConfiguredEsps extends React.Component {
             isModalFlashOpen: false,
             isModalComponentOpen: false,
             selectedHardwareId: -1,
-            selectedEspId: -1
+            selectedEsp: -1
         };
     }
 
@@ -67,7 +67,7 @@ export class ConfiguredEsps extends React.Component {
         {
             key: "buttons",
             name: "",
-            width: 68
+            width: 75
         }
     ];
 
@@ -139,7 +139,7 @@ export class ConfiguredEsps extends React.Component {
 
     getButtons = (hardwareId) => {
         return (
-            <div className="justify-content-center">
+            <div className="text-center">
                 <button className="btn btn-sm btn-outline-primary padding-x-sm"
                         onClick={() => this.openModalFlash(hardwareId)}>Flash
                 </button>
@@ -147,13 +147,22 @@ export class ConfiguredEsps extends React.Component {
         );
     };
 
+    deleteComponent = (componentId) => {
+
+    };
+
     createRows = () => {
         return this.props.esps.map((esp) => {
             let components = esp.components.map((component) => {
                 return {
                     id: <div className="margin-left-md">{component.id}</div>,
-                    name: <div className="margin-left-md">{component.name}</div>,
-                    components: <div className="margin-left-md">{component.typeString}</div>
+                    name: component.name,
+                    components: <div className="margin-left-md">{component.typeString}</div>,
+                    buttons: <div className="text-center">
+                        <button className="btn btn-sm btn-outline-danger padding-x-sm"
+                                onClick={() => this.deleteComponent(0)}>Delete
+                        </button>
+                    </div>
                 };
             });
             components.push({
@@ -162,7 +171,7 @@ export class ConfiguredEsps extends React.Component {
                 components: <div className="margin-left-md">
                     <button type="button"
                             className="btn btn-outline-primary btn-sm padding-x-sm"
-                            onClick={() => this.openModalComponent(esp.id)}>&#x2795;</button>
+                            onClick={() => this.openModalComponent(esp)}>+</button>
                 </div>
             });
 
@@ -214,10 +223,10 @@ export class ConfiguredEsps extends React.Component {
         this.setState({isModalFlashOpen: false});
     };
 
-    openModalComponent = (espId) => {
+    openModalComponent = (esp) => {
         this.setState({
             isModalComponentOpen: true,
-            selectedEspId: espId
+            selectedEsp: esp
         });
     };
 
@@ -270,7 +279,7 @@ export class ConfiguredEsps extends React.Component {
                                    componentTypes={[{id: 1, name: "TODO"}]}
                                    freeId={0}
                                    add={this.onAddSubRow}
-                                   espId={this.state.selectedEspId}/>
+                                   espId={this.state.selectedEsp}/>
             </div>
         );
     }

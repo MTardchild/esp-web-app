@@ -26,7 +26,7 @@ export class Firmwares extends React.Component {
 
     getButtons = (firmwareId) => {
         return (
-            <div className="justify-content-center">
+            <div className="text-center">
                 <button className="btn btn-sm btn-outline-danger padding-x-sm"
                         onClick={() => this.handleGridDelete(firmwareId)}>Delete
                 </button>

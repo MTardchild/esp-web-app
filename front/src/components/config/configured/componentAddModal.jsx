@@ -7,7 +7,7 @@ export class ComponentAddModal extends React.Component {
         this.state = {
             component: {
                 name: "",
-                espId: this.props.espId,
+                esp: this.props.esp,
                 typeId: 0
             }
         };
@@ -38,20 +38,27 @@ export class ComponentAddModal extends React.Component {
                 contentLabel="Add Component Modal">
                 <h1>Add Component</h1>
                 <div className="row">
+                    <div className="col">
+
+                    </div>
+                    <div className="col">
+
+                    </div>
+
                     <div className="col-2">
                         <div className="input-group mb-3">
                             <div className="input-group-prepend">
                                 <span className="input-group-text">ID</span>
                             </div>
                             <input disabled={true} type="text" className="form-control" value={this.props.freeId}/>
-                        </div>
+                        </div>espId
                     </div>
                     <div className="col-2">
                         <div className="input-group mb-3">
                             <div className="input-group-prepend">
                                 <span className="input-group-text">ESP-ID</span>
                             </div>
-                            <input disabled={true} type="text" className="form-control" value={this.props.espId}/>
+                            <input disabled={true} type="text" className="form-control" value={this.props.esp}/>
                         </div>
                     </div>
                     <div className="col">

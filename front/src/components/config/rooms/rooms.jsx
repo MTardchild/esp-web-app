@@ -50,7 +50,7 @@ export class Rooms extends React.Component {
 
     getButtons = (roomId) => {
         return (
-            <div className="justify-content-center">
+            <div className="text-center">
                 <button className="btn btn-sm btn-outline-danger padding-x-sm"
                         onClick={() => this.handleGridDelete(roomId)}>Delete
                 </button>
