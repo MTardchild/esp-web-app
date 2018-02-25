@@ -29,7 +29,7 @@ class Configurator
 
     public function flash(Esp $esp, Firmware $firmware)
     {
-        $url = "https://" . $_SERVER['SERVER_ADDR'] . ":" . $_SERVER['SERVER_PORT'] . $firmware->getPath();
+        $url = "http://" . $_SERVER['REMOTE_ADDR'] . ":" . $_SERVER['SERVER_PORT'] . $firmware->getPath();
         $command = FlashCommand::createFlashCommand($url);
 
         if ($esp->getId() === -1) {

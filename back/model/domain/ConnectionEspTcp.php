@@ -4,6 +4,7 @@ class ConnectionEspTcp extends ConnectionBase
 {
     public function send($data)
     {
+        $data = $data . "\r";
         $result = true;
         $port = getservbyname('www', 'tcp');
 

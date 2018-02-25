@@ -9,7 +9,8 @@ export class LedStrip extends React.Component {
             red: this.props.red,
             green: this.props.green,
             blue: this.props.blue,
-            warmWhite: this.props.warmWhite
+            warmWhite: this.props.warmWhite,
+            lastCalled: Date.now()
         };
     }
     static convertTo8(color) {
@@ -19,18 +20,21 @@ export class LedStrip extends React.Component {
         return color*16;
     }
     handleChange = (color, event) => {
-        const self = this;
-        fetch(this.getUrl(color))
-            .then(function (response) {
-                response.then(function(data) {
+        if (Date.now() > (this.state.lastCalled + 180)) {
+            this.setState({lastCalled: Date.now()});
+            const self = this;
+            fetch(this.getUrl(color))
+                .then(function (response) {
+                    response.then(function(data) {
+
+                    });
+                })
+                .catch(function (error) {
 
                 });
-            })
-            .catch(function (error) {
 
-            });
-
-        this.updateState(color);
+            this.updateState(color);
+        }
     };
     handleChangeComplete = (color, event) => {
         const self = this;

@@ -57,8 +57,8 @@ class AjaxRequestController
 
     public function toggleRelay($action)
     {
-        $data = array("componentId" => $action['id'], "action" => "toggle");
-        $dataJson = json_encode($data);
+        $toggleCommand = ToggleCommand::createToggleCommand($action["id"]);
+        $dataJson = json_encode($toggleCommand);
         $statusMessage = $this->connectionTcpService->sendByComponent($action['id'], $dataJson);
 
         if ($statusMessage === true) {
@@ -74,18 +74,10 @@ class AjaxRequestController
 
     public function setColor($action)
     {
-        $data = array(
-            "esp" => array(
-                "id" => "1",
-                "componentId" => $action['id'],
-                "action" => "changeColor",
-                "values" => array(
-                    "red" => $action['r'],
-                    "green" => $action['g'],
-                    "blue" => $action['b']
-                )));
+        $colorCommand = SetColorCommand::createSetColorCommand(
+            $action['id'], $action['r'], $action['g'], $action['b'], 0);
 
-        $dataJson = json_encode($data);
+        $dataJson = json_encode($colorCommand);
         $status = $this->connectionTcpService->sendByComponent($action['id'], $dataJson);
 
         if ($status === true) {
