@@ -1,8 +1,13 @@
 <?php
 
-class ToggleCommand implements JsonSerializable
+class ToggleCommand extends Command implements JsonSerializable
 {
     private $id;
+
+    private function __construct()
+    {
+
+    }
 
     public function getId()
     {
@@ -12,11 +17,6 @@ class ToggleCommand implements JsonSerializable
     public function setId($id)
     {
         $this->id = $id;
-    }
-
-    private function __construct()
-    {
-
     }
 
     public static function createToggleCommand($id)

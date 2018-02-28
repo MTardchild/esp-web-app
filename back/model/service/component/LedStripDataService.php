@@ -24,7 +24,7 @@ class LedStripDataService implements IDatabaseService
         return $this->ledStripDataMapper->delete($ledStripDataId);
     }
 
-    public function findLatestDataSet($ledStripId)
+    public function findLatestDataSet($ledStripId): LedStrip
     {
         return $this->ledStripDataMapper->findLatestDataSet($ledStripId);
     }

@@ -14,9 +14,9 @@ class ConfigurationService
         return $this->configurator->getWifiNetworks();
     }
 
-    public function flash(Esp $esp, Firmware $firmware)
+    public function flash(FlashCommand $command)
     {
-        return $this->configurator->flash($esp, $firmware);
+        return $this->configurator->flash($command);
     }
 
 

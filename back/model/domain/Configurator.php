@@ -27,18 +27,15 @@ class Configurator
         return $wifiNetworks;
     }
 
-    public function flash(Esp $esp, Firmware $firmware)
+    public function flash(FlashCommand $command)
     {
-        $url = "http://" . $_SERVER['REMOTE_ADDR'] . ":" . $_SERVER['SERVER_PORT'] . $firmware->getPath();
-        $command = FlashCommand::createFlashCommand($url);
-
-        if ($esp->getId() === -1) {
-            $this->connectWifi($esp->getHwId(), $esp->getHwId());
+        if ($command->getEsp()->getId() === -1) {
+            $this->connectWifi($command->getEsp()->getHwId(), $command->getEsp()->getHwId());
             // AP default IP: 192.168.4.1
-            $esp->setIp("192.168.4.1");
+            $command->getEsp()->setIp("192.168.4.1");
         }
 
-        $connectionEsp = new ConnectionEspTcp($esp->getIp());
+        $connectionEsp = new ConnectionEspTcp($command->getEsp()->getIp());
         return $connectionEsp->send(json_encode($command, JSON_UNESCAPED_SLASHES));
     }
 

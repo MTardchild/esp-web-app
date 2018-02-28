@@ -11,7 +11,6 @@ class AjaxRequestController
     private $ajaxRequest;
     private $espService;
     private $componentTypeService;
-    private $gridLayoutService;
     private $componentService;
     private $configurationService;
     private $firmwareService;
@@ -19,6 +18,8 @@ class AjaxRequestController
     private $windowService;
     private $locationService;
     private $doorService;
+    private $ledStripService;
+    private $espCommunicationService;
 
     public function __construct(ConnectionPostService $connectionPostService,
                                 ConnectionUdpService $connectionUdpService,
@@ -35,7 +36,9 @@ class AjaxRequestController
                                 RoomService $roomService,
                                 WindowService $windowService,
                                 LocationService $locationService,
-                                DoorService $doorService)
+                                DoorService $doorService,
+                                LedStripService $ledStripService,
+                                EspCommunicationService $espCommunicationService)
     {
         $this->connectionPostService = $connectionPostService;
         $this->connectionUdpService = $connectionUdpService;
@@ -53,84 +56,46 @@ class AjaxRequestController
         $this->windowService = $windowService;
         $this->locationService = $locationService;
         $this->doorService = $doorService;
+        $this->ledStripService = $ledStripService;
+        $this->espCommunicationService = $espCommunicationService;
     }
 
     public function toggleRelay($action)
     {
-        $toggleCommand = ToggleCommand::createToggleCommand($action["id"]);
-        $dataJson = json_encode($toggleCommand);
-        $statusMessage = $this->connectionTcpService->sendByComponent($action['id'], $dataJson);
+        $command = ToggleCommand::createToggleCommand($action["id"]);
+        $status = $this->espCommunicationService->handle($command);
 
-        if ($statusMessage === true) {
-            $relay = $this->relayDataService->getLatestDataSet($action['id']);
-            $relay->setState(!$relay->getState());
-            $this->relayDataService->insert($relay);
-            $this->ajaxRequest->setStatus($statusMessage);
+        if ($status) {
+            $this->ajaxRequest->setStatus($status);
             $this->ajaxRequest->setMessage("Relay successfully toggled.");
         } else {
-            $this->ajaxRequest->setMessage($statusMessage);
+            $this->ajaxRequest->setMessage($status);
         }
     }
 
     public function setColor($action)
     {
-        $colorCommand = SetColorCommand::createSetColorCommand(
-            $action['id'], $action['r'], $action['g'], $action['b'], 0);
+        $ledStrip = $this->ledStripService->find($action['id']);
+        $command = SetColorCommand::createSetColorCommand(
+            $ledStrip, $action['r'], $action['g'], $action['b'], $action['ww']);
+        $status = $this->espCommunicationService->handle($command);
 
-        $dataJson = json_encode($colorCommand);
-        $status = $this->connectionTcpService->sendByComponent($action['id'], $dataJson);
-
-        if ($status === true) {
-            $ledStrip = $this->ledStripDataService->findLatestDataSet($action['id']);
-            $ledStrip->setRed($action['r']);
-            $ledStrip->setGreen($action['g']);
-            $ledStrip->setBlue($action['b']);
-            $this->ledStripDataService->update($ledStrip);
+        if ($status) {
+            $this->ajaxRequest->setStatus($status);
             $this->ajaxRequest->setMessage("Color successfully sent to LED-Strip.");
         } else {
             $this->ajaxRequest->setMessage($status);
         }
     }
 
-    public function setWarmWhite($action)
+    public function flash($action)
     {
-        $data = array(
-            "componentId" => $action['id'],
-            "action" => "changeWarmWhite",
-            "values" => array(
-                "warmWhite" => $action['ww']
-            ));
+        $esp = $this->espService->findByHwId($action['esp']);
+        $command = FlashCommand::createFlashCommand(
+            $esp, $this->firmwareService->find($action['firmware']));
+        $status = $this->espCommunicationService->handle($command);
 
-        $dataJson = json_encode($data);
-        $status = $this->connectionTcpService->sendByComponent($action['id'], $dataJson);
-
-        if ($status === true) {
-            $ledStrip = $this->ledStripDataService->findLatestDataSet($action['id']);
-            $ledStrip->setWarmWhite($action['ww']);
-            $this->ledStripDataService->update($ledStrip);
-            $this->ajaxRequest->setMessage("Warm White successfully sent to LED-Strip.");
-        } else {
-            $this->ajaxRequest->setMessage($status);
-        }
-    }
-
-    public function setColorUdp($action)
-    {
-        $redStr = str_pad(decbin($action['r']), 12, 0, STR_PAD_LEFT);
-        $greenStr = str_pad(decbin($action['g']), 12, 0, STR_PAD_LEFT);
-        $blueStr = str_pad(decbin($action['b']), 12, 0, STR_PAD_LEFT);
-        $warmWhiteStr = str_pad(decbin($action['ww']), 12, 0, STR_PAD_LEFT);
-
-        // Hack to get php to accept 12 bit unsigned
-        // Basically mapping the 12 bits per canal on 16 bit types
-        $first = $redStr . substr($greenStr, 0, -8);
-        $second = substr($greenStr, 4) . substr($blueStr, 0, -4);
-        $third = substr($blueStr, 8) . $warmWhiteStr;
-
-        $rgbBytes = pack('n*', bindec($first), bindec($second), bindec($third));
-        $isSuccessful = $this->connectionUdpService->send($action['id'], $rgbBytes);
-        $this->ajaxRequest->setStatus($isSuccessful);
-        $this->ajaxRequest->setMessage("Color successfully sent to LED-Strip.");
+        $this->ajaxRequest->setMessage("Flashed " . $esp->getIp());
     }
 
     public function getEsps($action)
@@ -187,20 +152,4 @@ class AjaxRequestController
     {
         $this->ajaxRequest->setMessage(json_encode($this->locationService->findAll()));
     }
-
-    public function flash($action)
-    {
-        $esp = $this->espService->findByHwId($action['esp']);
-        $firmware = $this->firmwareService->find($action['firmware']);
-        $this->configurationService->flash($esp, $firmware);
-
-        $this->ajaxRequest->setMessage("Flashed " . $esp->getIp());
-    }
-
-//    public function updateWifi($action) {
-//        $esp = $this->espService->findByHwId($action['esp']);
-//        $this->configurationService->configureWifi($action)
-//
-//        $this->ajaxRequest->setMessage("Updated WiFi " . $esp->getHwId());
-//    }
 }

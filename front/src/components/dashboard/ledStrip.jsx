@@ -13,6 +13,9 @@ export class LedStrip extends React.Component {
             lastCalled: Date.now()
         };
     }
+    static mapPercent(color) {
+        return color*255;
+    }
     static convertTo8(color) {
         return color/16;
     }
@@ -55,12 +58,13 @@ export class LedStrip extends React.Component {
         this.setState({
             red: LedStrip.convertTo12(color.rgb.r),
             green: LedStrip.convertTo12(color.rgb.g),
-            blue: LedStrip.convertTo12(color.rgb.b)});
+            blue: LedStrip.convertTo12(color.rgb.b),
+            warmWhite: LedStrip.mapPercent(color.rgb.a)});
     };
     getUrl = (color) => {
         return "?route=ajax&action=setColor&id=" + this.props.id +
             "&r=" + LedStrip.convertTo12(color.rgb.r) + "&g=" + LedStrip.convertTo12(color.rgb.g) +
-            "&b=" + LedStrip.convertTo12(color.rgb.b)
+            "&b=" + LedStrip.convertTo12(color.rgb.b) + "&ww=" + LedStrip.convertTo12(LedStrip.mapPercent(color.rgb.a));
     };
     render() {
         return (

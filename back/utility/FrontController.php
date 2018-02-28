@@ -32,7 +32,8 @@ class FrontController
                                 $espUpdate,
                                 $roomUpdate,
                                 $windowUpdate,
-                                $firmwareUpdate)
+                                $firmwareUpdate,
+                                $logEntry)
     {
         $this->heartbeatService = $heartbeatService;
         $this->doorService = $doorService;
@@ -77,6 +78,10 @@ class FrontController
 
         if (!is_null($firmwareUpdate)) {
             $this->wasHtmlPostSuccessful = $this->firmwareService->handleUpdate($firmwareUpdate);
+        }
+
+        if (!is_null($logEntry)) {
+            $this->wasHtmlPostSuccessful = true;
         }
     }
 

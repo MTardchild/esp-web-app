@@ -1,9 +1,14 @@
 <?php
 
-class ConfigureWifiCommand implements JsonSerializable
+class ConfigureWifiCommand extends Command implements JsonSerializable
 {
     private $ssid;
     private $password;
+
+    private function __construct()
+    {
+
+    }
 
     public function getSsid()
     {
@@ -23,11 +28,6 @@ class ConfigureWifiCommand implements JsonSerializable
     public function setPassword($password)
     {
         $this->password = $password;
-    }
-
-    private function __construct()
-    {
-
     }
 
     public static function createConfigureWifiCommandEmpty()

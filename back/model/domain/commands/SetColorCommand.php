@@ -1,21 +1,26 @@
 <?php
 
-class SetColorCommand implements JsonSerializable
+class SetColorCommand extends Command implements JsonSerializable
 {
-    private $id;
+    private $ledStrip;
     private $red;
     private $green;
     private $blue;
     private $warmWhite;
 
-    public function getId()
+    private function __construct()
     {
-        return $this->id;
+
     }
 
-    public function setId($id)
+    public function getLedStrip()
     {
-        $this->id = $id;
+        return $this->ledStrip;
+    }
+
+    public function setLedStrip($ledStrip)
+    {
+        $this->ledStrip = $ledStrip;
     }
 
     public function getRed()
@@ -58,15 +63,10 @@ class SetColorCommand implements JsonSerializable
         $this->warmWhite = $warmWhite;
     }
 
-    private function __construct()
-    {
-
-    }
-
-    public static function createSetColorCommand($id, $red, $green, $blue, $warmWhite)
+    public static function createSetColorCommand($ledStrip, $red, $green, $blue, $warmWhite)
     {
         $command = new SetColorCommand();
-        $command->id = $id;
+        $command->ledStrip = $ledStrip;
         $command->red = $red;
         $command->blue = $blue;
         $command->green = $green;
@@ -80,7 +80,7 @@ class SetColorCommand implements JsonSerializable
         return [
             'command' => [
                 'setColor' => [
-                    'id' => $this->getId(),
+                    'id' => $this->getLedStrip(),
                     'red' => $this->getRed(),
                     'green' => $this->getGreen(),
                     'blue' => $this->getBlue(),
