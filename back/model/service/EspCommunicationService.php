@@ -57,20 +57,40 @@ class EspCommunicationService
 
     public function setColor(SetColorCommand $command)
     {
-        $offset = str_pad(decbin($command->getLedStrip()->getOffset()), 8, 0, STR_PAD_LEFT);
-        $redStr = str_pad(decbin($command->getRed()), 12, 0, STR_PAD_LEFT);
-        $greenStr = str_pad(decbin($command->getGreen()), 12, 0, STR_PAD_LEFT);
-        $blueStr = str_pad(decbin($command->getBlue()), 12, 0, STR_PAD_LEFT);
-        $warmWhiteStr = str_pad(decbin($command->getWarmWhite()), 12, 0, STR_PAD_LEFT);
+//        if ($command->getLedStrip()->getRed() != $command->getRed()) {
+            $redStr = str_pad(decbin($command->getRed()), 12, 0, STR_PAD_LEFT);
+            $redOffset = str_pad(decbin($command->getLedStrip()->getOffset()), 4, 0, STR_PAD_LEFT);
+//        }
+//        if ($command->getLedStrip()->getGreen() != $command->getGreen()) {
+            $greenStr = str_pad(decbin($command->getGreen()), 12, 0, STR_PAD_LEFT);
+            $greenOffset = str_pad(decbin($command->getLedStrip()->getOffset() + 1), 4, 0, STR_PAD_LEFT);
+//        }
+//        if ($command->getLedStrip()->getBlue() != $command->getBlue()) {
+            $blueStr = str_pad(decbin($command->getBlue()), 12, 0, STR_PAD_LEFT);
+            $blueOffset = str_pad(decbin($command->getLedStrip()->getOffset() + 2), 4, 0, STR_PAD_LEFT);
+//        }
+//        if ($command->getLedStrip()->getWarmWhite() != $command->getWarmWhite()) {
+            $whiteStr = str_pad(decbin($command->getWarmWhite()), 12, 0, STR_PAD_LEFT);
+            $whiteOffset = str_pad(decbin($command->getLedStrip()->getOffset() + 3), 4, 0, STR_PAD_LEFT);
+//        }
 
         // Hack to get php to accept 12 bit unsigned
         // Basically mapping the 12 bits per canal on 16 bit types
-        // behold order: Offset, WW, B, R, G
-        $first = $warmWhiteStr . substr($blueStr, 0, -8);
-        $second = substr($blueStr, 4) . substr($redStr, 0, -4);
-        $third = substr($redStr, 8) . $greenStr;
+        // behold order: [Rl/Gl/Bl/Wl][Offset][Rh/Gh/Bh/Wh]
+        if (!is_null($redStr))
+            $redBits = substr($redStr, 4) . $redOffset . substr($redStr, 0, 4);
+        if (!is_null($greenStr))
+            $greenBits = substr($greenStr, 4) . $greenOffset . substr($greenStr, 0, 4);
+        if (!is_null($blueStr))
+            $blueBits = substr($blueStr, 4) . $blueOffset . substr($blueStr, 0, 4);
+        if (!is_null($whiteStr))
+            $whiteBits = substr($whiteStr, 4) . $whiteOffset . substr($whiteStr, 0, 4);
 
-        $rgbBytes = pack('n*', bindec($offset), bindec($first), bindec($second), bindec($third));
+        $rgbBytes = pack('n*',
+            is_null($redBits) ? null : bindec($redBits),
+            is_null($greenBits) ? null : bindec($greenBits),
+            is_null($blueBits) ? null : bindec($blueBits),
+            is_null($whiteBits) ? null : bindec($whiteBits));
         $status = $this->connectionTcpService->sendByComponent($command->getLedStrip()->getId(), $rgbBytes);
 
         if ($status === true) {

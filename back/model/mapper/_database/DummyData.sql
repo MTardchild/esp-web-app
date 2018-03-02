@@ -28,7 +28,7 @@ INSERT INTO component VALUES (5, "", 2, 1);
 INSERT INTO component VALUES (6, "Television", 2, 3);
 INSERT INTO component VALUES (7, "Bed", 1, 3);
 
-INSERT INTO component_led_strip VALUES (6, 0);
+INSERT INTO component_led_strip VALUES (6, 4);
 INSERT INTO component_led_strip VALUES (7, 4);
 
 INSERT INTO component_data_dht VALUES (1, 23.4, 57.3, NOW(), 1);
@@ -41,6 +41,8 @@ INSERT INTO component_data_relay VALUES (3, true, NOW(), 4);
 
 INSERT INTO component_data_led_strip VALUES (1, 4000, 1200, 700, 68, NOW(), 6);
 INSERT INTO component_data_led_strip VALUES (2, 400, 4080, 2345, 96, NOW(), 7);
+INSERT INTO component_data_led_strip VALUES (3, 400, 4080, 2345, 96, NOW(), 7);
+INSERT INTO component_data_led_strip VALUES (4, 400, 4080, 2345, 96, NOW(), 7);
 
 INSERT INTO firmware VALUES (1, "Firmware Hello World", "/app/bla.bin/", NOW());
 INSERT INTO firmware VALUES (2, "Firmware Slim", "/app/bin/bla.bin/", NOW());

@@ -20,7 +20,7 @@ export class LedStrip extends React.Component {
         return color/16;
     }
     static convertTo12(color) {
-        return color*16;
+        return color === 0 ? 0 : (color+1)*16-1;
     }
     handleChange = (color, event) => {
         if (Date.now() > (this.state.lastCalled + 180)) {
@@ -56,9 +56,9 @@ export class LedStrip extends React.Component {
     };
     updateState = (color) => {
         this.setState({
-            red: LedStrip.convertTo12(color.rgb.r),
-            green: LedStrip.convertTo12(color.rgb.g),
-            blue: LedStrip.convertTo12(color.rgb.b),
+            red: color.rgb.r,
+            green: color.rgb.g,
+            blue: color.rgb.b,
             warmWhite: LedStrip.mapPercent(color.rgb.a)});
     };
     getUrl = (color) => {
@@ -69,9 +69,9 @@ export class LedStrip extends React.Component {
     render() {
         return (
             <div>
-                <ChromePicker color={{r: LedStrip.convertTo8(this.state.red),
-                    g: LedStrip.convertTo8(this.state.green),
-                    b: LedStrip.convertTo8(this.state.blue),
+                <ChromePicker color={{r: this.state.red,
+                    g: this.state.green,
+                    b: this.state.blue,
                     a: this.state.warmWhite}}
                     onChange={this.handleChange}
                     onChangeComplete={this.handleChangeComplete}/>
