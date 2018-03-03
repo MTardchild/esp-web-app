@@ -16,6 +16,7 @@ class FrontController
     private $espService;
     private $windowService;
     private $firmwareService;
+    private $logService;
 
     public function __construct(HeartbeatService $heartbeatService,
                                 ConfigurationService $configurationService,
@@ -25,6 +26,7 @@ class FrontController
                                 EspService $espService,
                                 WindowService $windowService,
                                 FirmwareService $firmwareService,
+                                LogService $logService,
                                 $heartbeat,
                                 $wifiCredentials,
                                 $doorUpdate,
@@ -33,7 +35,7 @@ class FrontController
                                 $roomUpdate,
                                 $windowUpdate,
                                 $firmwareUpdate,
-                                $logEntry)
+                                $logUpdate)
     {
         $this->heartbeatService = $heartbeatService;
         $this->doorService = $doorService;
@@ -43,6 +45,7 @@ class FrontController
         $this->windowService = $windowService;
         $this->configurationService = $configurationService;
         $this->firmwareService = $firmwareService;
+        $this->logService = $logService;
 
         if (!is_null($heartbeat)) {
             $this->wasHtmlPostSuccessful = $this->heartbeatService->evaluate($heartbeat);
@@ -80,8 +83,8 @@ class FrontController
             $this->wasHtmlPostSuccessful = $this->firmwareService->handleUpdate($firmwareUpdate);
         }
 
-        if (!is_null($logEntry)) {
-            $this->wasHtmlPostSuccessful = true;
+        if (!is_null($logUpdate)) {
+            $this->wasHtmlPostSuccessful = $this->logService->handleUpdate($logUpdate);
         }
     }
 

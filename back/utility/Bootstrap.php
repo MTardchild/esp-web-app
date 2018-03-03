@@ -84,10 +84,10 @@ if (isset($_POST["FirmwareUpdate"])) {
     }
 }
 
-$logEntry = null;
-if (isset($_POST["LogEntry"])) {
-    if (trim($_POST["LogEntry"]) != "") {
-        $logEntry = $_POST['LogEntry'];
+$logUpdate = null;
+if (isset($_POST["LogUpdate"])) {
+    if (trim($_POST["LogUpdate"]) != "") {
+        $logUpdate = $_POST['LogUpdate'];
     }
 }
 
@@ -100,7 +100,7 @@ $injector->define('FrontController', [
     ':windowUpdate' => $windowUpdate,
     ':roomUpdate' => $roomUpdate,
     ':firmwareUpdate' => $firmwareUpdate,
-    ':logEntry' => $logEntry]);
+    ':logUpdate' => $logUpdate]);
 $injector->share('FrontController');
 $injector->share('AjaxRequest');
 

@@ -26,18 +26,18 @@ class LocationMapper implements IDatabaseMapper, IDatabaseObjectMapper
         return $isSuccessful;
     }
 
-    public function update($location)
+    public function update($logEntry)
     {
         $isSuccessful = false;
 
-        if ($location instanceof Location) {
-            var_dump($location);
+        if ($logEntry instanceof Location) {
+            var_dump($logEntry);
             $query = $this->database->prepare("UPDATE location SET location.loc_name = :name, location.loc_room = :room, location.loc_door = :door, location.loc_window = :window WHERE location.loc_id = :id;");
-            $isSuccessful = $query->execute(array('id' => $location->getId(),
-                'name' => $location->getName(),
-                'room' => $location->getRoom()->getId() <= 0 ? null : $location->getRoom()->getId(),
-                'door' => $location->getDoor()->getId() <= 0 ? null : $location->getDoor()->getId(),
-                'window' => $location->getWindow()->getId() <= 0 ? null : $location->getWindow()->getId()));
+            $isSuccessful = $query->execute(array('id' => $logEntry->getId(),
+                'name' => $logEntry->getName(),
+                'room' => $logEntry->getRoom()->getId() <= 0 ? null : $logEntry->getRoom()->getId(),
+                'door' => $logEntry->getDoor()->getId() <= 0 ? null : $logEntry->getDoor()->getId(),
+                'window' => $logEntry->getWindow()->getId() <= 0 ? null : $logEntry->getWindow()->getId()));
         }
 
         return $isSuccessful;

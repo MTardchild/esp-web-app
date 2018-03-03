@@ -52,3 +52,5 @@ INSERT INTO io_board_types VALUES (1, "PCA9685 LED Driver Rev 1");
 INSERT INTO io_board VALUES (1, 1, 1);
 
 INSERT INTO io_board_pca9685 VALUES (1, 6, 7, NULL, NULL);
+
+INSERT INTO log_type VALUES (1, "Reading");

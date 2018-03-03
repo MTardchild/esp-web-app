@@ -171,3 +171,25 @@ CREATE TABLE rule_value (
   rva_value DECIMAL(5, 2) NOT NULL,
   PRIMARY KEY (rva_id)
 );
+
+CREATE TABLE log_type (
+  lgt_id   INT          NOT NULL,
+  lgt_name VARCHAR(255) NOT NULL,
+  PRIMARY KEY (lgt_id)
+);
+
+CREATE TABLE log (
+  log_id   INT  NOT NULL,
+  log_type INT  NOT NULL,
+  log_text TEXT NOT NULL,
+  PRIMARY KEY (log_id),
+  FOREIGN KEY (log_type) REFERENCES log_type (lgt_id)
+);
+
+CREATE TABLE log_file_io (
+  lfi_id INT NOT NULL,
+  lfi_path VARCHAR(1024) NOT NULL,
+  lfi_payload TEXT NOT NULL,
+  PRIMARY KEY (lfi_id),
+  FOREIGN KEY (lfi_id) REFERENCES log (log_id)
+);

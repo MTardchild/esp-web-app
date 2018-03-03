@@ -6,10 +6,10 @@ export class LedStrip extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            red: this.props.red,
-            green: this.props.green,
-            blue: this.props.blue,
-            warmWhite: this.props.warmWhite,
+            red: LedStrip.convertTo8(this.props.red),
+            green: LedStrip.convertTo8(this.props.green),
+            blue: LedStrip.convertTo8(this.props.blue),
+            warmWhite: LedStrip.convertTo8(this.props.warmWhite),
             lastCalled: Date.now()
         };
     }
@@ -20,10 +20,10 @@ export class LedStrip extends React.Component {
         return color/16;
     }
     static convertTo12(color) {
-        return color === 0 ? 0 : (color+1)*16-1;
+        return color*16;
     }
     handleChange = (color, event) => {
-        if (Date.now() > (this.state.lastCalled + 180)) {
+        if (Date.now() > (this.state.lastCalled + 1)) {
             this.setState({lastCalled: Date.now()});
             const self = this;
             fetch(this.getUrl(color))
