@@ -235,6 +235,7 @@ export class ConfiguredEsps extends React.Component {
     };
 
     updateServer = (action, esp) => {
+        esp.id = esp.id.props.children;
         let update = {
             action: action,
             esp: esp
@@ -242,6 +243,7 @@ export class ConfiguredEsps extends React.Component {
 
         let formData = new FormData();
         formData.append('EspUpdate', JSON.stringify(update));
+        console.log(esp);
         this.props.alert.show('Updating ID: ' + esp.id + " ...");
         fetch("", {
             method: "POST",
