@@ -41,39 +41,31 @@ PostData - EspHeartbeat
 PostData - EspHeartbeat Configure
 {
   "esp": {
-    "id": -1,
-    "name": "",
-    "location": -1,
-    "ip": "192.168.178.101",
+    "id": 6,
     "components": [
       {
         "componentId": -1,
-        "name": "",
-        "temperature": -1,
-        "humidity": -1,
-        "componentType": 1
+        "componentType": 1, //dht
+        "address": "i2caddress"
       },
       {
         "componentId": -1,
-        "name": "",
-        "state": 1,
-        "componentType": 2
+        "componentType": 2, //relay
+        "address": "i2caddress"
       },
       {
         "componentId": -1,
-        "name": "",
-        "state": 0,
-        "componentType": 2
+        "componentType": 2,
+        "address": "i2caddress"
       },
       {
         "componentId": -1,
-        "name": "",
-        "red": -1,
-        "green": -1,
-        "blue": -1,
-        "warmWhite": -1,
-        "componentType": 3
+        "componentType": 3, //led
+        "offset": 0
       }
     ]
+  },
+  "server": {
+    "ip":"192.168.178.101"
   }
 }

@@ -7,6 +7,13 @@ class Configurator
 
     }
 
+    public function configure(Esp $esp)
+    {
+        $espConfig = new EspConfig($esp);
+        $connectionEsp = new ConnectionEspTcp($esp->getEsp()->getIp());
+        return $connectionEsp->send(json_encode($command, JSON_UNESCAPED_SLASHES));
+    }
+
     public function getWifiNetworks()
     {
         $wifiNetworksString = shell_exec("nmcli device wifi list");

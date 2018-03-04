@@ -121,6 +121,14 @@ class AjaxRequestController
         $this->ajaxRequest->setMessage(json_encode($component));
     }
 
+    public function configure($action) {
+        $esp = $this->espService->find($action['id']);
+        $espConfig = new EspConfig($esp);
+        $command = new ConfigureCommand($espConfig, $this->configurationService->getServerIp());
+        var_dump(json_encode($command));
+        $this->ajaxRequest->setMessage($this->connectionTcpService->send($esp, json_encode($command)));
+    }
+
     public function getUnconfiguredEsps($action)
     {
         $wifiNetworks = $this->configurationService->getWifiNetworks();

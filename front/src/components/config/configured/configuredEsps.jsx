@@ -171,7 +171,8 @@ export class ConfiguredEsps extends React.Component {
                 components: <div className="margin-left-md">
                     <button type="button"
                             className="btn btn-outline-primary btn-sm padding-x-sm"
-                            onClick={() => this.openModalComponent(esp)}>+</button>
+                            onClick={() => this.openModalComponent(esp)}>+
+                    </button>
                 </div>
             });
 
@@ -243,7 +244,6 @@ export class ConfiguredEsps extends React.Component {
 
         let formData = new FormData();
         formData.append('EspUpdate', JSON.stringify(update));
-        console.log(esp);
         this.props.alert.show('Updating ID: ' + esp.id + " ...");
         fetch("", {
             method: "POST",
