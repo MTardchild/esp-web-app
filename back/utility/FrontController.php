@@ -35,7 +35,8 @@ class FrontController
                                 $roomUpdate,
                                 $windowUpdate,
                                 $firmwareUpdate,
-                                $logUpdate)
+                                $logUpdate,
+                                $config)
     {
         $this->heartbeatService = $heartbeatService;
         $this->doorService = $doorService;
@@ -85,6 +86,10 @@ class FrontController
 
         if (!is_null($logUpdate)) {
             $this->wasHtmlPostSuccessful = $this->logService->handleUpdate($logUpdate);
+        }
+
+        if (!is_null($config)) {
+            $this->wasHtmlPostSuccessful = $this->configurationService->configure($config);
         }
     }
 

@@ -35,6 +35,13 @@ if (isset($_POST["EspHeartbeat"])) {
     }
 }
 
+$config = null;
+if (isset($_POST["Config"])) {
+    if (trim($_POST["Config"]) != "") {
+        $config = $_POST['Config'];
+    }
+}
+
 $wifiCredentials = null;
 if (isset($_POST["WifiCredentials"])) {
     if (trim($_POST["WifiCredentials"]) != "") {
@@ -100,7 +107,8 @@ $injector->define('FrontController', [
     ':windowUpdate' => $windowUpdate,
     ':roomUpdate' => $roomUpdate,
     ':firmwareUpdate' => $firmwareUpdate,
-    ':logUpdate' => $logUpdate]);
+    ':logUpdate' => $logUpdate,
+    ':config' => $config]);
 $injector->share('FrontController');
 $injector->share('AjaxRequest');
 

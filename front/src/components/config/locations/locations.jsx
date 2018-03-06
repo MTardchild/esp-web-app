@@ -6,7 +6,7 @@ import {withAlert} from "react-alert";
 import {ObjectFormatterGrid} from "../formatterGrid/objectFormatterGrid";
 
 const {Editors} = require('react-data-grid-addons');
-const {AutoComplete: AutoCompleteEditor, DropDownEditor} = Editors;
+const {AutoComplete: AutoCompleteEditor} = Editors;
 
 export class Locations extends React.Component {
     constructor(props) {
@@ -73,44 +73,38 @@ export class Locations extends React.Component {
 
     getDropdownOptionRooms = () => {
         let options = [{id: 0, title: <div style={{height: 20 + 'px'}} id={0}/>, text: "", value: ""}];
-        this.props.rooms.map((room) => {
-                options.push({
-                    id: room.id,
-                    title: <div id={room.id}>{room.name}</div>,
-                    text: room.name,
-                    value: room.name
-                });
-            }
+        return options.concat(this.props.rooms.map((room) =>
+            ({
+                id: room.id,
+                title: <div id={room.id}>{room.name}</div>,
+                text: room.name,
+                value: room.name
+            }))
         );
-        return options;
     };
 
     getDropdownOptionDoors = () => {
         let options = [{id: 0, title: <div style={{height: 20 + 'px'}} id={0}/>, text: "", value: ""}];
-        this.props.doors.map((door) => {
-                options.push({
-                    id: door.id,
-                    title: <div id={door.id}>{door.name}</div>,
-                    text: door.name,
-                    value: door.name
-                });
-            }
+        return options.concat(this.props.doors.map((door) =>
+           ({
+                id: door.id,
+                title: <div id={door.id}>{door.name}</div>,
+                text: door.name,
+                value: door.name
+            }))
         );
-        return options;
     };
 
     getDropdownOptionWindows = () => {
         let options = [{id: 0, title: <div style={{height: 20 + 'px'}} id={0}/>, text: "", value: ""}];
-        this.props.windows.map((window) => {
-                options.push({
-                    id: window.id,
-                    title: <div id={window.id}>{window.name}</div>,
-                    text: window.name,
-                    value: window.name
-                });
-            }
+        return options.concat(this.props.windows.map((window) =>
+            ({
+                id: window.id,
+                title: <div id={window.id}>{window.name}</div>,
+                text: window.name,
+                value: window.name
+            }))
         );
-        return options;
     };
 
     columns = [

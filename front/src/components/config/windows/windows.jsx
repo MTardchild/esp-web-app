@@ -6,7 +6,7 @@ import {ObjectFormatterGrid} from "../formatterGrid/objectFormatterGrid";
 import {withAlert} from "react-alert";
 
 const {Editors} = require('react-data-grid-addons');
-const {AutoComplete: AutoCompleteEditor, DropDownEditor} = Editors;
+const {AutoComplete: AutoCompleteEditor} = Editors;
 
 export class Windows extends React.Component {
     constructor(props) {

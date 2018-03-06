@@ -7,7 +7,7 @@ import FlashModal from "../unconfigured/flashModal";
 import {ComponentAddModal} from "./componentAddModal";
 
 const {Editors} = require('react-data-grid-addons');
-const {AutoComplete: AutoCompleteEditor, DropDownEditor} = Editors;
+const {AutoComplete: AutoCompleteEditor} = Editors;
 
 export class ConfiguredEsps extends React.Component {
     constructor(props) {

@@ -3,13 +3,14 @@ import ReactDataGrid from 'react-data-grid';
 import FlashModal from "./flashModal";
 import WifiModal from "./wifiModal";
 import {withAlert} from "react-alert";
-import {ConfiguredEsps} from "../configured/configuredEsps";
+import {ConfigModal} from "./configModal";
 
 export class UnconfiguredEsps extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
             rows: this.createRows(),
+            isModalConfigOpen: false,
             isModalWifiOpen: false,
             isModalFlashOpen: false,
             selectedHardwareId: -1
@@ -38,10 +39,24 @@ export class UnconfiguredEsps extends React.Component {
         this.setState({isModalWifiOpen: false});
     };
 
+    openModalConfig = (hardwareId) => {
+        this.setState({
+            isModalConfigOpen: true,
+            selectedHardwareId: hardwareId
+        });
+    };
+
+    closeModalConfig = () => {
+        this.setState({isModalConfigOpen: false});
+    };
+
     getButtons = (hardwareId) => {
         return (
-            <div className="float-right">
+            <div className="text-center">
                 <button className="btn btn-sm btn-outline-primary padding-x-sm"
+                        onClick={() => this.openModalConfig(hardwareId)}>Config
+                </button>
+                <button className="btn btn-sm btn-outline-primary padding-x-sm margin-left-sm"
                         onClick={() => this.openModalWifi(hardwareId)}>Update Wifi
                 </button>
                 <button className="btn btn-sm btn-outline-primary padding-x-sm margin-left-sm"
@@ -103,7 +118,7 @@ export class UnconfiguredEsps extends React.Component {
         {
             key: "buttons",
             name: "",
-            width: 165
+            width: 235
         }
     ];
 
@@ -128,6 +143,10 @@ export class UnconfiguredEsps extends React.Component {
                 <WifiModal isModalOpen={this.state.isModalWifiOpen}
                            closeModal={this.closeModalWifi}
                            hardwareId={this.state.selectedHardwareId}/>
+                <ConfigModal isModalOpen={this.state.isModalConfigOpen}
+                             closeModal={this.closeModalConfig}
+                             hardwareId={this.state.selectedHardwareId}
+                             locations={this.props.locations}/>
             </div>
         );
     }

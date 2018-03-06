@@ -11,7 +11,7 @@ class Configurator
     {
         $espConfig = new EspConfig($esp);
         $connectionEsp = new ConnectionEspTcp($esp->getEsp()->getIp());
-        return $connectionEsp->send(json_encode($command, JSON_UNESCAPED_SLASHES));
+//        return $connectionEsp->send(json_encode($command, JSON_UNESCAPED_SLASHES));
     }
 
     public function getWifiNetworks()

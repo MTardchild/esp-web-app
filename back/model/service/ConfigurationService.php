@@ -19,6 +19,11 @@ class ConfigurationService
         return $this->configurator->flash($command);
     }
 
+    public function configure($config)
+    {
+
+//        return $this->configurator->configure($esp);
+    }
 
     public function configureWifi(Esp $esp, $ssid, $password)
     {
