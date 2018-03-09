@@ -74,6 +74,8 @@ class EspCommunicationService
             $whiteOffset = str_pad(decbin($command->getLedStrip()->getOffset() + 3), 4, 0, STR_PAD_LEFT);
 //        }
 
+        $commandId = str_pad(decbin(1), 8, 0, STR_PAD_LEFT);
+
         // Hack to get php to accept 12 bit unsigned
         // Basically mapping the 12 bits per canal on 16 bit types
         // behold order: [Rl/Gl/Bl/Wl][Offset][Rh/Gh/Bh/Wh]
@@ -87,6 +89,7 @@ class EspCommunicationService
             $whiteBits = substr($whiteStr, 4) . $whiteOffset . substr($whiteStr, 0, 4);
 
         $rgbBytes = pack('n*',
+            bindec($commandId),
             is_null($redBits) ? null : bindec($redBits),
             is_null($greenBits) ? null : bindec($greenBits),
             is_null($blueBits) ? null : bindec($blueBits),

@@ -12,6 +12,16 @@ class ComponentBase extends DatabaseObjectBase
 
     }
 
+    static public function create($id, $name, $espId, $typeId): ComponentBase
+    {
+        $component = new ComponentBase();
+        $component->id = $id;
+        $component->name = $name;
+        $component->espId = $espId;
+        $component->typeId = $typeId;
+        return $component;
+    }
+
     public function getName()
     {
         return $this->name;

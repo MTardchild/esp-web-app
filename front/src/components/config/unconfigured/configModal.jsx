@@ -1,6 +1,7 @@
 import React from 'react';
 import Modal from 'react-modal';
 import {withAlert} from "react-alert";
+import {AddedComponents} from "../AddedComponents";
 
 export class ConfigModal extends React.Component {
     constructor(props) {
@@ -9,8 +10,9 @@ export class ConfigModal extends React.Component {
             esp: {
                 name: "",
                 ip: "",
-                locationId: 0,
-                components: []
+                locationId: 1,
+                components: [],
+                hardwareId: this.props.hardwareId
             }
         };
     }
@@ -23,35 +25,53 @@ export class ConfigModal extends React.Component {
 
     configure = () => {
         const self = this;
-        fetch(this.getUrl())
-            .then(function (response) {
-                response.then(function (data) {
+        let formData = new FormData();
+        formData.append('Config', JSON.stringify(this.state.esp));
+        console.log(formData);
 
-                });
-            })
-            .catch(function (error) {
-
+        fetch("", {
+            method: "POST",
+            body: formData
+        }).then((res) => res.text().then(function (text) {
+            console.log(text);
+        })).then((data) => {
+            console.log(data);
+            this.props.alert.success('Configured ' + this.state.esp.name + ' ...');
+        })
+            .catch((err) => {
+                console.log(err);
+                this.props.alert.error('Failed configuring ' + this.state.esp.name + '.')
             });
     };
 
-    getUrl = () => {
-        return "";
-    };
-
     onNameChanged = (event) => {
-        this.setState({ssid: event.currentTarget.value});
+        let esp = this.state.esp;
+        esp.name = event.currentTarget.value;
+        this.setState({esp: esp});
     };
 
     onIpChanged = (event) => {
-        this.setState({password: event.currentTarget.value});
+        let esp = this.state.esp;
+        esp.ip = event.currentTarget.value;
+        this.setState({esp: esp});
     };
 
     onLocationChanged = (event) => {
-
+        let esp = this.state.esp;
+        esp.locationId = event.currentTarget.value;
+        this.setState({esp: esp});
     };
 
     onComponentAdded = (typeId) => {
+        let esp = this.state.esp;
+        esp.components.push({typeId: typeId});
+        this.setState({esp: esp});
+    };
 
+    onComponentRemoved = (typeId) => {
+        let esp = this.state.esp;
+        esp.components.splice(esp.components.findIndex(component => component.typeId === typeId), 1);
+        this.setState({esp: esp});
     };
 
     render() {
@@ -61,6 +81,7 @@ export class ConfigModal extends React.Component {
                 shouldCloseOnOverlayClick={false}
                 contentLabel="Config Modal">
                 <h1>Configurate ESP</h1>
+                <hr/>
                 <div className="row">
                     <div className="col">
                         <div className="input-group mb-3">
@@ -96,10 +117,17 @@ export class ConfigModal extends React.Component {
                     </div>
                 </div>
 
-                <div className="row">
-                    <div className="text-center">
-
-                    </div>
+                <div className="text-center">
+                    <h2>Add Components</h2>
+                    <img src="public/img/ledStrip.png" width={150} alt="" className="img-thumbnail margin-x-sm"
+                         onClick={() => this.onComponentAdded(3)}/>
+                    <img src="public/img/switch.png" width={150} alt="" className="img-thumbnail margin-x-sm"
+                         onClick={() => this.onComponentAdded(2)}/>
+                    <img src="public/img/temperature.png" width={150} alt="" className="img-thumbnail margin-x-sm"
+                         onClick={() => this.onComponentAdded(1)}/>
+                </div>
+                <div className="text-center">
+                    <AddedComponents components={this.state.esp.components} remove={this.onComponentRemoved}/>
                 </div>
 
                 <div className="row">

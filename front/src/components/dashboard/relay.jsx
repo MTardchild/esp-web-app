@@ -28,7 +28,7 @@ export class Relay extends React.Component {
     render() {
         return (
             <div>
-                <span>{this.props.name}</span>
+                <span>&nbsp;{this.props.name}</span>
                 <label className="switch" style={{float: "right"}}>
                     <input type="checkbox" checked={this.state.state} onClick={this.toggle} />
                     <span className="slider round"/>

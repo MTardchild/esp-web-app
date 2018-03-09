@@ -25,7 +25,9 @@ class EspService implements IDatabaseService
         $isSuccessful = $this->espMapper->insert($esp);
 
         foreach ($esp->getComponents() as $component) {
-            $this->componentService->insert($component);
+            if (!$this->componentService->find($component->getId()) instanceof ComponentBase) {
+                $this->componentService->insert($component);
+            }
         }
 
         return $isSuccessful;

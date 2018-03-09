@@ -3,7 +3,7 @@ import ReactDataGrid from 'react-data-grid';
 import FlashModal from "./flashModal";
 import WifiModal from "./wifiModal";
 import {withAlert} from "react-alert";
-import {ConfigModal} from "./configModal";
+import ConfigModal from "./configModal";
 
 export class UnconfiguredEsps extends React.Component {
     constructor(props) {

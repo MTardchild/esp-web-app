@@ -7,11 +7,10 @@ class Configurator
 
     }
 
-    public function configure(Esp $esp)
+    public function configure(ConfigureCommand $command)
     {
-        $espConfig = new EspConfig($esp);
-        $connectionEsp = new ConnectionEspTcp($esp->getEsp()->getIp());
-//        return $connectionEsp->send(json_encode($command, JSON_UNESCAPED_SLASHES));
+        $connectionEsp = new ConnectionEspTcp($command->getEsp()->getEsp()->getIp());
+        return $connectionEsp->send(json_encode($command, JSON_UNESCAPED_SLASHES));
     }
 
     public function getWifiNetworks()
