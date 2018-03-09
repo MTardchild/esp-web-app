@@ -86,6 +86,15 @@
   z-index: 0 !important;
 }
 
+.relativeWrapper {
+  position: relative;
+}
+
+.absoluteWrapper {
+  position: absolute;
+  width: 100%;
+}
+
 /* The switch - the box around the slider */
 .switch {
   position: relative;

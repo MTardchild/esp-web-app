@@ -5,6 +5,7 @@ import {withAlert} from "react-alert";
 import {ObjectFormatterGrid} from "../formatterGrid/objectFormatterGrid";
 import FlashModal from "../unconfigured/flashModal";
 import {ComponentAddModal} from "./componentAddModal";
+import {ComponentModal} from "./ComponentModal";
 
 const {Editors} = require('react-data-grid-addons');
 const {AutoComplete: AutoCompleteEditor} = Editors;
@@ -17,8 +18,9 @@ export class ConfiguredEsps extends React.Component {
             rows: this.createRows(),
             isModalFlashOpen: false,
             isModalComponentOpen: false,
+            isModalComponentAddOpen: false,
             selectedHardwareId: -1,
-            selectedEsp: -1
+            selectedEsp: this.props.esps.filter(esp => esp.id == 1)[0]
         };
     }
 
@@ -85,56 +87,7 @@ export class ConfiguredEsps extends React.Component {
     };
 
     onCellExpand = (args) => {
-        let rows = this.state.rows.slice(0);
-        let rowKey = args.rowData.name;
-        let rowIndex = rows.indexOf(args.rowData);
-        let subRows = args.expandArgs.children;
-
-        let expanded = Object.assign({}, this.state.expanded);
-        if (expanded && !expanded[rowKey]) {
-            expanded[rowKey] = true;
-            this.updateSubRowDetails(subRows, args.rowData.treeDepth);
-            rows.splice(rowIndex + 1, 0, ...subRows);
-        } else if (expanded[rowKey]) {
-            expanded[rowKey] = false;
-            rows.splice(rowIndex + 1, subRows.length);
-        }
-
-        this.setState({expanded: expanded, rows: rows});
-    };
-
-    updateSubRowDetails = (subRows, parentTreeDepth) => {
-        let treeDepth = parentTreeDepth || 0;
-        subRows.forEach((sr, i) => {
-            sr.treeDepth = treeDepth + 1;
-            sr.siblingIndex = i;
-            sr.numberSiblings = subRows.length;
-        });
-    };
-
-    onDeleteSubRow = (args) => {
-        if (args.rowData.id === "") return;
-        let idToDelete = args.rowData.id;
-        let rows = this.state.rows.slice(0);
-        // Remove sub row from parent row.
-        rows = rows.map(r => {
-            let children = [];
-            if (r.children) {
-                children = r.children.filter(sr => sr.id !== idToDelete);
-                if (children.length !== r.children.length) {
-                    this.updateSubRowDetails(children, r.treeDepth);
-                }
-            }
-            return Object.assign({}, r, {children});
-        });
-        // Remove sub row from flattened rows.
-        rows = rows.filter(r => r.id !== idToDelete);
-        this.setState({rows});
-    };
-
-    onAddSubRow = (args) => {
-        console.log('add sub row');
-        console.log(args);
+        this.setState({isModalComponentOpen: true});
     };
 
     getButtons = (hardwareId) => {
@@ -171,7 +124,7 @@ export class ConfiguredEsps extends React.Component {
                 components: <div className="margin-left-md">
                     <button type="button"
                             className="btn btn-outline-primary btn-sm padding-x-sm"
-                            onClick={() => this.openModalComponent(esp)}>+
+                            onClick={() => this.openModalComponentAdd(esp)}>+
                     </button>
                 </div>
             });
@@ -224,10 +177,21 @@ export class ConfiguredEsps extends React.Component {
         this.setState({isModalFlashOpen: false});
     };
 
-    openModalComponent = (esp) => {
+    openModalComponentAdd = (espId) => {
+        this.setState({
+            isModalComponentAddOpen: true,
+            selectedEsp: this.props.esps.filter(esp => esp.id == espId)[0]
+        });
+    };
+
+    closeModalComponentAdd = () => {
+        this.setState({isModalComponentAddOpen: false});
+    };
+
+    openModalComponent = (espId) => {
         this.setState({
             isModalComponentOpen: true,
-            selectedEsp: esp
+            selectedEsp: this.props.esps.filter(esp => esp.id == espId)[0]
         });
     };
 
@@ -265,8 +229,6 @@ export class ConfiguredEsps extends React.Component {
                     columns={this.columns}
                     rowsCount={this.state.rows.length}
                     enableCellSelect={true}
-                    onAddSubRow={this.onAddSubRow}
-                    onDeleteSubRow={this.onDeleteSubRow}
                     onCellExpand={this.onCellExpand}
                     getSubRowDetails={this.getSubRowDetails}
                     onGridRowsUpdated={this.handleGridRowsUpdated}/>
@@ -276,12 +238,17 @@ export class ConfiguredEsps extends React.Component {
                             firmwares={this.props.firmwares}
                             hardwareId={this.state.selectedHardwareId}/>
 
-                <ComponentAddModal isModalOpen={this.state.isModalComponentOpen}
-                                   closeModal={this.closeModalComponent}
+                <ComponentAddModal isModalOpen={this.state.isModalComponentAddOpen}
+                                   closeModal={this.closeModalComponentAdd}
                                    componentTypes={[{id: 1, name: "TODO"}]}
                                    freeId={0}
                                    add={this.onAddSubRow}
-                                   espId={this.state.selectedEsp}/>
+                                   espId={this.state.selectedEsp.id}/>
+
+                <ComponentModal isModalOpen={this.state.isModalComponentOpen}
+                                closeModal={this.closeModalComponent}
+                                freeId={0}
+                                esp={this.state.selectedEsp}/>
             </div>
         );
     }
