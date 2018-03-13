@@ -1,15 +1,34 @@
 import React from 'react';
 import Modal from 'react-modal';
 import ReactDataGrid from 'react-data-grid';
+import {ComponentAddModal} from "./componentAddModal";
 import update from "immutability-helper/index";
 
 export class ComponentModal extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            rows: this.createRows()
+            isModalComponentAddOpen: false,
+            rows: this.createRows(this.props.esp)
         };
     }
+
+    componentWillReceiveProps(nextProps) {
+        if (this.props.esp.id !== nextProps.esp.id) {
+            this.setState({
+                rows: this.createRows(nextProps.esp)
+            });
+        }
+    }
+
+    createRows = (esp) => {
+        return esp.components.map((component) =>
+            ({
+                id: component.id,
+                name: component.name,
+                buttons: this.getButtons(component.id)
+            }));
+    };
 
     createRow = (component) => {
         let newComponent = {};
@@ -17,15 +36,6 @@ export class ComponentModal extends React.Component {
         newComponent.name = component.name;
         newComponent.buttons = this.getButtons(newComponent.id);
         return newComponent;
-    };
-
-    createRows = () => {
-        return this.props.esp.components.map((component) =>
-            ({
-                id: component.id,
-                name: component.name,
-                buttons: this.getButtons(component.id)
-            }));
     };
 
     columns = [
@@ -107,6 +117,14 @@ export class ComponentModal extends React.Component {
             .catch((err) => this.props.alert.error('Failed updating ID: ' + component.id));
     };
 
+    openModalComponentAdd = (espId) => {
+        this.setState({isModalComponentAddOpen: true});
+    };
+
+    closeModalComponentAdd = () => {
+        this.setState({isModalComponentAddOpen: false});
+    };
+
     render() {
         return (
             <Modal
@@ -117,10 +135,9 @@ export class ComponentModal extends React.Component {
                 <div className="relativeWrapper">
                     <div className="absoluteWrapper">
                         <div className="table-toolbar float-right">
-                            <button className="btn btn-outline-primary">Add Component</button>
+                            <button onClick={this.openModalComponentAdd} className="btn btn-outline-primary">Add Component</button>
                         </div>
                         <ReactDataGrid
-                            minHeight={70 + 'vh'}
                             rowGetter={this.rowGetter}
                             columns={this.columns}
                             rowsCount={this.state.rows.length}
@@ -134,6 +151,10 @@ export class ComponentModal extends React.Component {
                     </div>
                 </div>
 
+                <ComponentAddModal isModalOpen={this.state.isModalComponentAddOpen}
+                                   closeModal={this.closeModalComponentAdd}
+                                   componentTypes={[{id: 1, name: "TODO"}]}
+                                   espId={this.props.esp.id}/>
             </Modal>
         );
     }

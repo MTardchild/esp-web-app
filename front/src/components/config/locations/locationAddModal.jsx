@@ -49,10 +49,6 @@ export class LocationAddModal extends React.Component {
         this.setState({location: location});
     };
     render() {
-        let selectOptionsRooms = this.getSelectOptionsRooms();
-        let selectOptionsDoors = this.getSelectOptionsDoors();
-        let selectOptionsWindows = this.getSelectOptionsWindows();
-
         return (
             <Modal
                 isOpen={this.props.isModalOpen}
@@ -85,7 +81,7 @@ export class LocationAddModal extends React.Component {
                     <select className="form-control" value={this.state.location.roomId}
                             onChange={this.onRoomChanged}>
                         <option value={0}/>
-                        {selectOptionsRooms}
+                        {this.getSelectOptionsRooms()}
                     </select>
                 </div>
                 <div className="input-group mb-3">
@@ -95,7 +91,7 @@ export class LocationAddModal extends React.Component {
                     <select className="form-control" value={this.state.location.doorId}
                             onChange={this.onDoorChanged}>
                         <option value={0}/>
-                        {selectOptionsDoors}
+                        {this.getSelectOptionsDoors()}
                     </select>
                 </div>
                 <div className="input-group mb-3">
@@ -105,7 +101,7 @@ export class LocationAddModal extends React.Component {
                     <select className="form-control" value={this.state.location.windowId}
                             onChange={this.onWindowChanged}>
                         <option value={0}/>
-                        {selectOptionsWindows}
+                        {this.getSelectOptionsWindows()}
                     </select>
                 </div>
 

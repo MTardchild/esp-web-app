@@ -40,8 +40,6 @@ export class FlashModal extends React.Component {
     };
 
     render() {
-        let selectOptionsFirmwares = this.getSelectOptionsFirmwares();
-
         return (
             <Modal
                 isOpen={this.props.isModalOpen}
@@ -65,7 +63,7 @@ export class FlashModal extends React.Component {
                             <select className="form-control"
                                     value={this.state.selectedFirmwareId}
                                     onChange={this.onFirmwareSelected}>
-                                {selectOptionsFirmwares}
+                                {this.getSelectOptionsFirmwares()}
                             </select>
                         </div>
                     </div>

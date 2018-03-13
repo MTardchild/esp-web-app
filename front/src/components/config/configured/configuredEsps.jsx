@@ -4,7 +4,6 @@ import update from 'immutability-helper'
 import {withAlert} from "react-alert";
 import {ObjectFormatterGrid} from "../formatterGrid/objectFormatterGrid";
 import FlashModal from "../unconfigured/flashModal";
-import {ComponentAddModal} from "./componentAddModal";
 import {ComponentModal} from "./ComponentModal";
 
 const {Editors} = require('react-data-grid-addons');
@@ -14,12 +13,9 @@ export class ConfiguredEsps extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            expanded: {},
             rows: this.createRows(),
             isModalFlashOpen: false,
             isModalComponentOpen: false,
-            isModalComponentAddOpen: false,
-            selectedHardwareId: -1,
             selectedEsp: this.props.esps.filter(esp => esp.id == 1)[0]
         };
     }
@@ -73,21 +69,11 @@ export class ConfiguredEsps extends React.Component {
         }
     ];
 
-    getSubRowDetails = (rowItem) => {
-        let isExpanded = this.state.expanded[rowItem.name] ? this.state.expanded[rowItem.name] : false;
-        return {
-            group: rowItem.children && rowItem.children.length > 0,
-            expanded: isExpanded,
-            children: rowItem.children,
-            field: 'components',
-            treeDepth: rowItem.treeDepth || 0,
-            siblingIndex: rowItem.siblingIndex,
-            numberSiblings: rowItem.numberSiblings
-        };
-    };
-
-    onCellExpand = (args) => {
-        this.setState({isModalComponentOpen: true});
+    onComponentsClicked = (selectedEspId) => {
+        this.setState({
+            isModalComponentOpen: true,
+            selectedEsp: this.props.esps.filter(esp => esp.id == selectedEspId)[0]
+        });
     };
 
     getButtons = (hardwareId) => {
@@ -100,43 +86,16 @@ export class ConfiguredEsps extends React.Component {
         );
     };
 
-    deleteComponent = (componentId) => {
-
-    };
-
     createRows = () => {
         return this.props.esps.map((esp) => {
-            let components = esp.components.map((component) => {
-                return {
-                    id: <div className="margin-left-md">{component.id}</div>,
-                    name: component.name,
-                    components: <div className="margin-left-md">{component.typeString}</div>,
-                    buttons: <div className="text-center">
-                        <button className="btn btn-sm btn-outline-danger padding-x-sm"
-                                onClick={() => this.deleteComponent(0)}>Delete
-                        </button>
-                    </div>
-                };
-            });
-            components.push({
-                id: "",
-                name: "",
-                components: <div className="margin-left-md">
-                    <button type="button"
-                            className="btn btn-outline-primary btn-sm padding-x-sm"
-                            onClick={() => this.openModalComponentAdd(esp)}>+
-                    </button>
-                </div>
-            });
-
             return {
-                id: <b>{esp.id}</b>,
+                id: esp.id,
                 name: esp.name,
                 hwId: esp.hwId,
                 ip: esp.ip,
                 location: esp.location,
-                components: "Components",
-                children: components,
+                components: <span className="clickable"
+                                  onClick={() => this.onComponentsClicked(esp.id)}>Components</span>,
                 buttons: this.getButtons(esp.hwId)
             }
         });
@@ -169,23 +128,12 @@ export class ConfiguredEsps extends React.Component {
     openModalFlash = (hardwareId) => {
         this.setState({
             isModalFlashOpen: true,
-            selectedHardwareId: hardwareId
+            selectedEsp: this.props.esps.filter(esp => esp.hardwareId == hardwareId)[0]
         });
     };
 
     closeModalFlash = () => {
         this.setState({isModalFlashOpen: false});
-    };
-
-    openModalComponentAdd = (espId) => {
-        this.setState({
-            isModalComponentAddOpen: true,
-            selectedEsp: this.props.esps.filter(esp => esp.id == espId)[0]
-        });
-    };
-
-    closeModalComponentAdd = () => {
-        this.setState({isModalComponentAddOpen: false});
     };
 
     openModalComponent = (espId) => {
@@ -200,55 +148,49 @@ export class ConfiguredEsps extends React.Component {
     };
 
     updateServer = (action, esp) => {
-        esp.id = esp.id.props.children;
         let update = {
             action: action,
             esp: esp
         };
 
+        this.sendRequest(update);
+    };
+
+    sendRequest(update) {
         let formData = new FormData();
         formData.append('EspUpdate', JSON.stringify(update));
-        this.props.alert.show('Updating ID: ' + esp.id + " ...");
+        this.props.alert.show('Updating ID: ' + update.esp.id + " ...");
         fetch("", {
             method: "POST",
             body: formData
         }).then((res) => res)
             .then((data) => {
-                this.props.alert.success('Updated ID: ' + esp.id);
+                this.props.alert.success('Updated ID: ' + update.esp.id);
                 this.props.updateAppState();
             })
-            .catch((err) => this.props.alert.error('Failed updating ID: ' + esp.id));
-    };
+            .catch((err) => this.props.alert.error('Failed updating ID: ' + update.esp.id));
+    }
 
     render() {
         return (
             <div>
                 <ReactDataGrid
-                    minHeight={90 + 'vh'}
+                    minHeight={85 + 'vh'}
                     rowGetter={this.rowGetter}
                     columns={this.columns}
                     rowsCount={this.state.rows.length}
                     enableCellSelect={true}
-                    onCellExpand={this.onCellExpand}
-                    getSubRowDetails={this.getSubRowDetails}
                     onGridRowsUpdated={this.handleGridRowsUpdated}/>
-
                 <FlashModal isModalOpen={this.state.isModalFlashOpen}
                             closeModal={this.closeModalFlash}
                             firmwares={this.props.firmwares}
-                            hardwareId={this.state.selectedHardwareId}/>
-
-                <ComponentAddModal isModalOpen={this.state.isModalComponentAddOpen}
-                                   closeModal={this.closeModalComponentAdd}
-                                   componentTypes={[{id: 1, name: "TODO"}]}
-                                   freeId={0}
-                                   add={this.onAddSubRow}
-                                   espId={this.state.selectedEsp.id}/>
+                            hardwareId={this.state.selectedEsp.hardwareId}/>
 
                 <ComponentModal isModalOpen={this.state.isModalComponentOpen}
                                 closeModal={this.closeModalComponent}
                                 freeId={0}
                                 esp={this.state.selectedEsp}/>
+
             </div>
         );
     }
